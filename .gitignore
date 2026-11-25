@@ -1,0 +1,18 @@
+# Built site: Netlify builds it from wordfall.html (see netlify.toml).
+deploy/site/
+
+# Old hand-kept copies of wordfall.html. Git history replaces these; they stay on disk.
+history/
+
+# Audio previews (several MB, not used by the game).
+media/
+
+# Local Claude Code settings.
+.claude/settings.local.json
+
+# Python and OS clutter.
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+desktop.ini

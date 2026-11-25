@@ -1,0 +1,10 @@
+# Netlify settings for the self-hosted copy of Wordfall.
+# Drag-and-drop deploys ignore this file; the Netlify CLI and Git-connected sites use it.
+[build]
+  command = "python3 deploy/build.py"
+  publish = "deploy/site"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
