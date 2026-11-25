@@ -750,11 +750,13 @@ div.hub-t{cursor:default}
 .ov-back{justify-self:start;padding:10px 22px 10px 16px;border-radius:999px;border:2px solid var(--line2);background:var(--well);color:var(--fg);font:400 16px/1 var(--f-display);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
 .ov-back:hover,.ov-back:focus-visible{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);outline:none}
 .pk-cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;width:100%;align-items:stretch}
-.pk-card{--tear:polygon(0 0,100% 0,100% calc(100% - 12px),94% 100%,87% calc(100% - 8px),79% 100%,71% calc(100% - 11px),62% 100%,53% calc(100% - 7px),45% 100%,36% calc(100% - 11px),27% 100%,19% calc(100% - 6px),10% 100%,4% calc(100% - 10px),0 100%);position:relative;display:flex;flex-direction:column;gap:14px;padding:18px 14px 30px;min-height:400px;border:0;border-radius:10px 10px 0 0;background:linear-gradient(180deg,color-mix(in srgb,var(--mc) 36%,#231f3d),color-mix(in srgb,var(--mc) 14%,#15122a) 78%);color:var(--fg);font:inherit;text-align:center;cursor:pointer;clip-path:var(--tear);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--mc) 55%,transparent);transition:transform .18s ease,filter .18s ease;animation:pkin .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * 70ms);overflow:hidden}
+.pk-card{--tear:polygon(0 0,100% 0,100% calc(100% - 12px),94% 100%,87% calc(100% - 8px),79% 100%,71% calc(100% - 11px),62% 100%,53% calc(100% - 7px),45% 100%,36% calc(100% - 11px),27% 100%,19% calc(100% - 6px),10% 100%,4% calc(100% - 10px),0 100%);position:relative;display:flex;flex-direction:column;gap:14px;padding:18px 14px 30px;min-height:400px;border:0;border-radius:10px 10px 0 0;background:var(--trim);color:var(--fg);font:inherit;text-align:center;cursor:pointer;clip-path:var(--tear);--t:2px;--trim:color-mix(in srgb,var(--mc) 62%,#1a1733);isolation:isolate;transition:transform .18s ease,filter .18s ease;animation:pkin .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * 70ms);overflow:hidden}
 @keyframes pkin{from{opacity:0;transform:translateY(40px)}}
 .pk-card:hover,.pk-card:focus-visible{transform:translateY(-8px);filter:brightness(1.15);outline:none}
-.pk-card:focus-visible{box-shadow:inset 0 0 0 3px var(--fg)}
-.pk-card.on{box-shadow:inset 0 0 0 3px var(--mc),inset 0 0 40px -10px var(--mc)}
+/* The card's own background is the trim; the fill sits 2px inside it, torn along the same edge. */
+.pk-card::before{content:'';position:absolute;inset:var(--t) var(--t) calc(var(--t) + 1px);z-index:-1;border-radius:8px 8px 0 0;background:linear-gradient(180deg,color-mix(in srgb,var(--mc) 36%,#231f3d),color-mix(in srgb,var(--mc) 14%,#15122a) 78%);clip-path:polygon(calc(0% - var(--t)) 0,calc(100% + var(--t)) 0,calc(100% + var(--t) * 1) calc(100% - 12px),calc(94% + var(--t) * 0.88) 100%,calc(87% + var(--t) * 0.74) calc(100% - 8px),calc(79% + var(--t) * 0.58) 100%,calc(71% + var(--t) * 0.42) calc(100% - 11px),calc(62% + var(--t) * 0.24) 100%,calc(53% + var(--t) * 0.06) calc(100% - 7px),calc(45% + var(--t) * -0.1) 100%,calc(36% + var(--t) * -0.28) calc(100% - 11px),calc(27% + var(--t) * -0.46) 100%,calc(19% + var(--t) * -0.62) calc(100% - 6px),calc(10% + var(--t) * -0.8) 100%,calc(4% + var(--t) * -0.92) calc(100% - 10px),calc(0% + var(--t) * -1) 100%);transition:box-shadow .18s ease}
+.pk-card:focus-visible{--trim:var(--fg);--t:3px}
+.pk-card.on{--trim:var(--mc);--t:3px}.pk-card.on::before{box-shadow:inset 0 0 40px -10px var(--mc)}
 .pk-name{font:400 22px/1.05 var(--f-display);color:var(--mc);text-transform:uppercase;letter-spacing:.03em;text-shadow:0 2px 0 #0008,0 0 16px color-mix(in srgb,var(--mc) 40%,transparent)}
 .pk-art{height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border-radius:8px;border:2px solid color-mix(in srgb,var(--mc) 45%,#0008);background:radial-gradient(circle at 50% 35%,color-mix(in srgb,var(--mc) 45%,transparent),transparent 65%),#0d0b1f;overflow:hidden}
 .pk-art .wotd i{flex:none;width:24px;font-size:12px}
@@ -5094,17 +5096,22 @@ const MELODY = [
   67, 0, 72, 76, 74, 0, 72, 0,
   71, 0, 74, 0, 79, 77, 76, 74,
 ];
-// Rot & Thaw swaps in a song per season. Both build in layers as the season goes on
-// (music.sFrac runs 0 → 1 across the season).
+// Rot & Thaw swaps in a song per season. The two are one theme in two moods: winter plays
+// the summer tune in the minor over the same chord shapes, so each season turns into the next.
+// Each builds in layers as the season goes on (music.sFrac runs 0 → 1), starts fuller from the
+// second cycle on (music.late), and the last bar of a season winds up into the next one.
 const SEASON_SONGS = {
-  // Blizzard, D minor: Dm – B♭ – Gm – A. A heartbeat, howling wind and icy bells to start,
-  // then a pulsing bass and a ticking clock, then trembling strings as you hold out for the thaw.
+  // Blizzard, D minor: Dm – A – B♭ – Gm. A 16th-note string ostinato drives from the first beat
+  // (you're holding out, not resting), over a heartbeat, wind and icy bells. Then an ice-crack
+  // backbeat and taiko toms, then trembling strings. Late blizzards add brass stabs and doubling.
   winter: {
-    chords: [{ r: 38, t: 3 }, { r: 34, t: 4 }, { r: 43, t: 3 }, { r: 45, t: 4 }],
-    bells: [74, 0, 0, 0, 75, 0, 74, 0, 0, 0, 70, 0, 69, 0, 0, 0, 67, 0, 0, 70, 69, 0, 67, 0, 69, 0, 0, 0, 73, 0, 76, 0],
+    chords: [{ r: 38, t: 3 }, { r: 33, t: 4 }, { r: 34, t: 4 }, { r: 31, t: 3 }],
+    bells: [77, 0, 76, 77, 81, 0, 77, 76, 76, 0, 73, 76, 81, 0, 76, 0, 74, 0, 73, 74, 77, 0, 74, 73, 70, 0, 74, 77, 79, 81, 82, 0],
+    ost: [0, 12, 0, 7, 0, 12, 0, 'T', 0, 12, 0, 7, 12, 7, 1, 0],
   },
-  // Summer, D major: D – A – Bm – G. Four-on-the-floor with a rolling bass from the first beat;
-  // claps, the melody and 16th hats join as the summer speeds up.
+  // Summer, D major: D – A – Bm – G. Four-on-the-floor, rolling bass and arp from the first beat;
+  // claps and the melody come in within seconds, 16th hats once it's hot. Late summers start
+  // with claps and melody, and add offbeat piano chords, a ride and a pumping bass.
   summer: {
     chords: [{ r: 38, t: 4 }, { r: 45, t: 4 }, { r: 47, t: 3 }, { r: 43, t: 4 }],
     melody: [78, 0, 76, 78, 81, 0, 78, 76, 76, 0, 73, 76, 81, 0, 76, 0, 74, 0, 73, 74, 78, 0, 74, 73, 71, 0, 74, 78, 79, 81, 83, 0],
@@ -5175,6 +5182,21 @@ function wind(t, dur, vol, lo, hi) {
   s.connect(f); f.connect(g); g.connect(music.out);
   s.start(t); s.stop(t + dur + 0.05);
 }
+function crash(t, vol) { noiseHit(t, 1.4, vol, 6000, 'highpass'); noiseHit(t, 0.45, vol * 0.6, 2400, 'bandpass'); }
+function tom(t, freq, vol) {
+  const c = music.ctx, o = c.createOscillator(), g = c.createGain();
+  o.type = 'sine'; o.frequency.setValueAtTime(freq * 1.8, t); o.frequency.exponentialRampToValueAtTime(freq, t + 0.08);
+  g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.35);
+  o.connect(g); g.connect(music.out); o.start(t); o.stop(t + 0.4);
+}
+// A sweep of filtered noise from lo to hi Hz, swelling into the next season.
+function riser(t, dur, vol, lo, hi) {
+  const c = music.ctx, s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+  s.buffer = music.noise; s.loop = true; f.type = 'bandpass'; f.Q.value = 4;
+  f.frequency.setValueAtTime(lo, t); f.frequency.exponentialRampToValueAtTime(hi, t + dur);
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + dur * 0.95); g.gain.linearRampToValueAtTime(0.0001, t + dur + 0.03);
+  s.connect(f); f.connect(g); g.connect(music.out); s.start(t); s.stop(t + dur + 0.05);
+}
 function kick(t) {
   const c = music.ctx, o = c.createOscillator(), g = c.createGain();
   o.frequency.setValueAtTime(130, t); o.frequency.exponentialRampToValueAtTime(40, t + 0.12);
@@ -5188,6 +5210,15 @@ function thump(t, vol) {
   o.connect(g); g.connect(music.out); o.start(t); o.stop(t + 0.24);
 }
 function playStep(s, t, spb) {
+  if (music.season) {
+    // A new season lands on a downbeat with a crash; the old one sweeps into it.
+    if (music.fresh) { music.fresh = false; crash(t, 0.1); thump(t, 0.6); }
+    if (!music.rose && music.sLeft > 0.2 && music.sLeft < 2.2) {
+      music.rose = true;
+      const w = music.season === 'winter';
+      riser(t, music.sLeft, w ? 0.09 : 0.07, w ? 350 : 4500, w ? 7000 : 260);
+    }
+  }
   if (music.season === 'winter') return playWinter(s, t, spb);
   if (music.season === 'summer') return playSummer(s, t, spb);
   const st = s % 16, ch = CHORDS[Math.floor((s % 64) / 16)], k = music.key;
@@ -5200,52 +5231,72 @@ function playStep(s, t, spb) {
   if (s >= 64 && st % 2 === 0) { const n = MELODY[Math.floor((s % 64) / 2)]; if (n) tone('square', mtof(n + k), t, spb * 1.7, 0.06); }
 }
 function playWinter(s, t, spb) {
-  const song = SEASON_SONGS.winter, st = s % 16, bar = Math.floor((s % 64) / 16), ch = song.chords[bar], k = music.key;
-  const f = music.sFrac || 0, lvl = f < 0.3 ? 0 : f < 0.62 ? 1 : 2, end = f > 0.9;
-  // Heartbeat: lub-dub twice a bar, harder as the cold drags on (and when you're in danger).
-  const hb = 0.5 + 0.25 * f + (music.danger ? 0.2 : 0);
+  const W = SEASON_SONGS.winter, st = s % 16, bar = Math.floor((s % 64) / 16), ch = W.chords[bar], k = music.key, late = music.late;
+  const f = music.sFrac || 0, lvl = late ? (f < 0.35 ? 1 : 2) : f < 0.2 ? 0 : f < 0.55 ? 1 : 2;
+  const r = ch.r + k, last = music.sLeft > 0 && music.sLeft < 16 * spb;
+  // Heartbeat on 1 and 3, harder as the cold drags on (and when you're in danger); taiko toms answer it.
+  const hb = 0.5 + 0.2 * f + (music.danger ? 0.2 : 0) + (late ? 0.1 : 0);
   if (st === 0 || st === 8) thump(t, hb);
-  if (st === 2 || st === 10) thump(t, hb * 0.6);
+  if (st === 3 || st === 11) thump(t, hb * 0.55);
+  if (lvl >= 1 && (st === 6 || st === 14)) tom(t, 110, 0.2);
+  if (lvl >= 2 && (st === 10 || st === 13 || st === 15)) tom(t, st === 15 ? 165 : 130, 0.16);
   // Wind gusts, one per bar, howling higher later in the storm.
-  if (st === 0) wind(t, spb * 16, 0.05 + 0.05 * f, 300 + 80 * bar, 1100 + 1200 * f);
+  if (st === 0) wind(t, spb * 16, 0.045 + 0.05 * f, 300 + 80 * bar, 1100 + 1300 * f);
   // Low drone and a dark string pad that opens up over the season.
   if (st === 0) {
-    tone('triangle', mtof(ch.r + k), t, spb * 16, 0.2);
-    pad([ch.r + 12, ch.r + 12 + ch.t, ch.r + 19].map(n => mtof(n + k)), t, spb * 16, 0.025 + 0.035 * f, 500 + 1600 * f);
+    tone('triangle', mtof(r + 12), t, spb * 16, 0.13);
+    pad([r + 12, r + 12 + ch.t, r + 19].map(mtof), t, spb * 16, 0.022 + 0.03 * f + (late ? 0.015 : 0), 500 + 1500 * f);
   }
-  // Pulsing bass and a ticking clock: you're holding out.
-  if (lvl >= 1 && st % 2 === 0) stab('sawtooth', mtof(ch.r + k + 12), t, spb * 1.3, 0.06, 500 + 500 * f);
-  if (lvl >= 1 && (lvl === 2 || st % 4 === 0)) noiseHit(t, 0.025, st % 4 === 0 ? 0.06 : 0.03, 9000, 'highpass');
-  // Trembling strings: 16ths rocking between the chord tone and a half step above it.
-  if (lvl >= 2) stab('sawtooth', mtof(ch.r + k + 24 + (st % 2 ? 1 : 0) + (st >= 8 ? ch.t : 0)), t, spb * 0.9, 0.028, 1400 + 1200 * f);
-  // Icy bells (slightly out-of-tune overtone for a glassy ring).
-  if (st % 2 === 0) { const n = song.bells[Math.floor((s % 64) / 2)]; if (n) { tone('sine', mtof(n + k + 12), t, spb * 6, 0.065); tone('sine', mtof(n + k + 12) * 2.76, t, spb * 1.5, 0.012); } }
-  // The last moments before the thaw: a building snare roll.
-  if (end) noiseHit(t, 0.06, 0.03 + 0.12 * ((f - 0.9) / 0.1) * (st / 15), 1800, 'bandpass');
+  // String ostinato, 16ths from the first beat: root, octave, fifth, and a cold half step.
+  const o = W.ost[st], on = o === 'T' ? ch.t : o;
+  stab('sawtooth', mtof(r + 12 + on), t, spb * 0.55, (st % 4 === 0 ? 0.06 : 0.038) * (lvl ? 1.15 : 1), 650 + 900 * f + (late ? 500 : 0));
+  if (late) stab('sawtooth', mtof(r + 24 + on), t, spb * 0.45, 0.016, 1800 + 1000 * f);
+  // A ticking clock, then an ice-crack backbeat.
+  if (st % 2 === 0 || lvl >= 2) noiseHit(t, 0.02, st % 4 === 0 ? 0.045 : 0.025, 9500, 'highpass');
+  if (lvl >= 1 && st === 12) { noiseHit(t, 0.1, 0.11, 2600, 'bandpass'); noiseHit(t, 0.04, 0.05, 8000, 'highpass'); }
+  if (lvl >= 2 && st === 4) noiseHit(t, 0.08, 0.07, 2600, 'bandpass');
+  // Late blizzards: brass stabs on the whole chord, hit on 1 and the "and" of 3.
+  if (late && (st === 0 || st === 10)) [0, ch.t, 7].forEach(n => stab('sawtooth', mtof(r + 24 + n), t, spb * 2.2, 0.026, 1500 + 1200 * f));
+  // Trembling strings: 16ths rocking a half step apart.
+  if (lvl >= 2) stab('sawtooth', mtof(r + 24 + (st >= 8 ? ch.t : 0) + (st % 2 ? 1 : 0) + 12), t, spb * 0.9, 0.022, 1600 + 1200 * f);
+  // The summer tune in the minor, on icy bells (slightly out-of-tune overtone for a glassy ring).
+  const n = st % 2 === 0 ? W.bells[Math.floor((s % 64) / 2)] : 0;
+  if (n && (lvl >= 1 || st % 4 === 0)) {
+    const fq = mtof(n + k + 12);
+    tone('sine', fq, t, spb * 5, 0.058); tone('sine', fq * 2.76, t, spb * 1.4, 0.011);
+    if (late) tone('triangle', mtof(n + k), t, spb * 1.6, 0.03);
+  }
+  // Holding out for the thaw: a snare roll and climbing toms through the last bar.
+  if (last) { const p = 1 - music.sLeft / (16 * spb); noiseHit(t, 0.06, 0.03 + 0.13 * p, 1800, 'bandpass'); if (st % 2 === 0) tom(t, 110 + 100 * p, 0.1 + 0.1 * p); }
 }
 function playSummer(s, t, spb) {
-  const song = SEASON_SONGS.summer, st = s % 16, bar = Math.floor((s % 64) / 16), ch = song.chords[bar], k = music.key;
-  const f = music.sFrac || 0, lvl = f < 0.3 ? 0 : f < 0.62 ? 1 : 2, end = f > 0.92;
+  const S = SEASON_SONGS.summer, st = s % 16, bar = Math.floor((s % 64) / 16), ch = S.chords[bar], k = music.key, late = music.late;
+  const f = music.sFrac || 0, lvl = late ? (f < 0.3 ? 1 : 2) : f < 0.12 ? 0 : f < 0.45 ? 1 : 2;
+  const r = ch.r + k, last = music.sLeft > 0 && music.sLeft < 16 * spb;
   if (music.danger && (st === 0 || st === 3)) thump(t, st === 0 ? 0.7 : 0.45);
-  // Four on the floor, with an extra push into the next bar later on.
-  if (st % 4 === 0 || (lvl === 2 && st === 14)) kick(t);
+  // Four on the floor, with an extra push into the next bar once it's hot. It drops out for
+  // the last beat before the blizzard so the crash lands.
+  if ((st % 4 === 0 || (lvl === 2 && st === 14)) && !(last && st >= 12)) kick(t);
   // Claps on 2 and 4, and a snare fill at the end of each 4-bar phrase.
   if (lvl >= 1 && (st === 4 || st === 12)) { noiseHit(t, 0.12, 0.16, 1900, 'bandpass'); noiseHit(t, 0.05, 0.06, 5000, 'highpass'); }
   if (lvl >= 1 && bar === 3 && st >= 12) noiseHit(t, 0.07, 0.06 + 0.02 * (st - 12), 2200, 'bandpass');
-  // Hats: open on the offbeat, then closed 16ths once it heats up.
+  // Hats: open on the offbeat, closed 16ths once it heats up; a ride shimmer in late summers.
   if (st % 4 === 2) noiseHit(t, 0.09, 0.06, 7000, 'highpass');
   else if (lvl >= 2 || st % 2 === 0) noiseHit(t, 0.02, 0.035, 9500, 'highpass');
-  // Rolling octave bass: 16ths the whole way through.
-  stab('sawtooth', mtof(ch.r + k + (st % 2 ? 12 : 0)), t, spb * 0.85, 0.09, 700 + 1100 * f);
+  if (late && st % 2 === 0) noiseHit(t, 0.3, 0.016, 6000, 'highpass');
+  // Rolling octave bass, 16ths the whole way; late summers pump on the offbeat.
+  stab('sawtooth', mtof(r + (st % 2 ? 12 : 0)), t, spb * 0.85, late && st % 4 === 2 ? 0.11 : 0.085, 800 + 1100 * f + (late ? 400 : 0));
   // Bright arpeggio.
-  const ar = song.arp[st]; stab('square', mtof(ch.r + k + 24 + (ar === 16 ? ch.t + 12 : ar === 19 ? 19 : ar)), t, spb * 0.7, 0.03, 2500 + 2500 * f);
-  // Lead melody from the middle of summer, doubled an octave up near the end.
+  const ar = S.arp[st]; stab('square', mtof(r + 24 + (ar === 16 ? ch.t + 12 : ar === 19 ? 19 : ar)), t, spb * 0.7, 0.028, 2600 + 2400 * f);
+  // Late summers: offbeat piano-style chord stabs.
+  if (late && st % 4 === 2) [12, 12 + ch.t, 19].forEach(n => stab('square', mtof(r + 12 + n), t, spb * 0.9, 0.015, 2400));
+  // Lead melody within seconds of the thaw, doubled an octave up when it's hot.
   if (lvl >= 1 && st % 2 === 0) {
-    const n = song.melody[Math.floor((s % 64) / 2)];
-    if (n) { stab('square', mtof(n + k), t, spb * 1.6, 0.055, 3200); if (lvl === 2) tone('triangle', mtof(n + k + 12), t, spb * 0.9, 0.025); }
+    const n = S.melody[Math.floor((s % 64) / 2)];
+    if (n) { stab('square', mtof(n + k), t, spb * 1.6, 0.05, 3200); if (lvl === 2 || late) tone('triangle', mtof(n + k + 12), t, spb * 0.9, 0.022); }
   }
   // The blizzard's coming: wind rising under the last stretch.
-  if (end && st === 0) wind(t, spb * 16, 0.05, 600, 2400);
+  if (f > 0.85 && st === 0) wind(t, spb * 16, 0.05, 600, 2400);
 }
 function schedule() {
   const c = music.ctx;
@@ -5265,9 +5316,20 @@ function musicTick() {
   else if (!want && music.playing) { music.playing = false; clearInterval(music.timer); }
   const fin = !titleShown() && !!game && !!game.finale && !game.over;
   music.key = fin ? 3 : 0;
+  const was = music.season;
   music.season = !titleShown() && game && game.variant === 'rot' && !game.over && game.me.phase !== 'over' ? game.me.season : null;
-  music.sFrac = music.season ? game.me.seasonAt().frac : 0;
-  if (music.playing) music.bpm = titleShown() ? 104 : 116 + Math.min(32, Math.round((game.me.speed() - 1) * 8)) + (game.me.rush > 0 ? 14 : 0) + (fin ? 18 : 0) + (game.variant === 'rot' ? (game.me.season === 'winter' ? -20 + Math.round(8 * music.sFrac) : Math.round(-4 + 40 * music.sFrac)) : 0);
+  // A new season restarts the song on bar 1 (with a crash, unless the game just began).
+  if (music.season !== was) { music.rose = false; if (music.season) { music.step = 0; music.fresh = !!was; } }
+  const sa = music.season ? game.me.seasonAt() : null, match = !!sa && sa.name === music.season;
+  music.sFrac = match ? sa.frac : music.season ? 1 : 0;
+  music.sLeft = match ? sa.left / 1000 : 0;
+  music.late = !!music.season && (fin || game.me.elapsed >= ROT_SUMMER_MS + ROT_WINTER_MS);
+  if (music.playing) {
+    const rot = !music.season ? 0 : (music.season === 'winter' ? -6 + Math.round(8 * music.sFrac) : 2 + Math.round(22 * music.sFrac)) + (music.late ? 6 : 0);
+    const want = titleShown() ? 104 : 116 + Math.min(32, Math.round((game.me.speed() - 1) * 8)) + (game.me.rush > 0 ? 14 : 0) + (fin ? 18 : 0) + rot;
+    // Glide to the new tempo over about half a second instead of jumping.
+    music.bpm += (want - music.bpm) * (Math.abs(want - music.bpm) < 0.5 ? 1 : 0.12);
+  }
 }
 // M and the in-game button mute or restore the music volume.
 function toggleMusic() {
@@ -5349,6 +5411,6 @@ showMenu(false);
 requestAnimationFrame(frame);
 
 /* Test hook for automated checks (harmless in play). */
-window.__wordfall = { get game() { return game; }, tlSample, tlHit, get net() { return net; }, get paused() { return paused; }, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store };
+window.__wordfall = { get game() { return game; }, tlSample, tlHit, playStep, get net() { return net; }, get paused() { return paused; }, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store };
 })();
 </script>
