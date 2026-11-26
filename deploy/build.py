@@ -35,10 +35,18 @@ if src.count(PLACE) != 1:
     sys.exit("Couldn't find the WF_SUPABASE line in wordfall.html")
 src = src.replace(PLACE, f"const WF_SUPABASE = {{ url: {json.dumps(url)}, key: {json.dumps(key)} }};")
 
+# The claude.ai artifact has a few extras (the Test samples row and page) that the self-hosted site leaves out.
+# They sit between ARTIFACT-ONLY markers: <!-- ... --> in the markup, /* ... */ in styles and script.
+src, n_html = re.subn(r"[ \t]*<!-- ARTIFACT-ONLY -->.*?<!-- /ARTIFACT-ONLY -->[ \t]*\n?", "", src, flags=re.S)
+src, n_code = re.subn(r"/\* ARTIFACT-ONLY \*/.*?/\* /ARTIFACT-ONLY \*/\n?", "", src, flags=re.S)
+if "ARTIFACT-ONLY" in src:
+    sys.exit("An ARTIFACT-ONLY block in wordfall.html isn't closed")
+
 head = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
         '</head><body>\n')
 os.makedirs(OUT_DIR, exist_ok=True)
 with open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf8") as f:
     f.write(head + src + "\n</body></html>\n")
-print("Wrote", os.path.join(OUT_DIR, "index.html"), "| Online:", "Supabase" if url else "off")
+print("Wrote", os.path.join(OUT_DIR, "index.html"), "| Online:", "Supabase" if url else "off",
+      f"| left out {n_html + n_code} artifact-only blocks")
