@@ -25,6 +25,9 @@
 [data-skin="neon"]{--bg:#07060f;--glow:#1b0b3a;--panel:#100d22;--line:#24204a;--line2:#3b357a;--well:#05040b;--empty:#14112a90;--tile:#e9fbff;--ink:#0b0a1a;--fg:#f0f4ff;--muted:#8f93c9;--bank:#3cf2ff;--bankedge:#0a9fb0;--vert:#ff3cac;--full:#2fd96b;--accent:#ff3cac;--sky1:#05040d;--sky2:#120a2e;--sky3:#2a0b3d;--sun1:#3cf2ff;--sun2:#ff3cac;--sun3:#7b2cff;--gridc:#3cf2ff}
 [data-skin="pocket"]{--bg:#0f1a0f;--glow:#1f3a1f;--panel:#162616;--line:#2a442a;--line2:#3f633f;--well:#0b140b;--empty:#18291890;--tile:#c7e39b;--ink:#0f2a0f;--fg:#e4f5d4;--muted:#93b593;--bank:#8bbd4a;--bankedge:#4f7a1e;--vert:#e3f59c;--full:#5c9c3a;--accent:#b5d96a;--sky1:#0a120a;--sky2:#142414;--sky3:#1f3a1f;--sun1:#e3f59c;--sun2:#8bbd4a;--sun3:#3f633f;--gridc:#8bbd4a}
 [data-skin="vapor"]{--bg:#1a1030;--glow:#3d1f5c;--panel:#22163d;--line:#3a2a5e;--line2:#56408a;--well:#120a24;--empty:#22163d90;--tile:#fff3fb;--ink:#241238;--fg:#fdeeff;--muted:#b9a3d9;--bank:#ff9ad5;--bankedge:#c2549a;--vert:#7ef9ff;--full:#a77bff;--accent:#ff9ad5;--sky1:#160c2c;--sky2:#3a1c5c;--sky3:#6a2c6e;--sun1:#ffe17a;--sun2:#ff7ad9;--sun3:#8a5cff;--gridc:#ff7ad9}
+[data-skin="frost"]{--bg:#0b1624;--glow:#173352;--panel:#10213a;--line:#21405f;--line2:#36618a;--well:#07111d;--empty:#12253c90;--tile:#eef8ff;--ink:#12304d;--fg:#eaf6ff;--muted:#8fb3cf;--bank:#9fdcff;--bankedge:#4f9fd1;--vert:#5fb8ff;--full:#5fd1c4;--accent:#9fdcff;--sky1:#07111d;--sky2:#10243d;--sky3:#1d3b5e;--sun1:#eaf6ff;--sun2:#9fdcff;--sun3:#4f7fd1;--gridc:#9fdcff}
+[data-skin="ember"]{--bg:#170907;--glow:#3d130b;--panel:#21100b;--line:#3d1d14;--line2:#63301f;--well:#0f0504;--empty:#25110b90;--tile:#ffe9d9;--ink:#2b0f06;--fg:#ffeee2;--muted:#c49783;--bank:#ff9d3c;--bankedge:#b8520e;--vert:#ffd36b;--full:#ff5a3c;--accent:#ff7a3c;--sky1:#0f0504;--sky2:#2b0d07;--sky3:#5a1c0c;--sun1:#ffd36b;--sun2:#ff7a3c;--sun3:#c4261c;--gridc:#ff7a3c}
+[data-skin="royal"]{--bg:#120a24;--glow:#2c1652;--panel:#1a1033;--line:#33215e;--line2:#4d3489;--well:#0b0617;--empty:#1d123690;--tile:#fbf3ff;--ink:#22103d;--fg:#f6ecff;--muted:#ab98cf;--bank:#ffd34d;--bankedge:#b8860b;--vert:#c39bff;--full:#7fe0a8;--accent:#ffd34d;--sky1:#0b0617;--sky2:#22104a;--sky3:#43207a;--sun1:#ffe9a8;--sun2:#ffd34d;--sun3:#9d6bff;--gridc:#c39bff}
 [data-skin="gold"]{--bg:#140f05;--glow:#3a2a08;--panel:#1f1808;--line:#3a2f12;--line2:#5c4a1c;--well:#0d0a03;--empty:#1f180890;--tile:#fff6dc;--ink:#231a05;--fg:#fff6dc;--muted:#b9a57a;--bank:#ffd34d;--bankedge:#b8860b;--vert:#fff1a8;--full:#e0a72e;--accent:#ffd34d;--sky1:#0d0a03;--sky2:#2a1e06;--sky3:#4a340c;--sun1:#fff1a8;--sun2:#ffd34d;--sun3:#b8860b;--gridc:#ffd34d}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -130,12 +133,12 @@ body.versus .solo-only{display:none!important}
 @keyframes spark{to{transform:rotate(var(--a)) translateY(calc(var(--d) * -1)) scaleY(.4);opacity:0}}
 .c.stone.zap{z-index:3;animation:stonezap .75s ease-out}
 @keyframes stonezap{0%{filter:brightness(3.2) saturate(0);box-shadow:0 0 0 2px #fff,0 0 22px 4px #b06bff,0 0 40px #6fe3ff}35%{filter:brightness(1.8);box-shadow:0 0 0 2px #d9b8ff,0 0 16px 2px #b06bff}100%{filter:none;box-shadow:inset 0 -4px 0 #0006}}
-.announce{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:6}
-.announce div{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 20px;border-radius:14px;background:#0d0b1f40;border:2px solid color-mix(in srgb,var(--o-speed) 55%,transparent);box-shadow:0 0 24px -10px var(--o-speed);animation:announce 1.9s cubic-bezier(.2,.9,.3,1.2) forwards}
+.announce{position:absolute;left:-8px;right:-8px;bottom:calc(100% + 6px);display:flex;justify-content:center;align-items:flex-end;pointer-events:none;z-index:8}
+.announce div{box-sizing:border-box;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:10px 14px 11px;border-radius:14px;background:color-mix(in srgb,var(--panel) 94%,#000);border:2px solid color-mix(in srgb,var(--o-speed) 70%,transparent);box-shadow:0 0 30px -8px var(--o-speed),0 12px 26px -12px #000;animation:announce 2.2s cubic-bezier(.2,.9,.3,1.2) forwards;transform-origin:50% 100%}
 .announce span{text-shadow:0 1px 3px #000,0 0 8px #000}
 .announce b{-webkit-text-stroke:.5px #0006}
-.announce b{font:400 34px/1 var(--f-display);color:var(--o-speed);letter-spacing:.04em;text-shadow:0 0 18px var(--o-speed)}
-.announce span{font:700 13px var(--f-mono);color:var(--fg);letter-spacing:.1em}
+.announce b{font:400 30px/1 var(--f-display);color:var(--o-speed);letter-spacing:.04em;text-shadow:0 0 18px var(--o-speed)}
+.announce span{font:700 12px/1.35 var(--f-mono);color:var(--fg);letter-spacing:.08em}
 .announce em{font:800 15px var(--f-mono);font-style:normal;color:var(--bank);letter-spacing:.08em;text-shadow:0 0 12px var(--bank)}
 .announce div.pow{border-color:var(--oc);box-shadow:0 0 50px -4px var(--oc)}
 .announce div.pow b{color:var(--oc);text-shadow:0 0 18px var(--oc)}
@@ -155,7 +158,32 @@ body.versus .solo-only{display:none!important}
 .hz-lv{font-size:10.5px;color:var(--muted);font-weight:600}
 .announce div.rise{border-color:#b06bff;box-shadow:0 0 40px -6px #b06bff}
 .announce div.rise b{color:#d9b8ff;text-shadow:0 0 18px #b06bff}
-@keyframes announce{0%{transform:scale(.4);opacity:0}15%{transform:scale(1.08);opacity:.82}25%{transform:scale(1)}80%{opacity:.82}100%{transform:scale(1) translateY(-30px);opacity:0}}
+@keyframes announce{0%{transform:translateY(18px) scale(.85);opacity:0}12%{transform:translateY(-3px) scale(1.04);opacity:1}22%{transform:none}84%{opacity:1;transform:none}100%{transform:translateY(-10px);opacity:0}}
+/* The board's frame flashes in the announcement's colour. */
+.well.annfx{animation:annfx .9s ease-out}
+@keyframes annfx{0%{box-shadow:0 0 0 2px var(--annc),0 0 46px 4px var(--annc),0 24px 60px -24px #000c}100%{box-shadow:0 0 0 0 transparent,0 0 0 0 transparent,0 24px 60px -24px #000c}}
+/* Stack high: toasts sit low on the board, away from where the next piece comes in. */
+.wellbox.tense .toast{top:auto;bottom:16px;flex-direction:column-reverse}
+/* Season warnings: frost creeping in (blizzard coming) or melting and dripping (thaw coming). */
+.sw{position:absolute;inset:0;pointer-events:none;z-index:4;border-radius:12px;overflow:hidden}
+.sw i{position:absolute;inset:0;border-radius:12px;opacity:0;transition:opacity .3s linear}
+.warn-freeze .sw-frost{opacity:calc(.35 + var(--warn) * .65);box-shadow:inset 0 0 calc(12px + var(--warn) * 34px) calc(var(--warn) * 7px) #d6f1ff99;
+  background:radial-gradient(circle at 0 0,#ffffffd8,#e2f5ff8c calc(var(--warn) * 16%),transparent calc(6% + var(--warn) * 26%)),radial-gradient(circle at 100% 0,#ffffffd8,#e2f5ff8c calc(var(--warn) * 16%),transparent calc(6% + var(--warn) * 26%)),
+    radial-gradient(circle at 0 100%,#ffffff8c,#e2f5ff50 calc(var(--warn) * 12%),transparent calc(4% + var(--warn) * 18%)),radial-gradient(circle at 100% 100%,#ffffff8c,#e2f5ff50 calc(var(--warn) * 12%),transparent calc(4% + var(--warn) * 18%)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cg stroke='%23f2fbff' stroke-width='1.1' stroke-linecap='round' fill='none' opacity='.7'%3E%3Cpath d='M12 4v16M5 8l14 8M5 16l14-8M12 7l-3-2M12 7l3-2M12 17l-3 2M12 17l3 2'/%3E%3Cpath d='M46 34v14M40 37l12 8M40 45l12-8M46 37l-2-2M46 37l2-2'/%3E%3Cpath d='M30 52l6 6M36 52l-6 6M33 50v10' opacity='.7'/%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,transparent calc(97% - var(--warn) * 25%),#000 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,transparent calc(97% - var(--warn) * 25%),#000 100%)}
+.warn-melt .sw-melt{opacity:calc(.3 + var(--warn) * .7);box-shadow:inset 0 calc(-14px - var(--warn) * 36px) calc(14px + var(--warn) * 30px) -10px #ff9d4a88;background:linear-gradient(to top,#ffb35a40,transparent calc(8% + var(--warn) * 30%)),linear-gradient(to bottom,#e6f7ff30,transparent 14%)}
+.warn-melt .sw-drip{opacity:calc(.4 + var(--warn) * .6);background-image:radial-gradient(3px 7px at 12% 0,#cdeeffdd 60%,transparent 70%),radial-gradient(2.5px 6px at 31% 0,#cdeeffcc 60%,transparent 70%),radial-gradient(3px 8px at 55% 0,#cdeeffdd 60%,transparent 70%),radial-gradient(2px 6px at 74% 0,#cdeeffbb 60%,transparent 70%),radial-gradient(3px 7px at 91% 0,#cdeeffdd 60%,transparent 70%);background-size:100% 90px;background-repeat:repeat-y;animation:drip 1.4s linear infinite}
+@keyframes drip{from{background-position:0 -90px}to{background-position:0 0}}
+.wellbox.warn-melt .blizzard{opacity:calc(1 - var(--warn) * .85)}
+.wellbox.warn-freeze .blizzard{opacity:calc(var(--warn) * .45)}
+.wellbox.warn-freeze .well{border-color:color-mix(in srgb,#bfe9ff calc(var(--warn) * 100%),var(--line))}
+.wellbox.warn-melt .well{border-color:color-mix(in srgb,#ffb347 calc(var(--warn) * 100%),#bfe9ff)}
+.sw-chip{position:absolute;top:-12px;right:12px;z-index:7;padding:3px 10px;border-radius:999px;font:800 11.5px var(--f-mono);letter-spacing:.06em;white-space:nowrap;pointer-events:none;border:1.5px solid;box-shadow:0 4px 14px -4px #000;animation:swchip 1s ease-in-out infinite}
+.sw-chip.freeze{background:#0d1a2a;color:#dff4ff;border-color:#9ad8f7;box-shadow:0 0 16px -4px #9ad8f7}
+.sw-chip.melt{background:#2a1606;color:#ffd08a;border-color:#ffb347;box-shadow:0 0 16px -4px #ff8d3a}
+@keyframes swchip{50%{transform:scale(1.07)}}
+#sSeason.soon{animation:swchip 1s ease-in-out infinite}
 .count{position:absolute;inset:0;display:grid;place-items:center;font:400 72px/1 var(--f-display);color:var(--bank);text-shadow:0 6px 30px #000;pointer-events:none;z-index:6}
 
 .toast{position:absolute;top:28px;left:50%;transform:translateX(-50%);z-index:5;pointer-events:none;display:flex;flex-direction:column;gap:6px;align-items:center}
@@ -284,6 +312,9 @@ body.versus .log{max-height:120px}
 .ls-mono{--sk-bg:#ffffff;--sk-fg:#111111;--sk-edge:#111111;--sk-font:var(--f-mono);--sk-glow:inset 0 0 0 1.5px #111}
 .ls-poster{--sk-bg:#f6eedd;--sk-fg:#c63d2a;--sk-edge:#d7c49c;--sk-font:var(--f-display)}
 .ls-pebble{--sk-bg:#e8e5de;--sk-fg:#35333d;--sk-edge:#bdb8ac;--sk-r:42%}
+.ls-frost{--sk-bg:linear-gradient(160deg,#f2fbff,#bfe3fb);--sk-fg:#1d4f7a;--sk-edge:#7fb6dd;--sk-glow:inset 0 0 0 1px #ffffffb0}
+.ls-quill{--sk-bg:#efe2c4;--sk-fg:#4a2c12;--sk-edge:#b89a66;--sk-font:Georgia,'Times New Roman',serif}
+.ls-gilt{--sk-bg:linear-gradient(160deg,#ffe58a,#e0a72e);--sk-fg:#4a2a00;--sk-edge:#9c6a10;--sk-glow:0 0 8px #ffd34d55}
 .ls-outline{--sk-bg:transparent;--sk-fg:#f3f0ff;--sk-edge:transparent;--sk-glow:inset 0 0 0 2px #f3f0ffcc}
 .c.tile.ls-mono,.mini i.ls-mono,.lt.ls-mono{font-weight:700}
 .c.tile.ls-poster,.mini i.ls-poster,.lt.ls-poster{font-weight:400}
@@ -378,12 +409,39 @@ body.versus .log{max-height:120px}
 .tl-note{font-size:11.5px;color:var(--muted)}
 .tl-box .rs-grid{grid-template-columns:repeat(4,minmax(0,1fr))}@media (max-width:560px){.tl-box .rs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .tl-spark{vertical-align:middle;margin-right:8px}.tl-spark polyline{fill:none;stroke-linejoin:round;stroke-linecap:round}
+/* Solo rivals: your best (or today's #1), #2 and #3, each with its own colour and dash. */
+.tl-c1{stroke:var(--bad);stroke-width:2.2;stroke-dasharray:6 4}
+.tl-c2{stroke:var(--vert);stroke-width:2;stroke-dasharray:3 3}
+.tl-c3{stroke:var(--full);stroke-width:2;stroke-dasharray:9 3 2 3}
+.tl-plot .tl-goal{stroke-width:1.8;stroke-dasharray:1 5;stroke-linecap:round;fill:none}
+.tl-key i.c1{border-top-style:dashed;border-color:var(--bad)}.tl-key i.c2{border-top-style:dashed;border-color:var(--vert)}.tl-key i.c3{border-top-style:dashed;border-color:var(--full)}
+.tl-key i.flat{border-top-style:dotted}
+.tl-key small{font-weight:500}
+.tl-end.c1{fill:var(--bad)}.tl-end.c2{fill:var(--vert)}.tl-end.c3{fill:var(--full)}
+/* Run details: chart beside the tiles and the words beside the length bars when there's room. */
+.rb{display:flex;flex-direction:column;gap:12px;min-width:0;container-type:inline-size}
+.rb-when{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;flex-wrap:wrap}
+.rb-when p{margin:0}
+.rb-top,.rb-mid{display:grid;gap:12px;min-width:0}
+.rb-col{display:flex;flex-direction:column;gap:8px;min-width:0}
+.rb-col .rs-h{margin:0}
+@container (min-width:720px){
+  .rb.has-tl .rb-top{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);align-items:start}
+  .rb.has-tl .rb-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rb-mid{grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);align-items:start}
+}
+.seedbtn{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;border:1px solid var(--line2);background:color-mix(in srgb,var(--panel) 80%,transparent);color:var(--fg);font:700 12px var(--f-ui);cursor:pointer;white-space:nowrap}
+.seedbtn b{font-family:var(--f-mono);font-weight:700;letter-spacing:.02em}
+.seedbtn .cp-ic{font-size:11px;font-weight:700;color:var(--muted);padding-left:6px;border-left:1px solid var(--line2)}
+.seedbtn:hover,.seedbtn:focus-visible{border-color:var(--bank);outline:none}.seedbtn:hover .cp-ic,.seedbtn:focus-visible .cp-ic{color:var(--bank)}
+.seedbtn.copied{border-color:var(--full)}.seedbtn.copied .cp-ic{color:var(--full)}
+.es-chip.seedbtn{font-size:13px;padding:6px 11px}
 .rr-w .tl-pill{margin-left:2px}
 .rs-h{margin:4px 0 -4px;font:700 12px var(--f-ui);color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 .rs-bars{display:grid;gap:6px}
 .rs-bar{display:grid;grid-template-columns:72px 1fr 3ch;gap:10px;align-items:center;font-size:12.5px;color:var(--muted)}
 .rs-bar i{height:12px;border-radius:6px;background:var(--well);overflow:hidden}
-.rs-bar u{display:block;height:100%;background:var(--bank);border-radius:6px;text-decoration:none;min-width:2px}
+.rs-bar u{display:block;height:100%;background:var(--bank);border-radius:6px;text-decoration:none;min-width:4px}
 .rs-bar b{color:var(--fg);text-align:right}
 .wchips{display:flex;flex-wrap:wrap;gap:5px;max-height:220px;overflow-y:auto}
 .wchips p{width:100%;font-size:13px}
@@ -690,7 +748,7 @@ div.hub-t{cursor:default}
 .calm .t-logo span,.calm .ha-board i,.calm .pk-card,.calm .t-new,.calm .t-ov,.calm .modal.sheet,.calm .modal.sheet .card,.calm .play-card.flash,.calm .kb-chip.cap .kb-k,.calm .kb-add.cap{animation:none!important}
 .calm .sr,.calm .pk-card,.calm .hub-t{transition:none}
 .m-set{--mc:var(--accent)}
-@media (max-width:900px){.t-side .sr.m-set{grid-column:1/-1}}
+
 .xfer{position:fixed;inset:0;width:100vw;height:100vh;z-index:60;pointer-events:auto;cursor:progress}
 .intro{position:fixed;inset:0;z-index:55;pointer-events:none}
 .intro-bg{position:absolute;inset:0;pointer-events:auto;background:radial-gradient(ellipse at 50% 45%,#2a2456,#07061a 75%)}
@@ -872,7 +930,7 @@ div.hub-t{cursor:default}
 /* ARTIFACT-ONLY */
 /* Test samples row and page (claude.ai version only). */
 .m-samp{--mc:#6fe3c4}
-.t-side .sr.m-samp~.sr.m-set{grid-column:auto}
+@media (max-width:900px){.t-side .sr.m-samp~.sr.m-set{grid-column:1/-1}}
 .smp-list{display:grid;gap:12px}
 .pg-card.smp{flex-direction:row;align-items:center;gap:16px;color:var(--fg);text-decoration:none;transition:border-color .15s,transform .15s,box-shadow .15s}
 .pg-card.smp:hover,.pg-card.smp:focus-visible{border-color:#6fe3c4;box-shadow:0 0 0 1px #6fe3c4,0 14px 30px -18px #6fe3c4;transform:translateX(3px);outline:none}
@@ -1061,6 +1119,95 @@ div.hub-t{cursor:default}
 .pc-mode .seg{width:100%;display:grid;grid-template-columns:1fr 1fr}
 .pc-mode .t-vdesc{text-align:left;text-shadow:none;margin:0}
 .pc-guide{align-self:flex-start}
+/* LEVELS-QUESTS: the first-visit level sheet, the Tutorial card, quest locks, the Quests page and gems. */
+.lv-in{max-width:1000px}
+.lv-k{font:700 12px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--bank)}
+.lv-sub{margin:-8px 0 0;color:var(--muted);text-align:center;max-width:56ch}
+.lv-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;width:100%}
+.lv-card{--mc:var(--o-clear);position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:22px 18px 18px;border-radius:14px;border:0;text-align:left;cursor:pointer;color:var(--fg);font:500 14px/1.4 var(--f-ui);background:linear-gradient(180deg,color-mix(in srgb,var(--mc) 30%,#231f3d),color-mix(in srgb,var(--mc) 10%,#15122b));box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--mc) 55%,transparent),0 18px 40px -24px var(--mc);transition:transform .15s,box-shadow .15s;animation:lvin .35s calc(var(--i) * 70ms) both}
+.lv-card.m-lv-new{--mc:var(--full)}.lv-card.m-lv-mid{--mc:var(--o-clear)}.lv-card.m-lv-pro{--mc:var(--bank)}
+.lv-card:hover,.lv-card:focus-visible{transform:translateY(-6px);outline:none;box-shadow:inset 0 0 0 3px var(--mc),0 22px 44px -20px var(--mc)}
+.lv-card.on{box-shadow:inset 0 0 0 3px var(--mc),0 0 30px -8px var(--mc)}
+.lv-ic{font-size:38px;line-height:1;width:64px;height:64px;display:grid;place-items:center;border-radius:14px;background:color-mix(in srgb,var(--mc) 26%,var(--well));box-shadow:inset 0 -4px 0 #0004}
+.lv-card>b{font:400 24px/1 var(--f-display);text-transform:uppercase;letter-spacing:.04em}
+.lv-line{color:var(--muted)}
+.lv-card ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:13px}
+.lv-go{margin-top:auto;align-self:stretch;text-align:center;padding:10px;border-radius:9px;background:var(--mc);color:var(--ink);font:400 16px/1 var(--f-display);text-transform:uppercase;letter-spacing:.06em}
+.lv-note{margin:-6px 0 0;font-size:12.5px;color:var(--muted);text-align:center}
+@keyframes lvin{from{opacity:0;transform:translateY(16px)}}
+@media (max-width:760px){.lv-cards{grid-template-columns:minmax(0,1fr);gap:10px}.lv-card{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:6px 12px;padding:14px}.lv-ic{grid-row:span 2;width:48px;height:48px;font-size:26px}.lv-card>b{font-size:20px}.lv-card ul,.lv-go{grid-column:1/-1}.lv-go{padding:8px}}
+.pc-stack>.pc-pane[data-p="tut"]{grid-row:1/span 2}
+/* The Tutorial card only holds its own pane, so phones don't scroll past empty space to Start. */
+.play-card[data-m="tut"] .pc-stack>.off,.play-card[data-m="tut"] .pc-row{display:none}
+.play-card[data-m="tut"] .pc-stack{flex:1;align-content:center}
+#playCard[data-m="tut"]{padding-bottom:22px}
+@media (max-width:560px){#playCard[data-m="tut"]{padding-bottom:16px}}
+.play-card[data-m="tut"]{--mc:var(--full)}
+.tut-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.tut-list li{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;border:1px solid var(--line2);background:#0d0b1fb3;font:700 12px var(--f-ui);color:var(--fg)}
+.tut-list li b{display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--mc);color:var(--ink);font:800 10px var(--f-ui)}
+.ha-board i.vh{box-shadow:0 0 0 2px var(--vert),0 0 10px var(--vert)}
+.pc-row>.off{visibility:hidden}
+.t-play.locked{background:linear-gradient(#3b3566,#29244f);border-color:#ff9f43;color:#ffd9b0;font-size:20px;box-shadow:inset 0 -4px 0 #0004}
+.pk-card.qlock{filter:saturate(.45) brightness(.82)}
+.pk-card.qlock::after{content:'🔒 Quest';position:absolute;top:22px;right:-38px;transform:rotate(35deg);background:#ff9f43;color:#2a1400;font:800 10px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;padding:4px 42px;z-index:2}
+.pk-card.qlock:hover,.pk-card.qlock:focus-visible{transform:none;filter:saturate(.6) brightness(.92)}
+.mt.qlock{border-style:dashed}.mt.qlock:not(.on)>b{color:var(--muted)}.mt.qlock:not(.on) .mi{opacity:.55;filter:saturate(.6)}
+.mt.qlock::after{content:'🔒';position:absolute;top:-8px;right:6px;font-size:10px;line-height:1;padding:2px 4px;border-radius:4px;background:#2a2650}
+.m-quest{--mc:#ff9f43}
+.sr.new .sr-t small{color:#ffd34d;font-weight:700}
+.sr.new .sr-ic{animation:qpulse 1.4s ease-in-out infinite alternate}
+@keyframes qpulse{to{box-shadow:inset 0 -3px 0 #0004,0 0 0 2px #ffd34d,0 0 16px #ffd34d}}
+.gem-bal{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid color-mix(in srgb,#7fdcff 60%,var(--line2));background:color-mix(in srgb,#7fdcff 14%,var(--well));font:700 14px var(--f-ui);white-space:nowrap}
+.gem-bal b{font:800 16px var(--f-ui);color:#bfeaff}
+.q-page{display:grid;gap:18px}
+.q-page section{display:grid;gap:12px}
+.pg-card.q-top{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.q-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr));gap:12px}
+.qc{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px 14px;padding:14px;border-radius:14px;border:1px solid var(--line2);background:color-mix(in srgb,var(--panel) 84%,transparent);scroll-margin:80px}
+.qc-ic{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;font-size:26px;background:color-mix(in srgb,#ff9f43 22%,var(--well));box-shadow:inset 0 -3px 0 #0004}
+.qc-main{display:grid;gap:6px;min-width:0;align-content:start}
+.qc-main h4{margin:0;font:400 19px/1.1 var(--f-display);letter-spacing:.03em;text-transform:uppercase}
+.qc-main p{margin:0;font-size:13.5px}
+.qc-bar{height:7px;border-radius:99px;background:#0d0b1f;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line2)}
+.qc-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#ff9f43,#ffd34d)}
+.qc-parts{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted)}
+.qc-parts b{color:var(--fg)}.qc-parts .ok b{color:var(--full)}
+.qc-side{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding-top:10px;border-top:1px dashed var(--line2)}
+.qc-st{font:700 11.5px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.qc-rw{display:flex;flex-wrap:wrap;gap:6px}
+.qr{padding:3px 9px;border-radius:999px;background:#0d0b1fcc;border:1px solid var(--line2);font:700 12px var(--f-ui)}
+.qr.none{color:var(--muted);font-weight:600}
+.qc.done{border-color:color-mix(in srgb,var(--full) 60%,var(--line2))}
+.qc.done .qc-ic{background:color-mix(in srgb,var(--full) 26%,var(--well))}
+.qc.done .qc-st{color:var(--full)}.qc.done .qc-bar i{background:var(--full)}
+.qc.fresh{box-shadow:0 0 0 2px #ffd34d,0 0 26px -6px #ffd34d}
+.qc.focus{box-shadow:0 0 0 2px var(--accent),0 0 26px -8px var(--accent)}
+.es-chip.q-chip{max-width:100%;white-space:normal;text-align:center}
+.lv-set{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:10px;border:1px solid var(--line2);background:#0d0b1f99}
+.c.tgt{color:color-mix(in srgb,var(--bank) 80%,transparent)}
+.c.tgt.hit{outline:2px solid var(--full);background:color-mix(in srgb,var(--full) 24%,var(--empty));color:var(--full);animation:none;box-shadow:0 0 12px -2px var(--full)}
+.coach>.co-dots,.coach>.co-btns{grid-column:1/-1}
+.co-wait,.co-btns .btn{white-space:nowrap}
+.c.hintv{box-shadow:inset 0 0 0 2px var(--vert),0 0 16px -2px var(--vert)}
+@media (prefers-reduced-motion:reduce){.lv-card,.sr.new .sr-ic{animation:none}}
+.calm .lv-card,.calm .sr.new .sr-ic{animation:none}
+/* Game speed: Slow / Normal / Fast, beside the tutorial button and in online rooms. */
+.pc-row{flex-wrap:wrap;gap:8px 12px}
+.pace{display:flex;align-items:center;gap:8px;margin-left:auto}
+.pace-seg{display:flex;border:1px solid var(--line2);border-radius:9px;overflow:hidden;background:#0d0b1fd9;width:max-content;max-width:100%}
+.pace-seg button{all:unset;box-sizing:border-box;cursor:pointer;display:grid;justify-items:center;align-content:center;gap:2px;padding:5px 10px;min-width:78px;font:800 12.5px/1.1 var(--f-ui);color:var(--fg);border-left:1px solid var(--line2);text-align:center}
+.pace-seg button:first-child{border-left:0}
+.pace-seg button small{font:700 10.5px/1.1 var(--f-ui);color:var(--muted);white-space:nowrap}
+.pace-seg button:hover{background:color-mix(in srgb,var(--mc) 16%,transparent)}
+.pace-seg button[aria-pressed="true"]{background:var(--mc);color:var(--ink)}
+.pace-seg button[aria-pressed="true"] small{color:var(--ink);opacity:.8}
+.pace-seg button.lock{cursor:not-allowed;color:var(--muted);background:repeating-linear-gradient(135deg,#ffffff07 0 8px,transparent 8px 16px)}
+.pace-seg button.lock small{color:color-mix(in srgb,var(--muted) 80%,transparent)}
+.pace-seg button:focus-visible{outline:2px solid var(--mc);outline-offset:-2px}
+.pace-seg button.nope{animation:nope .3s}
+.pc-field .pace-seg{width:100%}.pc-field .pace-seg button{flex:1}
+@media (max-width:560px){.pace{margin-left:0;width:100%}.pace>.tc-k{display:none}.pace .pace-seg{width:100%}.pace-seg button{flex:1;min-width:0;padding:5px 4px}}
 .hub-grid.g3{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(200px,1fr)}
 .hub-t.wide2{grid-column:1/-1;position:relative}
 .ht-open{all:unset;box-sizing:border-box;display:flex;flex-direction:column;flex:1;cursor:pointer;min-width:0}
@@ -1132,7 +1279,8 @@ div.hub-t{cursor:default}
   .c.new,.c.pop,.c.orb,.mini i.orb,.toast div,.pw.flashy{animation-duration:.01ms!important;animation-iteration-count:1!important}
   .logo span{animation:none}
   .t-tile,.t-grid,.sweepbar.go,.meter i.hot,.well.danger,.spd.bump{animation:none}
-  .announce div{animation:toast 1.9s ease forwards}
+  .announce div{animation:toast 2.2s ease forwards}
+  .well.annfx,.warn-melt .sw-drip,.sw-chip,#sSeason.soon{animation:none}
   .bolts{display:none}
   .powchip,.c.scrfx,.pmult.bump,.c.rotbad,.c.tile.ember,.c.tile.ember::before,.c.tile.burn::before,.c.cur.fire,.blizzard::before,.blizzard::after,.bolts .shard{animation:none}
   .ls-holo{animation:none}
@@ -1532,7 +1680,7 @@ div.hub-t{cursor:default}
     <div class="scorecard" id="scoreCard">
       <div class="sc-main"><span class="sc-k">Score</span><b class="sc-v" id="sScore">0</b><span class="sc-best">Best <b id="sBest">0</b></span></div>
       <div class="sc-chips">
-        <span class="chip c-spd" title="Drop speed"><i>Speed</i><b id="sSpeed" class="spd">×1.00</b></span>
+        <span class="chip c-spd" title="Drop speed"><i id="sPace">Speed</i><b id="sSpeed" class="spd">×1.00</b></span>
         <span class="chip c-pts" title="Points multiplier"><i>Points</i><b id="sMult" class="pmult">×1.0</b></span>
       </div>
       <div class="sc-spd"><div class="spdbar" id="spdBar" title="Blocks until the next speed-up"><i></i></div><p class="spdnote" id="spdNote">Faster in 10 blocks</p></div>
@@ -1550,6 +1698,8 @@ div.hub-t{cursor:default}
       <div class="count" id="count" hidden></div>
       <div class="announce" id="announce" aria-live="polite"></div>
       <div class="blizzard" aria-hidden="true"></div>
+      <div class="sw" aria-hidden="true"><i class="sw-frost"></i><i class="sw-melt"></i><i class="sw-drip"></i></div>
+      <b class="sw-chip" id="swChip" hidden></b>
       <div class="bolts" id="bolts" aria-hidden="true"></div>
       <div class="powchip" id="powChip" hidden><span class="ic"></span><kbd data-key="power">F</kbd></div>
     </div>
@@ -1640,6 +1790,14 @@ div.hub-t{cursor:default}
       </div>
       <div class="pd-art" aria-hidden="true"><svg class="ha-art" viewBox="0 0 220 150" aria-hidden="true" focusable="false"><rect class="av-well" x="10" y="34" width="80" height="108" rx="9"/><rect class="av-well" x="130" y="34" width="80" height="108" rx="9"/><g class="av-t"><rect x="15" y="120" width="17" height="17" rx="4"/><text x="23.5" y="132.6">L</text></g><g class="av-t"><rect x="34" y="120" width="17" height="17" rx="4"/><text x="42.5" y="132.6">I</text></g><g class="av-t"><rect x="53" y="120" width="17" height="17" rx="4"/><text x="61.5" y="132.6">V</text></g><g class="av-t"><rect x="72" y="120" width="17" height="17" rx="4"/><text x="80.5" y="132.6">E</text></g><g class="av-t"><rect x="15" y="101" width="17" height="17" rx="4"/><text x="23.5" y="113.6">R</text></g><g class="av-t"><rect x="34" y="101" width="17" height="17" rx="4"/><text x="42.5" y="113.6">A</text></g><g class="av-t"><rect x="53" y="101" width="17" height="17" rx="4"/><text x="61.5" y="113.6">C</text></g><g class="av-t"><rect x="72" y="101" width="17" height="17" rx="4"/><text x="80.5" y="113.6">E</text></g><g class="av-b"><rect x="135" y="120" width="17" height="17" rx="4"/><text x="143.5" y="132.6">P</text></g><g class="av-b"><rect x="154" y="120" width="17" height="17" rx="4"/><text x="162.5" y="132.6">L</text></g><g class="av-b"><rect x="173" y="120" width="17" height="17" rx="4"/><text x="181.5" y="132.6">A</text></g><g class="av-b"><rect x="192" y="120" width="17" height="17" rx="4"/><text x="200.5" y="132.6">Y</text></g><g class="av-b"><rect x="135" y="101" width="17" height="17" rx="4"/><text x="143.5" y="113.6">O</text></g><g class="av-b"><rect x="173" y="101" width="17" height="17" rx="4"/><text x="181.5" y="113.6">N</text></g><g class="av-b"><rect x="173" y="82" width="17" height="17" rx="4"/><text x="181.5" y="94.6">E</text></g><rect class="av-p1" x="35" y="2" width="30" height="30" rx="8"/><circle class="av-pp" cx="50" cy="14" r="5"/><path class="av-pp" d="M41 28c1.5-6 5-8.5 9-8.5s7.5 2.5 9 8.5z"/><rect class="av-p2" x="155" y="2" width="30" height="30" rx="8"/><circle class="av-pp" cx="170" cy="14" r="5"/><path class="av-pp" d="M161 28c1.5-6 5-8.5 9-8.5s7.5 2.5 9 8.5z"/><path class="av-link" d="M66 17C82 17 88 44 110 44S138 17 154 17"/><circle class="av-globe" cx="110" cy="85" r="18"/><path class="av-mer" d="M92 85h36M110 67c-9 9-9 27 0 36M110 67c9 9 9 27 0 36M95 76h30M95 94h30"/><circle class="av-ping" cx="110" cy="85" r="18"/></svg></div>
     </div>
+    <div class="pc-pane pd off" data-p="tut">
+      <div class="pd-info">
+        <div class="pm-head"><span class="pm-ic" aria-hidden="true">🎓</span><div><span class="tc-k" id="tutK">Start here</span><b class="pm-name" id="tutName">Learn to play</b></div></div>
+        <p class="pm-desc" id="tutDesc"></p>
+        <ul class="tut-list" id="tutList"></ul>
+      </div>
+      <div class="pd-art" aria-hidden="true"><span class="ha-board big tut-art"><i class="e"></i><i class="e"></i><i class="f">c</i><i class="f">k</i><i class="e"></i><i class="e"></i><i>d</i><i>u</i><i class="tg vh">c</i><i class="tg">k</i><i class="e"></i><i class="e"></i><i class="b">b</i><i class="b">e</i><i class="b vh">a</i><i class="b">r</i><i class="e"></i><i class="e"></i><i class="b">c</i><i class="b">a</i><i class="b vh">t</i><i class="b">s</i><i class="e"></i><i class="e"></i></span></div>
+    </div>
     <div class="pc-mode" id="pcDaily">
       <div class="pm-col"><span class="tc-k">Today's game mode</span><div class="mtiles dm" id="tDailyMode" role="img"></div></div>
       <div class="pm-col"><span class="tc-k">Seed</span><div class="ps-lock" title="Same pieces, hazards and word for everyone today."><span class="ps-ic" aria-hidden="true">🔒</span>Same for everyone</div></div>
@@ -1653,6 +1811,7 @@ div.hub-t{cursor:default}
     </div>
     <div class="pc-row">
       <button class="btn sm ghostb pc-guide" id="tGuide" type="button">🎓 Tutorial</button>
+      <div class="pace" id="tPace"><span class="tc-k">Speed</span></div>
     </div>
     <div class="ps-actions">
       <button class="t-play" id="tPlay" type="button">Play</button>
@@ -1661,6 +1820,7 @@ div.hub-t{cursor:default}
   </section>
   <nav class="t-side" aria-label="More">
     <button class="sr m-lb" id="tLb" type="button"><span class="sr-ic" aria-hidden="true">🏆</span><span class="sr-t"><b>Leaderboard</b><small id="srLb">Today's top scores</small></span><span class="sr-go" aria-hidden="true">›</span></button>
+    <button class="sr m-quest" id="tQuests" type="button"><span class="sr-ic" aria-hidden="true">🎯</span><span class="sr-t"><b>Quests</b><small id="srQuest">Challenges, gems and unlocks</small></span><span class="sr-go" aria-hidden="true">›</span></button>
     <button class="sr m-hist" id="tHistory" type="button"><span class="sr-ic" aria-hidden="true">📜</span><span class="sr-t"><b>History</b><small id="srHist">No runs yet</small></span><span class="sr-go" aria-hidden="true">›</span></button>
     <button class="sr m-shop" id="tShop" type="button"><span class="sr-ic" aria-hidden="true">🛍</span><span class="sr-t"><b>Shop</b><small id="srShop">Skins and themes</small></span><span class="sr-go" aria-hidden="true">›</span></button>
     <button class="sr m-online" id="tOnlineRow" type="button"><span class="sr-ic" aria-hidden="true">👥</span><span class="sr-t"><b>Online</b><small>Race friends with a room code</small></span><span class="sr-go" aria-hidden="true">›</span></button>
@@ -1669,6 +1829,16 @@ div.hub-t{cursor:default}
     <!-- /ARTIFACT-ONLY -->
     <button class="sr m-set" id="tSettings" type="button" aria-haspopup="dialog"><span class="sr-ic" aria-hidden="true">⚙</span><span class="sr-t"><b>Settings</b><small>Sound, controls and more</small></span><span class="sr-go" aria-hidden="true">›</span></button>
   </nav>
+  </div>
+  <div class="t-ov lv-ov" id="levelPick" role="dialog" aria-modal="true" aria-labelledby="lvTitle" hidden>
+    <div class="ov-in lv-in">
+      <span class="lv-k">Welcome to Wordfall</span>
+      <h2 class="ov-title" id="lvTitle">How much have you played?</h2>
+      <p class="lv-sub" id="lvSub"></p>
+      <div class="lv-cards" id="lvCards"></div>
+      <p class="lv-note">You can change this any time in Settings › Gameplay.</p>
+      <button class="ov-back" id="lvBack" type="button" hidden>‹ Back</button>
+    </div>
   </div>
   <div class="t-ov" id="picker" role="dialog" aria-modal="true" aria-labelledby="pkTitle" hidden>
     <div class="ov-in">
@@ -1791,6 +1961,16 @@ const RISE_EVERY = 2;             // battles: every 2 knockouts push a stone row
 const SPEED_EVERY = 10;           // every 10 blocks placed...
 const SPEED_STEP = 1.25;          // ...the game gets 1.25x faster
 const SPEED_MAX_STEPS = 10;       // tops out at about x9.3
+// Game speed, picked on every play card. Slow drops at half speed, speeds up half as often and scores
+// half; Normal is the classic game; Fast starts at double speed (4x Slow), speeds up like Normal and
+// scores x1.5. Players see them as points x1 / x2 / x3 and speed x0.5 / x1 / x2.
+const PACES = {
+  slow: { name: 'Slow', icon: '🐢', ms: 2, every: 20, pts: 0.5, x: 1, sx: 0.5 },
+  normal: { name: 'Normal', icon: '▶', ms: 1, every: 10, pts: 1, x: 2, sx: 1 },
+  fast: { name: 'Fast', icon: '⚡', ms: 0.5, every: 10, pts: 1.5, x: 3, sx: 2 },
+};
+const PACE_KEYS = ['slow', 'normal', 'fast'];
+const paceOf = p => PACES[p] ? p : 'normal';
 const INCOMING_MS = 3000;         // attacks wait this long in the meter before they land
 const FINALE_MS = 60000;          // the last minute of a battle speeds everyone up             // you can hold one Clear at a time            // how long a speed-up attack lasts
 const ATTACKS = ['stretch', 'stones', 'speed'];  // attack letters take turns in this order
@@ -1849,8 +2029,19 @@ const store = {
 // Seed words: typed on the play card (or in an online room); empty means a fresh random seed each game.
 const normSeed = t => String(t || '').trim().toLowerCase().replace(/\s+/g, ' ').slice(0, 40);
 let seedWords = normSeed(store.get('wordfall-seed'));
-const pickSeed = () => seedWords ? hashStr('wordfall-seed:' + seedWords) : (Math.random() * 2 ** 32) >>> 0;
-const runWotd = seed => pickWotd(seedWords ? hashStr('wordfall-wotd:' + seed) : (Math.random() * 2 ** 32) >>> 0);
+// "#1234567890" in the seed box replays that exact seed (the copy-seed buttons hand these out).
+const seedNum = w => { const m = /^#(\d{1,10})$/.exec(String(w || '').trim()); return m && +m[1] < 2 ** 32 ? +m[1] >>> 0 : null; };
+const pickSeed = () => { const n = seedNum(seedWords); return n != null ? n : seedWords ? hashStr('wordfall-seed:' + seedWords) : (Math.random() * 2 ** 32) >>> 0; };
+const dayOf = t => { const d = new Date(+t || 0); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+// A copied Today's drop seed brings back that day's word of the day too.
+function dailyDayOf(seed) {
+  const d = new Date();
+  for (let k = 0; k < 400; k++) { const day = dayOf(d.getTime()); if (hashStr('wordfall3:' + day) === seed) return day; d.setDate(d.getDate() - 1); }
+  return '';
+}
+const runWotd = seed => pickWotd(hashStr('wordfall-wotd:' + (dailyDayOf(seed) || seed)));
+// What a run's copy-seed button copies: its seed words, or "#" and its seed number.
+const seedCode = r => r && r.sw ? String(r.sw) : r && r.seed != null && +r.seed >= 0 ? '#' + (+r.seed >>> 0) : '';
 const fmtTime = ms => { const s = Math.max(0, Math.ceil(ms / 1000)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
 const fmtUp = ms => { const s = Math.floor(ms / 1000); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
 
@@ -2034,7 +2225,7 @@ function placements(grid, banked, b0, withSwap) {
 /* ================= One board (you, the bot, or anyone) ================= */
 const FLASH_MS = 560, POP_MS = 240;
 class Board {
-  constructor({ seed, orbKinds, hooks, hazards, variant, wotd, slow, seasonMs, script }) {
+  constructor({ seed, orbKinds, hooks, hazards, variant, wotd, slow, seasonMs, script, pace, ramp }) {
     Object.assign(this, {
       rng: mulberry32(seed), grid: emptyGrid(), queue: [], cur: null, hold: null, canHold: true,
       banked: [], log: [], fx: null, pulse: null,
@@ -2047,6 +2238,9 @@ class Board {
       wotd: typeof wotd === 'string' ? wotd : null, wotdX: 1, wotdHit: false, lastPowerAt: -1e9, run: newRun(),
       // Tutorials: slower drops, shorter seasons, and a fixed opening set of letter pairs.
       slow: +slow > 0 ? +slow : 1, sumMs: seasonMs ? seasonMs[0] : ROT_SUMMER_MS, winMs: seasonMs ? seasonMs[1] : ROT_WINTER_MS, script: Array.isArray(script) ? script.slice() : null,
+      // Game speed (see PACES). ramp:false holds the speed steady (the first tutorial); rampAt is the block
+      // count the speed-ups count from. dropFrac carries part-points from drops at Slow and Fast.
+      pace: paceOf(pace), ramp: ramp !== false, rampAt: 0, dropFrac: 0,
     });
     this.queue = [this.nextPiece(), this.nextPiece()];
     this.spawn();
@@ -2086,7 +2280,12 @@ class Board {
   }
   nextPiece() {
     this.pieceCount++;
-    if (this.script && this.script.length) return this.makePiece('D', this.script.shift().split(''));
+    // Scripted pieces (tutorials): two letters; a capital letter glows (a Clear).
+    if (this.script && this.script.length) {
+      const w = this.script.shift(), p = this.makePiece('D', w.toLowerCase().split(''));
+      readOrder(p.b).forEach((o, i) => { if (w[i] && w[i] !== w[i].toLowerCase()) o.orb = 'clear'; });
+      return p;
+    }
     const type = this.rng() < L_CHANCE ? 'L' : 'D';
     const p = this.makePiece(type, this.genLetters(SHAPES[type].length));
     if (this.pieceCount % ORB_EVERY === 0) {
@@ -2153,8 +2352,9 @@ class Board {
     items.unshift(items.pop());
     ord.forEach((o, i) => { o.ch = items[i].ch; o.orb = items[i].orb; });
   }
-  hardDrop() { while (this.move(0, 1)) this.score += 2 * this.wotdX; this.lock(); }
-  softDrop() { if (this.move(0, 1)) { this.score += this.wotdX; this.dropAcc = 0; } }
+  hardDrop() { while (this.move(0, 1)) this.dropPts(2 * this.wotdX); this.lock(); }
+  softDrop() { if (this.move(0, 1)) { this.dropPts(this.wotdX); this.dropAcc = 0; } }
+  dropPts(v) { this.dropFrac += v * PACES[this.pace].pts; const n = Math.floor(this.dropFrac + 1e-9); this.dropFrac -= n; this.score += n; }
   holdPiece() {
     if (!this.canHold) return;
     const cur = this.cur;
@@ -2185,7 +2385,8 @@ class Board {
     }
     this.chain = 0;
     this.placed++;
-    if (this.placed % SPEED_EVERY === 0 && this.placed / SPEED_EVERY <= SPEED_MAX_STEPS) this.h('speedup', this.speed(), this.pointMult());
+    const sk = this.placed - this.rampAt, se = this.every();
+    if (this.ramp && sk > 0 && sk % se === 0 && sk / se <= SPEED_MAX_STEPS) this.h('speedup', this.speedX(), this.multX(), this.speedSteps() >= SPEED_MAX_STEPS);
     if (this.hazards) {
       this.dropped++;
       const now = this.hazardLevel(), T = this.hzTiers();
@@ -2199,10 +2400,14 @@ class Board {
     }
     this.settle();
   }
-  speedSteps() { return Math.min(SPEED_MAX_STEPS, Math.floor(this.placed / SPEED_EVERY)); }
+  every() { return PACES[this.pace].every; }
+  speedSteps() { return this.ramp ? Math.min(SPEED_MAX_STEPS, Math.floor(Math.max(0, this.placed - this.rampAt) / this.every())) : 0; }
   speed() { return SPEED_STEP ** this.speedSteps(); }
   pointMult() { return Math.min(MULT_MAX, 1 + MULT_STEP * this.speedSteps()); }
-  pts(base) { return Math.round(base * this.pointMult() * this.wotdX); }
+  // What the Speed and Points chips show: the ramp times the game speed (Slow x1, Normal x2, Fast x3 points).
+  speedX() { return this.speed() * PACES[this.pace].sx; }
+  multX() { return this.pointMult() * PACES[this.pace].x; }
+  pts(base) { return Math.round(base * this.pointMult() * this.wotdX * PACES[this.pace].pts); }
   // Word of the day: scoring it doubles everything you've scored and everything you score after.
   checkWotd(word) {
     if (!this.wotd || this.wotdHit || word !== this.wotd) return;
@@ -2212,15 +2417,18 @@ class Board {
   powerCool() { return Math.max(0, this.lastPowerAt + POWER_CD_MS - this.elapsed); }
   spendPower(k) { this.power = null; this.lastPowerAt = this.elapsed; this.run.powers[k] = (this.run.powers[k] || 0) + 1; }
   noteBoost(bx, n) { if (bx.ice) this.run.iceWords += n; if (bx.fire) this.run.fireWords += n; }
-  speedIn() { return this.speedSteps() >= SPEED_MAX_STEPS ? 0 : SPEED_EVERY - (this.placed % SPEED_EVERY); }
+  // Blocks until the next speed-up: 0 at top speed, -1 when the speed is held steady.
+  speedIn() { if (!this.ramp) return -1; const e = this.every(); return this.speedSteps() >= SPEED_MAX_STEPS ? 0 : e - (Math.max(0, this.placed - this.rampAt) % e); }
   level() { return 1 + Math.floor(this.score / 800); }
   interval() {
-    let base = Math.max(90, 950 / this.speed()) * this.slow;
-    if (this.finale) base = Math.max(80, base * 0.6);
-    if (this.variant === 'rot') base = Math.max(80, base * this.seasonPace());
-    return this.rush > 0 ? Math.max(70, base * 0.4) : base;
+    // Every floor scales with the game speed, and a floor never slows a drop that is already faster.
+    const m = PACES[this.pace].ms, cap = (v, f, k) => Math.max(Math.min(v, f * m), v * k);
+    let base = Math.max(90 * m, 950 * m / this.speed()) * this.slow;
+    if (this.finale) base = cap(base, 80, 0.6);
+    if (this.variant === 'rot') base = cap(base, 80, this.seasonPace());
+    return Math.max(45, this.rush > 0 ? cap(base, 70, 0.4) : base);
   }
-  multTag() { const m = this.pointMult(); return m > 1 ? `  (pts ×${m.toFixed(1)})` : ''; }
+  multTag() { return this.pointMult() > 1 ? `  (pts ×${this.multX().toFixed(1)})` : ''; }
   noteWord(w) { if (w.length > this.longest.length) this.longest = w; }
   addLog(kind, word, pts, mult) { const R = this.run; R.list.push([word, pts, kind]); R.len[Math.max(3, Math.min(6, word.length))]++; if (kind === 'v') R.vert++; if (kind === 'f') R.full++;
     this.log.push({ kind, word, pts, mult }); if (this.log.length > 60) this.log.shift(); this.lastEvent = (kind === 'v' ? '↓ ' : '') + word.toUpperCase() + ' +' + pts; }
@@ -2537,6 +2745,7 @@ class Board {
     const k = this.hazardNext(); this.hazardIdx++;
     const n = k === 'stones' ? this.hzTiers()[this.hazardLevel()].stones : 1;
     this.receive(k, n);
+    this.h('hazard', k, n);
     this.h('toast', `⚠ Hazard incoming: ${attackLabel(k, n)}`, 'bad');
   }
   // Attacks (and solo hazards) wait in the incoming meter, so a quick word can block them.
@@ -2649,7 +2858,7 @@ class Board {
       if (this.variant === 'rot') this.seasonTick(dt);
       if (this.rush > 0) { this.rush = Math.max(0, this.rush - dt); if (!this.rush) this.h('changed'); }
       if (this.riseQ && this.phase === 'play') { this.riseQ--; this.doRise(); if (this.phase === 'over') return; }
-      if (this.incoming.length) {
+      if (this.incoming.length && !this.holdInc) {
         for (const it of this.incoming) it.t -= dt;
         while (this.incoming.length && this.incoming[0].t <= 0) { const it = this.incoming.shift(); this.apply(it.kind, it.n); }
       }
@@ -2688,6 +2897,7 @@ let variant = store.get('wordfall-variant') === 'rot' ? 'rot' : 'classic';
 let pickMode = variant; // the mode the play card shows; a coming-soon pick is never saved
 const PLAY_MODES = ['daily', 'practice', 'bot', 'online'];
 let playTab = PLAY_MODES.includes(store.get('wordfall-playtab')) ? store.get('wordfall-playtab') : 'daily';
+let pace = paceOf(store.get('wordfall-pace')); // Slow / Normal / Fast for every card
 let openOv = null, ovReturn = null;
 const BOT_NAMES = ['Kai', 'Noor', 'Leo', 'Mia', 'Zed', 'Ola', 'Rin', 'Ivy', 'Bo', 'Sol', 'Tam', 'Uma'];
 const shuffled = a => { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
@@ -2716,6 +2926,7 @@ function myHooks() {
     burnt: cells => { cells.forEach(([x, y]) => { shatter(x, y, 'ash'); shatter(x, y, 'rot'); }); sfx('crumble'); },
     hazardup: lv => { const t = game.me.hzTiers()[lv]; announce('HAZARDS UP', `Level ${lv + 1} · every ${t.every} blocks · ${t.stones} stone${t.stones > 1 ? 's' : ''}`, 'haz'); sfx('hazard'); },
     stoned: zapStones,
+    hazard: () => { if (!versusMode()) tlHit(); },
   };
 }
 function hitMessage(who, k, n) {
@@ -2763,21 +2974,21 @@ function sendAttack(k, n, big) {
   deliver(t, k, n, ME);
 }
 const runLabel = (mode, count) => mode === 'daily' ? "Today's drop" : mode === 'practice' ? 'Practice' : mode === 'online' ? 'Online match' : count > 1 ? 'Battle of 8' : 'Duel';
-function startSolo(mode, boot = false) {
+function startSolo(mode, boot = false, opt = {}) {
   if (boot) { startSoloNow(mode, true); return; }
-  playTransition(runLabel(mode), () => startSoloNow(mode));
+  playTransition(runLabel(mode), () => startSoloNow(mode, false, opt));
 }
 function startBot(level, count = botCount) {
   playTransition(runLabel('bot', count === 7 ? 7 : 1), () => startBotNow(level, count));
 }
-function startSoloNow(mode, boot = false) {
+function startSoloNow(mode, boot = false, opt = {}) {
   bankLiveGame();
   const day = todayStr();
   const seed = mode === 'daily' ? hashStr('wordfall3:' + day) : pickSeed();
   const v = mode === 'daily' ? dailyVariant(day) : variant;
-  hideEnd(); game = { mode, day, variant: v, me: null, bots: [], over: false, outAt: {}, seedWords: mode === 'daily' ? '' : seedWords };
+  hideEnd(); game = { mode, day, variant: v, me: null, bots: [], over: false, outAt: {}, seedWords: mode === 'daily' ? '' : seedWords, seed, pace: opt.onboard ? (prog().level === 'mid' ? 'normal' : 'slow') : paceOk(pace), onboard: !!opt.onboard };
   game.wotd = mode === 'daily' ? pickWotd(hashStr('wordfall-wotd:' + day)) : runWotd(seed);
-  game.me = new Board({ seed, orbKinds: ['clear', 'scramble'], hooks: myHooks(), hazards: true, variant: v, wotd: game.wotd });
+  game.me = new Board({ seed, orbKinds: ['clear', 'scramble'], hooks: myHooks(), hazards: true, variant: v, wotd: game.wotd, pace: game.pace });
   game.best = +(store.get('wordfall-best') || 0);
   paused = false;
   setLayout();
@@ -2791,7 +3002,7 @@ function startSoloNow(mode, boot = false) {
 }
 function makeBot(id, name, level, seed) {
   const b = { id, name, level: BOT_LEVELS[level] ? level : 'normal', board: null, ctl: { plan: null, piece: null, wait: 0 } };
-  b.board = new Board({ seed: seed >>> 0, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: botHooks(b), hazards: 'versus', variant: game && game.variant, wotd: game && game.wotd });
+  b.board = new Board({ seed: seed >>> 0, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: botHooks(b), hazards: 'versus', variant: game && game.variant, wotd: game && game.wotd, pace: game && game.pace });
   return b;
 }
 function startBotNow(level, count = botCount) {
@@ -2799,9 +3010,9 @@ function startBotNow(level, count = botCount) {
   botLevel = BOT_LEVELS[level] ? level : 'normal'; store.set('wordfall-bot', botLevel);
   botCount = count === 7 ? 7 : 1; store.set('wordfall-botcount', String(botCount));
   const seed = pickSeed();
-  hideEnd(); game = { mode: 'bot', royale: botCount > 1, variant, me: null, bots: [], over: false, outAt: {}, finale: false, seedWords };
+  hideEnd(); game = { mode: 'bot', royale: botCount > 1, variant, me: null, bots: [], over: false, outAt: {}, finale: false, seedWords, seed, pace: paceOk(pace) };
   game.wotd = runWotd(seed);
-  game.me = new Board({ seed, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: myHooks(), hazards: 'versus', variant, wotd: game.wotd });
+  game.me = new Board({ seed, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: myHooks(), hazards: 'versus', variant, wotd: game.wotd, pace: game.pace });
   const names = shuffled(BOT_NAMES);
   for (let i = 0; i < botCount; i++) game.bots.push(makeBot('bot-' + i, names[i], botLevel, seed ^ Math.imul(0x9e3779b9, i + 1)));
   game.best = +(store.get('wordfall-best') || 0);
@@ -2871,14 +3082,17 @@ function onMeOver() {
     checkBattleEnd();
     return;
   }
+  tlSample(true);
   game.over = true;
+  const mine = tlPack([ME]), riv = soloRivals();
   const before = unlockedIds();
   const newBest = game.me.score > game.best;
   if (newBest) { game.best = game.me.score; store.set('wordfall-best', String(game.me.score)); }
   if (game.mode === 'daily' && game.me.score > 0) recordDaily();
   const unlocked = newlyUnlocked(before);
-  submitScore(game.me.score, game.mode === 'daily');
-  recordRun(game.me);
+  submitScore(game.me.score, game.mode === 'daily', game.mode === 'daily' ? tlShort(mine) : null);
+  const rec = recordRun(game.me, { tl: soloTl(mine, riv) });
+  if (rec) tlTopFill(rec, mine, riv);
   updatePanels();
   const unl = [...unlocked, ...checkIconUnlocks()];
   endSequence(() => showSoloEnd(newBest, unl));
@@ -2908,23 +3122,26 @@ function rankBattlers() {
   const outAt = id => game.outAt[id] || Infinity;
   return battlers().sort((a, b) => (b.score - a.score) || (b.alive - a.alive) || (outAt(b.id) - outAt(a.id)));
 }
-// Score timeline for History: everyone's score every few seconds of a versus match.
+// Score timeline for History: everyone's score every few seconds of a versus match, or your
+// own score every few seconds of play in Practice and Today's drop.
 const TL_EVERY = 3;
-const tlNow = () => Math.max(0, Math.round((performance.now() - (game.roundEndAt - ROUND_MS)) / 100) / 10);
+const tlNow = () => versusMode() ? Math.max(0, Math.round((performance.now() - (game.roundEndAt - ROUND_MS)) / 100) / 10) : Math.round(game.me.elapsed / 100) / 10;
+const tlOn = () => !!game && !game.tut && !game.counting && !!game.me && (!versusMode() || !!game.roundEndAt);
 function tlSample(force) {
-  if (!versusMode() || !game.roundEndAt || game.counting) return;
+  if (!tlOn()) return;
   const tl = game.tl || (game.tl = { t: [], p: {}, hits: [] });
   const t = tlNow();
   let i = tl.t.length;
   if (i && t - tl.t[i - 1] < (force ? 0.1 : TL_EVERY)) { if (!force) return; i--; } else tl.t.push(t);
-  for (const b of battlers()) {
+  const who = versusMode() ? battlers() : [{ ...ME, score: game.me.score, alive: game.me.phase !== 'over' }];
+  for (const b of who) {
     const p = tl.p[b.id] || (tl.p[b.id] = { n: String(b.name || '?').slice(0, 24), k: b.kind, s: [], out: null });
     while (p.s.length < i) p.s.push(null);
     if (p.out == null) { p.s[i] = Math.max(0, Math.round(+b.score || 0)); if (!b.alive) p.out = t; }
   }
 }
 function tlHit() {
-  if (!versusMode() || !game.roundEndAt || game.counting) return;
+  if (!tlOn()) return;
   const tl = game.tl || (game.tl = { t: [], p: {}, hits: [] });
   if (tl.hits.length < 200) tl.hits.push(tlNow());
 }
@@ -2993,22 +3210,42 @@ function finishBattle(reason) {
 // finish when you do the thing, info steps pause the game (except in versus) until Next.
 const pwSum = B => Object.values(B.run.powers || {}).reduce((a, b) => a + (+b || 0), 0);
 const rotted = B => B.grid.some(r => r.some(c => c && (c.rubble || (c.rot || 0) > 0.25)));
-const cells = (y, xs) => xs.map(x => [x, y]);
+// Outlined cells for a step: [x, y, letter]. The letter shows faintly in the outline.
+const cells = (y, xs, w = '') => xs.map((x, i) => [x, y, w[i] || '']);
 const TUTS = {
   basics: {
-    name: 'Basics', icon: '🔤', desc: 'Move, drop, bank words across and cash them in down.',
-    variant: 'classic', script: ['we', 'bs', 'or', 'es', 'ca', 'ts'],
+    name: 'Learn to play', icon: '🎓', desc: 'A guided game: moving and dropping, words across, cash-ins, the bonus word, powers and hazards.',
+    variant: 'classic', pace: 'slow', strict: true, wotd: 'planet',
+    script: ['ca', 'ts', 'be', 'ar', 'du', 'ck', 'pl', 'an', 'et', 'St', 'ar', 'bo', 'at'],
     steps: [
-      { t: 'Welcome to Wordfall', b: 'Letters fall in pairs. Land them to spell words on the board. Everything runs slowly here, and you can’t lose: if the board fills up, it just clears.' },
-      { t: 'Move and drop', b: 'Move <b>WE</b> to the bottom-left corner with <kbd>←</kbd> <kbd>→</kbd>, then drop it with <kbd>Space</kbd>. On a phone, swipe and tap Drop.', tgt: cells(11, [0, 1]), done: (B, s0) => B.placed > s0.placed },
-      { t: 'Spell a word across', b: 'Put <b>BS</b> right next to it to spell <b>WEBS</b>. Real words of 3–5 letters across turn <b>gold</b>: they’re banked.', tgt: cells(11, [2, 3]), done: (B, s0) => B.placed > s0.placed },
-      { t: 'Bank another', b: 'Now <b>OR</b>, then <b>ES</b>, on the row above: <b>ORES</b>.', tgt: cells(10, [0, 1, 2, 3]), done: (B, s0) => B.placed >= s0.placed + 2 },
-      { t: 'Cash in down', b: 'Finish with <b>CA</b> and <b>TS</b> on top: <b>CATS</b>. Then read down: <b>COW</b> and <b>ARE</b> cross all three gold words. Words down cash in the gold words they cross, multiplied by how many.', tgt: cells(9, [0, 1, 2, 3]), done: (B, s0) => B.placed >= s0.placed + 2 },
-      { t: 'That’s the core loop', b: 'Bank words across, then cash them in with a word down. A full row of six letters scores <b>600</b> and clears. Pieces are random from here on.' },
-      { t: 'Glowing letters', b: 'Every fifth piece has a glowing letter. Use it in a word to earn its power.', done: B => !!B.power },
-      { t: 'Use your power', b: 'Press <kbd>F</kbd> (or tap the power) to use it. <span class="orbkey o-clear">⌫</span> Clear wipes your bottom row. <span class="orbkey o-scramble">🔀</span> Scramble reshuffles where your piece will land.', done: (B, s0) => pwSum(B) > s0.pw || (!B.power && !s0.power) },
-      { t: 'It speeds up', b: 'Every 10 blocks the game gets faster and words score more. Hazards like stones drop in too: score any word while they wait in the meter to block them. In a real game, a full stack ends your run.' },
-      { t: 'You’re ready', b: 'Try <b>Today’s drop</b> for a daily board everyone shares, or <b>Practice</b> at your own pace.', end: true },
+      { t: 'Welcome to Wordfall', b: 'Letters fall in pairs. Land them to spell words. Everything here runs at 🐢 Slow and never speeds up, and you can’t lose: if the board fills up, it just clears.' },
+      { t: 'Move and drop', b: 'Move <b>CA</b> onto the glowing outline with <kbd>←</kbd> <kbd>→</kbd>, then drop it with <kbd>Space</kbd>. On a phone, swipe to move and tap Drop.', tgt: cells(11, [0, 1], 'ca') },
+      { t: 'Spell a word across', b: 'Drop <b>TS</b> on the outline to spell <b>CATS</b>. Real words of 3 to 5 letters across turn <b>gold</b>: they’re banked, ready to cash in.', tgt: cells(11, [2, 3], 'ts') },
+      { t: 'Stack another', b: 'Build <b>BEAR</b> on top of it: <b>BE</b> first, then <b>AR</b>.', tgt: cells(10, [0, 1, 2, 3], 'bear') },
+      { t: 'Cash in down', b: 'Now <b>DUCK</b> on top. Watch the third column: <b>C</b>, <b>A</b> and <b>T</b> read down spell <b>CAT</b>. A word down cashes in every gold word it crosses, times how many it crosses.', tgt: cells(9, [0, 1, 2, 3], 'duck'), hint: [[2, 9], [2, 10], [2, 11]], done: (B, s0) => B.run.vert > s0.vert },
+      { t: 'A ×3 combo!', b: '<b>CAT</b> crossed three gold words, so all three cashed in at <b>×3</b> and cleared. The more gold words you stack before you cash in, the bigger the combo.' },
+      { t: 'The bonus word', b: 'Every run has a ⭐ <b>bonus word</b> of six letters, shown beside the board. Spell it across a whole row to <b>double your score</b>. Here it’s <b>PLANET</b>: drop <b>PL</b>, <b>AN</b> and <b>ET</b> along the bottom.', tgt: cells(11, [0, 1, 2, 3, 4, 5], 'planet'), done: B => B.wotdHit },
+      { t: 'Glowing letters', b: 'Every fifth piece has a <b>glowing letter</b>. Use it in a word to earn its power: spell <b>STAR</b> with the glowing <b>S</b>.', tgt: cells(11, [0, 1, 2, 3], 'star'), done: B => !!B.power },
+      { t: 'Use your power', b: 'You earned <span class="orbkey o-clear">⌫</span> <b>Clear</b>: it wipes your bottom row. Press <kbd>F</kbd>, or tap the power under your score.', tgt: [], oops: 'Use your power first: press F or tap it', done: (B, s0) => pwSum(B) > s0.pw },
+      { t: 'Block a hazard', b: 'Two <b>stones</b> are waiting in the red meter beside your board. Score any word before they land to block them: spell <b>BOAT</b>.', tgt: cells(11, [0, 1, 2, 3], 'boat'), hold: true, enter: () => tutStones(), done: B => !B.incoming.length && !B.pending.stones },
+      { t: 'Blocked!', b: 'Hazards you don’t block land on your board: <b>stones</b> take up space until a word clears next to them, a <b>stretched piece</b> adds a hard letter, and <b>fast drops</b> hurry you for a while. Bigger words block more.' },
+      { t: 'It speeds up', b: 'In a real run the drops get faster as you place blocks, and words score more. Pick a speed on the play card: 🐢 Slow scores ×1, Normal ×2 and ⚡ Fast ×3.' },
+      { t: 'Your first run', b: 'From here the pieces are random, hazards arrive on their own and the speed ramps up. If the stack reaches the top, the run ends. Good luck!', end: true },
+    ],
+  },
+  // Intermediate players: the same board at Normal speed, fewer stops.
+  refresh: {
+    name: 'Refresher', icon: '🎓', desc: 'The basics at Normal speed, with fewer prompts.',
+    variant: 'classic', pace: 'normal', strict: true, wotd: 'planet',
+    script: ['ca', 'ts', 'be', 'ar', 'du', 'ck', 'pl', 'an', 'et', 'St', 'ar', 'bo', 'at'],
+    steps: [
+      { t: 'Quick refresher', b: 'The basics at Normal speed. Follow the outlines; your first run starts on this board when you’re done.' },
+      { t: 'Bank words across', b: 'Spell <b>CATS</b> along the bottom, then <b>BEAR</b> on top. Words across turn gold.', tgt: [...cells(11, [0, 1, 2, 3], 'cats'), ...cells(10, [0, 1, 2, 3], 'bear')] },
+      { t: 'Cash in down', b: 'Add <b>DUCK</b>: <b>CAT</b> reads down the third column through all three gold words for a <b>×3</b> combo.', tgt: cells(9, [0, 1, 2, 3], 'duck'), hint: [[2, 9], [2, 10], [2, 11]], done: (B, s0) => B.run.vert > s0.vert },
+      { t: 'Bonus word', b: 'The ⭐ bonus word across a full row doubles your score. Spell <b>PLANET</b>.', tgt: cells(11, [0, 1, 2, 3, 4, 5], 'planet'), done: B => B.wotdHit },
+      { t: 'Powers', b: 'Spell <b>STAR</b> with the glowing S to earn a Clear, then press <kbd>F</kbd> to use it.', tgt: cells(11, [0, 1, 2, 3], 'star'), oops: 'Use your power first: press F or tap it', done: (B, s0) => pwSum(B) > s0.pw },
+      { t: 'Block a hazard', b: 'Stones are waiting in the meter: spell <b>BOAT</b> to block them.', tgt: cells(11, [0, 1, 2, 3], 'boat'), hold: true, enter: () => tutStones(), done: B => !B.incoming.length && !B.pending.stones },
+      { t: 'Your first run', b: 'Random pieces from here, hazards arrive on their own and the speed ramps up. Good luck!', end: true },
     ],
   },
   rot: {
@@ -3041,12 +3278,12 @@ const TUTS = {
 const coachEl = document.createElement('aside');
 coachEl.className = 'panel coach'; coachEl.hidden = true; coachEl.setAttribute('aria-live', 'polite');
 $('.right').prepend(coachEl);
-function startTutorial(id) {
+function startTutorial(id, opt = {}) {
   const T = TUTS[id]; if (!T) return;
   closeModal();
-  playTransition('Tutorial', () => startTutorialNow(id));
+  playTransition('Tutorial', () => startTutorialNow(id, opt));
 }
-function startTutorialNow(id) {
+function startTutorialNow(id, opt = {}) {
   const T = TUTS[id];
   bankLiveGame();
   const seed = (Math.random() * 2 ** 32) >>> 0, v = T.variant;
@@ -3058,12 +3295,13 @@ function startTutorialNow(id) {
     b.board.slow = 1.8;
     game.bots.push(b);
   } else {
-    hideEnd(); game = { mode: 'practice', day: todayStr(), variant: v, me: null, bots: [], over: false, outAt: {} };
-    game.wotd = pickWotd((Math.random() * 2 ** 32) >>> 0);
-    game.me = new Board({ seed, orbKinds: ['clear', 'scramble'], hooks: myHooks(), hazards: false, variant: v, wotd: game.wotd, slow: 1.7, seasonMs: T.seasons, script: T.script });
+    // Guided tutorials (with a pace) run at that speed and never speed up; the others are just slowed down.
+    hideEnd(); game = { mode: 'practice', day: todayStr(), variant: v, me: null, bots: [], over: false, outAt: {}, pace: T.pace || 'normal' };
+    game.wotd = T.wotd || pickWotd((Math.random() * 2 ** 32) >>> 0);
+    game.me = new Board({ seed, orbKinds: ['clear', 'scramble'], hooks: myHooks(), hazards: false, variant: v, wotd: game.wotd, slow: T.pace ? 1 : 1.7, seasonMs: T.seasons, script: T.script, pace: T.pace, ramp: !T.pace });
   }
   game.best = +(store.get('wordfall-best') || 0);
-  game.tut = { id, i: -1, tgt: null, sent: 0 };
+  game.tut = { id, i: -1, tgt: null, hint: null, sent: 0, onboard: !!opt.onboard };
   paused = false;
   setLayout();
   if (T.versus) buildOpps();
@@ -3072,21 +3310,56 @@ function startTutorialNow(id) {
   if (T.versus) countdown();
   tutGo(0);
 }
-function tutSnap(B) { return { placed: B.placed, score: B.score, banked: B.banked.length, pw: pwSum(B), power: B.power, sent: game.tut.sent || 0 }; }
+function tutSnap(B) { return { placed: B.placed, score: B.score, banked: B.banked.length, pw: pwSum(B), power: B.power, sent: game.tut.sent || 0, vert: B.run.vert }; }
+// Outlined steps keep a checkpoint of the board before each drop. A piece dropped off the outline (or with
+// its letters the wrong way round) is put back at the top to try again.
+function tutCheck(B) {
+  return { placed: B.placed, score: B.score, words: B.words, ids: new Set(B.grid.flat().filter(Boolean).map(c => c.id)),
+    grid: B.grid.map(r => r.map(c => c && { ...c })), banked: B.banked.map(h => ({ ...h, cells: h.cells.map(p => p.slice()) })),
+    run: JSON.stringify(B.run), log: B.log.length, power: B.power, longest: B.longest, topStack: B.topStack,
+    piece: B.cur && { ...B.cur, b: B.cur.b.map(o => ({ ...o })) } };
+}
+function tutUndo(B, cp) {
+  Object.assign(B, { grid: cp.grid.map(r => r.map(c => c && { ...c })), banked: cp.banked.map(h => ({ ...h, cells: h.cells.map(p => p.slice()) })),
+    placed: cp.placed, score: cp.score, words: cp.words, run: JSON.parse(cp.run), power: cp.power, longest: cp.longest, topStack: cp.topStack, pulse: null });
+  B.log.length = Math.min(B.log.length, cp.log);
+  if (B.cur) B.queue.unshift(B.cur);
+  if (cp.piece) B.place({ ...cp.piece, b: cp.piece.b.map(o => ({ ...o })) });
+  B.h('changed');
+}
+// Did the last drop put a letter anywhere but on the outline, or the wrong letter on it?
+function tutOff(B, tu) {
+  for (let y = 0; y < ROWS; y++) for (let x = 0; x < COLS; x++) {
+    const c = B.grid[y][x];
+    if (!c || c.stone || tu.cp.ids.has(c.id)) continue;
+    const want = tu.tgt.get(x + ',' + y);
+    if (want === undefined || (want && c.ch !== want)) return true;
+  }
+  return false;
+}
+const tutFilled = (B, tgt) => [...tgt].every(([k, l]) => { const [x, y] = k.split(',').map(Number), c = B.grid[y][x]; return c && !c.stone && (!l || c.ch === l); });
+function tutClear(B) { B.grid = emptyGrid(); B.banked = []; B.incoming = []; B.pending.stones = 0; B.h('changed'); }
+// The hazard lesson: two stones wait in the meter (held there until you block them).
+function tutStones() { const B = game.me; B.incoming = [{ kind: 'stones', n: 2, t: INCOMING_MS }]; sfx('hazard'); B.h('changed'); }
 function tutGo(i) {
   const g = game, tu = g && g.tut; if (!tu) return;
   const T = TUTS[tu.id], st = T.steps[i];
   if (!st) { tutEnd(); return; }
-  tu.i = i; tu.s0 = tutSnap(g.me); tu.at = performance.now(); tu.ok = false;
-  tu.tgt = st.tgt ? new Set(st.tgt.map(([x, y]) => x + ',' + y)) : null;
+  tu.i = i; tu.s0 = tutSnap(g.me); tu.at = performance.now(); tu.ok = false; tu.cp = null;
+  tu.tgt = st.tgt ? new Map(st.tgt.map(([x, y, l]) => [x + ',' + y, l || ''])) : null;
+  tu.hint = st.hint ? new Set(st.hint.map(([x, y]) => x + ',' + y)) : null;
+  g.me.holdInc = !!st.hold;
+  // An outlined cell already taken (it shouldn't be): start the step on a clear board.
+  if (st.tgt && st.tgt.some(([x, y]) => g.me.grid[y][x])) tutClear(g.me);
   if (st.enter) st.enter();
-  const info = !st.done;
-  if (info && !T.versus && !st.end) paused = true;
+  const info = !st.done && !st.tgt;
+  if (modal.hidden) paused = !T.versus && info && (!st.end || !!T.pace);
   const html = (st, i) => `<button class="co-x" type="button" aria-label="Leave the tutorial">×</button>
     <span class="co-k">${T.icon} Tutorial · ${esc(T.name)}</span><h3>${esc(st.t)}</h3><p>${st.b}</p>
     <div class="co-dots" aria-hidden="true">${T.steps.map((_, k) => `<i class="${k < i ? 'd' : k === i ? 'on' : ''}"></i>`).join('')}</div>
-    <div class="co-btns">${st.end ? '<button class="btn sm" type="button" data-a="menu">Back to menu</button><button class="btn sm ghostb" type="button" data-a="hide">Keep playing</button>'
-      : !st.done ? '<button class="btn sm" type="button" data-a="next">Next</button>' : '<span class="co-wait">Your move…</span><button class="btn sm ghostb" type="button" data-a="next">Skip</button>'}</div>`;
+    <div class="co-btns">${st.end ? (T.pace ? `<button class="btn sm" type="button" data-a="run">Start my run</button>${tu.onboard ? '' : '<button class="btn sm ghostb" type="button" data-a="menu">Back to menu</button>'}` : '<button class="btn sm" type="button" data-a="menu">Back to menu</button><button class="btn sm ghostb" type="button" data-a="hide">Keep playing</button>')
+      : !st.done && !st.tgt ? '<button class="btn sm" type="button" data-a="next">Next</button>'
+      : `<span class="co-wait">Your move…</span>${!T.strict ? '<button class="btn sm ghostb" type="button" data-a="next">Skip</button>' : T.pace ? '<button class="btn sm ghostb" type="button" data-a="run">Skip tutorial</button>' : ''}`}</div>`;
   coachEl.hidden = false; document.body.classList.add('tutoring');
   // The box keeps the height of its tallest step, so it never jumps between steps.
   coachEl.style.minHeight = '';
@@ -3100,23 +3373,60 @@ function tutGo(i) {
   coachEl.querySelectorAll('[data-a]').forEach(b => { b.onclick = () => {
     const a = b.dataset.a;
     if (a === 'menu') { tutEnd(); showMenu(false); }
-    else if (a === 'hide') { coachEl.hidden = true; document.body.classList.remove('tutoring'); tu.tgt = null; paused = false; }
+    else if (a === 'run') tutToRun();
+    else if (a === 'hide') { coachEl.hidden = true; document.body.classList.remove('tutoring'); tu.tgt = null; tu.hint = null; paused = false; }
     else { paused = false; tutGo(i + 1); }
   }; });
   if (info) coachEl.querySelector('[data-a]').focus({ preventScroll: true });
 }
 function tutTick() {
-  const tu = game.tut, st = tu && TUTS[tu.id].steps[tu.i];
-  if (!st || !st.done || tu.ok || coachEl.hidden) return;
-  if (st.done(game.me, tu.s0, performance.now() - tu.at)) {
-    tu.ok = true; tu.tgt = null;
+  const tu = game.tut, st = tu && TUTS[tu.id].steps[tu.i], B = game.me;
+  if (!st || tu.ok || coachEl.hidden || (!st.done && !st.tgt)) return;
+  // Guided tutorials (strict) check every drop against the outline; the others only guide.
+  const strict = st.tgt && TUTS[tu.id].strict;
+  if (strict) {
+    B.canHold = false;
+    // Wait until the last drop has finished (words banked, cashed in and cleared).
+    if (B.phase !== 'play' || !B.cur) return;
+    if (!tu.cp) tu.cp = tutCheck(B);
+  }
+  if (st.done ? st.done(B, tu.s0, performance.now() - tu.at) : tutFilled(B, tu.tgt)) {
+    tu.ok = true; tu.tgt = null; tu.hint = null;
     coachEl.classList.add('ok');
     sfx('power');
     const g = game, i = tu.i;
+    if (!TUTS[tu.id].versus) paused = true;   // hold the next piece until the next step is up
     setTimeout(() => { if (game === g && g.tut && g.tut.i === i) tutGo(i + 1); }, 800);
+    return;
+  }
+  if (strict && B.placed > tu.cp.placed) {
+    if (tutOff(B, tu)) {
+      const msg = st.oops && tutFilled(B, tu.tgt) ? st.oops : 'Not quite: drop it on the outline, letters matching';
+      tutUndo(B, tu.cp);
+      toast(msg, 'bad');
+    }
+    tu.cp = tutCheck(B);
   }
 }
-function tutEnd() { coachEl.hidden = true; document.body.classList.remove('tutoring'); if (game && game.tut) { game.tut.tgt = null; game.tut.i = 99; } paused = false; }
+function tutEnd() { coachEl.hidden = true; document.body.classList.remove('tutoring'); if (game && game.tut) { game.tut.tgt = null; game.tut.hint = null; game.tut.i = 99; } if (game && game.me) game.me.holdInc = false; paused = false; }
+// The end of the first tutorial: the same board carries on as your first real run. Score and clock start
+// from zero, hazards arrive on their own, the speed starts ramping up and there's a new bonus word.
+function tutToRun() {
+  const g = game, B = g && g.me; if (!B || !g.tut) return;
+  const S = prog();
+  if (!S.tut) { S.tut = true; if (S.level === 'new') S.unl.normal = 1; saveProg(); }
+  tutEnd();
+  g.tut = null; g.onboard = true; g.pace = B.pace; g.recorded = null;
+  Object.assign(B, { script: null, holdInc: false, canHold: true, slow: 1,
+    hazards: true, dropped: 0, hazardIdx: 0, hzLevel: 0, hazardAt: HAZARD_TIERS[0].every,
+    ramp: true, placed: 0, rampAt: 0, pieceCount: 0,
+    score: 0, words: 0, elapsed: 0, lastPowerAt: -1e9, longest: '', topStack: 0, dropFrac: 0, log: [], run: newRun(), wotdHit: false, wotdX: 1, incoming: [] });
+  B.pending.stones = 0;
+  g.wotd = B.wotd = pickWotd((Math.random() * 2 ** 32) >>> 0);
+  paused = false;
+  updatePanels();
+  announce('YOUR FIRST RUN', 'Random pieces from here · good luck!', 'wotd');
+}
 // Topping out in a tutorial: clear the board and carry on.
 function tutRescue() {
   const B = game && game.me; if (!B || !game.tut) return;
@@ -3181,7 +3491,8 @@ function sfxPlay(kind) {
 }
 
 /* ================= Rendering ================= */
-const well = $('#well');
+const well = $('#well'), wellBox = well.closest('.wellbox'), swChip = $('#swChip');
+const SEASON_WARN_MS = 6000;
 const cellEls = [];
 for (let i = 0; i < ROWS * COLS; i++) { const d = document.createElement('div'); d.className = 'c'; well.appendChild(d); cellEls.push(d); }
 
@@ -3220,7 +3531,7 @@ function render(now) {
     const zone = B.power === 'scramble' && B.cur && B.phase === 'play' ? new Set((B.scrambleArea() || []).map(([x, y]) => x + ',' + y)) : null;
     if (B.scrFx && now > B.scrFx.until) B.scrFx = null;
     const sfxKeys = B.scrFx ? B.scrFx.keys : null;
-    const tgt = game.tut && game.tut.tgt;
+    const tgt = game.tut && game.tut.tgt, hint = game.tut && game.tut.hint;
     if (B.cur && (B.phase === 'play' || B.keepCur)) {
       let gy = B.cur.py;
       while (B.fits(B.cur.b, B.cur.px, gy + 1)) gy++;
@@ -3248,7 +3559,12 @@ function render(now) {
         else { cls = `c tile k-${c.k}` + (c.orb ? ` orb o-${c.orb}` : skinCls(c.ch)); if (c.orb) o = ORB[c.orb].icon; }
       } else if (ghost.has(k)) { cls = 'c ghost'; txt = ghost.get(k); }
       if (zone && zone.has(k)) cls += ' zone';
-      if (tgt && tgt.has(k) && !c && !cur.has(k)) cls += ' tgt';
+      if (tgt && tgt.has(k) && !c && !cur.has(k)) {
+        const want = tgt.get(k), g = ghost.get(k);
+        if (g === undefined) { cls += ' tgt'; txt = want; }
+        else if (!want || g === want) cls += ' tgt hit';
+      }
+      if (hint && hint.has(k)) cls += ' hintv';
       if (sfxKeys && sfxKeys.has(k) && c && !c.stone) cls += ' scrfx';
       const sn = c && c.snow && !cur.has(k) ? Math.round(c.snow * 20) / 20 : 0;
       if (sn) cls += ' snowy';
@@ -3281,22 +3597,35 @@ function render(now) {
   scd._s = B.score;
   renderIncoming();
   renderMeter(B);
-  setText($('#sSpeed'), '×' + B.speed().toFixed(2));
-  setText($('#sMult'), '×' + B.pointMult().toFixed(1));
+  setText($('#sSpeed'), '×' + B.speedX().toFixed(2));
+  setText($('#sMult'), '×' + B.multX().toFixed(1));
+  setText($('#sPace'), B.pace === 'normal' ? 'Speed' : `${PACES[B.pace].icon} ${PACES[B.pace].name}`);
   const cdl = B.powerCool(), pwb = $('#pwSlot');
   pwb.classList.toggle('cool', cdl > 0);
   pwb.style.setProperty('--cd', (cdl / POWER_CD_MS).toFixed(3));
   setText(pwb.querySelector('.cd'), cdl > 0 ? (cdl / 1000).toFixed(1) + 's' : '');
   const rotOn = game.variant === 'rot' && !game.over, sea = rotOn ? B.seasonAt() : null;
+  // The last few seconds of a season: frost creeps in before a blizzard, the snow melts and
+  // drips before the thaw, and a small chip counts down. All of it stays on the frame's edges.
+  const warn = rotOn && B.phase !== 'over' && !game.tut && sea.left <= SEASON_WARN_MS ? 1 - sea.left / SEASON_WARN_MS : 0;
+  const into = warn ? (sea.name === 'summer' ? 'freeze' : 'melt') : '';
+  wellBox.style.setProperty('--warn', warn.toFixed(3));
+  wellBox.classList.toggle('warn-freeze', into === 'freeze');
+  wellBox.classList.toggle('warn-melt', into === 'melt');
+  swChip.hidden = !into;
+  if (into) { setText(swChip, `${into === 'freeze' ? '❄ Blizzard' : '☀ Thaw'} in ${Math.max(1, Math.ceil(sea.left / 1000))}`); swChip.className = 'sw-chip ' + into; }
+  // When the stack is high, toasts move down off the top rows, where the next piece arrives.
+  wellBox.classList.toggle('tense', B.phase !== 'over' && stackHeight(B.grid) >= 7);
   document.body.classList.toggle('rot', game.variant === 'rot');
   document.body.classList.toggle('winter', rotOn && B.season === 'winter' && B.phase !== 'over');
   document.body.classList.toggle('summer', rotOn && B.season === 'summer' && B.phase !== 'over');
   document.body.classList.toggle('hot', rotOn && B.season === 'summer' && sea.name === 'summer' && sea.frac > 0.55);
-  if (rotOn) setText($('#sSeason'), `${B.season === 'winter' ? '❄ Winter' : '☀ Summer'} ${fmtTime(sea.left)}`);
-  const sIn = B.speedIn();
-  const bw = sIn ? ((SPEED_EVERY - sIn) / SPEED_EVERY * 100) + '%' : '100%', bar = $('#spdBar i');
+  if (rotOn) setText($('#sSeason'), into ? `${into === 'freeze' ? '❄ Blizzard' : '☀ Thaw'} in ${fmtTime(sea.left)}` : `${B.season === 'winter' ? '❄ Winter' : '☀ Summer'} ${fmtTime(sea.left)}`);
+  $('#sSeason').classList.toggle('soon', !!into);
+  const sIn = B.speedIn(), se = B.every();
+  const bw = sIn > 0 ? ((se - sIn) / se * 100) + '%' : sIn ? '0%' : '100%', bar = $('#spdBar i');
   if (bar.style.width !== bw) bar.style.width = bw;
-  setText($('#spdNote'), sIn ? `Faster in ${sIn} block${sIn === 1 ? '' : 's'}` : 'Top speed');
+  setText($('#spdNote'), sIn > 0 ? `Faster in ${sIn} block${sIn === 1 ? '' : 's'}` : sIn ? 'Speed stays steady' : 'Top speed');
   if (versus) renderOpps(spec ? spec.id : null);
 }
 
@@ -3337,6 +3666,7 @@ function updatePanels() {
   if (pk) { chip.className = 'powchip o-' + pk; chip.querySelector('.ic').textContent = ORB[pk].icon; }
   const nextAtk = ATTACKS[B.attackIdx % ATTACKS.length];
   document.querySelectorAll('#atkCycle span').forEach(s => s.classList.toggle('on', s.dataset.k === nextAtk));
+  if (!B.hazards && game.tut) { const hl = $('#hzLine'); setText(hl, B.incoming.length ? 'Sent by the lesson' : 'Off in the tutorial'); hl.classList.remove('soon'); }
   if (B.hazards) {
     const left = B.hazardIn(), hl = $('#hzLine');
     const T = B.hzTiers(), lv = B.hazardLevel(), tier = T[lv], nextT = T[lv + 1];
@@ -3543,16 +3873,23 @@ function shatter(x, y, kind) {
   box.append(...bits);
   setTimeout(() => bits.forEach(b => b.remove()), 650);
 }
+// Announcements drop in as a banner just above the board, so they never cover the stack;
+// the board's frame flashes the same colour so you catch it out of the corner of your eye.
+const ANN_COL = { winter: '#bfe9ff', thaw: '#ffb347', wotd: 'var(--bank)', haz: 'var(--bad)', rise: '#b06bff' };
 function announce(title, sub, kind, extra) {
   const box = $('#announce'), d = document.createElement('div');
   if (kind) d.className = kind;
   d.innerHTML = `<b>${esc(title)}</b><span>${esc(sub)}</span>${extra ? `<em>${esc(extra)}</em>` : ''}`;
   box.replaceChildren(d);
-  setTimeout(() => d.remove(), 2000);
+  setTimeout(() => d.remove(), 2300);
+  const k = String(kind || '').split(' ')[0];
+  well.style.setProperty('--annc', k === 'pow' ? `var(--o-${String(kind).split('o-')[1] || 'clear'})` : ANN_COL[k] || 'var(--o-speed)');
+  well.classList.remove('annfx'); void well.offsetWidth; well.classList.add('annfx');
+  clearTimeout(well._annT); well._annT = setTimeout(() => well.classList.remove('annfx'), 900);
 }
-function announceSpeed(sp, pm) {
-  announce('SPEED UP', `speed ×${sp.toFixed(2)}${sp >= SPEED_STEP ** SPEED_MAX_STEPS - 1e-9 ? ' · TOP SPEED' : ''}`, '',
-    `POINTS ×${pm.toFixed(1)}${pm >= MULT_MAX ? ' · MAX' : ''}`);
+function announceSpeed(sp, pm, top) {
+  announce('SPEED UP', `speed ×${sp.toFixed(2)}${top ? ' · TOP SPEED' : ''}`, '',
+    `POINTS ×${pm.toFixed(1)}${top ? ' · MAX' : ''}`);
   for (const id of ['#sSpeed', '#sMult']) { const dd = $(id); dd.classList.remove('bump'); void dd.offsetWidth; dd.classList.add('bump'); }
   setTimeout(() => sfx('mult'), 300);
   if (fxOk()) withFx(() => { const t = music.ctx.currentTime + 0.02; [0, 4, 7, 12].forEach((n, i) => tone('square', mtof(72 + n), t + i * 0.07, 0.12, 0.05)); });
@@ -3615,16 +3952,56 @@ function playTransition(label, go, opts = {}) {
     cv.remove(); xferBusy = false;
     if (holdPause && game && !game.over && modal.hidden && titleEl.hidden) paused = false;
   };
+  // Starting a game holds on the dark screen a little longer, with a nudge to play with sound on.
+  const startGame = !!label && !!go && after === 'drop', HOLD_START = 1500;
+  const rr = (x, y, w, h, r) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); };
+  const drawPhones = (cx, cy, s) => {
+    g.save(); g.strokeStyle = col.bank; g.fillStyle = col.bank; g.lineWidth = Math.max(2, s * 0.13); g.lineCap = 'round';
+    g.beginPath(); g.arc(cx, cy + s * 0.06, s * 0.42, Math.PI * 1.08, Math.PI * 1.92); g.stroke();
+    const cw = s * 0.24, ch = s * 0.44;
+    rr(cx - s * 0.52, cy - s * 0.04, cw, ch, cw * 0.45); g.fill();
+    rr(cx + s * 0.52 - cw, cy - s * 0.04, cw, ch, cw * 0.45); g.fill();
+    g.restore();
+  };
+  // p: how far through the hold (0-1) for the loading bar; null hides the bar.
+  const drawLabel = (a, p = null) => {
+    if (!label || a <= 0) return;
+    g.globalAlpha = a; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.font = `400 ${Math.round(Math.min(W / 11, 64))}px ${dispFont}`;
+    g.shadowColor = col.acc; g.shadowBlur = 24; g.fillStyle = '#fff';
+    g.fillText(label.toUpperCase(), W / 2, H / 2 - 8);
+    g.shadowBlur = 0; g.font = `700 ${Math.round(Math.min(W / 40, 15))}px ${uiFont}`; g.fillStyle = col.vert;
+    const ly = H / 2 + Math.min(W / 16, 46);
+    g.fillText('LOADING' + '.'.repeat(1 + ((performance.now() / 180) | 0) % 3), W / 2, ly);
+    const fs = Math.round(Math.min(W / 26, 16)), bw = Math.min(W * 0.5, 280);
+    let y = ly + 22;
+    if (p != null) {
+      g.fillStyle = '#ffffff22'; rr(W / 2 - bw / 2, y - 2, bw, 4, 2); g.fill();
+      g.fillStyle = col.vert; rr(W / 2 - bw / 2, y - 2, Math.max(4, bw * Math.min(1, Math.max(0, p))), 4, 2); g.fill();
+    }
+    y += fs * 2.2;
+    g.font = `800 ${fs}px ${uiFont}`;
+    const txt = 'BEST EXPERIENCED WITH AUDIO', tw = g.measureText(txt).width, iw = fs * 1.3, gap = fs * 0.6, x0 = W / 2 - (tw + iw + gap) / 2;
+    drawPhones(x0 + iw / 2, y - fs * 0.15, iw);
+    g.textAlign = 'left'; g.fillStyle = '#fff'; g.fillText(txt, x0 + iw + gap, y + 1);
+    if (!music.on) {
+      g.textAlign = 'center'; g.font = `600 ${Math.round(fs * 0.8)}px ${uiFont}`; g.fillStyle = col.bank;
+      g.fillText('Music is off · press M or tap ♪ Music to turn it on', W / 2, y + fs * 1.8);
+    }
+    g.globalAlpha = 1;
+  };
   if (fxCalm()) {
+    const HOLDC = startGame ? HOLD_START : 80;
     let t0 = null;
     const step = t => {
       if (t0 == null) t0 = t;
       const e = t - t0;
       g.clearRect(0, 0, W, H);
-      const a = e < 220 ? e / 220 : e < 300 ? 1 : Math.max(0, 1 - (e - 300) / 260);
+      const a = e < 220 ? e / 220 : e < 220 + HOLDC ? 1 : Math.max(0, 1 - (e - 220 - HOLDC) / 260);
       g.fillStyle = DARK; g.globalAlpha = a; g.fillRect(0, 0, W, H); g.globalAlpha = 1;
+      if (startGame) drawLabel(a, (e - 220) / HOLDC);
       if (e >= 220) doGo();
-      if (e < 560) requestAnimationFrame(step); else finish();
+      if (e < 220 + HOLDC + 260) requestAnimationFrame(step); else finish();
     };
     requestAnimationFrame(step);
     return;
@@ -3640,10 +4017,9 @@ function playTransition(label, go, opts = {}) {
       ch: LET[(Math.random() * LET.length) | 0], kind: rr < 0.62 ? 'tile' : rr < 0.86 ? 'bank' : rr < 0.93 ? 'vert' : rr < 0.97 ? 'clear' : 'scr' });
   }
   const FALL = 300, fillEnd = Math.max(...tiles.map(t => t.d)) + FALL;
-  const DARK_AT = fillEnd + 40, DARK_MS = 240, GO_AT = DARK_AT + DARK_MS, HOLD = label ? 260 : 120, OUT_AT = GO_AT + HOLD;
+  const DARK_AT = fillEnd + 40, DARK_MS = 240, GO_AT = DARK_AT + DARK_MS, HOLD = startGame ? HOLD_START : label ? 260 : 120, OUT_AT = GO_AT + HOLD;
   const DROP = 420, OUT_MS = after === 'drop' ? Math.max(...tiles.map(t => t.od)) + DROP : 260;
   const fill = { tile: [col.tile, '#0003', col.ink], bank: [col.bank, col.edge, col.ink], vert: [col.vert, '#0004', col.ink], clear: [col.tile, '#0003', col.ink], scr: [col.tile, '#0003', col.ink] };
-  const rr = (x, y, w, h, r) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); };
   const drawTile = (t, y) => {
     const p = 2, w = S - p * 2, f = fill[t.kind];
     if (t.kind === 'clear' || t.kind === 'scr') { g.shadowColor = t.kind === 'clear' ? col.clear : col.scr; g.shadowBlur = 14; }
@@ -3652,16 +4028,6 @@ function playTransition(label, go, opts = {}) {
     g.fillStyle = t.kind === 'clear' ? col.clear : t.kind === 'scr' ? col.scr : f[2];
     g.font = `800 ${Math.round(S * 0.46)}px ${uiFont}`; g.textAlign = 'center'; g.textBaseline = 'middle';
     g.fillText(t.ch, t.x + S / 2, y + S / 2 + 1);
-  };
-  const drawLabel = a => {
-    if (!label || a <= 0) return;
-    g.globalAlpha = a; g.textAlign = 'center'; g.textBaseline = 'middle';
-    g.font = `400 ${Math.round(Math.min(W / 11, 64))}px ${dispFont}`;
-    g.shadowColor = col.acc; g.shadowBlur = 24; g.fillStyle = '#fff';
-    g.fillText(label.toUpperCase(), W / 2, H / 2 - 8);
-    g.shadowBlur = 0; g.font = `700 ${Math.round(Math.min(W / 40, 15))}px ${uiFont}`; g.fillStyle = col.vert;
-    g.fillText('LOADING' + '.'.repeat(1 + ((performance.now() / 180) | 0) % 3), W / 2, H / 2 + Math.min(W / 16, 46));
-    g.globalAlpha = 1;
   };
   let t0 = null, thudN = 0, outSfx = false, introGo = false;
   if (fxOk()) withFx(() => { const t = music.ctx.currentTime + 0.01; noiseHit(t, fillEnd / 1000, 0.05, 600, 'lowpass'); });
@@ -3681,7 +4047,7 @@ function playTransition(label, go, opts = {}) {
       }
       const a = Math.min(1, Math.max(0, (e - DARK_AT) / DARK_MS));
       if (a > 0) { g.fillStyle = DARK; g.globalAlpha = a; g.fillRect(0, 0, W, H); g.globalAlpha = 1; }
-      drawLabel(a);
+      drawLabel(a, startGame ? (e - DARK_AT) / (OUT_AT - DARK_AT) : null);
       if (e >= GO_AT) doGo();
       requestAnimationFrame(step);
       return;
@@ -3706,7 +4072,7 @@ function playTransition(label, go, opts = {}) {
     }
     const a = Math.max(0, 1 - oe / Math.min(OUT_MS, 380));
     if (a > 0) { g.fillStyle = DARK; g.globalAlpha = a; g.fillRect(0, 0, W, H); g.globalAlpha = 1; }
-    drawLabel(a);
+    drawLabel(a, startGame ? 1 : null);
     requestAnimationFrame(step);
   };
   requestAnimationFrame(step);
@@ -3801,6 +4167,9 @@ function renderHome() {
   setText($('#pkMon'), now.toLocaleDateString(undefined, { month: 'short' }));
   const L = (ch, c = '') => `<i class="${c}">${ch}</i>`, E = '<i class="e"></i>';
   renderMe();
+  const S = prog(), qd = QUESTS.filter(q => S.done[q.id]).length;
+  setText($('#srQuest'), S.fresh.length ? `🎉 ${S.fresh.length} quest${S.fresh.length === 1 ? '' : 's'} done · see rewards` : `💎 ${n0(S.gems)} · ${qd} of ${QUESTS.length} done`);
+  $('#tQuests').classList.toggle('new', S.fresh.length > 0);
   $('#pdBoard').innerHTML = [E, E, L('t', 'f'), L('h', 'f'), E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, L('o'), E, E, E, E, L('r'), L('a'), E, L('e'), E, L('s'), ...w.split('').map(ch => L(ch, 'b w'))].join('');
   renderHist();
 }
@@ -3820,13 +4189,16 @@ function showMenuNow(resumable, noIntro = false) {
   renderHome();
   $('#tDay').innerHTML = String(new Date().getDate()).padStart(2, '0').split('').map(d => `<i>${d}</i>`).join('');
   syncBotSel();
-  setPlayTab(playTab);
+  setPlayTab(playTabOk());
+  drawPace();
   renderBoard();
   titleEl.hidden = false;
   $('#app').inert = true;
   titleEl.scrollTop = 0;
   $('#tPlay').focus({ preventScroll: true });
   if (fromGame && !noIntro) requestAnimationFrame(() => playIntro(booted ? 'return' : 'boot'));
+  // First visit: ask how much they've played once the menu is up.
+  if (!prog().level) setTimeout(askLevel, booted ? 200 : 1400);
   booted = true;
 }
 function hideTitle() { closeOv(true); titleEl.hidden = true; $('#app').inert = false; }
@@ -3887,7 +4259,8 @@ const HOWTO_HTML = `
       <li><b>Every fifth piece has a glowing letter.</b> Score a word with it:
         <span class="orbkey o-clear">⌫</span> earns a Clear that wipes your bottom row (no points), and <span class="orbkey o-scramble">🔀</span> earns a Scramble that shuffles the 3×3 patch where your piece is about to land (dashed outline), hunting for new words. You hold one power at a time: press <b>F</b> (or <b>1</b>) to use it. After using a power, the next one needs a <b>3 second</b> cooldown. In versus, attack letters fire at your rival as you score, taking turns:
         <span class="orbkey o-stretch">⇲</span> their next piece grows one hard letter, <span class="orbkey o-stones">▦</span> 1–4 stones land on them (bigger words, more stones), <span class="orbkey o-speed">⚡</span> their drops speed up for 12s. Attacks always go to the leader. Stones crumble when a word clears next to them.</li>
-      <li><b>Every 10 blocks you place, the game gets 1.25× faster</b> (up to about ×9.3), and <b>word points go up ×0.2</b>, up to ×3 at block 100. The Speed and Points chips under your score show where you are.</li>
+      <li><b>Pick a speed on the play card.</b> <b>🐢 Slow</b> drops at half speed and scores ×1. <b>Normal</b> is the classic game and scores ×2. <b>⚡ Fast</b> starts at double speed and scores ×3.</li>
+      <li><b>Every 10 blocks you place (20 on Slow), the game gets 1.25× faster</b> (up to about ×9.3), and <b>word points go up</b>, up to 3 times as much at the top. The Speed and Points chips under your score show where you are.</li>
       <li><b>Incoming attacks wait in the meter</b> beside your board for 3 seconds. Score any word to block them: bigger words block more.</li>
       <li><b>Big plays fight back:</b> a full row, or a word down through 3 or more words, sends stones to the leader.</li>
       <li><b>Battles</b> pit you against 1 or 7 bots, or friends online. <b>Highest score wins.</b> Topping out ends your run, so staying alive gives you more time to score. Every 2 players knocked out, a row of stone rises under everyone still playing. Battles have hazards too, the same for everyone: every 12 blocks at first, then faster at 0:45, 1:30 and 2:15. In the last minute, or when only two are left, everything speeds up. Your board flashes red when the stack nears the top. Knocked out? Click any board to watch it.</li>
@@ -3910,18 +4283,28 @@ function setOff(el, off) { el.classList.toggle('off', off); el.inert = off; el.s
 function setPlayTab(m) {
   playTab = PLAY_MODES.includes(m) ? m : 'daily';
   store.set('wordfall-playtab', playTab);
-  const pc = $('#playCard');
-  pc.dataset.m = playTab;
-  pc.querySelectorAll('.pc-pane').forEach(p => setOff(p, p.dataset.p !== playTab));
-  setOff($('#pcMode'), playTab === 'daily');
-  setOff($('#pcDaily'), playTab !== 'daily');
+  // New and intermediate players see the Tutorial card in its place until they've done it.
+  const pc = $('#playCard'), cur = tutCard() ? 'tut' : playTab;
+  pc.dataset.m = cur;
+  pc.querySelectorAll('.pc-pane').forEach(p => setOff(p, p.dataset.p !== cur));
+  setOff($('#pcMode'), cur === 'daily' || cur === 'tut');
+  setOff($('#pcDaily'), cur !== 'daily');
   syncVariant();
 }
 function syncBotSel() {
   $('#tLevels').querySelectorAll('button').forEach(b => { b.setAttribute('aria-pressed', String(b.dataset.l === botLevel)); b.classList.toggle('last', b.dataset.l === botLevel); });
   $('#tCount').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.c === botCount)));
 }
-$('#tPlay').onclick = () => $('#tPlay').disabled ? null : playTab === 'online' ? showOnline() : playTab === 'bot' ? startBot(botLevel, botCount) : startSolo(playTab);
+$('#tPlay').onclick = () => {
+  if ($('#tPlay').disabled) return;
+  const tc = tutCard();
+  if (tc === 'tut') { startTutorial(prog().level === 'mid' ? 'refresh' : 'basics', { onboard: true }); return; }
+  if (tc === 'run') { startSolo('practice', false, { onboard: true }); return; }
+  // Still locked behind a quest: show that quest.
+  const lk = playLock();
+  if (lk) { openPage('quests', { q: LOCK_Q[lk] }); return; }
+  if (playTab === 'online') showOnline(); else if (playTab === 'bot') startBot(botLevel, botCount); else startSolo(playTab);
+};
 // Full-screen sheets on the home page: the mode picker and the leaderboard.
 function showOv(el, focusEl) {
   if (openOv) closeOv(true);
@@ -3935,21 +4318,33 @@ function closeOv(silent) {
   const wasPage = openOv === pgEl;
   openOv.hidden = true; openOv = null;
   $('.t-wrap.home').inert = false;
-  if (wasPage) { curPage = null; keyCap = null; pgBody.innerHTML = ''; renderHome(); }
+  if (wasPage) { curPage = null; keyCap = null; pgBody.innerHTML = ''; renderHome(); if (!prog().level) setTimeout(askLevel, 200); }
   if (!silent && ovReturn && document.contains(ovReturn)) ovReturn.focus({ preventScroll: true });
 }
 function showPicker() {
   setText($('#pkMsg'), '');
-  $('#pkCards').querySelectorAll('.pk-card').forEach(c => { const on = c.dataset.m === playTab; c.classList.toggle('on', on); c.setAttribute('aria-pressed', String(on)); });
+  $('#pkCards').querySelectorAll('.pk-card').forEach(c => { const on = c.dataset.m === playTab, lock = c.dataset.m !== 'ranked' && !has(c.dataset.m);
+    c.classList.toggle('on', on); c.setAttribute('aria-pressed', String(on)); c.classList.toggle('qlock', lock); if (lock) c.title = lockMsg(c.dataset.m); else c.removeAttribute('title'); });
   showOv($('#picker'), $('#pkCards').querySelector('.pk-card.on'));
 }
-$('#tSwitch').onclick = showPicker;
+$('#tSwitch').onclick = () => {
+  const tc = tutCard();
+  if (!tc) { showPicker(); return; }
+  // Tutorial card: intermediate players can skip the refresher; new players can change their level.
+  if (prog().level === 'mid') { const S = prog(); S.tut = true; saveProg(); setPlayTab(playTabOk()); const pc = $('#playCard'); pc.classList.remove('flash'); void pc.offsetWidth; pc.classList.add('flash'); return; }
+  showLevelPick();
+};
 $('#pkBack').onclick = () => closeOv();
 $('#pkCards').querySelectorAll('.pk-card').forEach(c => {
   c.onclick = () => {
     if (c.getAttribute('aria-disabled') === 'true') {
       c.classList.remove('nope'); void c.offsetWidth; c.classList.add('nope');
       setText($('#pkMsg'), 'Ranked is coming soon: rated matches, tiers and seasons.');
+      return;
+    }
+    if (!has(c.dataset.m)) {
+      c.classList.remove('nope'); void c.offsetWidth; c.classList.add('nope');
+      setText($('#pkMsg'), `🔒 ${lockMsg(c.dataset.m)} See the Quests page.`);
       return;
     }
     setPlayTab(c.dataset.m);
@@ -4014,7 +4409,7 @@ function modePicker(el, room = false) {
   el.setAttribute('role', 'group'); el.setAttribute('aria-label', 'Game mode');
   el.innerHTML = MODE_KEYS.map(k => {
     const soon = isSoon(k), nm = esc(MODES[k].name);
-    return `<button class="mt${soon ? ' soon' : ''}" type="button" data-v="${k}" aria-pressed="false"${soon ? ` aria-label="${nm}, coming soon"` : ''}${soon && room ? ' disabled' : ''}>`
+    return `<button class="mt${soon ? ' soon' : ''}" type="button" data-v="${k}" aria-pressed="false"${soon ? ` aria-label="${nm}, coming soon"` : ''}${(soon || !has(k)) && room ? ' disabled' : ''}>`
       + `<i class="mi" data-i="${k}" aria-hidden="true"></i><b>${nm}</b>${soon ? '<span class="mt-soon" aria-hidden="true">Soon</span>' : ''}</button>`;
   }).join('');
   el.querySelectorAll('.mt').forEach(b => { b.onclick = () => setVariant(b.dataset.v); });
@@ -4029,7 +4424,8 @@ function modePicker(el, room = false) {
 }
 function drawModePicker(el) {
   const cur = el.dataset.room ? variant : pickMode;
-  el.querySelectorAll('.mt').forEach(b => { const on = b.dataset.v === cur; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+  el.querySelectorAll('.mt').forEach(b => { const on = b.dataset.v === cur, lock = !isSoon(b.dataset.v) && !has(b.dataset.v);
+    b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); b.classList.toggle('qlock', lock); if (lock) b.title = lockMsg(b.dataset.v); });
   // On phones the tiles scroll sideways: keep the picked one in view.
   const on = el.querySelector('.mt.on');
   if (on && el.scrollWidth > el.clientWidth + 1) {
@@ -4059,7 +4455,7 @@ function syncSeedText() {
 }
 function syncVariant() {
   document.querySelectorAll('.mtiles').forEach(el => drawModePicker(el));
-  const pc = $('#playCard'), dv = dailyVariant(todayStr()), shown = playTab === 'daily' ? dv : pickMode, soon = isSoon(shown);
+  const pc = $('#playCard'), dv = dailyVariant(todayStr()), tc = tutCard(), shown = tc ? 'classic' : playTab === 'daily' ? dv : pickMode, soon = isSoon(shown);
   pc.dataset.v = shown;
   pc.querySelectorAll('.pm-var').forEach(el => { el.textContent = MODES[pickMode].name; el.style.setProperty('--len', MODES[pickMode].name.length); });
   const vd = Object.entries(VDESC).map(([k, t]) => `<span${k === pickMode ? '' : ' class="off"'}>${t}</span>`).join('');
@@ -4068,13 +4464,18 @@ function syncVariant() {
   if (isSoon(pickMode)) { ic.dataset.i = pickMode; ic.textContent = ''; } else if (ic.dataset.i) { delete ic.dataset.i; ic.textContent = '🎯'; }
   pc.classList.toggle('rotframe', shown === 'rot');
   rotDeco();
-  // Coming-soon modes: the card shows, but Play is locked and there's no tutorial yet.
-  const play = $('#tPlay');
-  play.disabled = soon;
-  play.textContent = soon ? '🔒 Coming soon' : 'Play';
-  if (soon) play.title = `${MODES[shown].name} is coming soon`; else play.removeAttribute('title');
-  setOff($('#tGuide'), soon);
+  // Coming-soon modes: the card shows, but Play is locked and there's no tutorial yet. A way to play or a
+  // mode still locked behind a quest says so, and Play opens that quest instead.
+  const play = $('#tPlay'), lk = tc ? '' : playLock(), mid = prog().level === 'mid';
+  play.disabled = soon && !tc;
+  play.classList.toggle('locked', !!lk);
+  play.textContent = tc === 'run' ? '▶ Play first run' : tc ? (mid ? '🎓 Start refresher' : '🎓 Start tutorial') : soon ? '🔒 Coming soon' : lk ? '🔒 Unlock in Quests' : 'Play';
+  if (soon && !tc) play.title = `${MODES[shown].name} is coming soon`; else if (lk) play.title = lockMsg(lk); else play.removeAttribute('title');
+  setOff($('#tGuide'), soon || !!tc);
+  setOff($('#tPace'), !!tc);
   $('#tGuide').textContent = `🎓 Tutorial: ${TUTS[tutFor()].name}`;
+  $('#tSwitch').innerHTML = tc ? (mid ? 'Skip refresher<span>Go straight to playing</span>' : 'Played before?<span>Change your level</span>') : '▦ Change mode<span>4 ways to play</span>';
+  if (tc) drawTutCard(tc);
   // Today's drop: the day's mode as a big tile, with tomorrow's beside it.
   const tm = new Date(); tm.setDate(tm.getDate() + 1);
   const nv = dailyVariant(`${tm.getFullYear()}-${String(tm.getMonth() + 1).padStart(2, '0')}-${String(tm.getDate()).padStart(2, '0')}`);
@@ -4082,6 +4483,193 @@ function syncVariant() {
   $('#tDailyMode').innerHTML = dTile(dv, 'on', 'Today') + dTile(nv, 'next', 'Tomorrow');
   $('#tDailyMode').setAttribute('aria-label', `Today's game mode: ${MODES[dv].name}. Tomorrow: ${MODES[nv].name}.`);
 }
+/* ================= Player level, unlocks and quests ================= */
+// The first visit asks how much you've played. New players learn in a guided tutorial at Slow speed and
+// unlock the rest through Quests; intermediate players get a short refresher and start with Practice,
+// Today's drop and Online; experienced players start with everything. All of it is saved on this device.
+var progS = null;
+function prog() {
+  if (progS) return progS;
+  const rd = k => { try { const v = JSON.parse(store.get(k) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
+  const q = rd('wordfall-quests') || {}, ob = v => v && typeof v === 'object' && !Array.isArray(v) ? v : {};
+  let lv = store.get('wordfall-level');
+  if (!['new', 'mid', 'pro', 'ask'].includes(lv)) {
+    // Anyone who has played here before counts as experienced and is never asked. Everyone else is
+    // asked ('ask') until they pick a level.
+    const runs = rd('wordfall-runs');
+    lv = (Array.isArray(runs) && runs.length) || +store.get('wordfall-best') > 0 || store.get('wordfall-tut') ? 'pro' : 'ask';
+    store.set('wordfall-level', lv);
+  }
+  if (lv === 'ask') lv = '';
+  progS = { level: lv, tut: !!q.tut, done: ob(q.done), unl: ob(q.unl), own: ob(q.own), st: ob(q.st),
+    fresh: Array.isArray(q.fresh) ? q.fresh.filter(x => typeof x === 'string') : [], gems: Math.max(0, Math.floor(+q.gems || 0)) };
+  return progS;
+}
+function saveProg() { const S = prog(); store.set('wordfall-quests', JSON.stringify({ tut: S.tut, done: S.done, unl: S.unl, own: S.own, st: S.st, fresh: S.fresh, gems: S.gems })); }
+// What each level starts with; experienced players (and anyone not asked yet) have everything.
+const LOCKABLE = ['normal', 'fast', 'practice', 'daily', 'bot', 'online', 'rot'];
+const LV_START = { new: [], mid: ['normal', 'practice', 'daily', 'online'] };
+function has(k) { const S = prog(); return !LOCKABLE.includes(k) || !LV_START[S.level] || LV_START[S.level].includes(k) || !!S.unl[k]; }
+const LOCK_Q = { practice: 'first', normal: 'first', daily: 'daily', fast: 'fast', bot: 'bots', online: 'online', rot: 'rot' };
+const UNLOCK_NAME = { practice: '🎯 Practice', normal: '▶ Normal speed', daily: "📅 Today's drop", fast: '⚡ Fast speed', bot: '🤖 Vs bots', online: '👥 Online', rot: '❄ Rot & Thaw' };
+const questById = id => QUESTS.find(q => q.id === id);
+function lockMsg(k) { const q = questById(LOCK_Q[k]); return q ? `${q.icon} Quest: ${q.name}. ${q.desc}` : ''; }
+// The Tutorial card: new players see it until their first run is done (lessons first, then the run);
+// intermediate players until they finish or skip the refresher.
+function tutCard() {
+  const S = prog();
+  if (S.level === 'new') return S.done.first ? '' : S.tut ? 'run' : 'tut';
+  if (S.level === 'mid') return S.tut || S.done.first ? '' : 'tut';
+  return '';
+}
+function paceLock(k) { return k === 'slow' || has(k) ? '' : k === 'normal' ? 'After the tutorial' : 'Score 5,000'; }
+// What still locks the play card's pick: the way to play, or its game mode.
+function playLock() {
+  if (!has(playTab)) return playTab;
+  if (playTab !== 'daily' && !isSoon(pickMode) && !has(pickMode)) return pickMode;
+  return '';
+}
+const playTabOk = () => has(playTab) ? playTab : PLAY_MODES.find(m => has(m)) || playTab;
+
+// Quests: finish one in any run and its rewards arrive straight away. The first group unlocks ways to play;
+// experienced players start with those, so they can still finish them but get nothing for it.
+const n5 = r => (r.list || []).filter(w => String(w[0]).length >= 5).length;
+const said = (r, w) => (r.list || []).some(x => x[0] === w);
+const QUESTS = [
+  { id: 'first', path: true, icon: '🎓', name: 'First steps', desc: 'Finish the tutorial and play your first run.', gems: 25, unlock: ['practice', 'normal'],
+    parts: r => [['First run', r.onboard || prog().tut || prog().level === 'pro' ? 1 : 0, 1]] },
+  { id: 'daily', path: true, icon: '📅', name: 'Daily habit', desc: 'Score 2,500 in one run.', gems: 50, unlock: ['daily'],
+    parts: r => [['Points in one run', r.score, 2500]] },
+  { id: 'fast', path: true, icon: '⚡', name: 'Need for speed', desc: 'Score 5,000 in one run.', gems: 50, unlock: ['fast'],
+    parts: r => [['Points in one run', r.score, 5000]] },
+  { id: 'bots', path: true, icon: '🤖', name: 'Sparring partner', desc: 'Spell three words of 5 or more letters and score 4,000, in one run.', gems: 75, unlock: ['bot'],
+    parts: r => [['Words of 5+ letters', n5(r), 3], ['Points', r.score, 4000]] },
+  { id: 'online', path: true, icon: '👥', name: 'Ready for rivals', desc: 'Win a Duel against a Normal or Hard bot.', gems: 100, unlock: ['online'], needs: 'bot',
+    parts: r => [['Duel win', r.mode === 'bot' && !r.royale && r.place === 1 && ['normal', 'hard'].includes(r.botLv) ? 1 : 0, 1]] },
+  { id: 'rot', path: true, icon: '❄', name: 'Rot & Thaw', desc: 'Spell ROT and THAW and score 10,000, all in one run.', gems: 250, unlock: ['rot'], theme: 'frost', tile: 'frost',
+    parts: r => [['ROT', said(r, 'rot') ? 1 : 0, 1], ['THAW', said(r, 'thaw') ? 1 : 0, 1], ['Points', r.score, 10000]] },
+  { id: 'stack', icon: '🔗', name: 'Triple stack', desc: 'Cash in a word down through 3 gold words at once.', gems: 100,
+    parts: r => [['Gold words crossed', +r.topStack || 0, 3]] },
+  { id: 'long', icon: '📏', name: 'Wordsmith', desc: 'Spell a word of six letters.', gems: 75, tile: 'quill',
+    parts: r => [['Six-letter word', +(r.len && r.len[6]) || 0, 1]] },
+  { id: 'bonus', icon: '⭐', name: 'Bonus hunter', desc: 'Score the bonus word (or the word of the day).', gems: 100,
+    parts: r => [['Bonus word', r.wotdHit ? 1 : 0, 1]] },
+  { id: 'chain', icon: '💥', name: 'Chain reaction', desc: 'Set off two cash-ins from one drop.', gems: 100,
+    parts: r => [['Cash-ins in a chain', +r.maxChain || 0, 2]] },
+  { id: 'marathon', icon: '⏱', name: 'Marathon', desc: 'Last 6 minutes in one run.', gems: 150,
+    parts: r => [['Minutes', Math.floor((+r.time || 0) / 60000), 6]] },
+  { id: 'streak', icon: '🔥', name: 'On a roll', desc: "Play Today's drop 3 days in a row.", gems: 150, needs: 'daily',
+    parts: () => [['Days in a row', getStats().maxStreak, 3]] },
+  { id: 'speed', icon: '🚀', name: 'Speed demon', desc: 'Score 12,000 in one run on ⚡ Fast.', gems: 300, theme: 'ember', needs: 'fast',
+    parts: r => [['Points on Fast', r.pace === 'fast' ? r.score : 0, 12000]] },
+  { id: 'champ', icon: '🏆', name: 'Champion', desc: 'Win a Battle of 8.', gems: 300, needs: 'bot',
+    parts: r => [['Battle of 8 win', r.royale && r.place === 1 ? 1 : 0, 1]] },
+  { id: 'master', icon: '👑', name: 'Grandmaster', desc: 'Score 25,000 in one run on Normal or Fast.', gems: 500, theme: 'royal', tile: 'gilt', needs: 'normal',
+    parts: r => [['Points on Normal or Fast', r.pace !== 'slow' ? r.score : 0, 25000]] },
+];
+const themeName = id => (THEMES.find(t => t.id === id) || { name: id }).name;
+// Unlocks the player's level already starts with aren't listed as rewards.
+const questRewards = q => [...(q.unlock || []).filter(k => !(LV_START[prog().level] || []).includes(k)).map(k => UNLOCK_NAME[k]), ...(q.theme ? [`🎨 ${themeName(q.theme)} theme`] : []),
+  ...(q.tile ? [`🔤 ${SKIN_BY_ID[q.tile].name} tiles`] : []), `💎 ${q.gems}`];
+const questFrac = parts => parts.reduce((a, [, v, g]) => a + Math.min(1, (+v || 0) / g), 0) / parts.length;
+// After every recorded run: keep each quest's closest run so far, and pay out the ones it finished.
+function questsAfterRun(r) {
+  const S = prog(), news = [];
+  for (const q of QUESTS) {
+    if (S.done[q.id]) continue;
+    const parts = q.parts(r), f = questFrac(parts), prev = S.st[q.id];
+    if (!prev || f > prev.p) S.st[q.id] = { p: +f.toFixed(3), v: parts.map(x => +x[1] || 0) };
+    if (parts.every(([, v, g]) => (+v || 0) >= g)) news.push(questDone(q));
+  }
+  saveProg();
+  return news;
+}
+function questDone(q) {
+  const S = prog(), free = q.path && S.level === 'pro';
+  // Experienced players already have what the unlock quests give, so they get nothing else for them. The
+  // unlock is still kept, in case they change level later.
+  S.done[q.id] = free ? 'free' : Date.now();
+  S.fresh = [...S.fresh.filter(x => x !== q.id), q.id];
+  for (const k of q.unlock || []) S.unl[k] = 1;
+  if (free) return `${q.icon} Quest done: ${q.name}`;
+  S.gems += q.gems;
+  if (q.theme) S.own['theme:' + q.theme] = 1;
+  if (q.tile && !ownedSkins.has(q.tile)) { ownedSkins.add(q.tile); saveSkins(); }
+  if (q.id === 'first' && !has(playTab)) { playTab = 'practice'; store.set('wordfall-playtab', playTab); }
+  return `${q.icon} ${q.name} done · ${questRewards(q).join(' · ')}`;
+}
+function questNews() { const n = (game && game.questNews) || []; if (game) game.questNews = null; return n; }
+
+// First visit: three big cards. Later, Settings opens the same sheet to change level.
+const LEVELS = [
+  ['new', '🌱', 'New player', "I've never played Wordfall.", ['A guided tutorial at 🐢 Slow speed', 'Unlock speeds and modes through Quests']],
+  ['mid', '🎮', 'Intermediate', 'I know the basics.', ['A short refresher at Normal speed', "Practice, Today's drop and Online open"]],
+  ['pro', '🏆', 'Experienced', 'I know my way around.', ['No tutorial', 'Everything unlocked from the start']],
+];
+let lvFrom = null;
+function askLevel() { if (!prog().level && titleShown() && !openOv && modal.hidden) showLevelPick(); }
+function showLevelPick() {
+  const S = prog();
+  lvFrom = curPage ? { id: curPage, opt: curPage === 'settings' ? { sec: setSec } : {} } : null;
+  $('#lvCards').innerHTML = LEVELS.map(([k, ic, n, line, pts], i) => `<button class="lv-card m-lv-${k}${S.level === k ? ' on' : ''}" type="button" data-lv="${k}" style="--i:${i}">`
+    + `<span class="lv-ic" aria-hidden="true">${ic}</span><b>${n}</b><span class="lv-line">${esc(line)}</span><ul>${pts.map(p => `<li>${esc(p)}</li>`).join('')}</ul>`
+    + `<span class="lv-go">${S.level === k ? '✓ Current' : 'Choose'}</span></button>`).join('');
+  $('#lvBack').hidden = !S.level;
+  $('#lvSub').textContent = S.level ? 'Change how much of the game starts unlocked. Your quests, gems and unlocks are kept.' : 'Pick one and we’ll set the game up to match.';
+  showOv($('#levelPick'), $('#lvCards .lv-card.on') || $('#lvCards .lv-card'));
+}
+function lvReturn() {
+  closeOv(true);
+  if (paceLock(pace)) { pace = paceOk(pace); store.set('wordfall-pace', pace); }
+  setPlayTab(playTabOk()); drawPace(); renderHome();
+  if (lvFrom) openPage(lvFrom.id, lvFrom.opt);
+  lvFrom = null;
+}
+function setLevel(lv) {
+  if (!['new', 'mid', 'pro'].includes(lv)) return;
+  const S = prog(), first = !S.level;
+  S.level = lv; store.set('wordfall-level', lv); saveProg();
+  if (first) { pace = lv === 'new' ? 'slow' : 'normal'; store.set('wordfall-pace', pace); }
+  const from = lvFrom;
+  lvReturn();
+  if (!from && titleShown()) { const pc = $('#playCard'); pc.classList.remove('flash'); void pc.offsetWidth; pc.classList.add('flash'); $('#tPlay').focus({ preventScroll: true }); }
+}
+$('#lvCards').addEventListener('click', e => { const b = e.target.closest('[data-lv]'); if (b) setLevel(b.dataset.lv); });
+$('#lvBack').onclick = () => lvReturn();
+
+// The Tutorial card on the play box.
+const TUT_TOPICS = ['Move and drop', 'Spell across', 'Cash in down', '⭐ Bonus word', 'Powers', 'Block hazards', 'First run'];
+function drawTutCard(tc) {
+  const mid = prog().level === 'mid';
+  setText($('#tutK'), tc === 'run' ? 'Lessons done' : mid ? 'Before you start' : 'Start here');
+  setText($('#tutName'), tc === 'run' ? 'Your first run' : mid ? 'Quick refresher' : 'Learn to play');
+  setText($('#tutDesc'), tc === 'run' ? 'Play your first run at 🐢 Slow speed. When it ends, Practice and Normal speed unlock, and Quests unlock the rest.'
+    : mid ? 'A short run through the basics at Normal speed, with fewer prompts. Your first run starts on the same board. Practice, Today’s drop and Online are already open, so skip it if you like.'
+    : 'A guided game on an easy board at 🐢 Slow speed that never speeds up. Glowing outlines show where each piece goes, and your first real run starts on the same board when you’re done.');
+  $('#tutList').innerHTML = (tc === 'run' ? ['🐢 Slow speed', 'Random pieces', 'Hazards on', 'Unlocks Practice'] : TUT_TOPICS)
+    .map((t, i) => `<li>${tc === 'run' ? '' : `<b>${i + 1}</b>`}${esc(t)}</li>`).join('');
+}
+
+// Game speed picker: on the play card and in online rooms. Every copy shows the same pick; a locked
+// speed says what unlocks it.
+function paceOk(p) { return paceLock(paceOf(p)) ? PACE_KEYS.find(k => !paceLock(k)) || 'slow' : paceOf(p); }
+function paceSeg() { return `<div class="pace-seg" role="group" aria-label="Game speed">${PACE_KEYS.map(k => paceBtn(k)).join('')}</div>`; }
+function paceBtn(k) {
+  const P = PACES[k], lock = paceLock(k), on = !lock && paceOk(pace) === k;
+  return `<button type="button" data-pace="${k}" class="${lock ? 'lock' : ''}" aria-pressed="${on}"${lock ? ` aria-disabled="true" title="${esc(lock)}"` : ` title="${esc(P.name)} speed: ×${P.x} points"`}>`
+    + `<b>${lock ? '🔒' : k === 'normal' ? '' : P.icon} ${P.name}</b><small>${lock ? esc(lock) : `×${P.x} points`}</small></button>`;
+}
+function drawPace() {
+  document.querySelectorAll('.pace-seg').forEach(el => { el.outerHTML = paceSeg(); });
+}
+function setPace(k, btn) {
+  if (paceLock(k)) { if (btn) { btn.classList.remove('nope'); void btn.offsetWidth; btn.classList.add('nope'); } return; }
+  pace = paceOf(k); store.set('wordfall-pace', pace);
+  drawPace();
+  const nb = document.querySelector(`.pace-seg [data-pace="${pace}"]`); if (btn && nb) nb.focus({ preventScroll: true });
+}
+document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('.pace-seg [data-pace]'); if (b) setPace(b.dataset.pace, b); });
+$('#tPace').insertAdjacentHTML('beforeend', paceSeg());
 modePicker($('#tVariant'));
 $('#playCard [data-p="practice"] .pd-art').insertAdjacentHTML('beforeend', Object.entries(MODE_BOARDS).map(([k, c]) => modeBoard(k, c)).join(''));
 bindSeed($('#pcSeed'));
@@ -4090,7 +4678,8 @@ syncVariant();
 if (window.ResizeObserver) new ResizeObserver(() => rotDeco()).observe($('#playCard'));
 document.fonts?.ready.then(rotDeco);
 $('#tLevels').querySelectorAll('button').forEach(b => { b.onclick = () => { botLevel = b.dataset.l; store.set('wordfall-bot', botLevel); syncBotSel(); }; });
-$('#tOnlineRow').onclick = () => { setPlayTab('online'); showOnline(); };
+$('#tOnlineRow').onclick = () => { if (has('online') && !tutCard()) setPlayTab('online'); showOnline(); };
+$('#tQuests').onclick = () => openPage('quests');
 $('#tHow').onclick = () => showHowTo();
 $('#tTut').onclick = () => showTutorial();
 $('#tTutNew').hidden = !!store.get('wordfall-tut');
@@ -4247,12 +4836,18 @@ function supaDb(sb) {
       const id = String(path).split('/')[1];
       return {
         async get() {
-          const { data, error } = await sb.from('scores').select('best,daily,day').eq('user_id', id).maybeSingle();
-          if (error) throw error;
-          return { exists: !!data, data: () => data && { ...data, name: net.nick, icon: myIcon } };
+          const one = cols => sb.from('scores').select(cols).eq('user_id', id).maybeSingle();
+          let q = await one(lb.noDtl ? 'best,daily,day' : 'best,daily,day,daily_tl');
+          if (q.error && !lb.noDtl && dtlMissing(q.error)) { lb.noDtl = true; q = await one('best,daily,day'); }
+          if (q.error) throw q.error;
+          const data = q.data;
+          return { exists: !!data, data: () => data && { ...data, dtl: data.daily_tl, name: net.nick, icon: myIcon } };
         },
         async set(v) {
-          const { error } = await sb.from('scores').upsert({ user_id: id, best: v.best, daily: v.daily, day: v.day || null, updated_at: new Date().toISOString() });
+          const row = { user_id: id, best: v.best, daily: v.daily, day: v.day || null, updated_at: new Date().toISOString() };
+          if (!lb.noDtl) row.daily_tl = v.dtl || null;
+          let { error } = await sb.from('scores').upsert(row);
+          if (error && 'daily_tl' in row && dtlMissing(error)) { lb.noDtl = true; delete row.daily_tl; ({ error } = await sb.from('scores').upsert(row)); }
           if (error) throw error;
           if (lbReload) lbReload();
         },
@@ -4261,6 +4856,9 @@ function supaDb(sb) {
     },
   };
 }
+
+// The daily_tl column comes from supabase/daily-timeline.sql; until that has run, scores post without it.
+const dtlMissing = e => /daily_tl|42703|PGRST204/.test(`${e && e.code} ${e && e.message}`);
 
 /* ================= Leaderboard (shared db: scores/<viewer id>) ================= */
 // Each player keeps one document: { best, day, daily } — their best game ever, and their best
@@ -4283,7 +4881,7 @@ const cleanScore = v => { const n = Math.floor(+v); return n > 0 && n < 1e8 ? n 
 function subscribeBoard() {
   const t = setTimeout(() => { lb.slow = true; renderBoard(); }, 10000);
   lb.db.collection('scores').orderBy('best', 'desc').limit(500).onSnapshot(snap => {
-    lb.docs = snap.docs.filter(d => d.exists).map(d => { const x = d.data() || {}; return { id: d.id, best: cleanScore(x.best), daily: cleanScore(x.daily), day: DAY_RE.test(x.day) ? x.day : '', name: cleanNick(x.name), icon: ICON_BY[x.icon] ? x.icon : '' }; });
+    lb.docs = snap.docs.filter(d => d.exists).map(d => { const x = d.data() || {}; return { id: d.id, best: cleanScore(x.best), daily: cleanScore(x.daily), day: DAY_RE.test(x.day) ? x.day : '', name: cleanNick(x.name), icon: ICON_BY[x.icon] ? x.icon : '', dtl: x.dtl ? cleanTl(x.dtl) : null }; });
     if (!snap.metadata.fromCache) { clearTimeout(t); lb.loaded = true; lb.slow = false; lb.failed = false; syncLocalBest(); }
     renderBoard();
   }, () => { clearTimeout(t); lb.failed = true; renderBoard(); });
@@ -4296,7 +4894,7 @@ function syncLocalBest() {
   const local = cleanScore(store.get('wordfall-best'));
   if (local > (mine ? mine.best : 0)) submitScore(local, false);
 }
-function submitScore(score, isDaily) {
+function submitScore(score, isDaily, dtl) {
   score = cleanScore(score);
   if (!lb.db || !lb.uid || !score || lb.canWrite === false) return;
   lb.chain = lb.chain.then(async () => {
@@ -4305,7 +4903,10 @@ function submitScore(score, isDaily) {
     const cur = snap.exists ? snap.data() || {} : {};
     const today = todayStr();
     const prevBest = cleanScore(cur.best), prevDaily = cur.day === today ? cleanScore(cur.daily) : 0;
-    const next = { best: Math.max(prevBest, score), day: today, daily: isDaily ? Math.max(prevDaily, score) : prevDaily, name: net.nick, icon: myIcon };
+    // A new best Today's drop brings its score-over-time line, so others can race it.
+    const prevTl = cur.day === today && cur.dtl ? cleanTl(cur.dtl) : null;
+    const next = { best: Math.max(prevBest, score), day: today, daily: isDaily ? Math.max(prevDaily, score) : prevDaily, name: net.nick, icon: myIcon,
+      dtl: isDaily && score > prevDaily && dtl && dtl.day === today ? dtl : prevTl };
     if (next.best === prevBest && next.daily === prevDaily && cur.name === next.name && cur.icon === next.icon) return;
     await ref.set(next);
   }).catch(e => { if (e && e.code === 'invalid_argument') { lb.canWrite = false; renderBoard(); } });
@@ -4314,11 +4915,12 @@ function submitScore(score, isDaily) {
 function bankLiveGame() {
   if (game && game.tut) return;
   if (game && game.me && !game.over && game.me.score > 0) {
-    submitScore(game.me.score, game.mode === 'daily');
+    tlSample(true);
+    const mine = versusMode() ? null : tlPack([ME]);
+    submitScore(game.me.score, game.mode === 'daily', game.mode === 'daily' ? tlShort(mine) : null);
     if (game.mode === 'daily') recordDaily();
     if (game.me.score > (+store.get('wordfall-best') || 0)) store.set('wordfall-best', String(game.me.score));
-    if (versusMode()) tlSample(true);
-    recordRun(game.me, versusMode() ? { quit: true, tl: tlPack(rankBattlers()) } : { quit: true });
+    recordRun(game.me, versusMode() ? { quit: true, tl: tlPack(rankBattlers()) } : { quit: true, tl: soloTl(mine, soloRivals()) });
   }
 }
 const fmtDay = () => new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
@@ -4399,11 +5001,13 @@ function recordRun(B, extra = {}) {
   if (!B.placed) return null;
   const r = B.run;
   const entry = {
-    at: Date.now(), mode: game.mode, variant: game.variant, royale: !!game.royale, score: B.score, time: Math.round(B.elapsed),
+    at: Date.now(), mode: game.mode, variant: game.variant, pace: B.pace, royale: !!game.royale, score: B.score,
+    ...(game.onboard ? { onboard: true } : {}), ...(game.mode === 'bot' && game.bots[0] ? { botLv: game.bots[0].level } : {}), time: Math.round(B.elapsed),
     words: B.words, placed: B.placed, topStack: B.topStack, longest: B.longest, wotd: B.wotd, wotdHit: B.wotdHit,
     len: r.len, chains: r.chains, maxChain: r.maxChain, vert: r.vert, full: r.full, iceWords: r.iceWords, fireWords: r.fireWords,
     iceThawed: r.iceThawed, iceShattered: r.iceShattered, iceMelted: r.iceMelted, rotted: r.rotted, rottedWords: r.rottedWords,
-    burned: r.burned, powers: r.powers, list: r.list.slice(0, 400), ...extra,
+    burned: r.burned, powers: r.powers, list: r.list.slice(0, 400),
+    ...(game.seed != null ? { seed: game.seed >>> 0 } : {}), ...(game.seedWords ? { sw: game.seedWords } : {}), ...(game.mode === 'daily' ? { day: game.day } : {}), ...extra,
   };
   game.recorded = entry;
   store.set(RUNS_KEY, JSON.stringify([entry, ...getRuns()].slice(0, RUNS_MAX)));
@@ -4412,6 +5016,7 @@ function recordRun(B, extra = {}) {
   ws.w = ws.w && typeof ws.w === 'object' ? ws.w : {};
   for (const [w, p] of r.list) { const e = Array.isArray(ws.w[w]) ? ws.w[w] : (ws.w[w] = [0, 0, 0]); e[0]++; e[1] += p; e[2] = Math.max(e[2], p); }
   store.set(WSTATS_KEY, JSON.stringify(ws));
+  game.questNews = questsAfterRun(entry);
   return entry;
 }
 const MODE_NAME = r => r.mode === 'daily' ? "Today's drop" : r.mode === 'practice' ? 'Practice' : r.mode === 'online' ? 'Online' : r.royale ? 'Battle of 8' : 'Duel';
@@ -4420,7 +5025,8 @@ const UP = w => esc(String(w || '').toUpperCase());
 const n0 = v => (+v || 0).toLocaleString();
 const rsTile = (k, v, sub = '') => `<div class="rs-t"><span>${k}</span><b>${v}</b>${sub ? `<small>${sub}</small>` : ''}</div>`;
 const rsBars = len => { const ks = [3, 4, 5, 6], mx = Math.max(1, ...ks.map(k => +len[k] || 0));
-  return `<div class="rs-bars">${ks.map(k => `<div class="rs-bar"><span>${k === 6 ? '6+' : k} letters</span><i><u style="width:${((+len[k] || 0) / mx * 100).toFixed(0)}%"></u></i><b>${+len[k] || 0}</b></div>`).join('')}</div>`; };
+  return `<div class="rs-bars">${ks.map(k => { const n = +len[k] || 0;
+    return `<div class="rs-bar"><span>${k === 6 ? '6+' : k} letters</span><i>${n ? `<u style="width:${Math.max(1, n / mx * 100).toFixed(0)}%"></u>` : ''}</i><b>${n}</b></div>`; }).join('')}</div>`; };
 // Favourite word: the one you scored most often (ties go to the one that earned most).
 function favWord(list) {
   const m = new Map();
@@ -4429,24 +5035,124 @@ function favWord(list) {
   for (const [w, x] of m) if (!best || x[0] > best[1][0] || (x[0] === best[1][0] && x[1] > best[1][1])) best = [w, x];
   return best;
 }
-/* ---------- Versus timeline (History) ---------- */
+/* ---------- Score timeline (History and results) ---------- */
 const TLG = { W: 480, H: 196, L: 36, R: 56, T: 12, B: 34 };
-function tlOk(r) { const tl = r && r.tl; return !!(tl && Array.isArray(tl.t) && tl.t.length > 1 && Array.isArray(tl.p) && tl.p.length > 1 && tl.p.some(p => p && p.k === 'me')); }
+// Versus: two or more players. Solo (tl.solo): your line, plus your best run or today's top 3.
+function tlOk(r) { const tl = r && r.tl; return !!(tl && Array.isArray(tl.t) && tl.t.length > 1 && Array.isArray(tl.p) && tl.p.length > (tl.solo ? 0 : 1) && tl.p.some(p => p && p.k === 'me' && Array.isArray(p.s))); }
 // Values carried forward, so a knocked-out player keeps their final score.
 function tlFill(s, n) { const o = []; let v = 0; for (let i = 0; i < n; i++) { if (s[i] != null) v = +s[i] || 0; o.push(v); } return o; }
+// A score line read at time t (straight between samples); null once that run had ended.
+function tlAt(t, ts, ss) {
+  const n = ts.length; if (!n || t > ts[n - 1] + 0.05) return null;
+  if (t <= ts[0]) return Math.round(+ss[0] || 0);
+  let j = 1; while (j < n - 1 && ts[j] < t) j++;
+  const a = ts[j - 1], b = ts[j], q = b > a ? Math.max(0, Math.min(1, (t - a) / (b - a))) : 1;
+  return Math.round(ss[j - 1] + (ss[j] - ss[j - 1]) * q);
+}
+// A line from someone else's data: kept only if it's well formed.
+function cleanTl(x) {
+  if (!x || typeof x !== 'object' || !Array.isArray(x.t) || !Array.isArray(x.s)) return null;
+  const n = Math.min(x.t.length, x.s.length, 200); if (n < 2) return null;
+  const t = [], s = []; let lt = -1;
+  for (let i = 0; i < n; i++) { const a = +x.t[i], b = Math.floor(+x.s[i]); if (!(a >= lt && a < 36000) || !(b >= 0 && b < 1e8)) return null; lt = a; t.push(Math.round(a * 10) / 10); s.push(b); }
+  return { day: DAY_RE.test(x.day) ? x.day : '', t, s };
+}
+// Your line from a saved run, cut where that run ended.
+function tlMine(r) {
+  if (!tlOk(r)) return null;
+  const tl = r.tl, me = tl.p.find(p => p.k === 'me'); let j = me.s.length - 1; while (j > 0 && me.s[j] == null) j--;
+  return j < 1 ? null : { t: tl.t.slice(0, j + 1), s: tlFill(me.s, j + 1) };
+}
+// Your Today's drop line as posted with your score: at most 60 points.
+function tlShort(mine) {
+  if (!mine || !game) return null;
+  const t = mine.t, s = tlFill(mine.p[0].s, t.length); let keep = t.map((_, i) => i);
+  if (keep.length > 60) { const st = (keep.length - 1) / 59; keep = [...new Set([...Array(60)].map((_, j) => Math.round(j * st)))]; }
+  return { day: game.day || todayStr(), t: keep.map(i => t[i]), s: keep.map(i => s[i]) };
+}
+// Who a solo run is measured against. Today's drop: the top 3 on today's board (not you).
+// Otherwise, or when nobody else has played today: your best earlier run of the same kind.
+function soloRivals() {
+  const out = { list: [], today: null };
+  if (!game || versusMode()) return out;
+  if (game.mode === 'daily' && lb.docs.length) {
+    const day = game.day, rows = lb.docs.filter(d => d.day === day && d.daily > 0).sort((a, b) => b.daily - a.daily);
+    const oth = rows.filter(d => d.id !== lb.uid), sc = game.me.score;
+    out.today = { rank: 1 + oth.filter(d => d.daily > sc).length, of: oth.length + 1 };
+    out.list = rows.map((d, k) => ({ d, rank: k + 1 })).filter(x => x.d.id !== lb.uid).slice(0, 3)
+      .map(({ d, rank }, j) => ({ id: d.id, n: `#${rank} ${d.name || 'Player'}`, k: 'top', rank, slot: j + 1, v: d.daily, c: d.dtl && d.dtl.day === day ? d.dtl : null }));
+    if (out.list.length) return out;
+  }
+  const same = getRuns().filter(x => x.mode === game.mode && (x.variant || 'classic') === game.variant && !x.quit && +x.score > 0
+    && (game.mode !== 'daily' || (x.day || dayOf(x.at)) === game.day));
+  const best = same.reduce((a, x) => !a || +x.score > +a.score ? x : a, null);
+  if (best) out.list = [{ n: game.mode === 'daily' ? 'Your best today' : 'Your best', k: 'pb', slot: 1, v: +best.score, c: tlMine(best) }];
+  return out;
+}
+// Your line and your rivals' lines on one shared clock. Rivals with no saved line become a
+// flat line at their final score.
+function soloTl(mine, R) {
+  if (!mine || !mine.p || !mine.p[0]) return undefined;
+  const list = (R && R.list) || [], me = { t: mine.t, s: tlFill(mine.p[0].s, mine.t.length) };
+  const curves = list.filter(x => x.c), r1 = v => Math.round(v * 10) / 10;
+  const all = [me, ...curves.map(x => x.c)], ends = all.map(c => r1(c.t[c.t.length - 1]));
+  let grid = [...new Set(all.flatMap(c => c.t.map(r1)))].sort((a, b) => a - b);
+  if (grid.length > 120) { const st = (grid.length - 1) / 119; grid = [...new Set([...Array(120)].map((_, j) => grid[Math.round(j * st)]).concat(ends))].sort((a, b) => a - b); }
+  const T = grid[grid.length - 1];
+  const ser = (c, n, k, extra = {}) => { const e = r1(c.t[c.t.length - 1]); return { n, k, ...extra, out: e < T - 0.5 ? e : null, s: grid.map(t => tlAt(t, c.t, c.s)) }; };
+  const out = { solo: list.some(x => x.k === 'top') ? 'top' : list.length ? 'pb' : 'me', t: grid, hits: (mine.hits || []).slice(0, 200),
+    p: [ser(me, 'You', 'me'), ...curves.map(x => ser(x.c, x.n, x.k, { slot: x.slot }))],
+    goals: list.filter(x => !x.c).map(x => ({ n: x.n, k: x.k, slot: x.slot, v: x.v })) };
+  if (R && R.today) out.today = R.today;
+  return out;
+}
+// On the hosted copy the top 3's lines are fetched once the run ends, then the chart redraws.
+async function lbDailyTls(ids) {
+  if (!ids.length || !lb.self || lb.noDtl) return {};
+  const sb = await supaClient(); if (!sb) return {};
+  const { data, error } = await sb.from('scores').select('user_id,day,daily_tl').in('user_id', ids);
+  if (error) { if (dtlMissing(error)) lb.noDtl = true; return {}; }
+  const out = {}; for (const x of data || []) { const c = cleanTl(x.daily_tl); if (c) out[x.user_id] = { ...c, day: String(x.day || '') }; }
+  return out;
+}
+function saveRun(e) { const runs = getRuns(), k = runs.findIndex(x => x.at === e.at); if (k >= 0) { runs[k] = e; store.set(RUNS_KEY, JSON.stringify(runs)); } }
+function tlTopFill(rec, mine, R) {
+  const need = R.list.filter(x => x.k === 'top' && !x.c && x.id);
+  if (!need.length || !lb.self) return;
+  lbDailyTls(need.map(x => x.id)).then(map => {
+    let got = false;
+    const list = R.list.map(x => { const c = !x.c && map[x.id]; if (c && c.day === game.day) { got = true; return { ...x, c }; } return x; });
+    if (!got) return;
+    rec.tl = soloTl(mine, { ...R, list }); saveRun(rec);
+    if (endCtx && endCtx.rec === rec && endTab === 'run') renderEndBody();
+  }).catch(() => {});
+}
 function tlInfo(r) {
-  const tl = r.tl, n = tl.t.length, ps = tl.p.filter(p => p && Array.isArray(p.s));
+  const tl = r.tl, n = tl.t.length, ps = tl.p.filter(p => p && Array.isArray(p.s)), solo = tl.solo || '';
   const mi = ps.findIndex(p => p.k === 'me'), me = ps[mi];
   const full = ps.map(p => tlFill(p.s, n)), fin = full.map(f => f[n - 1]);
   const others = ps.map((_, i) => i).filter(i => i !== mi);
+  const goals = solo && Array.isArray(tl.goals) ? tl.goals.filter(g => g && +g.v > 0).map(g => ({ n: String(g.n || ''), k: g.k, slot: Math.min(3, Math.max(1, +g.slot || 1)), v: +g.v })) : [];
   const place = mi + 1;
-  // The rival: the winner, or the runner-up when you won.
-  const rv = mi === 0 ? others[0] : 0;
-  const diff = full[mi].map((v, i) => v - Math.max(...others.map(j => full[j][i])));
+  // The rival: the winner, or the runner-up when you won. Solo: your best run, or today's #1.
+  const rv = solo ? (others.length ? others[0] : -1) : mi === 0 ? others[0] : 0;
+  const diff = others.length ? full[mi].map((v, i) => v - Math.max(...others.map(j => full[j][i]))) : [];
   let state = 0, changes = 0, best = 0, worst = 0; const leads = [];
   diff.forEach((d, i) => { best = Math.max(best, d); worst = Math.min(worst, d); const st = Math.sign(d);
     if (st && st !== state) { if (state) { changes++; if (st > 0) leads.push(i); } state = st; } });
-  return { tl, n, ps, mi, me, full, fin, others, rv, place, changes, best, worst, leads, margin: fin[mi] - Math.max(...others.map(j => fin[j])) };
+  const tops = [...others.map(j => fin[j]), ...goals.map(g => g.v)];
+  let end = n - 1; while (end > 0 && me.s[end] == null) end--;
+  return { tl, n, ps, mi, me, full, fin, others, rv, place, changes, best, worst, leads, solo, goals,
+    margin: tops.length ? fin[mi] - Math.max(...tops) : 0, myEnd: tl.t[end] };
+}
+// The most you scored in any 30 seconds of the run.
+function tlBest30(i) {
+  const t = i.tl.t, s = i.full[i.mi]; let best = 0;
+  for (let a = 0; a < t.length && t[a] <= i.myEnd; a++) {
+    const tb = Math.min(i.myEnd, t[a] + 30); let b = a; while (b + 1 < t.length && t[b + 1] <= tb + 0.05) b++;
+    best = Math.max(best, s[b] - s[a]);
+  }
+  return best;
 }
 function tlNice(v) { const p = 10 ** Math.floor(Math.log10(Math.max(1, v))), f = v / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p; }
 const tlK = v => v >= 1000 ? (v / 1000).toFixed(v % 1000 ? 1 : 0).replace(/\.0$/, '') + 'k' : String(v);
@@ -4459,28 +5165,29 @@ function tlResult(r, i) {
   if (i.ps.length === 2) return draw ? '<i class="tl-pill">Draw</i>' : i.place === 1 ? `<i class="tl-pill win">Won by ${n0(i.margin)}</i>` : `<i class="tl-pill loss">Lost by ${n0(-i.margin)}</i>`;
   return i.place === 1 ? `<i class="tl-pill win">Won · 1st of ${i.ps.length}</i>` : `<i class="tl-pill">${i.place === 2 ? '2nd' : i.place === 3 ? '3rd' : i.place + 'th'} of ${i.ps.length}</i>`;
 }
-const tlVs = r => tlOk(r) && r.tl.p.length === 2 ? ' vs ' + r.tl.p.find(p => p.k !== 'me').n : '';
+const tlVs = r => tlOk(r) && !r.tl.solo && r.tl.p.length === 2 ? ' vs ' + r.tl.p.find(p => p.k !== 'me').n : '';
 function tlSpark(r) {
   if (!tlOk(r)) return '';
-  const i = tlInfo(r), w = 64, h = 22, T = Math.max(1, i.tl.t[i.n - 1]), mx = Math.max(1, ...i.fin, ...i.full.map(f => Math.max(...f)));
+  const i = tlInfo(r), w = 64, h = 22, T = Math.max(1, i.tl.t[i.n - 1]), mx = Math.max(1, ...i.fin, ...i.full.map(f => Math.max(...f)), ...i.goals.map(g => g.v));
   const pts = k => i.full[k].map((v, j) => `${(1 + i.tl.t[j] / T * (w - 2)).toFixed(1)},${(h - 1 - v / mx * (h - 2)).toFixed(1)}`).join(' ');
-  return `<svg class="tl-spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true"><polyline points="${pts(i.rv)}" style="stroke:var(--bad)" stroke-width="1.4" stroke-dasharray="3 2"/><polyline points="${pts(i.mi)}" style="stroke:var(--bank)" stroke-width="2"/></svg>`;
+  return `<svg class="tl-spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true">${i.rv >= 0 ? `<polyline points="${pts(i.rv)}" style="stroke:var(--bad)" stroke-width="1.4" stroke-dasharray="3 2"/>` : ''}<polyline points="${pts(i.mi)}" style="stroke:var(--bank)" stroke-width="2"/></svg>`;
 }
 function tlHTML(r) {
   if (!tlOk(r)) return '';
-  const i = tlInfo(r), { W, H, L, R, T: TP, B } = TLG, tl = i.tl;
-  const T = Math.max(1, tl.t[i.n - 1]), raw = Math.max(1, ...i.full.map(f => Math.max(...f)));
+  const i = tlInfo(r), { W, H, L, R, T: TP, B } = TLG, tl = i.tl, solo = !!i.solo;
+  const T = Math.max(1, tl.t[i.n - 1]), raw = Math.max(1, ...i.full.map(f => Math.max(...f)), ...i.goals.map(g => g.v));
   const step = tlNice(raw / 3), ymax = Math.ceil(raw / step) * step;
   const X = t => L + t / T * (W - L - R), Y = v => H - B - v / ymax * (H - B - TP);
-  const duel = i.ps.length === 2;
-  const cls = k => k === i.mi ? 'tl-me' : k === i.rv ? 'tl-rv' : 'tl-ot';
+  const duel = !solo && i.ps.length === 2;
+  const slotOf = k => Math.min(3, Math.max(1, +i.ps[k].slot || 1));
+  const cls = k => k === i.mi ? 'tl-me' : solo ? 'tl-c' + slotOf(k) : k === i.rv ? 'tl-rv' : 'tl-ot';
   const grid = []; for (let v = 0; v <= ymax + 0.5; v += step) grid.push(`<line class="${v ? 'tl-gl' : 'tl-base'}" x1="${L}" x2="${W - R}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}"/><text class="tl-ax" x="${L - 6}" y="${(Y(v) + 4).toFixed(1)}" text-anchor="end">${tlK(v)}</text>`);
   const tstep = T <= 75 ? 15 : T <= 150 ? 30 : 60, xt = [];
   for (let t = 0; t <= T + 0.5; t += tstep) if (T - t > tstep * 0.4 || t === 0) xt.push(t);
   xt.push(T);
   const xticks = xt.map((t, j) => `<text class="tl-ax" x="${X(t).toFixed(1)}" y="${H - B + 16}" text-anchor="${j === 0 ? 'start' : j === xt.length - 1 ? 'end' : 'middle'}">${tlSec(t)}</text>`).join('');
   // Draw others first, then the rival, then you on top.
-  const order = i.ps.map((_, k) => k).filter(k => k !== i.mi && k !== i.rv).concat([i.rv, i.mi]);
+  const order = solo ? i.others.slice().reverse().concat([i.mi]) : i.ps.map((_, k) => k).filter(k => k !== i.mi && k !== i.rv).concat([i.rv, i.mi]);
   const line = k => { const p = i.ps[k], pts = []; p.s.forEach((v, j) => { if (v != null) pts.push(`${X(tl.t[j]).toFixed(1)},${Y(v).toFixed(1)}`); });
     return pts.length > 1 ? `<polyline class="tl-s ${cls(k)}" data-k="${k}" points="${pts.join(' ')}"/>` : ''; };
   const kos = i.ps.map((p, k) => { if (p.out == null || !(+p.out < T - 0.5)) return '';
@@ -4488,27 +5195,54 @@ function tlHTML(r) {
     return `<path class="tl-ko" data-k="${k}" d="M${(x - 4).toFixed(1)} ${(y - 4).toFixed(1)}l8 8M${(x + 4).toFixed(1)} ${(y - 4).toFixed(1)}l-8 8"/>`; }).join('');
   const leads = i.leads.map(j => `<circle class="tl-lead" cx="${X(tl.t[j]).toFixed(1)}" cy="${Y(i.full[i.mi][j]).toFixed(1)}" r="4.5"/>`).join('');
   const hits = (Array.isArray(tl.hits) ? tl.hits : []).filter(h => +h >= 0 && +h <= T).map(h => `<path class="tl-hit" d="M${(X(+h) - 4).toFixed(1)} ${H - B - 1}l4 -7l4 7z"/>`).join('');
-  // End labels for you and the rival, nudged apart when they'd overlap.
-  let ym = Y(i.fin[i.mi]) + 4, yr = Y(i.fin[i.rv]) + 4;
-  if (Math.abs(ym - yr) < 13) { const mid = (ym + yr) / 2, up = ym <= yr ? -1 : 1; ym = mid + up * 6.5; yr = mid - up * 6.5; }
-  const ends = `<text class="tl-end me" x="${W - R + 6}" y="${ym.toFixed(1)}">${n0(i.fin[i.mi])}</text><text class="tl-end" x="${W - R + 6}" y="${yr.toFixed(1)}">${n0(i.fin[i.rv])}</text>`;
+  // Solo rivals without a saved line: a dotted line at their final score.
+  const goals = i.goals.map(g => `<line class="tl-goal tl-c${g.slot}" x1="${L}" x2="${W - R}" y1="${Y(g.v).toFixed(1)}" y2="${Y(g.v).toFixed(1)}"/>`).join('');
+  // End labels, nudged apart so they never overlap.
+  const labs = [{ y: Y(i.fin[i.mi]), t: n0(i.fin[i.mi]), c: 'me' }];
+  if (solo) { i.others.forEach(k => labs.push({ y: Y(i.fin[k]), t: n0(i.fin[k]), c: 'c' + slotOf(k) })); i.goals.forEach(g => labs.push({ y: Y(g.v), t: n0(g.v), c: 'c' + g.slot })); }
+  else labs.push({ y: Y(i.fin[i.rv]), t: n0(i.fin[i.rv]), c: '' });
+  labs.forEach(l => { l.y += 4; }); labs.sort((a, b) => a.y - b.y);
+  for (let k = 1; k < labs.length; k++) labs[k].y = Math.max(labs[k].y, labs[k - 1].y + 13);
+  const low = labs[labs.length - 1].y - (H - B + 4); if (low > 0) labs.forEach(l => { l.y -= low; });
+  const ends = labs.map(l => `<text class="tl-end ${l.c}" x="${W - R + 6}" y="${l.y.toFixed(1)}">${l.t}</text>`).join('');
   const data = { t: tl.t, s: i.full, n: i.ps.map(p => p.n), me: i.mi, T, ymax, out: i.ps.map(p => p.out == null ? null : +p.out) };
-  const rvName = esc(i.ps[i.rv].n), name = k => esc(i.ps[k].n) + (i.ps[k].k === 'bot' || i.ps[k].k === 'rbot' ? ' · bot' : '');
+  const rvName = i.rv >= 0 ? esc(i.ps[i.rv].n) : '', name = k => esc(i.ps[k].n) + (i.ps[k].k === 'bot' || i.ps[k].k === 'rbot' ? ' · bot' : '');
   const KO = '<svg width="10" height="10" aria-hidden="true"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.8"/></svg>';
-  const key = `<div class="tl-key"><span><i class="me"></i>You</span><span><i class="rv"></i>${rvName}${duel ? '' : i.place === 1 ? ' (2nd)' : ' (winner)'}</span>${duel ? '' : '<span><i class="ot"></i>Others</span>'}
-    ${i.leads.length ? '<span><svg width="11" height="11" aria-hidden="true"><circle cx="5.5" cy="5.5" r="4" fill="none" stroke="var(--bank)" stroke-width="1.8"/></svg>You take the lead</span>' : ''}
-    ${hits ? '<span><svg width="10" height="10" aria-hidden="true"><path d="M5 1L9 9H1z" fill="var(--muted)"/></svg>Attack on you</span>' : ''}
-    ${kos ? `<span>${KO}Knocked out</span>` : ''}</div>`;
-  const label = `Score over time: you finished with ${n0(i.fin[i.mi])}, ${rvName} with ${n0(i.fin[i.rv])}.`;
+  const marks = `${i.leads.length ? '<span><svg width="11" height="11" aria-hidden="true"><circle cx="5.5" cy="5.5" r="4" fill="none" stroke="var(--bank)" stroke-width="1.8"/></svg>You take the lead</span>' : ''}
+    ${hits ? `<span><svg width="10" height="10" aria-hidden="true"><path d="M5 1L9 9H1z" fill="var(--muted)"/></svg>${solo ? 'Hazard' : 'Attack on you'}</span>` : ''}
+    ${kos ? `<span>${KO}${solo ? 'Run ended' : 'Knocked out'}</span>` : ''}`;
+  const rivals = solo ? [...i.others.map(k => ({ slot: slotOf(k), n: i.ps[k].n, flat: false })), ...i.goals.map(g => ({ slot: g.slot, n: g.n, flat: true }))].sort((a, b) => a.slot - b.slot) : [];
+  const key = solo ? `<div class="tl-key"><span><i class="me"></i>${rivals.length ? 'This run' : 'You'}</span>${rivals.map(x => `<span><i class="c${x.slot}${x.flat ? ' flat' : ''}"></i>${esc(x.n)}${x.flat ? ' <small>(final score)</small>' : ''}</span>`).join('')}${marks}</div>`
+    : `<div class="tl-key"><span><i class="me"></i>You</span><span><i class="rv"></i>${rvName}${duel ? '' : i.place === 1 ? ' (2nd)' : ' (winner)'}</span>${duel ? '' : '<span><i class="ot"></i>Others</span>'}${marks}</div>`;
+  const label = solo ? `Score over time: you finished with ${n0(i.fin[i.mi])}${rivals.length ? `, against ${rivals.map(x => esc(x.n)).join(', ')}` : ''}.`
+    : `Score over time: you finished with ${n0(i.fin[i.mi])}, ${rvName} with ${n0(i.fin[i.rv])}.`;
   const sgn = v => (v > 0 ? '+' : v < 0 ? '−' : '') + n0(Math.abs(v));
-  const rows = duel ? '' : `<div class="tl-rows">${i.ps.map((p, k) => `<button type="button" class="tl-row${k === i.mi ? ' me' : ''}" data-k="${k}" aria-pressed="false"><span>${k + 1}</span><span>${k === i.mi ? 'You' : name(k)}${p.out != null && +p.out < T - 0.5 ? ` <small>· out at ${tlSec(p.out)}</small>` : ''}</span><b>${n0(i.fin[k])}</b></button>`).join('')}</div><div class="tl-note">Tap a player to pick out their line.</div>`;
-  return `<div class="tl-box">
-    <div class="tl-hd"><b>Score over time</b>${tlResult(r, i)}</div>${key}
+  // Solo: the tiles and the pill say how the run measured up.
+  let pill = solo ? '' : tlResult(r, i), tiles = '';
+  if (solo) {
+    const ppm = i.myEnd >= 5 ? n0(Math.round(i.fin[i.mi] / (i.myEnd / 60))) : '–';
+    if (i.solo === 'top') {
+      const td = tl.today || {}, vals = [...i.others.map(k => i.fin[k]), ...i.goals.map(g => g.v)];
+      tiles = rsTile('Would rank', td.rank ? '#' + td.rank : '–', td.of ? `of ${td.of} today` : '') + rsTile('Vs the top', sgn(i.margin), 'against #1 today')
+        + rsTile('Top runs beaten', `${vals.filter(v => i.fin[i.mi] > v).length} of ${vals.length}`) + rsTile('Points a minute', ppm);
+      pill = td.rank === 1 ? '<i class="tl-pill win">Top score today</i>' : td.rank ? `<i class="tl-pill">#${td.rank} today</i>` : '';
+    } else if (i.solo === 'pb') {
+      tiles = rsTile('Vs your best', sgn(i.margin), 'final score') + rsTile('Biggest lead', i.others.length && i.best > 0 ? '+' + n0(i.best) : '–')
+        + rsTile('Furthest behind', i.others.length && i.worst < 0 ? '−' + n0(-i.worst) : '–') + rsTile('Points a minute', ppm);
+      pill = i.margin > 0 ? `<i class="tl-pill win">Beat your best by ${n0(i.margin)}</i>` : i.margin < 0 ? `<i class="tl-pill">${n0(-i.margin)} off your best</i>` : '<i class="tl-pill">Tied your best</i>';
+    } else {
+      const b30 = tlBest30(i);
+      tiles = rsTile('Points a minute', ppm) + rsTile('Best 30 seconds', b30 ? '+' + n0(b30) : '–') + rsTile('Hazards', (tl.hits || []).length, 'dropped on you') + rsTile('Played', tlSec(i.myEnd));
+    }
+  } else tiles = rsTile('Final margin', sgn(i.margin), duel ? 'at the end' : i.place === 1 ? 'over 2nd place' : 'behind the winner') + rsTile('Biggest lead', i.best > 0 ? '+' + n0(i.best) : '–') + rsTile('Furthest behind', i.worst < 0 ? '−' + n0(-i.worst) : '–') + rsTile('Lead changes', i.changes);
+  const rows = duel || solo ? '' : `<div class="tl-rows">${i.ps.map((p, k) => `<button type="button" class="tl-row${k === i.mi ? ' me' : ''}" data-k="${k}" aria-pressed="false"><span>${k + 1}</span><span>${k === i.mi ? 'You' : name(k)}${p.out != null && +p.out < T - 0.5 ? ` <small>· out at ${tlSec(p.out)}</small>` : ''}</span><b>${n0(i.fin[k])}</b></button>`).join('')}</div><div class="tl-note">Tap a player to pick out their line.</div>`;
+  return `<div class="tl-box${solo ? ' solo' : ''}">
+    <div class="tl-hd"><b>Score over time</b>${pill}</div>${key}
     <div class="tl-plot" data-tl="${esc(JSON.stringify(data))}">
-      <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${label}">${grid.join('')}${xticks}${hits}${order.map(line).join('')}${kos}${leads}${ends}<line class="tl-cur" x1="0" x2="0" y1="${TP}" y2="${H - B}" visibility="hidden"/></svg>
+      <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${label}">${grid.join('')}${xticks}${hits}${goals}${order.map(line).join('')}${kos}${leads}${ends}<line class="tl-cur" x1="0" x2="0" y1="${TP}" y2="${H - B}" visibility="hidden"/></svg>
       <div class="tl-tip" hidden></div>
     </div>
-    <div class="rs-grid">${rsTile('Final margin', sgn(i.margin), duel ? 'at the end' : i.place === 1 ? 'over 2nd place' : 'behind the winner')}${rsTile('Biggest lead', i.best > 0 ? '+' + n0(i.best) : '–')}${rsTile('Furthest behind', i.worst < 0 ? '−' + n0(-i.worst) : '–')}${rsTile('Lead changes', i.changes)}</div>
+    <div class="rs-grid">${tiles}</div>
     ${rows}
   </div>`;
 }
@@ -4541,12 +5275,19 @@ document.addEventListener('click', e => {
   plot.classList.toggle('pick', on);
   plot.querySelectorAll('[data-k]').forEach(el => el.classList.toggle('hl', on && el.dataset.k === row.dataset.k));
 });
-function runBody(r) {
+// The small copy-seed button on a run: copies the code that plays the same run again.
+function seedBtn(r, cls = 'seedbtn') {
+  const code = seedCode(r); if (!code) return '';
+  const md = MODES[r.variant] ? MODES[r.variant].name : 'Classic';
+  return `<button type="button" class="${cls}" data-seed="${esc(code)}" title="Copy this seed. Paste it into the seed box with ${esc(md)} picked to play the same run again." aria-label="Copy seed ${esc(code)}"><span aria-hidden="true">🌱</span><b>${esc(code)}</b><span class="cp-ic">Copy</span></button>`;
+}
+function runBody(r, opt = {}) {
   const fav = favWord(r.list), pw = r.powers || {}, used = POWERS.filter(k => +pw[k] > 0);
   const kind = k => k === 'v' ? 'v' : k === 'f' ? 'f' : 'h';
-  return `<p>${fmtWhen(r.at)}${r.variant === 'rot' ? ' · ❄ Rot &amp; Thaw' : ''} · ${fmtUp(+r.time || 0)}${r.place ? ` · placed #${+r.place} of ${+r.players}` : ''}${r.quit ? ' · left early' : ''}</p>
-    ${tlHTML(r)}
-    <div class="rs-grid">
+  const chart = tlHTML(r);
+  return `<div class="rb${chart ? ' has-tl' : ''}"><div class="rb-when"><p>${fmtWhen(r.at)}${r.variant === 'rot' ? ' · ❄ Rot &amp; Thaw' : ''}${r.pace && r.pace !== 'normal' && PACES[r.pace] ? ` · ${PACES[r.pace].icon} ${PACES[r.pace].name}` : ''} · ${fmtUp(+r.time || 0)}${r.place ? ` · placed #${+r.place} of ${+r.players}` : ''}${r.quit ? ' · left early' : ''}</p>${opt.seed === false ? '' : seedBtn(r)}</div>
+    <div class="rb-top">${chart}
+    <div class="rs-grid rb-tiles">
       ${rsTile('Words', +r.words || 0, `${+r.vert || 0} down · ${+r.full || 0} full row${+r.full === 1 ? '' : 's'}`)}
       ${rsTile('Favourite word', fav ? UP(fav[0]) : '–', fav ? (fav[1][0] > 1 ? `scored ${fav[1][0]} times` : `+${n0(fav[1][1])}`) : '')}
       ${rsTile('Longest', r.longest ? UP(r.longest) : '–', r.longest ? `${String(r.longest).length} letters` : '')}
@@ -4555,16 +5296,32 @@ function runBody(r) {
       ${rsTile('Powers used', used.length ? used.map(k => `${ORB[k].icon} ${+pw[k]}`).join(' · ') : 'None')}
       ${r.wotd ? rsTile(r.mode === 'daily' ? 'Word of the day' : 'Bonus word', UP(r.wotd), r.wotdHit ? '✓ scored · ×2' : 'not scored') : ''}
       ${rsTile('Blocks placed', +r.placed || 0)}
-    </div>
-    <h3 class="rs-h">Words by length</h3>
-    ${rsBars(r.len || {})}
+    </div></div>
+    <div class="rb-mid"><div class="rb-col"><h3 class="rs-h">Words by length</h3>
+    ${rsBars(r.len || {})}</div>
+    <div class="rb-col"><h3 class="rs-h">Every word, in order</h3>
+    <div class="wchips">${(r.list || []).filter(Array.isArray).map(e => `<span class="wchip ${kind(e[2])}"><b>${e[2] === 'v' ? '↓ ' : ''}${UP(e[0])}</b><i>+${n0(e[1])}</i></span>`).join('') || '<p>No words this run.</p>'}</div></div></div>
     ${r.variant === 'rot' ? `<h3 class="rs-h">❄ Rot &amp; Thaw</h3><div class="rs-grid">
       ${rsTile('Ice words', +r.iceWords || 0, '×1.5 each')}${rsTile('Ignited words', +r.fireWords || 0, '×3 each')}
       ${rsTile('Ice thawed', +r.iceThawed || 0)}${rsTile('Ice melted', +r.iceMelted || 0, 'by 🔥')}${rsTile('Ice shattered', +r.iceShattered || 0)}
-      ${rsTile('Rotted', +r.rotted || 0, `tiles · ${+r.rottedWords || 0} word${+r.rottedWords === 1 ? '' : 's'}`)}${rsTile('Rot burned', +r.burned || 0, 'tiles')}</div>` : ''}
-    <h3 class="rs-h">Every word, in order</h3>
-    <div class="wchips">${(r.list || []).filter(Array.isArray).map(e => `<span class="wchip ${kind(e[2])}"><b>${e[2] === 'v' ? '↓ ' : ''}${UP(e[0])}</b><i>+${n0(e[1])}</i></span>`).join('') || '<p>No words this run.</p>'}</div>`;
+      ${rsTile('Rotted', +r.rotted || 0, `tiles · ${+r.rottedWords || 0} word${+r.rottedWords === 1 ? '' : 's'}`)}${rsTile('Rot burned', +r.burned || 0, 'tiles')}</div>` : ''}</div>`;
 }
+// Copy-seed buttons, wherever they are.
+async function copyText(t) {
+  try { await navigator.clipboard.writeText(t); return true; } catch {}
+  try { const ta = document.createElement('textarea'); ta.value = t; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0';
+    document.body.appendChild(ta); ta.select(); const ok = document.execCommand('copy'); ta.remove(); return !!ok; } catch { return false; }
+}
+document.addEventListener('click', e => {
+  const b = e.target && e.target.closest ? e.target.closest('[data-seed]') : null;
+  if (!b) return;
+  const ic = b.querySelector('.cp-ic');
+  copyText(b.dataset.seed).then(ok => {
+    clearTimeout(b._cpT); b.classList.toggle('copied', ok);
+    if (ic) ic.textContent = ok ? '✓ Copied' : 'Copy blocked';
+    b._cpT = setTimeout(() => { b.classList.remove('copied'); if (ic) ic.textContent = 'Copy'; }, 1800);
+  });
+});
 // Run details as a pop-up, for the end-of-game screens.
 function showRun(r, back) {
   if (!r) return;
@@ -4627,6 +5384,10 @@ const THEMES = [
   { id: 'pocket', name: 'Pocket', need: 'Play Today\'s drop 3 days in a row', ok: x => x.maxStreak >= 3, prog: x => `streak ${x.streak}` },
   { id: 'neon', name: 'Neon', need: 'Win a bot or online battle', ok: x => x.wins >= 1, prog: () => 'no wins yet' },
   { id: 'gold', name: 'Gold', need: 'Win a battle of 6 or more players', ok: x => x.bigWins >= 1, prog: () => 'not yet' },
+  // Quest rewards, or bought with gems in the Shop.
+  { id: 'frost', name: 'Frostbite', price: 600, need: 'Finish the ❄ Rot & Thaw quest, or get it for 💎 600', ok: () => !!prog().own['theme:frost'], prog: () => '' },
+  { id: 'ember', name: 'Ember', price: 600, need: 'Finish the 🚀 Speed demon quest, or get it for 💎 600', ok: () => !!prog().own['theme:ember'], prog: () => '' },
+  { id: 'royal', name: 'Royal', price: 1000, need: 'Finish the 👑 Grandmaster quest, or get it for 💎 1,000', ok: () => !!prog().own['theme:royal'], prog: () => '' },
 ];
 const fullStats = () => ({ ...getStats(), best: cleanScore(store.get('wordfall-best')) });
 const unlockedIds = () => { const x = fullStats(); return THEMES.filter(t => t.ok(x)).map(t => t.id); };
@@ -4653,7 +5414,7 @@ function applySkin(id) {
 applySkin(store.get('wordfall-skin') || 'classic');
 /* ================= Letter tiles: shop & your letters ================= */
 // Clean two-tone tiles: a soft colour, a darker letter in the same family, and a solid edge.
-// Every tile is free for now. `price` is here so a currency can be added later.
+// Most tiles are free; a few are quest rewards that can also be bought with gems (`price`).
 const SKINS = [
   { id: 'classic', name: 'Cream',   price: 0, blurb: 'The original. Warm cream with a dark letter.' },
   { id: 'paper',   name: 'Paper',   price: 0, blurb: 'Crisp white card with a fine grey rim.' },
@@ -4670,6 +5431,10 @@ const SKINS = [
   { id: 'poster',  name: 'Poster',  price: 0, blurb: 'Bold red display letter on cream.' },
   { id: 'pebble',  name: 'Pebble',  price: 0, blurb: 'Soft rounded stone in light grey.' },
   { id: 'outline', name: 'Outline', price: 0, blurb: 'Just a line and a letter.' },
+  // Quest rewards, or bought with gems.
+  { id: 'frost',   name: 'Frost',   price: 300, blurb: 'Icy blue glass. From the ❄ Rot & Thaw quest.' },
+  { id: 'quill',   name: 'Quill',   price: 250, blurb: 'Old parchment, ink-brown serif letter. From the 📏 Wordsmith quest.' },
+  { id: 'gilt',    name: 'Gilt',    price: 500, blurb: 'Polished gold, bronze letter. From the 👑 Grandmaster quest.' },
 ];
 const SKIN_BY_ID = Object.fromEntries(SKINS.map(k => [k.id, k]));
 const ABC = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -4729,7 +5494,7 @@ $('#tShop').onclick = () => openPage('shop');
 /* ================= Full-page menu screens ================= */
 // Leaderboard, History, Shop, Online, Settings and Guide each fill the screen over the menu.
 // A tab strip hops between them; Esc or ‹ Menu goes back.
-const PAGE_LIST = [['lb', '🏆', 'Leaderboard'], ['hist', '📜', 'History'], ['shop', '🛍', 'Shop'], ['online', '👥', 'Online'], ['settings', '⚙', 'Settings'], ['guide', '📖', 'Guide']];
+const PAGE_LIST = [['lb', '🏆', 'Leaderboard'], ['quests', '🎯', 'Quests'], ['hist', '📜', 'History'], ['shop', '🛍', 'Shop'], ['online', '👥', 'Online'], ['settings', '⚙', 'Settings'], ['guide', '📖', 'Guide']];
 /* ARTIFACT-ONLY */ PAGE_LIST.splice(PAGE_LIST.length - 2, 0, ['samples', '🧪', 'Samples']); /* /ARTIFACT-ONLY */
 let curPage = null, pageOpt = {};
 const pgEl = $('#pageView'), pgBody = $('#pgBody');
@@ -4748,12 +5513,42 @@ function openPage(id, opt = {}) {
   if (openOv !== pgEl) showOv(pgEl, $('#pgTabs [aria-current="page"]'));
   pgEl.scrollTop = 0;
 }
+// Quests page: the unlock path first, then challenges. Each card shows the closest run so far.
+function renderQuestsPage() {
+  const S = prog(), fresh = new Set(S.fresh);
+  if (S.fresh.length) { S.fresh = []; saveProg(); }
+  const done = QUESTS.filter(q => S.done[q.id]).length;
+  setPgHead('Quests', 'Finish challenges in any run to earn 💎 gems, new ways to play, themes and tiles.', `<span class="gem-bal" title="Your gems">💎 <b>${n0(S.gems)}</b></span>`);
+  const card = q => {
+    const ok = !!S.done[q.id], st = S.st[q.id], base = q.parts({ score: 0, list: [], len: {}, time: 0 });
+    const vals = ok ? base.map(p => p[2]) : st && Array.isArray(st.v) ? st.v : base.map(() => 0);
+    const pct = ok ? 100 : Math.round((st ? +st.p || 0 : 0) * 100), free = q.path && (ok ? S.done[q.id] === 'free' : S.level === 'pro');
+    const need = !ok && q.needs && !has(q.needs) ? `Needs ${UNLOCK_NAME[q.needs]}` : '';
+    const parts = base.map(([lb, , g], i) => { const v = +vals[i] || 0;
+      return `<span class="qp${v >= g ? ' ok' : ''}">${esc(lb)} <b>${g === 1 ? (v >= 1 ? '✓' : '–') : `${n0(Math.min(v, g))} / ${n0(g)}`}</b></span>`; }).join('');
+    return `<article class="qc${ok ? ' done' : ''}${fresh.has(q.id) ? ' fresh' : ''}" id="q-${q.id}">
+      <span class="qc-ic" aria-hidden="true">${q.icon}</span>
+      <div class="qc-main"><h4>${esc(q.name)}</h4><p>${esc(q.desc)}</p>
+        <div class="qc-bar" role="progressbar" aria-label="${esc(q.name)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><i style="width:${pct}%"></i></div>
+        <div class="qc-parts">${parts}</div></div>
+      <div class="qc-side"><span class="qc-st">${ok ? (fresh.has(q.id) ? '🎉 Just done' : '✓ Done') : need ? '🔒 ' + esc(need) : pct ? `Closest run ${pct}%` : 'Not started'}</span>
+        <div class="qc-rw">${free ? '<span class="qr none">No reward: yours from the start</span>' : questRewards(q).map(x => `<span class="qr">${esc(x)}</span>`).join('')}</div></div>
+    </article>`;
+  };
+  pgBody.innerHTML = `<div class="q-page">
+    <div class="pg-card q-top"><p><b>${done} of ${QUESTS.length}</b> quests done. Rewards arrive as soon as a run finishes a quest. Spend 💎 gems in the Shop on themes and tiles.</p>
+      <button class="btn sm ghostb" id="qShop" type="button">🛍 Spend gems</button></div>
+    <section><h3 class="rs-h">Unlock the game</h3><div class="q-list">${QUESTS.filter(q => q.path).map(card).join('')}</div></section>
+    <section><h3 class="rs-h">Challenges</h3><div class="q-list">${QUESTS.filter(q => !q.path).map(card).join('')}</div></section></div>`;
+  pq('#qShop').onclick = () => openPage('shop', { cat: 'themes' });
+  if (pageOpt.q) { const el = pq('#q-' + pageOpt.q); pageOpt.q = null; if (el) { el.classList.add('focus'); requestAnimationFrame(() => el.scrollIntoView({ block: 'center' })); } }
+}
 function setPgHead(title, sub, act = '') {
   setText($('#pgTitle'), title);
   setText($('#pgSub'), sub);
   $('#pgAct').innerHTML = act;
 }
-const PAGE_FNS = { lb: renderLbPage, hist: renderHistPage, shop: renderShopPage, online: renderOnlinePage, settings: renderSettingsPage, guide: renderGuidePage };
+const PAGE_FNS = { lb: renderLbPage, quests: renderQuestsPage, hist: renderHistPage, shop: renderShopPage, online: renderOnlinePage, settings: renderSettingsPage, guide: renderGuidePage };
 function renderPage() {
   if (!curPage) return;
   PAGE_FNS[curPage]();
@@ -4891,7 +5686,7 @@ function renderLbMe(rows, myIdx, tRows, ti) {
     <button class="btn sm ghostb" id="lbEdit" type="button">${lb.self && acct.ready && !acct.user ? 'Sign in to post scores' : net.nick ? 'Edit profile' : 'Set a username'}</button>
     <button class="btn sm" id="lbPlay" type="button">Play Today's drop</button>`;
   $('#lbEdit').onclick = () => openPage('settings', { sec: 'profile' });
-  $('#lbPlay').onclick = () => { closeOv(true); setPlayTab('daily'); startSolo('daily'); };
+  $('#lbPlay').onclick = () => { if (!has('daily')) { openPage('quests', { q: LOCK_Q.daily }); return; } closeOv(true); setPlayTab('daily'); startSolo('daily'); };
 }
 
 /* ---------- History page ---------- */
@@ -4952,7 +5747,8 @@ const shopPick = { tiles: 'paper', icons: 'spark', themes: null };
 function renderShopPage() {
   const fresh = checkIconUnlocks();
   if (pageOpt.cat) { shopCat = pageOpt.cat; pageOpt.cat = null; }
-  setPgHead('Shop', 'Everything is free for now. Pick something to preview it, then get it.');
+  const gems = prog().gems;
+  setPgHead('Shop', 'Most things are free. 💎 items come from Quests, or spend gems on them.', `<span class="gem-bal" title="Your gems">💎 <b>${n0(gems)}</b></span>`);
   const x = fullStats();
   const cats = [['tiles', 'Letter tiles', `${ownedSkins.size}/${SKINS.length}`], ['icons', 'Profile icons', `${ownedIcons.size}/${ICONS.length}`], ['themes', 'Board themes', `${THEMES.filter(t => t.ok(x)).length}/${THEMES.length}`], ['letters', 'Your letters', '']];
   const rail = `<nav class="pg-nav" aria-label="Shop sections">${cats.map(([id, n, c]) => `<button type="button" data-c="${id}" aria-current="${id === shopCat ? 'true' : 'false'}"><span>${n}</span>${c ? `<small>${c}</small>` : ''}</button>`).join('')}</nav>`;
@@ -4961,12 +5757,13 @@ function renderShopPage() {
     if (!SKIN_BY_ID[shopPick.tiles]) shopPick.tiles = 'paper';
     main = `<div class="sh-grid">${SKINS.map(k => `<button type="button" class="sh-item${k.id === shopPick.tiles ? ' on' : ''}" data-id="${k.id}">
         <span class="row">${['w', 'o', 'r', 'd'].map(ch => tileHTML(ch, k.id)).join('')}</span><b>${k.name}</b>
-        <span class="sh-st">${ownedSkins.has(k.id) ? (skinUse(k.id) ? skinUse(k.id) : 'Owned') : 'Free'}</span></button>`).join('')}</div>
-      ${ownedSkins.size < SKINS.length ? '<div class="btnrow"><button class="btn sm ghostb" id="shGetAll" type="button">Get every tile</button></div>' : ''}`;
+        <span class="sh-st">${ownedSkins.has(k.id) ? (skinUse(k.id) ? skinUse(k.id) : 'Owned') : k.price ? '💎 ' + n0(k.price) : 'Free'}</span></button>`).join('')}</div>
+      ${SKINS.some(k => !k.price && !ownedSkins.has(k.id)) ? '<div class="btnrow"><button class="btn sm ghostb" id="shGetAll" type="button">Get every free tile</button></div>' : ''}`;
     const k = SKIN_BY_ID[shopPick.tiles], own = ownedSkins.has(k.id);
     side = `<div class="sh-prev"><span class="tc-k">Preview</span><div class="sh-board">${['__word', '_fall_', 'tiles_'].map(r => r.split('').map(ch => ch === '_' ? '<i class="e"></i>' : tileHTML(ch, k.id)).join('')).join('')}</div>
       <b class="sh-pn">${k.name}</b><p class="set-note">${k.blurb}</p>
       ${own ? `<button class="btn" id="shAll" type="button">Use on every letter</button><button class="btn ghostb" id="shPick" type="button">Use on some letters</button>`
+            : k.price ? `<button class="btn" id="shBuy" type="button"${gems < k.price ? ' disabled' : ''}>Get · 💎 ${n0(k.price)}</button><p class="set-note">You have 💎 ${n0(gems)}.${gems < k.price ? ' Earn more in Quests.' : ''}</p>`
             : `<button class="btn" id="shGet" type="button">Get · free</button>`}</div>`;
   } else if (shopCat === 'icons') {
     if (!ICON_BY[shopPick.icons]) shopPick.icons = 'spark';
@@ -4983,11 +5780,12 @@ function renderShopPage() {
     main = `<div class="skins">${THEMES.map(t => { const ok = t.ok(x);
         return `<button class="skin${t.id === shopPick.themes ? ' on' : ''}" data-skin="${t.id}" data-id="${t.id}" type="button">
         <span class="sw"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i></span><b>${t.name}</b>
-        <span class="sk-st">${ok ? (t.id === cur ? 'In use' : 'Unlocked') : '🔒 Locked'}</span></button>`; }).join('')}</div>`;
+        <span class="sk-st">${ok ? (t.id === cur ? 'In use' : 'Unlocked') : t.price ? '💎 ' + n0(t.price) : '🔒 Locked'}</span></button>`; }).join('')}</div>`;
     const t = THEMES.find(q => q.id === shopPick.themes), ok = t.ok(x);
     side = `<div class="sh-prev"><span class="tc-k">Board theme</span><span class="skin big" data-skin="${t.id}"><span class="sw"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i></span></span>
       <b class="sh-pn">${t.name}</b><p class="set-note">${ok ? 'Changes the colours of the whole game.' : `Unlock it: ${esc(t.need)}${t.prog(x) ? ` (${esc(t.prog(x))})` : ''}.`}</p>
-      ${t.id === cur ? '<p class="set-note ok">✓ In use</p>' : ok ? '<button class="btn" id="shTheme" type="button">Use this theme</button>' : ''}</div>`;
+      ${t.id === cur ? '<p class="set-note ok">✓ In use</p>' : ok ? '<button class="btn" id="shTheme" type="button">Use this theme</button>'
+        : t.price ? `<button class="btn" id="shBuyTheme" type="button"${gems < t.price ? ' disabled' : ''}>Get · 💎 ${n0(t.price)}</button><p class="set-note">You have 💎 ${n0(gems)}.${gems < t.price ? ' Earn more in Quests.' : ''}</p>` : ''}</div>`;
   } else {
     main = invBody();
   }
@@ -5000,7 +5798,9 @@ function renderShopPage() {
     if (pq('#shGet')) pq('#shGet').onclick = () => { ownedSkins.add(id); saveSkins(); toast(`🛍 ${SKIN_BY_ID[id].name} tiles added`, 'o'); renderShopPage(); };
     if (pq('#shAll')) pq('#shAll').onclick = () => { setLetterSkin(ABC, id); toast(`${SKIN_BY_ID[id].name} on every letter`, 'o'); renderShopPage(); };
     if (pq('#shPick')) pq('#shPick').onclick = () => { shopCat = 'letters'; renderShopPage(); };
-    if (pq('#shGetAll')) pq('#shGetAll').onclick = () => { for (const k of SKINS) ownedSkins.add(k.id); saveSkins(); renderShopPage(); };
+    if (pq('#shGetAll')) pq('#shGetAll').onclick = () => { for (const k of SKINS) if (!k.price) ownedSkins.add(k.id); saveSkins(); renderShopPage(); };
+    if (pq('#shBuy')) pq('#shBuy').onclick = () => { const k = SKIN_BY_ID[id], S = prog(); if (S.gems < k.price || ownedSkins.has(id)) return;
+      S.gems -= k.price; saveProg(); ownedSkins.add(id); saveSkins(); toast(`🛍 ${k.name} tiles added`, 'o'); renderShopPage(); };
   } else if (shopCat === 'icons') {
     pick('icons', '.sh-item');
     const id = shopPick.icons;
@@ -5009,6 +5809,8 @@ function renderShopPage() {
   } else if (shopCat === 'themes') {
     pick('themes', '.skin');
     if (pq('#shTheme')) pq('#shTheme').onclick = () => { applySkin(shopPick.themes); renderShopPage(); };
+    if (pq('#shBuyTheme')) pq('#shBuyTheme').onclick = () => { const t = THEMES.find(q => q.id === shopPick.themes), S = prog(); if (!t || !t.price || S.gems < t.price) return;
+      S.gems -= t.price; S.own['theme:' + t.id] = 1; saveProg(); applySkin(t.id); renderShopPage(); };
   } else wireInv();
   if (fresh.length) toast(`🎁 Unlocked: ${fresh.join(', ')}`, 'o');
 }
@@ -5020,6 +5822,13 @@ function skinUse(id) {
 
 /* ---------- Online page ---------- */
 function renderOnlinePage() {
+  if (!net.r && !has('online')) {
+    setPgHead('Online', 'Race friends who have this page open, with a room code.');
+    pgBody.innerHTML = `<div class="pg-card on-msg q-lock"><h3>🔒 Online unlocks with a quest</h3><p>${esc(lockMsg('online'))}</p>
+      <div class="btnrow"><button class="btn" id="onQ" type="button">🎯 See quests</button></div></div>`;
+    pq('#onQ').onclick = () => openPage('quests', { q: 'online' });
+    return;
+  }
   if (net.r) { renderLobbyPage(); return; }
   setPgHead('Online', 'Race friends who have this page open. One of you makes a room, everyone else joins with its code.');
   if (!net.ready) { pgBody.innerHTML = '<div class="pg-card"><p>Connecting…</p></div>'; return; }
@@ -5027,6 +5836,7 @@ function renderOnlinePage() {
     pgBody.innerHTML = `<div class="pg-card on-msg"><h3>Online can't connect here</h3><p>${window.claude ? 'On claude.ai, online matches need you to be signed in and invited to this page. A public link can\'t join rooms.' : 'This copy has no online server set up, so it can\'t join rooms.'} You can still play the bots.</p>
       <div class="btnrow"><button class="btn" id="onBot" type="button">Play the bots instead</button></div></div>${rankedCard()}`;
     pq('#onBot').onclick = () => { closeOv(true); startBot(botLevel); };
+    pq('#onBot').hidden = !has('bot');
     return;
   }
   // Self-hosted copy: online rooms are for signed-in players with a username.
@@ -5038,6 +5848,7 @@ function renderOnlinePage() {
       <div class="btnrow"><button class="btn" id="onSign" type="button">${signed ? 'Pick a username' : 'Sign in or create an account'}</button><button class="btn ghostb" id="onBot" type="button">Play the bots instead</button></div></div>${rankedCard()}`;
     pq('#onSign').onclick = () => openPage('settings', { sec: 'profile' });
     pq('#onBot').onclick = () => { closeOv(true); startBot(botLevel); };
+    pq('#onBot').hidden = !has('bot');
     return;
   }
   const code = (net.code || randCode()).toUpperCase();
@@ -5079,6 +5890,7 @@ function renderLobbyPage() {
         <button class="btn sm ghostb" id="lCopy" type="button">Copy code</button>
         <label class="chk"><input type="checkbox" id="fBots"${net.fill ? ' checked' : ''}> Fill to 8 players with bots</label>
         <div class="pc-field"><span class="tc-k">Game mode</span><div id="lVar"></div></div>
+        <div class="pc-field"><span class="tc-k">Speed · the starter's pick is used</span>${paceSeg()}</div>
         <div class="pc-field"><span class="tc-k">Seed · the starter's seed is used</span>${seedField('lSeed')}</div>
         <div class="btnrow"><button class="btn" id="mStart" type="button">Start match</button><button class="btn ghostb quitb" id="mLeave" type="button">Leave room</button></div>
       </aside></div>`;
@@ -5091,7 +5903,7 @@ function renderLobbyPage() {
     const names = shuffled(BOT_NAMES);
     const bots = net.fill ? Array.from({ length: Math.max(0, 8 - ids.length) }, (_, i) => ({ id: 'bot-' + i, name: names[i], level: i % 3 === 0 ? 'normal' : 'easy' })) : [];
     pq('#mStart').disabled = true;
-    try { await net.r.emit('start', { seed: seedWords ? pickSeed() : (Math.random() * 2 ** 31) | 0, mid: (Math.random() * 2 ** 31) | 0, sw: seedWords, ids, host: net.myPeer, bots, variant }); }
+    try { await net.r.emit('start', { seed: seedWords ? pickSeed() : (Math.random() * 2 ** 31) | 0, mid: (Math.random() * 2 ** 31) | 0, sw: seedWords, ids, host: net.myPeer, bots, variant, pace: paceOk(pace) }); }
     catch (e) { pq('#mStart').disabled = false; setText(pq('#lMsg'), e && e.code === 'not_permitted' ? 'Your access can\'t start matches. Ask the owner to share the page with edit access.' : 'Couldn\'t start. Try again.'); }
   };
   pq('#fBots').onchange = () => { net.fill = pq('#fBots').checked; store.set('wordfall-fill', net.fill ? 'on' : 'off'); renderLobbyList(); };
@@ -5164,7 +5976,11 @@ function renderSettingsPage() {
       <p class="set-note">Press M at any time to mute or bring back the music.</p>`;
   } else if (setSec === 'game') {
     body = `<label class="set-tog"><input type="checkbox" id="sGhost"${settings.ghost ? ' checked' : ''}><span><b>Ghost piece</b><small>Show where your falling piece will land.</small></span></label>
-      <label class="set-tog"><input type="checkbox" id="sCalm"${settings.calm ? ' checked' : ''}><span><b>Reduce motion</b><small>Stops the falling letters and menu animations.</small></span></label>`;
+      <label class="set-tog"><input type="checkbox" id="sCalm"${settings.calm ? ' checked' : ''}><span><b>Reduce motion</b><small>Stops the falling letters and menu animations.</small></span></label>
+      <h3>Player level</h3>
+      <div class="lv-set"><span>${(LEVELS.find(l => l[0] === prog().level) || LEVELS[2])[1]} <b>${(LEVELS.find(l => l[0] === prog().level) || LEVELS[2])[2]}</b></span><button class="btn sm ghostb" id="sLevel" type="button">Change level</button></div>
+      <p class="set-note">New players unlock speeds and modes through Quests. Experienced players start with everything. Changing level keeps your quests, gems and unlocks.</p>
+      <div class="btnrow"><button class="btn sm ghostb" id="sTutAgain" type="button">🎓 Play the tutorial again</button></div>`;
   } else {
     body = `<p class="set-note">Click a key to change it, × to remove it, or + to add another. P and Esc pause the game, and M mutes the music.</p>
       <div class="kb" id="setKeys"></div>
@@ -5206,6 +6022,8 @@ function renderSettingsPage() {
     vol('sSfx', 'sfx', () => sfx('mult'));
   } else if (setSec === 'game') {
     pq('#sGhost').onchange = e => { settings.ghost = e.target.checked; saveSettings(); };
+    pq('#sLevel').onclick = () => showLevelPick();
+    pq('#sTutAgain').onclick = () => { closeOv(true); startTutorial('basics'); };
     pq('#sCalm').onchange = e => { settings.calm = e.target.checked; saveSettings(); document.documentElement.classList.toggle('calm', settings.calm); };
   } else {
     pq('#kbReset').onclick = () => { Object.keys(KEYMAP).forEach(k => delete KEYMAP[k]); Object.assign(KEYMAP, KEY_DEFAULTS); store.set('wordfall-keys', ''); keyCap = null; kbMsg = 'Controls are back to the defaults.'; drawKeys(); };
@@ -5307,6 +6125,7 @@ function soloShareText() {
     `🔤 ${B.words} word${B.words === 1 ? '' : 's'} · ⏱ ${fmtUp(B.elapsed)}`,
     `📏 Longest: ${B.longest ? B.longest.toUpperCase() : '–'}`,
     `🔗 Top stack: ${B.topStack ? '×' + B.topStack : '–'}`,
+    ...(game.mode !== 'daily' && seedCode({ sw: game.seedWords, seed: game.seed }) ? [`🌱 Seed: ${seedCode({ sw: game.seedWords, seed: game.seed })}`] : []),
   ].join('\n');
 }
 function copyBtn(btn, txt, pre) {
@@ -5319,7 +6138,7 @@ function showSoloEnd(newBest, unlocked = []) {
   const B = game.me;
   showEnd({
     kind: 'solo', mode: game.mode, rot: game.variant === 'rot', rec: game.recorded, score: B.score, words: B.words, time: B.elapsed,
-    best: game.best, newBest, unlocked, wotd: B.wotd, wotdHit: B.wotdHit, wotdLbl: wotdLabel(), share: soloShareText(),
+    best: game.best, newBest, unlocked, quests: questNews(), wotd: B.wotd, wotdHit: B.wotdHit, wotdLbl: wotdLabel(), share: soloShareText(),
     head: newBest ? 'New best!' : B.placed ? 'Stacked out' : 'Game over',
   });
 }
@@ -5331,7 +6150,7 @@ function showBattleEnd(ranked, place, reason, unlocked) {
     : reason === 'last' ? 'The last player still going passed everyone else\'s score.' : 'Everyone topped out. Highest score wins.';
   showEnd({
     kind: 'battle', mode: game.mode, royale: !!game.royale, online, rot: game.variant === 'rot', rec: game.recorded, score: me.score, words: me.words,
-    time: me.elapsed, best: game.best, newBest: false, unlocked, head, why, place, n, win: place === 1 && !draw,
+    time: me.elapsed, best: game.best, newBest: false, unlocked, quests: questNews(), head, why, place, n, win: place === 1 && !draw,
     stand: ranked.map(r => ({ name: r.name, score: r.score, alive: r.alive, me: r.kind === 'me', bot: r.kind === 'bot' || r.kind === 'rbot' })),
     share: `Wordfall ${online ? 'online' : game.royale ? 'Battle of 8' : 'duel'} · #${place}/${n} · ${me.score.toLocaleString()} pts`,
   });
@@ -5461,8 +6280,12 @@ function endHero(c) {
   if (c.newBest) chips.push('<span class="es-chip gold">★ New personal best</span>');
   if (c.kind === 'battle' && c.win) chips.push('<span class="es-chip gold">🏆 Winner</span>');
   if (c.wotd) chips.push(`<span class="es-chip${c.wotdHit ? ' good' : ''}">⭐ ${esc(c.wotdLbl)}: <b>${UP(c.wotd)}</b> ${c.wotdHit ? '· ×2' : '· missed'}</span>`);
-  if (game && game.seedWords) chips.push(`<span class="es-chip">🌱 Seed: <b>${esc(game.seedWords)}</b></span>`);
+  const sbtn = c.rec || game ? seedBtn(c.rec || { sw: game.seedWords, seed: game.seed, variant: game.variant }, 'es-chip seedbtn') : '';
+  if (sbtn) chips.push(sbtn);
+  const rp = c.rec ? c.rec.pace : game && game.pace;
+  if (PACES[rp]) chips.push(`<span class="es-chip pace-chip" title="Game speed">${PACES[rp].icon} ${PACES[rp].name} · ×${PACES[rp].x} points</span>`);
   if (c.unlocked && c.unlocked.length) chips.push(`<span class="es-chip gold">🎁 Unlocked: ${c.unlocked.map(esc).join(', ')}</span>`);
+  for (const q of c.quests || []) chips.push(`<span class="es-chip gold q-chip">${esc(q)}</span>`);
   const sub = `<b>${c.words}</b> word${c.words === 1 ? '' : 's'} · <b>${fmtUp(c.time)}</b>${c.kind === 'solo' ? ` · best <b>${n0(c.best)}</b>` : ''}`;
   return `<h2 class="es-head" ${d()}>${esc(c.head)}</h2>${score}<p class="es-sub" ${d()}>${sub}</p>`
     + (c.why ? `<p class="es-sub" ${d()}>${esc(c.why)}</p>` : '')
@@ -5502,7 +6325,7 @@ function renderEndBody() {
   const c = endCtx, el = $('#esBody'); if (!c || !el) return;
   const runs = getRuns();
   if (endTab === 'run') {
-    el.innerHTML = c.rec ? `<div class="pg-card">${runBody(c.rec)}</div>`
+    el.innerHTML = c.rec ? `<div class="pg-card">${runBody(c.rec, { seed: false })}</div>`
       : `<div class="pg-card"><p>This run wasn’t saved, so there are no details. Tutorials and runs with no blocks placed aren’t kept.</p></div>`;
   } else if (endTab === 'hist') {
     if (!runs.length) { el.innerHTML = '<div class="pg-card"><p>No runs yet.</p></div>'; return; }
@@ -5762,9 +6585,9 @@ function onNetStart(msg) {
     roster: new Map(), hostSeen: t0, botsAt: t0 + 4000 };
   net.botStates = new Map();
   const nv = VARIANTS[d.variant] ? d.variant : 'classic';
-  hideEnd(); game = { mode: 'online', variant: nv, me: null, bots: [], over: false, outAt: {}, finale: false, seedWords: normSeed(typeof d.sw === 'string' ? d.sw : '') };
+  hideEnd(); game = { mode: 'online', variant: nv, me: null, bots: [], over: false, outAt: {}, finale: false, seedWords: normSeed(typeof d.sw === 'string' ? d.sw : ''), seed, pace: paceOf(d.pace) };
   game.wotd = pickWotd(hashStr('wordfall-wotd:' + seed));
-  game.me = new Board({ seed, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: { ...myHooks(), changed: () => { updatePanels(); netPush(); } }, hazards: 'versus', variant: nv, wotd: game.wotd });
+  game.me = new Board({ seed, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: { ...myHooks(), changed: () => { updatePanels(); netPush(); } }, hazards: 'versus', variant: nv, wotd: game.wotd, pace: game.pace });
   if (isHost()) game.bots = bots.map((b, i) => makeBot(b.id, b.name, b.level, seed ^ Math.imul(0x85ebca6b, i + 1)));
   game.best = +(store.get('wordfall-best') || 0);
   paused = false;
@@ -5907,7 +6730,7 @@ const keyName = k => ({ ArrowLeft: '←', ArrowRight: '→', ArrowUp: '↑', Arr
 document.addEventListener('keydown', e => {
   if (e.target && e.target.tagName === 'INPUT') return;
   const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-  if (openOv && modal.hidden) { if (k === 'Escape') { e.preventDefault(); closeOv(); } return; }
+  if (openOv && modal.hidden) { if (k === 'Escape') { e.preventDefault(); if (openOv.id !== 'levelPick') closeOv(); else if (prog().level) lvReturn(); } return; }
   if (k === 'm' && !e.repeat) { toggleMusic(); return; }
   if (endFxOn) { e.preventDefault(); return; }
   if (!endEl.hidden && modal.hidden) { if (k === 'Escape') { e.preventDefault(); showMenu(false); } return; }
@@ -6348,7 +7171,7 @@ function musicTick() {
   if (music.playing) {
     const TS = 2 + 22 * (music.fS || 0) + (music.lateS ? 6 : 0), TW = -2 + 10 * (music.fW || 0) + (music.lateW ? 6 : 0);
     const rot = !music.season ? 0 : Math.round(TS * (1 - music.mixW) + TW * music.mixW);
-    const want = music.results ? 84 : titleShown() ? 104 : 116 + Math.min(32, Math.round((game.me.speed() - 1) * 8)) + (game.me.rush > 0 ? 14 : 0) + (fin ? 18 : 0) + rot;
+    const want = music.results ? 84 : titleShown() ? 104 : 116 + Math.max(-6, Math.min(32, Math.round((game.me.speedX() - 1) * 8))) + (game.me.rush > 0 ? 14 : 0) + (fin ? 18 : 0) + rot;
     // Glide to the new tempo over about half a second instead of jumping.
     music.bpm += (want - music.bpm) * (Math.abs(want - music.bpm) < 0.5 ? 1 : 0.12);
   }
@@ -6422,6 +7245,7 @@ function frame(t) {
     for (const b of game.bots) if (!game.over && b.board.phase !== 'over') { b.board.tick(dt); botStep(b, dt); }
     if (game.tut) tutTick(); else if (!coachEl.hidden) { coachEl.hidden = true; document.body.classList.remove('tutoring'); }
     if (versusMode() && !game.over) { tlSample(false); updateRise(); updateFinale(); broadcastBots(false); checkBattleEnd(); }
+    else if (!game.over && !game.tut) tlSample(false);
   }
   musicTick();
   render(t);
@@ -6434,6 +7258,6 @@ showMenu(false);
 requestAnimationFrame(frame);
 
 /* Test hook for automated checks (harmless in play). */
-window.__wordfall = { get game() { return game; }, endSting, tlSample, tlHit, playStep, get net() { return net; }, joinRoom, leaveRoom, get paused() { return paused; }, set paused(v) { paused = !!v; }, tutTick, startTutorialNow, musicTick, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store };
+window.__wordfall = { get game() { return game; }, endSting, tlSample, tlHit, playStep, get net() { return net; }, joinRoom, leaveRoom, get paused() { return paused; }, set paused(v) { paused = !!v; }, tutTick, startTutorialNow, musicTick, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store, prog, setLevel, showLevelPick, tutToRun, questsAfterRun, get QUESTS() { return QUESTS; }, get pace() { return pace; } };
 })();
 </script>

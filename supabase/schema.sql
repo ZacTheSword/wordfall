@@ -23,6 +23,10 @@ create table if not exists public.scores (
   day date,
   updated_at timestamptz not null default now()
 );
+-- Best Today's drop as a score-over-time line (see daily-timeline.sql).
+alter table public.scores add column if not exists daily_tl jsonb;
+alter table public.scores drop constraint if exists daily_tl_size;
+alter table public.scores add constraint daily_tl_size check (daily_tl is null or pg_column_size(daily_tl) < 8000);
 
 -- Let the website's key use these tables at all. Newer Supabase projects don't
 -- grant this automatically. Row level security below still decides which rows.
