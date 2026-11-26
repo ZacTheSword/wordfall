@@ -749,6 +749,72 @@ div.hub-t{cursor:default}
 .ov-msg{margin:-8px 0 0;min-height:1.2em;font-size:13px;color:var(--muted);text-align:center}
 .ov-back{justify-self:start;padding:10px 22px 10px 16px;border-radius:999px;border:2px solid var(--line2);background:var(--well);color:var(--fg);font:400 16px/1 var(--f-display);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
 .ov-back:hover,.ov-back:focus-visible{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);outline:none}
+/* END-SCREEN: the board's finale and the full-screen results that follow. */
+.efx{position:fixed;inset:0;z-index:18;pointer-events:none;overflow:hidden}
+.efx>.c{position:fixed;will-change:transform,opacity}
+.efx-flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none}
+.efx-ring{position:fixed;width:80px;height:80px;margin:-40px 0 0 -40px;border-radius:50%;border:6px solid #fff;box-shadow:0 0 30px 8px var(--bank),inset 0 0 24px 4px var(--bank);opacity:0}
+.well.efx-gone .c.tile,.well.efx-gone .c.stone{visibility:hidden}
+.endscr{position:fixed;inset:0;z-index:19;overflow-y:auto;overflow-x:hidden;color:var(--fg);background:radial-gradient(ellipse 90% 55% at 50% -5%,color-mix(in srgb,var(--bank) 22%,transparent),transparent 70%),radial-gradient(ellipse 70% 50% at 100% 100%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 70%),var(--bg)}
+.es-in{box-sizing:border-box;width:min(1180px,100%);min-height:100%;margin:0 auto;padding:18px max(18px,env(safe-area-inset-right,0px)) 0 max(18px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:16px}
+.es-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.es-k{font:700 12px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.es-tabs button{padding:8px 14px;font-size:13px}
+.es-main{display:flex;flex-direction:column;gap:16px;flex:1}
+.es-hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:8px 0 4px}
+.es-head{margin:0;font:400 clamp(26px,4.4vw,40px)/1.05 var(--f-display);letter-spacing:.02em}
+.es-score{display:block;font:400 clamp(64px,13vw,136px)/.9 var(--f-display);color:var(--bank);text-shadow:0 4px 0 color-mix(in srgb,var(--bank) 45%,#000),0 0 40px color-mix(in srgb,var(--bank) 45%,transparent);font-variant-numeric:tabular-nums}
+.es-sub{margin:0;color:var(--muted);font-size:15px}
+.es-sub b{color:var(--fg)}
+.es-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.es-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;border:1px solid var(--line2);background:color-mix(in srgb,var(--panel) 80%,transparent);font-size:13px;font-weight:700}
+.es-chip.gold{border-color:var(--bank);color:var(--bank);box-shadow:0 0 18px -6px var(--bank)}
+.es-chip.good{border-color:var(--full);color:var(--full)}
+.es-stand{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:5px;width:min(420px,100%)}
+.es-stand li{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;padding:7px 11px;border-radius:9px;background:var(--well);border:1px solid var(--line);font-weight:700;font-size:14px;text-align:left}
+.es-stand li.me{border-color:var(--bank);box-shadow:0 0 16px -8px var(--bank)}
+.es-stand li i{font-style:normal;color:var(--muted);font-family:var(--f-mono)}
+.es-body{display:flex;flex-direction:column;gap:14px;min-width:0}
+.es-body .hp-split .runlist{max-height:60vh}
+.es-rank{flex-direction:row!important;align-items:baseline;gap:10px!important;flex-wrap:wrap}
+.es-rank b{font:400 30px var(--f-display);color:var(--bank)}
+.es-acts{position:sticky;bottom:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:16px 0 max(16px,env(safe-area-inset-bottom,0px));margin-top:auto;background:linear-gradient(transparent,var(--bg) 34%)}
+.es-acts .btn{min-width:130px}
+.es-acts .btn.main{min-width:200px;font-size:16px;padding-block:12px}
+.es-share{position:absolute;left:-9999px;top:0;opacity:0}
+.es-prev{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:7px 9px;border-radius:10px;border:1px dashed color-mix(in srgb,var(--accent) 70%,transparent);background:color-mix(in srgb,var(--accent) 10%,transparent);font-size:12px}
+.es-prev>span{font:700 11px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-right:4px}
+.es-prev button{padding:5px 10px;border-radius:7px;border:1px solid var(--line2);background:var(--well);color:var(--fg);font:700 12px var(--f-ui);cursor:pointer}
+.es-prev button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#1b1930}
+.es-dev{position:fixed;left:12px;bottom:12px;z-index:17;padding:8px 12px;border-radius:10px;border:1px dashed var(--accent);background:color-mix(in srgb,var(--panel) 92%,transparent);color:var(--fg);font:700 12.5px var(--f-ui);cursor:pointer}
+.es-dev small{color:var(--accent);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.1em;margin-left:4px}
+/* Hero entrances */
+.es-hero>*{animation:esUp .5s cubic-bezier(.2,.9,.25,1) both;animation-delay:calc(var(--d,0) * 90ms + 120ms)}
+@keyframes esUp{from{opacity:0;transform:translateY(16px)}}
+/* B: results on the left, tabs on the right (stacked on phones). */
+.endscr.st-b .es-main{display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);align-items:start;gap:18px}
+.endscr.st-b .es-hero{position:sticky;top:18px;align-items:stretch;text-align:left;padding:20px;border-radius:18px;border:1px solid var(--line2);background:color-mix(in srgb,var(--panel) 88%,transparent);box-shadow:0 20px 50px -30px #000}
+.endscr.st-b .es-score{font-size:clamp(60px,7vw,96px)}
+.endscr.st-b .es-chips{justify-content:flex-start}
+.endscr.st-b .es-stand{width:100%}
+/* C: the score is spelled out in tiles that drop into place. */
+.es-tiles{display:flex;justify-content:center;gap:6px;margin:6px 0 4px}
+.es-tiles i{display:grid;place-items:center;width:clamp(40px,8.5vw,74px);aspect-ratio:1;border-radius:10px;font:400 clamp(28px,6vw,52px)/1 var(--f-display);font-style:normal;color:var(--ink);background:var(--bank);box-shadow:inset 0 -6px 0 var(--bankedge),0 0 0 2px #0006,0 10px 24px -10px #000;animation:esDrop .55s cubic-bezier(.3,1.5,.5,1) both;animation-delay:calc(var(--i) * 70ms + 250ms)}
+.es-tiles i.sep{width:auto;background:none;box-shadow:none;color:var(--bank);padding:0 2px}
+@keyframes esDrop{from{opacity:0;transform:translateY(-70px) rotate(-12deg)}}
+@media (max-width:820px){
+  .endscr.st-b .es-main{grid-template-columns:minmax(0,1fr)}
+  .endscr.st-b .es-hero{position:static}
+}
+@media (max-width:560px){
+  .es-in{padding-top:12px;gap:12px}
+  .es-top{flex-direction:column;align-items:stretch}
+  .es-tabs{display:flex;width:100%;box-sizing:border-box}.es-tabs button{flex:1;padding:8px 6px;font-size:12.5px}
+  .es-acts .btn{min-width:0;flex:1}.es-acts .btn.main{flex-basis:100%}
+}
+.calm .es-hero>*,.calm .es-tiles i{animation:none}
+@media (prefers-reduced-motion:reduce){.es-hero>*,.es-tiles i{animation:none}}
+/* /END-SCREEN */
 /* ROT-CARD: the play box in Rot & Thaw. A textured brown-red rot skin, a snow cap glazed
    with ice along the top, and clear ice layered round the edges over the rot.
    Textures (rotskin.svg, snowice.svg) live in art/rot-card and are copied in by art/rot-card/inline.py. */
@@ -1515,6 +1581,8 @@ div.hub-t{cursor:default}
   </div>
 </section>
 
+<section class="endscr" id="endScr" aria-label="Game results" hidden></section>
+<button class="es-dev" id="esDev" type="button" hidden>⏹ End game now <small>preview</small></button>
 <div class="modal" id="modal">
   <div class="card" id="card"></div>
 </div>
@@ -2580,7 +2648,7 @@ function startSoloNow(mode, boot = false) {
   const day = todayStr();
   const seed = mode === 'daily' ? hashStr('wordfall3:' + day) : (Math.random() * 2 ** 32) >>> 0;
   const v = mode === 'daily' ? dailyVariant(day) : variant;
-  game = { mode, day, variant: v, me: null, bots: [], over: false, outAt: {} };
+  hideEnd(); game = { mode, day, variant: v, me: null, bots: [], over: false, outAt: {} };
   game.wotd = pickWotd(mode === 'daily' ? hashStr('wordfall-wotd:' + day) : (Math.random() * 2 ** 32) >>> 0);
   game.me = new Board({ seed, orbKinds: ['clear', 'scramble'], hooks: myHooks(), hazards: true, variant: v, wotd: game.wotd });
   game.best = +(store.get('wordfall-best') || 0);
@@ -2604,7 +2672,7 @@ function startBotNow(level, count = botCount) {
   botLevel = BOT_LEVELS[level] ? level : 'normal'; store.set('wordfall-bot', botLevel);
   botCount = count === 7 ? 7 : 1; store.set('wordfall-botcount', String(botCount));
   const seed = (Math.random() * 2 ** 32) >>> 0;
-  game = { mode: 'bot', royale: botCount > 1, variant, me: null, bots: [], over: false, outAt: {}, finale: false };
+  hideEnd(); game = { mode: 'bot', royale: botCount > 1, variant, me: null, bots: [], over: false, outAt: {}, finale: false };
   game.wotd = pickWotd((Math.random() * 2 ** 32) >>> 0);
   game.me = new Board({ seed, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: myHooks(), hazards: 'versus', variant, wotd: game.wotd });
   const names = shuffled(BOT_NAMES);
@@ -2685,7 +2753,8 @@ function onMeOver() {
   submitScore(game.me.score, game.mode === 'daily');
   recordRun(game.me);
   updatePanels();
-  setTimeout(() => showSoloEnd(newBest, [...unlocked, ...checkIconUnlocks()]), 450);
+  const unl = [...unlocked, ...checkIconUnlocks()];
+  endSequence(() => showSoloEnd(newBest, unl));
 }
 function onBotOut(b) {
   if (!game || game.over) return;
@@ -2787,7 +2856,8 @@ function finishBattle(reason) {
   document.body.classList.remove('finale');
   if (real) recordRun(me, { place, players: ranked.length, tl: tlPack(ranked) });
   updatePanels();
-  setTimeout(() => showBattleEnd(ranked, place, reason, [...unlocked, ...checkIconUnlocks()]), 450);
+  const unl = [...unlocked, ...checkIconUnlocks()];
+  endSequence(() => showBattleEnd(ranked, place, reason, unl));
 }
 
 
@@ -2854,14 +2924,14 @@ function startTutorialNow(id) {
   bankLiveGame();
   const seed = (Math.random() * 2 ** 32) >>> 0, v = T.variant;
   if (T.versus) {
-    game = { mode: 'bot', royale: false, variant: v, me: null, bots: [], over: false, outAt: {}, finale: false };
+    hideEnd(); game = { mode: 'bot', royale: false, variant: v, me: null, bots: [], over: false, outAt: {}, finale: false };
     game.wotd = pickWotd((Math.random() * 2 ** 32) >>> 0);
     game.me = new Board({ seed, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: myHooks(), hazards: false, variant: v, wotd: game.wotd, slow: 1.6, script: T.script });
     const b = makeBot('bot-0', 'Bolt', 'easy', seed ^ 0x9e3779b9);
     b.board.slow = 1.8;
     game.bots.push(b);
   } else {
-    game = { mode: 'practice', day: todayStr(), variant: v, me: null, bots: [], over: false, outAt: {} };
+    hideEnd(); game = { mode: 'practice', day: todayStr(), variant: v, me: null, bots: [], over: false, outAt: {} };
     game.wotd = pickWotd((Math.random() * 2 ** 32) >>> 0);
     game.me = new Board({ seed, orbKinds: ['clear', 'scramble'], hooks: myHooks(), hazards: false, variant: v, wotd: game.wotd, slow: 1.7, seasonMs: T.seasons, script: T.script });
   }
@@ -2978,6 +3048,11 @@ function sfxPlay(kind) {
   if (kind === 'ignite') { noiseHit(t, 0.6, 0.15, 900, 'bandpass'); tone('sawtooth', 110, t, 0.5, 0.05); tone('triangle', 220, t + 0.1, 0.4, 0.05); }
   if (kind === 'burn') { for (let i = 0; i < 7; i++) noiseHit(t + i * 0.07 + Math.random() * 0.03, 0.07, 0.07, 2200 + Math.random() * 2000, 'bandpass'); noiseHit(t, 0.8, 0.08, 700, 'lowpass'); }
   if (kind === 'crumble') { noiseHit(t, 0.35, 0.12, 300, 'lowpass'); noiseHit(t + 0.08, 0.25, 0.08, 1200, 'bandpass'); tone('sine', 70, t, 0.3, 0.06); }
+  if (kind === 'rumble') { noiseHit(t, 1.1, 0.16, 180, 'lowpass'); tone('sine', 48, t, 1.1, 0.08); }
+  if (kind === 'shatter') { for (let i = 0; i < 12; i++) noiseHit(t + i * 0.025 + Math.random() * 0.02, 0.12, 0.08, 4000 + Math.random() * 5000, 'highpass'); noiseHit(t, 0.5, 0.16, 500, 'lowpass'); tone('sine', 60, t, 0.5, 0.09); }
+  if (kind === 'collapse') { for (let i = 0; i < 10; i++) noiseHit(t + i * 0.06, 0.18, 0.1, 260 + Math.random() * 500, 'lowpass'); tone('sine', 52, t, 0.9, 0.08); }
+  if (kind === 'implode') { const o = music.ctx.createOscillator(), gn = music.ctx.createGain(); o.type = 'sawtooth'; o.frequency.setValueAtTime(110, t); o.frequency.exponentialRampToValueAtTime(880, t + 0.4); gn.gain.setValueAtTime(0.0001, t); gn.gain.exponentialRampToValueAtTime(0.06, t + 0.35); gn.gain.exponentialRampToValueAtTime(0.0001, t + 0.45); o.connect(gn); gn.connect(music.out); o.start(t); o.stop(t + 0.5); }
+  if (kind === 'boom') { noiseHit(t, 1.2, 0.22, 900, 'lowpass'); tone('sine', 40, t, 1, 0.12); [0, 7, 12].forEach((n, i) => tone('triangle', mtof(72 + n), t + 0.05 + i * 0.04, 0.5, 0.04)); }
   if (kind === 'mult') { [0, 4, 7, 11, 14].forEach((n, i) => tone('triangle', mtof(84 + n), t + i * 0.05, 0.14, 0.06)); }
 }
 
@@ -3613,6 +3688,7 @@ function showMenu(resumable, then) {
   if (then) then();
 }
 function showMenuNow(resumable, noIntro = false) {
+  hideEnd();
   const fromGame = titleEl.hidden;
   closeModal();
   paused = true;
@@ -4979,51 +5055,326 @@ function copyBtn(btn, txt, pre) {
   };
 }
 function showSoloEnd(newBest, unlocked = []) {
-  const txt = soloShareText(), B = game.me;
-  openModal(`
-    <h2>${newBest ? 'New best.' : 'Stacked out.'}</h2>
-    <p class="big">${B.score.toLocaleString()}</p>
-    <p>${B.words} word${B.words === 1 ? '' : 's'} in ${fmtUp(B.elapsed)}. ${newBest ? 'That beats your previous best.' : `Your best is ${game.best.toLocaleString()}.`}</p>
-    ${B.wotd ? `<p class="wotd-end${B.wotdHit ? ' hit' : ''}">⭐ ${wotdLabel()}: <b>${B.wotd.toUpperCase()}</b> · ${B.wotdHit ? 'scored, so your final score was doubled.' : 'not scored this time.'}</p>` : ''}
-    ${unlocked.length ? `<p class="unlock">🎁 Unlocked: ${unlocked.map(esc).join(', ')}. Find it in the Shop.</p>` : ''}
-    <pre class="share" id="shareTxt">${esc(txt)}</pre>
-    <div class="btnrow">
-      <button class="btn" id="mCopy" type="button">Copy result</button>
-      <button class="btn ghostb" id="mAgain" type="button">${game.mode === 'daily' ? 'Replay today' : 'Play again'}</button>
-      ${game.recorded ? '<button class="btn ghostb" id="mRun" type="button">Run details</button>' : ''}
-      <button class="btn ghostb" id="mMenu" type="button">Menu</button>
-    </div>`);
-  if ($('#mRun')) $('#mRun').onclick = () => showRun(game.recorded, () => showSoloEnd(newBest, unlocked));
-  copyBtn($('#mCopy'), txt, $('#shareTxt'));
-  $('#mAgain').onclick = () => startSolo(game.mode);
-  $('#mMenu').onclick = () => showMenu(false);
-  $('#mCopy').focus();
+  const B = game.me;
+  showEnd({
+    kind: 'solo', mode: game.mode, rot: game.variant === 'rot', rec: game.recorded, score: B.score, words: B.words, time: B.elapsed,
+    best: game.best, newBest, unlocked, wotd: B.wotd, wotdHit: B.wotdHit, wotdLbl: wotdLabel(), share: soloShareText(),
+    head: newBest ? 'New best!' : B.placed ? 'Stacked out' : 'Game over',
+  });
 }
 function showBattleEnd(ranked, place, reason, unlocked) {
-  const n = ranked.length, win = ranked[0], online = game.mode === 'online';
+  const n = ranked.length, win = ranked[0], online = game.mode === 'online', me = game.me;
   const draw = n > 1 && ranked[0].score === ranked[1].score && ranked[0].alive === ranked[1].alive;
-  const head = draw ? 'Dead heat.' : place === 1 ? 'You win.' : n === 2 ? `${esc(win.name)} wins.` : `You placed #${place} of ${n}.`;
-  const why = reason === 'time' ? 'Time\'s up. Highest score wins.' : reason === 'skip' ? 'You skipped ahead. Everyone is ranked by their score so far.'
-    : reason === 'last' ? 'The last player still going passed everyone else\'s score. Highest score wins.' : 'Everyone topped out. Highest score wins.';
-  const unl = unlocked.length ? `<p class="unlock">🎁 Unlocked: ${unlocked.map(esc).join(', ')}. Find it in the Shop.</p>` : '';
-  const again = online ? '<button class="btn" id="mLobby" type="button">Back to room</button>' : `<button class="btn" id="mAgain" type="button">Rematch</button>${segHTML()}`;
-  openModal(`<h2>${head}</h2><p>${why}</p>${unl}
-    <ul class="players" id="res"></ul>
-    <div class="btnrow">${again}${game.recorded ? '<button class="btn ghostb" id="mRun" type="button">Run details</button>' : ''}<button class="btn ghostb" id="mMenu" type="button">Menu</button></div>`);
-  if ($('#mRun')) $('#mRun').onclick = () => showRun(game.recorded, () => showBattleEnd(ranked, place, reason, unlocked));
-  const ul = $('#res');
-  ranked.forEach((r, i) => {
-    const li = document.createElement('li');
-    li.className = (i === 0 ? 'win ' : '') + (r.kind === 'me' ? 'me' : '');
-    li.textContent = `${i + 1}. ${r.name}${r.kind === 'me' && r.name !== 'You' ? ' (you)' : r.kind === 'bot' || r.kind === 'rbot' ? ' · bot' : ''}`;
-    const sc = document.createElement('span'); sc.textContent = r.score.toLocaleString() + (r.alive ? '' : ' · out');
-    li.appendChild(sc); ul.appendChild(li);
+  const head = draw ? 'Dead heat' : place === 1 ? 'You win!' : n === 2 ? `${win.name} wins` : `#${place} of ${n}`;
+  const why = reason === 'time' ? 'Time\'s up. Highest score wins.' : reason === 'skip' ? 'Ended early. Everyone is ranked by their score so far.'
+    : reason === 'last' ? 'The last player still going passed everyone else\'s score.' : 'Everyone topped out. Highest score wins.';
+  showEnd({
+    kind: 'battle', mode: game.mode, royale: !!game.royale, online, rot: game.variant === 'rot', rec: game.recorded, score: me.score, words: me.words,
+    time: me.elapsed, best: game.best, newBest: false, unlocked, head, why, place, n, win: place === 1 && !draw,
+    stand: ranked.map(r => ({ name: r.name, score: r.score, alive: r.alive, me: r.kind === 'me', bot: r.kind === 'bot' || r.kind === 'rbot' })),
+    share: `Wordfall ${online ? 'online' : game.royale ? 'Battle of 8' : 'duel'} · #${place}/${n} · ${me.score.toLocaleString()} pts`,
   });
-  const back = () => { if (online && net.r) net.r.presence({ st: 'lobby', m: 0 }).catch(() => {}); };
-  if (online) { $('#mLobby').onclick = () => { back(); showLobby(); }; $('#mLobby').focus(); }
-  else { const cnt = game.bots.length; $('#mAgain').onclick = () => startBot(botLevel, cnt); wireSeg(); $('#mAgain').focus(); }
-  $('#mMenu').onclick = () => { back(); showMenu(false); };
 }
+
+/* ================= End of game: board finale, then full-screen results ================= */
+// The board plays a short finale (three styles while one gets picked), then a results page
+// takes over the screen with tabs for this run, your match history and your stats.
+const END_PREVIEW = true; // preview build: style switcher, replay and an "End game now" button
+const END_STYLES = [['a', 'Shatter'], ['b', 'Collapse'], ['c', 'Supernova']];
+let endStyle = END_STYLES.some(x => x[0] === store.get('wordfall-endfx')) ? store.get('wordfall-endfx') : 'a';
+const endEl = $('#endScr'), esDev = $('#esDev');
+let endFxOn = false, endCtx = null, endTab = 'run', endHistSel = 0, endFxRun = 0;
+const efR = (a, b) => a + Math.random() * (b - a);
+const efWait = ms => new Promise(res => setTimeout(res, ms));
+function hideEnd() {
+  endFxRun++;
+  endEl.hidden = true; endEl.className = 'endscr'; endEl.innerHTML = ''; endCtx = null; endFxOn = false;
+  well.classList.remove('efx-gone');
+  document.querySelectorAll('.efx').forEach(e => e.remove());
+}
+function endSequence(show) {
+  const run = ++endFxRun;
+  endFxOn = true;
+  const go = () => { if (run !== endFxRun) return; endFxOn = false; try { show(); } catch (e) { console.error(e); } };
+  if (fxCalm()) { setTimeout(go, 450); return; }
+  runEndFx(endStyle).then(go, e => { console.error(e); go(); });
+}
+// Copies every tile on the board into a layer above the page, so they can fly anywhere.
+function efTiles(layer) {
+  const out = [];
+  cellEls.forEach((el, i) => {
+    if (!/\b(tile|stone)\b/.test(el.className)) return;
+    const r = el.getBoundingClientRect();
+    if (!r.width) return;
+    const k = el.cloneNode(true);
+    k.style.cssText = `left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;margin:0`;
+    layer.appendChild(k);
+    out.push({ el: k, x: r.left + r.width / 2, y: r.top + r.height / 2, row: Math.floor(i / COLS), col: i % COLS });
+  });
+  return out;
+}
+function efShake(el, ms, a0, a1) {
+  const ks = [], n = Math.max(2, Math.round(ms / 45));
+  for (let i = 0; i <= n; i++) {
+    const a = a0 + (a1 - a0) * i / n;
+    ks.push({ transform: i === n ? 'none' : `translate(${efR(-a, a).toFixed(1)}px,${efR(-a, a).toFixed(1)}px) rotate(${efR(-a, a) * 0.12}deg)` });
+  }
+  return el.animate(ks, { duration: ms, easing: 'linear' });
+}
+function efFlash(layer, peak = 0.85, ms = 380) {
+  const f = document.createElement('div'); f.className = 'efx-flash'; layer.appendChild(f);
+  f.animate([{ opacity: 0 }, { opacity: peak, offset: 0.18 }, { opacity: 0 }], { duration: ms, easing: 'ease-out', fill: 'forwards' });
+}
+async function runEndFx(style) {
+  document.querySelectorAll('.efx').forEach(e => e.remove());
+  well.classList.remove('efx-gone');
+  const layer = document.createElement('div'); layer.className = 'efx'; layer.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(layer);
+  const T = efTiles(layer);
+  if (!T.length) { await efWait(350); return; }
+  well.classList.add('efx-gone');
+  const box = well.closest('.wellbox') || well, br = well.getBoundingClientRect();
+  const cx = br.left + br.width / 2, cy = br.top + br.height / 2;
+  await (style === 'b' ? fxCollapse : style === 'c' ? fxNova : fxShatter)(T, box, layer, cx, cy);
+}
+// A · Shatter: a white-hot wave runs down the board, the tiles crack and jitter,
+// then the whole board bursts and the pieces tumble off under gravity.
+async function fxShatter(T, box, layer, cx, cy) {
+  sfx('rumble');
+  efShake(box, 950, 0.5, 9);
+  for (const t of T) {
+    const d = t.row * 42 + efR(0, 70);
+    t.el.animate([{ transform: 'none', filter: 'brightness(1)' },
+      { transform: `scale(1.14) rotate(${efR(-7, 7)}deg)`, filter: 'brightness(2.6) saturate(1.5)', offset: 0.22 },
+      { transform: `translate(${efR(-2, 2)}px,${efR(-2, 2)}px) rotate(${efR(-5, 5)}deg)`, filter: 'brightness(1.35) saturate(1.2)' }],
+      { duration: Math.max(200, 950 - d), delay: d, fill: 'forwards', easing: 'ease-out' });
+  }
+  await efWait(950);
+  sfx('shatter');
+  efFlash(layer, 0.7, 320);
+  efShake(box, 520, 16, 0);
+  for (const t of T) {
+    const dx = t.x - cx, dy = t.y - cy, dist = Math.hypot(dx, dy) || 1, sp = efR(360, 820);
+    const vx = dx / dist * sp + efR(-130, 130), vy = dy / dist * sp * 0.5 - efR(420, 760), spin = efR(-620, 620), g = 2300, dur = efR(950, 1350);
+    const ks = [];
+    for (let i = 0; i <= 12; i++) {
+      const q = i / 12, s = q * dur / 1000;
+      ks.push({ transform: `translate(${(vx * s).toFixed(1)}px,${(vy * s + g * s * s / 2).toFixed(1)}px) rotate(${(spin * s).toFixed(1)}deg) scale(${(1.1 - 0.3 * q).toFixed(3)})`, opacity: q < 0.7 ? 1 : 1 - (q - 0.7) / 0.3, filter: 'brightness(1.3)' });
+    }
+    t.el.animate(ks, { duration: dur, delay: efR(0, 110), fill: 'forwards', easing: 'linear' });
+  }
+  await efWait(760);
+}
+// B · Collapse: a quake builds while the tiles heat up from the floor, then the board
+// gives way column by column and everything drops out of the bottom of the screen.
+async function fxCollapse(T, box, layer, cx, cy) {
+  sfx('rumble');
+  efShake(box, 1150, 0.5, 11);
+  for (const t of T) {
+    const d = (ROWS - 1 - t.row) * 55 + efR(0, 90);
+    t.el.animate([{ transform: 'none', filter: 'none' },
+      { transform: `translate(${efR(-1.5, 1.5)}px,${efR(-1, 1)}px) rotate(${efR(-3, 3)}deg)`, filter: 'sepia(.7) saturate(3.2) hue-rotate(-28deg) brightness(1.2) drop-shadow(0 0 6px #ff5a1f)' }],
+      { duration: Math.max(200, 1150 - d), delay: d, fill: 'forwards', easing: 'ease-in' });
+  }
+  await efWait(1150);
+  sfx('collapse');
+  efShake(box, 700, 13, 0);
+  const H = innerHeight;
+  for (const t of T) {
+    const delay = t.col * 70 + (ROWS - 1 - t.row) * 18 + efR(0, 70), g = efR(2600, 3400), D = H - t.y + 160;
+    const dur = Math.sqrt(2 * D / g) * 1000, drift = efR(-60, 60), spin = efR(-200, 200), ks = [];
+    for (let i = 0; i <= 10; i++) {
+      const q = i / 10, s = q * dur / 1000;
+      ks.push({ transform: `translate(${(drift * q).toFixed(1)}px,${(g * s * s / 2).toFixed(1)}px) rotate(${(spin * q).toFixed(1)}deg)`, filter: 'sepia(.7) saturate(3.2) hue-rotate(-28deg) brightness(1.2) drop-shadow(0 0 6px #ff5a1f)' });
+    }
+    t.el.animate(ks, { duration: dur, delay, fill: 'forwards', easing: 'linear' });
+  }
+  box.animate([{ transform: 'none', opacity: 1 }, { transform: 'translateY(40px) rotate(1.5deg)', opacity: 0.25 }], { duration: 900, delay: 350, easing: 'ease-in', fill: 'forwards' });
+  await efWait(1050);
+}
+// C · Supernova: the tiles pulse faster and faster, get sucked into the centre,
+// then a flash and a shockwave fling every letter out across the whole screen.
+async function fxNova(T, box, layer, cx, cy) {
+  sfx('rumble');
+  efShake(box, 1000, 0.5, 6);
+  for (const t of T) {
+    const ks = [0, 0.3, 0.5, 0.64, 0.75, 0.83, 0.89, 0.94, 0.97, 1].map((o, i) => ({ offset: o, transform: `scale(${i % 2 ? 1.13 : 1})`, filter: `brightness(${1 + o * 1.4}) hue-rotate(${Math.round(o * 300)}deg) saturate(${1 + o})` }));
+    t.el.animate(ks, { duration: 1000, delay: efR(0, 60), fill: 'forwards', easing: 'linear' });
+  }
+  await efWait(1000);
+  sfx('implode');
+  for (const t of T) {
+    t.el.animate([{ transform: 'scale(1)', filter: 'brightness(2.4)' },
+      { transform: `translate(${(cx - t.x).toFixed(1)}px,${(cy - t.y).toFixed(1)}px) scale(.25) rotate(${efR(-200, 200)}deg)`, filter: 'brightness(3)' }],
+      { duration: 420, delay: efR(0, 60), fill: 'forwards', easing: 'cubic-bezier(.6,0,1,1)' });
+  }
+  await efWait(500);
+  sfx('boom');
+  efFlash(layer, 0.95, 520);
+  const ring = document.createElement('div'); ring.className = 'efx-ring'; ring.style.left = cx + 'px'; ring.style.top = cy + 'px'; layer.appendChild(ring);
+  ring.animate([{ transform: 'scale(.2)', opacity: 1 }, { transform: `scale(${Math.max(innerWidth, innerHeight) / 30})`, opacity: 0 }], { duration: 750, easing: 'cubic-bezier(.1,.8,.3,1)', fill: 'forwards' });
+  efShake(document.body, 450, 12, 0);
+  const R = Math.hypot(innerWidth, innerHeight);
+  for (const t of T) {
+    const a = efR(0, Math.PI * 2), d = R * efR(0.45, 0.9), ox = cx - t.x, oy = cy - t.y;
+    t.el.animate([{ transform: `translate(${ox.toFixed(1)}px,${oy.toFixed(1)}px) scale(.25)`, opacity: 1, filter: 'brightness(3)' },
+      { transform: `translate(${(ox + Math.cos(a) * d).toFixed(1)}px,${(oy + Math.sin(a) * d).toFixed(1)}px) scale(${efR(1.3, 2.1).toFixed(2)}) rotate(${efR(-720, 720)}deg)`, opacity: 0, filter: 'brightness(1.2)' }],
+      { duration: efR(800, 1100), fill: 'forwards', easing: 'cubic-bezier(.1,.75,.3,1)' });
+  }
+  await efWait(380);
+}
+
+/* ---------- Results screen ---------- */
+function showEnd(ctx) {
+  endCtx = ctx; endTab = 'run'; endHistSel = 0;
+  endEl.className = `endscr st-${endStyle}`;
+  renderEnd();
+  endEl.hidden = false; endEl.scrollTop = 0;
+  if (!fxCalm()) {
+    if (endStyle === 'b') endEl.animate([{ transform: 'translateY(100%)' }, { transform: 'none' }], { duration: 650, easing: 'cubic-bezier(.2,.9,.2,1)' });
+    else if (endStyle === 'c') endEl.animate([{ opacity: 0, transform: 'scale(1.08)', filter: 'brightness(2.2)' }, { opacity: 1, transform: 'none', filter: 'none' }], { duration: 600, easing: 'ease-out' });
+    else endEl.animate([{ opacity: 0, transform: 'scale(.97)' }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'ease-out' });
+  }
+  countUp(endEl.querySelector('.es-score'), ctx.score);
+  const run = endFxRun;
+  setTimeout(() => { if (run === endFxRun) document.querySelectorAll('.efx').forEach(e => e.remove()); }, 900);
+  const main = endEl.querySelector('.es-acts .main');
+  if (main) main.focus({ preventScroll: true });
+}
+function countUp(el, to) {
+  if (!el) return;
+  to = +to || 0;
+  if (fxCalm() || !to) { el.textContent = to.toLocaleString(); return; }
+  const t0 = performance.now(), dur = Math.min(1400, 500 + to / 20);
+  const step = now => {
+    if (!el.isConnected) return;
+    const q = Math.min(1, (now - t0) / dur), e = 1 - (1 - q) ** 3;
+    el.textContent = Math.round(to * e).toLocaleString();
+    if (q < 1) requestAnimationFrame(step);
+  };
+  el.textContent = '0';
+  requestAnimationFrame(step);
+  setTimeout(() => { if (el.isConnected) el.textContent = to.toLocaleString(); }, dur + 400);
+}
+function endHero(c) {
+  let i = 0;
+  const d = () => `style="--d:${i++}"`;
+  const score = endStyle === 'c'
+    ? `<div class="es-tiles" ${d()} aria-label="${c.score.toLocaleString()} points">${c.score.toLocaleString().split('').map((ch, k) => `<i class="${/\d/.test(ch) ? '' : 'sep'}" style="--i:${k}">${esc(ch)}</i>`).join('')}</div>`
+    : `<b class="es-score" ${d()}>${c.score.toLocaleString()}</b>`;
+  const chips = [];
+  if (c.newBest) chips.push('<span class="es-chip gold">★ New personal best</span>');
+  if (c.kind === 'battle' && c.win) chips.push('<span class="es-chip gold">🏆 Winner</span>');
+  if (c.wotd) chips.push(`<span class="es-chip${c.wotdHit ? ' good' : ''}">⭐ ${esc(c.wotdLbl)}: <b>${UP(c.wotd)}</b> ${c.wotdHit ? '· ×2' : '· missed'}</span>`);
+  if (c.unlocked && c.unlocked.length) chips.push(`<span class="es-chip gold">🎁 Unlocked: ${c.unlocked.map(esc).join(', ')}</span>`);
+  const sub = `<b>${c.words}</b> word${c.words === 1 ? '' : 's'} · <b>${fmtUp(c.time)}</b>${c.kind === 'solo' ? ` · best <b>${n0(c.best)}</b>` : ''}`;
+  return `<h2 class="es-head" ${d()}>${esc(c.head)}</h2>${score}<p class="es-sub" ${d()}>${sub}</p>`
+    + (c.why ? `<p class="es-sub" ${d()}>${esc(c.why)}</p>` : '')
+    + (chips.length ? `<div class="es-chips" ${d()}>${chips.join('')}</div>` : '')
+    + (c.stand ? `<ol class="es-stand" ${d()}>${c.stand.map((p, k) => `<li class="${p.me ? 'me' : ''}"><i>${k + 1}</i><span>${esc(p.name)}${p.me && p.name !== 'You' ? ' (you)' : p.bot ? ' · bot' : ''}</span><b>${n0(p.score)}${p.alive ? '' : ' · out'}</b></li>`).join('')}</ol>` : '');
+}
+function endModeName(c) {
+  return c.mode === 'daily' ? "Today's drop" : c.mode === 'practice' ? 'Practice' : c.mode === 'online' ? 'Online' : c.royale ? 'Battle of 8' : 'Duel';
+}
+function renderEnd() {
+  const c = endCtx; if (!c) return;
+  const tabs = [['run', 'This run'], ['hist', 'Match history'], ['stats', 'Your stats']];
+  const prev = END_PREVIEW ? `<div class="es-prev"><span>Preview</span>${END_STYLES.map(([id, nm]) => `<button type="button" data-st="${id}" aria-pressed="${id === endStyle}">${id.toUpperCase()} · ${nm}</button>`).join('')}<button type="button" data-st="replay">↻ Replay finale</button></div>` : '';
+  const again = c.kind === 'solo' ? `<button class="btn main" type="button" data-a="again">${c.mode === 'daily' ? 'Replay today' : 'Play again'}</button>`
+    : c.online ? '<button class="btn main" type="button" data-a="lobby">Back to room</button>'
+    : '<button class="btn main" type="button" data-a="again">Rematch</button>';
+  endEl.innerHTML = `<div class="es-in">${prev}
+    <header class="es-top"><span class="es-k">${endModeName(c)}${c.rot ? ' · ❄ Rot &amp; Thaw' : ''}</span>
+      <nav class="seg es-tabs" aria-label="Results">${tabs.map(([id, nm]) => `<button type="button" data-t="${id}" aria-pressed="${id === endTab}">${nm}</button>`).join('')}</nav></header>
+    <div class="es-main"><section class="es-hero">${endHero(c)}</section><section class="es-body" id="esBody"></section></div>
+    <footer class="es-acts">${again}<button class="btn ghostb" type="button" data-a="copy">Copy result</button><button class="btn ghostb" type="button" data-a="menu">Menu</button></footer>
+    <pre class="es-share" id="esShare">${esc(c.share || '')}</pre></div>`;
+  renderEndBody();
+  endEl.querySelectorAll('.es-tabs button').forEach(b => { b.onclick = () => {
+    endTab = b.dataset.t;
+    endEl.querySelectorAll('.es-tabs button').forEach(o => o.setAttribute('aria-pressed', String(o === b)));
+    renderEndBody();
+  }; });
+  const act = endEl.querySelector('.es-acts');
+  act.querySelector('[data-a="menu"]').onclick = () => showMenu(false);
+  copyBtn(act.querySelector('[data-a="copy"]'), c.share || '', $('#esShare'));
+  const ag = act.querySelector('[data-a="again"]');
+  if (ag) ag.onclick = () => c.kind === 'solo' ? startSolo(c.mode) : startBot(botLevel, c.royale ? 7 : 1);
+  const lb = act.querySelector('[data-a="lobby"]');
+  if (lb) lb.onclick = () => { if (net.r) net.r.presence({ st: 'lobby', m: 0 }).catch(() => {}); showLobby(); };
+  endEl.querySelectorAll('.es-prev button').forEach(b => { b.onclick = () => {
+    if (b.dataset.st !== 'replay') { endStyle = b.dataset.st; store.set('wordfall-endfx', endStyle); }
+    const keep = endCtx;
+    endEl.hidden = true;
+    well.classList.remove('efx-gone');
+    if (well.closest('.wellbox')) well.closest('.wellbox').getAnimations().forEach(a => a.cancel());
+    endSequence(() => showEnd(keep));
+  }; });
+}
+function renderEndBody() {
+  const c = endCtx, el = $('#esBody'); if (!c || !el) return;
+  const runs = getRuns();
+  if (endTab === 'run') {
+    el.innerHTML = c.rec ? `<div class="pg-card">${runBody(c.rec)}</div>`
+      : `<div class="pg-card"><p>This run wasn’t saved, so there are no details. Tutorials and runs with no blocks placed aren’t kept.</p></div>`;
+  } else if (endTab === 'hist') {
+    if (!runs.length) { el.innerHTML = '<div class="pg-card"><p>No runs yet.</p></div>'; return; }
+    endHistSel = Math.min(endHistSel, runs.length - 1);
+    const isThis = r => c.rec && r.at === c.rec.at;
+    el.innerHTML = `<div class="pg-card hp-chart"><h3 class="rs-h">Recent scores</h3>${trendSVG(runs)}</div>
+      <div class="pg-split hp-split"><div class="pg-card"><h3 class="rs-h">Runs, newest first</h3><div class="runlist">${runs.map((r, i) => `<button class="runrow${i === endHistSel ? ' on' : ''}" type="button" data-i="${i}" aria-pressed="${i === endHistSel}">
+        <span class="rr-m"><b>${isThis(r) ? 'This run · ' : ''}${esc(MODE_NAME(r) + tlVs(r))}${r.variant === 'rot' ? ' · ❄' : ''}</b><small>${fmtWhen(r.at)}${r.quit ? ' · left early' : ''}</small></span>
+        <span class="rr-w">${tlSpark(r)}${+r.words || 0} word${+r.words === 1 ? '' : 's'}${r.wotdHit ? ' · ⭐' : ''}${r.place ? ' ' + tlResult(r) : ''}</span>
+        <b class="rr-s">${n0(r.score)}</b></button>`).join('')}</div></div>
+      <div class="pg-card hp-detail" id="esDetail"></div></div>`;
+    const draw = () => { const r = runs[endHistSel], d = $('#esDetail'); if (!r || !d) return;
+      d.innerHTML = `<div class="hp-dh"><span class="tc-k">${isThis(r) ? 'This run' : `Run ${endHistSel + 1} of ${runs.length}`}</span><h3>${esc(MODE_NAME(r) + tlVs(r))}</h3><b>${n0(r.score)}</b></div>${runBody(r)}`; };
+    el.querySelectorAll('.runrow').forEach(b => { b.onclick = () => {
+      endHistSel = +b.dataset.i;
+      el.querySelectorAll('.runrow').forEach(o => { const on = o === b; o.classList.toggle('on', on); o.setAttribute('aria-pressed', String(on)); });
+      draw();
+      if (matchMedia('(max-width:820px)').matches) $('#esDetail').scrollIntoView({ behavior: fxCalm() ? 'auto' : 'smooth', block: 'start' });
+    }; });
+    draw();
+  } else {
+    const x = fullStats(), s = achStats(), ws = loadJSON(WSTATS_KEY, {}), w = ws.w && typeof ws.w === 'object' ? ws.w : {};
+    const scores = runs.map(r => +r.score || 0), last10 = scores.slice(0, 10);
+    const avg = last10.length ? Math.round(last10.reduce((a, b) => a + b, 0) / last10.length) : 0;
+    const rank = c.rec ? 1 + scores.filter(v => v > c.score).length : 0;
+    let topW = null, oftW = null, longW = '';
+    for (const [k, e] of Object.entries(w)) { if (!Array.isArray(e)) continue;
+      if (!topW || +e[2] > +topW[1][2]) topW = [k, e];
+      if (!oftW || +e[0] > +oftW[1][0]) oftW = [k, e];
+      if (k.length > longW.length) longW = k; }
+    el.innerHTML = `${rank ? `<div class="pg-card es-rank"><span class="tc-k">This run</span><b>#${rank}</b><span>of your last ${runs.length} game${runs.length === 1 ? '' : 's'}${c.score >= x.best && c.score > 0 ? ' · your best ever' : ''}</span></div>` : ''}
+      <div class="hp-stats">
+        ${rsTile('Best score', x.best ? x.best.toLocaleString() : '–')}
+        ${rsTile('Average', avg ? avg.toLocaleString() : '–', last10.length ? `last ${last10.length} games` : '')}
+        ${rsTile('Games', (+ws.runs || runs.length).toLocaleString())}
+        ${rsTile('Words scored', s.words.toLocaleString())}
+        ${rsTile('Daily streak', curStreak(), `best ${x.maxStreak}`)}
+      </div>
+      <div class="pg-card hp-chart"><h3 class="rs-h">Recent scores</h3>${trendSVG(runs)}</div>
+      <div class="rs-grid">
+        ${rsTile('Best word', topW ? UP(topW[0]) : '–', topW ? `+${n0(topW[1][2])} in one go` : '')}
+        ${rsTile('Most played', oftW ? UP(oftW[0]) : '–', oftW ? `scored ${n0(oftW[1][0])} times` : '')}
+        ${rsTile('Longest ever', longW ? UP(longW) : '–', longW ? `${longW.length} letters` : '')}
+        ${rsTile('Battle wins', x.wins, x.bigWins ? `${x.bigWins} in Battles of 8` : '')}
+      </div>`;
+  }
+}
+// Preview only: fills the board and ends the game, to try the finale quickly.
+esDev.onclick = () => {
+  if (!game || !game.me || game.over) return;
+  const B = game.me, L = 'etaoinshrdlucmwfgypbk';
+  for (let y = 0; y < ROWS; y++) for (let x = 0; x < COLS; x++)
+    if (!B.grid[y][x] && Math.random() < (y < 2 ? 0.5 : 0.93)) B.grid[y][x] = { ch: L[Math.floor(Math.random() * L.length)], k: 'D', id: B.uid++ };
+  B.cur = null;
+  if (!B.placed) B.placed = 1;
+  paused = false;
+  render(performance.now());
+  if (versusMode()) { B.phase = 'over'; finishBattle('skip'); } else B.end();
+};
 
 /* ================= Online (live room) ================= */
 /* ================= Self-hosted rooms (Supabase Realtime) =================
@@ -5150,7 +5501,7 @@ function onNetStart(msg) {
   net.match = { seed, ids: d.ids.filter(x => typeof x === 'string').slice(0, 12), host: typeof d.host === 'string' ? d.host : '', bots };
   net.botStates = new Map();
   const nv = VARIANTS[d.variant] ? d.variant : 'classic';
-  game = { mode: 'online', variant: nv, me: null, bots: [], over: false, outAt: {}, finale: false };
+  hideEnd(); game = { mode: 'online', variant: nv, me: null, bots: [], over: false, outAt: {}, finale: false };
   game.wotd = pickWotd(hashStr('wordfall-wotd:' + seed));
   game.me = new Board({ seed, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: { ...myHooks(), changed: () => { updatePanels(); netPush(); } }, hazards: 'versus', variant: nv, wotd: game.wotd });
   if (isHost()) game.bots = bots.map((b, i) => makeBot(b.id, b.name, b.level, seed ^ Math.imul(0x85ebca6b, i + 1)));
@@ -5253,6 +5604,8 @@ document.addEventListener('keydown', e => {
   const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
   if (openOv && modal.hidden) { if (k === 'Escape') { e.preventDefault(); closeOv(); } return; }
   if (k === 'm' && !e.repeat) { toggleMusic(); return; }
+  if (endFxOn) { e.preventDefault(); return; }
+  if (!endEl.hidden && modal.hidden) { if (k === 'Escape') { e.preventDefault(); showMenu(false); } return; }
   if (!modal.hidden) {
     if (titleShown()) { if (k === 'Escape') closeModal(); return; }
     if ((k === 'p' || k === 'Escape') && paused && game && !game.over) { e.preventDefault(); resumeGame(); }
@@ -5663,6 +6016,7 @@ function frame(t) {
   }
   musicTick();
   render(t);
+  if (END_PREVIEW) esDev.hidden = !(game && game.me && !game.over && !game.tut && game.me.phase !== 'over' && !game.counting && titleEl.hidden && endEl.hidden && modal.hidden);
   requestAnimationFrame(frame);
 }
 
