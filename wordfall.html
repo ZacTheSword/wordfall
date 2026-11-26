@@ -5582,7 +5582,8 @@ function ensureAudio() {
   try {
     const c = new AC();
     music.ctx = c;
-    const master = c.createGain(); master.gain.value = 0.5; master.connect(c.destination);
+    const master = c.createGain(); master.gain.value = audioAway() ? 0.0001 : 0.5; master.connect(c.destination);
+    music.master = master;
     music.mus = c.createGain(); music.mus.gain.value = volGain(settings.music); music.mus.connect(master);
     music.fx = c.createGain(); music.fx.gain.value = volGain(settings.sfx); music.fx.connect(master);
     music.out = music.mus;
@@ -5591,6 +5592,27 @@ function ensureAudio() {
     music.noise = buf;
   } catch { music.ctx = null; }
 }
+// All sound goes quiet while the tab is hidden or you've clicked off the page (another
+// window, or outside the game's frame), then comes back when you return: a quick fade, then
+// the audio engine is suspended so nothing rings on in the background.
+function audioAway() { return document.hidden || !document.hasFocus(); }
+function syncAudioFocus() {
+  const c = music.ctx, m = music.master;
+  if (!c || !m) return;
+  const away = audioAway(), now = c.currentTime, g = m.gain;
+  clearTimeout(music.susT);
+  g.cancelScheduledValues(now); g.setValueAtTime(Math.max(0.0001, g.value), now);
+  if (away) {
+    g.linearRampToValueAtTime(0.0001, now + 0.08);
+    music.susT = setTimeout(() => { if (audioAway() && c.state === 'running') c.suspend().catch(() => {}); }, 150);
+  } else {
+    if (c.state === 'suspended') c.resume().catch(() => {});
+    g.linearRampToValueAtTime(0.5, now + 0.3);
+  }
+}
+addEventListener('blur', syncAudioFocus);
+addEventListener('focus', syncAudioFocus);
+document.addEventListener('visibilitychange', syncAudioFocus);
 addEventListener('pointerdown', ensureAudio, true);
 addEventListener('keydown', ensureAudio, true);
 function tone(type, freq, t, dur, vol) {
@@ -5877,7 +5899,7 @@ function musicTick() {
       b.gain.setValueAtTime(0.0001, now + 0.9); b.gain.linearRampToValueAtTime(1, now + 4);
     }
   }
-  const want = music.on && !!music.ctx && music.ctx.state === 'running' && !document.hidden && (titleShown() || live || res);
+  const want = music.on && !!music.ctx && music.ctx.state === 'running' && !audioAway() && (titleShown() || live || res);
   if (want && !music.playing) { music.playing = true; music.nextT = music.ctx.currentTime + 0.05; music.timer = setInterval(schedule, 40); }
   else if (!want && music.playing) { music.playing = false; clearInterval(music.timer); }
   const fin = !titleShown() && !!game && !!game.finale && !game.over;
