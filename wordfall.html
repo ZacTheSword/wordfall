@@ -749,14 +749,61 @@ div.hub-t{cursor:default}
 .ov-msg{margin:-8px 0 0;min-height:1.2em;font-size:13px;color:var(--muted);text-align:center}
 .ov-back{justify-self:start;padding:10px 22px 10px 16px;border-radius:999px;border:2px solid var(--line2);background:var(--well);color:var(--fg);font:400 16px/1 var(--f-display);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
 .ov-back:hover,.ov-back:focus-visible{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);outline:none}
+/* Rot & Thaw frame around the play box: snow and icicles above, rot creeping up from below,
+   a frost sigil in the top corners and candles among the mushrooms at the bottom. */
+.play-card{position:relative}
+.rf{position:absolute;inset:-14px;pointer-events:none;z-index:3;display:none}
+.play-card.rotframe .rf{display:block}
+.play-card.rotframe{border-color:#9fd4f0;box-shadow:0 0 0 2px #160c1f,0 0 0 4px #4a2a52,0 0 40px -6px #7fd6ff,inset 0 -60px 60px -50px #7a3a7c99,inset 0 40px 50px -40px #bfe9ff44,0 24px 60px -24px #000}
+.rf-top{position:absolute;left:30px;right:30px;top:0;height:34px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 34'%3E%3Cg stroke='%23160c1f' stroke-width='1.4' stroke-linejoin='round' fill='%23bfe9ff'%3E %3Cpath d='M6 9 L10.5 9 L8.2 26 Z'/%3E%3Cpath d='M15 10 L21.5 10 L18.2 33 Z'/%3E%3Cpath d='M26 9 L29.5 9 L27.7 20 Z'/%3E%3Cpath d='M35 10 L41.5 10 L38.2 29 Z'/%3E%3Cpath d='M47 9 L50.5 9 L48.7 18 Z'/%3E%3Cpath d='M55 9 L60.5 9 L57.7 25 Z'/%3E%3C/g%3E %3Cg stroke='%23fff' stroke-width='1' stroke-linecap='round' opacity='.85'%3E%3Cpath d='M17.6 13 L18.1 25'/%3E%3Cpath d='M37.6 13 L38.1 22'/%3E%3Cpath d='M57 12 L57.5 19'/%3E%3Cpath d='M7.8 12 L8.1 19'/%3E%3C/g%3E %3Cpath d='M0 0H64V8C58 12 52 8.5 46 10.5C40 12.5 34 8.5 28 10.5C22 12.5 16 8.5 10 10.5C6 11.8 3 10 0 9Z' fill='%23f4f9ff' stroke='%23160c1f' stroke-width='1.6'/%3E %3Cg fill='%23dbe9f7'%3E%3Ccircle cx='12' cy='6' r='1.4'/%3E%3Ccircle cx='40' cy='5' r='1.2'/%3E%3Ccircle cx='54' cy='6.5' r='1'/%3E%3C/g%3E%3C/svg%3E") repeat-x;background-size:64px 34px;animation:rfglint 4s ease-in-out infinite}
+.rf-bot{position:absolute;left:34px;right:34px;bottom:-2px;height:40px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 30'%3E%3Cg stroke='%23160c1f' stroke-width='1.5' stroke-linejoin='round'%3E %3Cpath d='M5 19C2 13 9 10 6 4' fill='none' stroke='%233b2140' stroke-width='2.4'/%3E%3Cpath d='M5.5 11l-3-1M6.4 7l3-1.4' fill='none' stroke='%233b2140' stroke-width='1.4'/%3E %3Cpath d='M0 30V18C8 14 14 20 22 16C30 12 36 19 46 15C54 12 62 18 72 16V30Z' fill='%233b2140'/%3E %3Ccircle cx='11' cy='19' r='4' fill='%237a3a7c'/%3E%3Ccircle cx='40' cy='17' r='3.4' fill='%237a3a7c'/%3E%3Ccircle cx='58' cy='20' r='2.8' fill='%237a3a7c'/%3E %3Crect x='26' y='9' width='3.4' height='8' rx='1' fill='%23e9dcc0'/%3E%3Cpath d='M20.5 11C20.5 4.5 35 4.5 35 11Z' fill='%23c2304a'/%3E %3Crect x='63.3' y='12' width='2.2' height='5' rx='.8' fill='%23e9dcc0'/%3E%3Cpath d='M60 13.5C60 9.5 68.8 9.5 68.8 13.5Z' fill='%23c2304a'/%3E%3C/g%3E %3Cg fill='%23b56db0'%3E%3Ccircle cx='10' cy='18' r='1'/%3E%3Ccircle cx='12.6' cy='20.4' r='.8'/%3E%3Ccircle cx='41' cy='16.4' r='.9'/%3E%3C/g%3E %3Cg fill='%23f4e8d0'%3E%3Ccircle cx='24.5' cy='8.3' r='1.1'/%3E%3Ccircle cx='29.5' cy='7.4' r='1'/%3E%3Ccircle cx='32.2' cy='9.4' r='.8'/%3E%3Ccircle cx='63.6' cy='11.6' r='.7'/%3E%3C/g%3E %3Cg fill='%238fbf4a' stroke='%23160c1f' stroke-width='.9'%3E%3Cpath d='M47.5 15.5c.2 3 1.6 5 1.2 6.6-.4 1.6-2.4 1.4-2.3-.2.1-1.6-.4-3.8-.3-6.2z'/%3E%3Ccircle cx='17' cy='24' r='1.3'/%3E%3C/g%3E%3C/svg%3E") repeat-x;background-size:96px 40px}
+.rf-l,.rf-r{position:absolute;bottom:26px;width:16px;height:52%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 40'%3E%3Cpath d='M8 40C2 32 14 28 8 20C2 12 14 8 8 0' fill='none' stroke='%23160c1f' stroke-width='4.4'/%3E%3Cpath d='M8 40C2 32 14 28 8 20C2 12 14 8 8 0' fill='none' stroke='%235a3060' stroke-width='2.2'/%3E %3Cg fill='%235a3060' stroke='%23160c1f' stroke-width='1'%3E%3Cpath d='M5.6 31l-4.4-1.2 3.6-2.4z'/%3E%3Cpath d='M10.8 25l4.4-1 -3.2 3z'/%3E%3Cpath d='M5.6 11l-4.4-1.2 3.6-2.4z'/%3E%3C/g%3E%3Ccircle cx='11' cy='14' r='2' fill='%237a3a7c' stroke='%23160c1f' stroke-width='1'/%3E%3C/svg%3E") repeat-y;background-size:16px 40px;-webkit-mask:linear-gradient(to top,#000 55%,transparent);mask:linear-gradient(to top,#000 55%,transparent)}
+.rf-l{left:5px}.rf-r{right:5px;transform:scaleX(-1)}
+.rf-c{position:absolute;width:48px;height:48px;background:no-repeat center/contain}
+.rf-c.tl,.rf-c.tr{top:-8px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56'%3E%3Cg stroke-linecap='round'%3E %3Cg stroke='%23160c1f' stroke-width='5.5'%3E%3Cpath d='M28 3V53M3 28H53M10.3 10.3L45.7 45.7M45.7 10.3L10.3 45.7'/%3E%3C/g%3E %3Cg stroke='%23bfe9ff' stroke-width='2.6'%3E%3Cpath d='M28 3V53M3 28H53M10.3 10.3L45.7 45.7M45.7 10.3L10.3 45.7'/%3E%3Cpath d='M23 7l5 4 5-4M23 49l5-4 5 4M7 23l4 5-4 5M49 23l-4 5 4 5' fill='none' stroke-width='2'/%3E%3C/g%3E%3C/g%3E %3Ccircle cx='28' cy='28' r='14' fill='%232a1630' stroke='%23160c1f' stroke-width='2.6'/%3E%3Ccircle cx='28' cy='28' r='11.6' fill='none' stroke='%239fd4f0' stroke-width='1.2'/%3E %3Cpath d='M17.5 28C21.5 21 34.5 21 38.5 28C34.5 35 21.5 35 17.5 28Z' fill='%23f4f0e6' stroke='%23160c1f' stroke-width='1.6'/%3E%3Ccircle cx='28' cy='28' r='4.6' fill='%23c2304a' stroke='%23160c1f' stroke-width='1'/%3E%3Cellipse cx='28' cy='28' rx='1.4' ry='3.3' fill='%23160c1f'/%3E%3Ccircle cx='29.6' cy='26.4' r='1' fill='%23fff'/%3E%3C/svg%3E");animation:rfspin 30s linear infinite}
+.rf-c.tl{left:-8px}.rf-c.tr{right:-8px;animation-direction:reverse}
+.rf-c.bl,.rf-c.br{bottom:-6px;width:56px;height:56px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56'%3E%3Cg stroke='%23160c1f' stroke-width='1.6' stroke-linejoin='round'%3E %3Cpath d='M0 56V48C8 44 16 49 26 46C36 43 44 48 56 46V56Z' fill='%233b2140'/%3E %3Crect x='15' y='34' width='7' height='14' rx='1.5' fill='%23e9dcc0'/%3E%3Cpath d='M6 37C6 24 31 24 31 37Z' fill='%237a3a7c'/%3E %3Crect x='33' y='20' width='11' height='29' rx='2' fill='%23efe3c8'/%3E%3Cpath d='M33 24h11v4c-2 0-2 5-4 5s-1-4-3-4-2 6-4 6z' fill='%23c2304a'/%3E %3Cpath d='M32.5 21c2-3 9-3 12 0' fill='%23f4f9ff'/%3E%3C/g%3E%3Cpath d='M38.5 20V16' stroke='%23160c1f' stroke-width='1.6' stroke-linecap='round'/%3E %3Cg fill='%238fbf4a'%3E%3Ccircle cx='12' cy='31' r='1.4'/%3E%3Ccircle cx='20' cy='29.5' r='1.2'/%3E%3Ccircle cx='25' cy='32' r='1'/%3E%3C/g%3E%3C/svg%3E")}
+.rf-c.bl{left:-6px}.rf-c.br{right:-6px;transform:scaleX(-1)}
+.rf-fl{position:absolute;bottom:42px;width:7px;height:11px;border-radius:50% 50% 45% 45%/60% 60% 40% 40%;background:radial-gradient(ellipse at 50% 70%,#fff6c8 0 25%,#ffb347 50%,#ff5a1f 80%,transparent 82%);filter:drop-shadow(0 0 5px #ff8a3c);transform-origin:50% 100%;animation:rfflame .5s ease-in-out infinite alternate}
+.rf-fl.l{left:29px}.rf-fl.r{right:29px;animation-delay:-.25s}
+.rf-plq{position:absolute;top:4px;left:50%;transform:translateX(-50%);padding:4px 14px 3px;border-radius:6px;background:#3b2140;border:2px solid #160c1f;box-shadow:0 2px 0 #160c1f,inset 0 -3px 0 #0005;color:#dff4ff;font:400 12px/1 var(--f-display);letter-spacing:.1em;white-space:nowrap;text-shadow:0 1px 0 #160c1f}
+.rf-plq::before{content:'';position:absolute;left:-4px;right:-4px;top:-7px;height:9px;border-radius:8px 8px 4px 4px;background:#f4f9ff;border:2px solid #160c1f;border-bottom:0}
+@keyframes rfglint{0%,100%{filter:brightness(1)}50%{filter:brightness(1.15) saturate(1.1)}}
+@keyframes rfspin{to{rotate:360deg}}
+@keyframes rfflame{from{transform:scale(.85,.9) rotate(-4deg);opacity:.85}to{transform:scale(1.05,1.1) rotate(4deg);opacity:1}}
+.calm .rf *,.calm .rf-c{animation:none!important}
+@media (prefers-reduced-motion:reduce){.rf *{animation:none!important}}
+
+/* Tutorials */
+.coach{position:fixed;right:16px;bottom:16px;z-index:16;width:min(340px,calc(100vw - 32px));display:flex;flex-direction:column;gap:8px;padding:14px 16px 12px;border-radius:14px;background:var(--panel);border:2px solid var(--bank);box-shadow:0 0 30px -10px var(--bank),0 20px 50px -20px #000;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.coach.in{animation:coachin .35s cubic-bezier(.2,.8,.2,1)}
+.coach.ok{border-color:var(--full);box-shadow:0 0 30px -6px var(--full),0 20px 50px -20px #000}
+.coach.ok h3::after{content:' ✓';color:var(--full)}
+.coach h3{margin:0;font:400 18px/1.15 var(--f-display);color:var(--fg)}
+.coach p{margin:0;font-size:13.5px;line-height:1.5;color:#dcd8f6}
+.coach p b{color:var(--fg)}
+.coach kbd{font:600 11px var(--f-mono);background:var(--line);color:var(--fg);padding:1px 6px;border-radius:4px}
+.co-k{font:700 10.5px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--bank)}
+.co-x{position:absolute;top:6px;right:8px;width:28px;height:28px;border:0;border-radius:8px;background:none;color:var(--muted);font-size:18px;cursor:pointer}
+.co-x:hover,.co-x:focus-visible{background:var(--line);color:var(--fg)}
+.co-dots{display:flex;gap:5px}.co-dots i{width:7px;height:7px;border-radius:50%;background:var(--line2)}.co-dots i.d{background:var(--full)}.co-dots i.on{background:var(--bank)}
+.co-btns{display:flex;gap:8px;align-items:center;justify-content:flex-end}
+.co-wait{margin-right:auto;font:600 12px var(--f-mono);color:var(--muted)}
+@keyframes coachin{from{opacity:0;transform:translateY(14px)}}
+@media (max-width:819px),(pointer:coarse) and (max-width:1024px){.coach{top:8px;bottom:auto;right:auto;left:50%;transform:translateX(-50%);padding:10px 12px}.coach.in{animation:none}.coach p{font-size:12.5px}}
+.c.tgt{outline:2px dashed var(--bank);outline-offset:-3px;background:color-mix(in srgb,var(--bank) 16%,var(--empty));animation:tgtpulse 1s ease-in-out infinite alternate}
+@keyframes tgtpulse{to{background:color-mix(in srgb,var(--bank) 32%,var(--empty))}}
+.tut-list{display:flex;flex-direction:column;gap:8px}
+.tut-pick{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;text-align:left;padding:12px 14px;border-radius:12px;border:1px solid var(--line2);background:var(--well);color:var(--fg);cursor:pointer;font:inherit}
+.tut-pick:hover,.tut-pick:focus-visible{border-color:var(--bank);outline:none}
+.tut-pick b{display:block;font-size:15px}.tut-pick small{color:var(--muted);font-size:12.5px;line-height:1.4}
+.tut-ic{font-size:24px;text-align:center}.tut-go{color:var(--muted);font-size:22px}
 .pk-cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;width:100%;align-items:stretch}
-.pk-card{--tear:polygon(0 0,100% 0,100% calc(100% - 12px),94% 100%,87% calc(100% - 8px),79% 100%,71% calc(100% - 11px),62% 100%,53% calc(100% - 7px),45% 100%,36% calc(100% - 11px),27% 100%,19% calc(100% - 6px),10% 100%,4% calc(100% - 10px),0 100%);position:relative;display:flex;flex-direction:column;gap:14px;padding:18px 14px 30px;min-height:400px;border:0;border-radius:10px 10px 0 0;background:var(--trim);color:var(--fg);font:inherit;text-align:center;cursor:pointer;clip-path:var(--tear);--t:2px;--trim:color-mix(in srgb,var(--mc) 62%,#1a1733);isolation:isolate;transition:transform .18s ease,filter .18s ease;animation:pkin .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * 70ms);overflow:hidden}
+.pk-card{position:relative;display:flex;flex-direction:column;gap:14px;padding:18px 14px 30px;min-height:400px;border:0;border-radius:12px;background:linear-gradient(180deg,color-mix(in srgb,var(--mc) 36%,#231f3d),color-mix(in srgb,var(--mc) 14%,#15122a) 78%);color:var(--fg);font:inherit;text-align:center;cursor:pointer;box-shadow:inset 0 0 0 var(--t) var(--trim);--t:2px;--trim:color-mix(in srgb,var(--mc) 62%,#1a1733);isolation:isolate;transition:transform .18s ease,filter .18s ease;animation:pkin .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * 70ms);overflow:hidden}
 @keyframes pkin{from{opacity:0;transform:translateY(40px)}}
 .pk-card:hover,.pk-card:focus-visible{transform:translateY(-8px);filter:brightness(1.15);outline:none}
-/* The card's own background is the trim; the fill sits 2px inside it, torn along the same edge. */
-.pk-card::before{content:'';position:absolute;inset:var(--t) var(--t) calc(var(--t) + 1px);z-index:-1;border-radius:8px 8px 0 0;background:linear-gradient(180deg,color-mix(in srgb,var(--mc) 36%,#231f3d),color-mix(in srgb,var(--mc) 14%,#15122a) 78%);clip-path:polygon(calc(0% - var(--t)) 0,calc(100% + var(--t)) 0,calc(100% + var(--t) * 1) calc(100% - 12px),calc(94% + var(--t) * 0.88) 100%,calc(87% + var(--t) * 0.74) calc(100% - 8px),calc(79% + var(--t) * 0.58) 100%,calc(71% + var(--t) * 0.42) calc(100% - 11px),calc(62% + var(--t) * 0.24) 100%,calc(53% + var(--t) * 0.06) calc(100% - 7px),calc(45% + var(--t) * -0.1) 100%,calc(36% + var(--t) * -0.28) calc(100% - 11px),calc(27% + var(--t) * -0.46) 100%,calc(19% + var(--t) * -0.62) calc(100% - 6px),calc(10% + var(--t) * -0.8) 100%,calc(4% + var(--t) * -0.92) calc(100% - 10px),calc(0% + var(--t) * -1) 100%);transition:box-shadow .18s ease}
 .pk-card:focus-visible{--trim:var(--fg);--t:3px}
-.pk-card.on{--trim:var(--mc);--t:3px}.pk-card.on::before{box-shadow:inset 0 0 40px -10px var(--mc)}
+.pk-card.on{--trim:var(--mc);--t:3px;box-shadow:inset 0 0 0 var(--t) var(--trim),inset 0 0 40px -10px var(--mc)}
 .pk-name{font:400 22px/1.05 var(--f-display);color:var(--mc);text-transform:uppercase;letter-spacing:.03em;text-shadow:0 2px 0 #0008,0 0 16px color-mix(in srgb,var(--mc) 40%,transparent)}
 .pk-art{height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border-radius:8px;border:2px solid color-mix(in srgb,var(--mc) 45%,#0008);background:radial-gradient(circle at 50% 35%,color-mix(in srgb,var(--mc) 45%,transparent),transparent 65%),#0d0b1f;overflow:hidden}
 .pk-art .wotd i{flex:none;width:24px;font-size:12px}
@@ -1372,6 +1419,7 @@ div.hub-t{cursor:default}
     </div>
   </header>
   <section class="t-card play-card" id="playCard" data-m="daily" aria-label="Play">
+    <div class="rf" aria-hidden="true"><i class="rf-top"></i><i class="rf-bot"></i><i class="rf-l"></i><i class="rf-r"></i><i class="rf-c tl"></i><i class="rf-c tr"></i><i class="rf-c bl"></i><i class="rf-c br"></i><i class="rf-fl l"></i><i class="rf-fl r"></i><span class="rf-plq">Rot &amp; Thaw</span></div>
     <div class="pc-stack">
     <div class="pc-pane pd" data-p="daily">
       <div class="pd-info">
@@ -1415,7 +1463,7 @@ div.hub-t{cursor:default}
       <p class="t-vdesc" id="tVdesc"></p>
     </div>
     </div>
-    <button class="btn sm ghostb pc-guide off" id="tGuide" type="button">❄ How Rot &amp; Thaw works</button>
+    <button class="btn sm ghostb pc-guide" id="tGuide" type="button">🎓 Tutorial</button>
     <div class="ps-actions">
       <button class="t-play" id="tPlay" type="button">Play</button>
       <button class="t-switch" id="tSwitch" type="button" aria-haspopup="dialog">▦ Change mode<span>4 ways to play</span></button>
@@ -1780,7 +1828,7 @@ function placements(grid, banked, b0, withSwap) {
 /* ================= One board (you, the bot, or anyone) ================= */
 const FLASH_MS = 560, POP_MS = 240;
 class Board {
-  constructor({ seed, orbKinds, hooks, hazards, variant, wotd }) {
+  constructor({ seed, orbKinds, hooks, hazards, variant, wotd, slow, seasonMs, script }) {
     Object.assign(this, {
       rng: mulberry32(seed), grid: emptyGrid(), queue: [], cur: null, hold: null, canHold: true,
       banked: [], log: [], fx: null, pulse: null,
@@ -1791,6 +1839,8 @@ class Board {
       orbKinds, hooks: hooks || {}, lastEvent: '',
       variant: variant === 'rot' ? 'rot' : 'classic', season: 'summer', keepCur: false,
       wotd: typeof wotd === 'string' ? wotd : null, wotdX: 1, wotdHit: false, lastPowerAt: -1e9, run: newRun(),
+      // Tutorials: slower drops, shorter seasons, and a fixed opening set of letter pairs.
+      slow: +slow > 0 ? +slow : 1, sumMs: seasonMs ? seasonMs[0] : ROT_SUMMER_MS, winMs: seasonMs ? seasonMs[1] : ROT_WINTER_MS, script: Array.isArray(script) ? script.slice() : null,
     });
     this.queue = [this.nextPiece(), this.nextPiece()];
     this.spawn();
@@ -1830,6 +1880,7 @@ class Board {
   }
   nextPiece() {
     this.pieceCount++;
+    if (this.script && this.script.length) return this.makePiece('D', this.script.shift().split(''));
     const type = this.rng() < L_CHANCE ? 'L' : 'D';
     const p = this.makePiece(type, this.genLetters(SHAPES[type].length));
     if (this.pieceCount % ORB_EVERY === 0) {
@@ -1958,7 +2009,7 @@ class Board {
   speedIn() { return this.speedSteps() >= SPEED_MAX_STEPS ? 0 : SPEED_EVERY - (this.placed % SPEED_EVERY); }
   level() { return 1 + Math.floor(this.score / 800); }
   interval() {
-    let base = Math.max(90, 950 / this.speed());
+    let base = Math.max(90, 950 / this.speed()) * this.slow;
     if (this.finale) base = Math.max(80, base * 0.6);
     if (this.variant === 'rot') base = Math.max(80, base * this.seasonPace());
     return this.rush > 0 ? Math.max(70, base * 0.4) : base;
@@ -2095,9 +2146,9 @@ class Board {
   }
   /* ----- Rot & Thaw ----- */
   seasonAt() {
-    const cyc = ROT_SUMMER_MS + ROT_WINTER_MS, t = this.elapsed % cyc;
-    return t < ROT_SUMMER_MS ? { name: 'summer', left: ROT_SUMMER_MS - t, frac: t / ROT_SUMMER_MS }
-      : { name: 'winter', left: cyc - t, frac: (t - ROT_SUMMER_MS) / ROT_WINTER_MS };
+    const S = this.sumMs, cyc = S + this.winMs, t = this.elapsed % cyc;
+    return t < S ? { name: 'summer', left: S - t, frac: t / S }
+      : { name: 'winter', left: cyc - t, frac: (t - S) / this.winMs };
   }
   seasonPace() {
     if (this.season === 'winter') return ROT_WINTER_PACE;
@@ -2449,7 +2500,7 @@ function myHooks() {
       if (k === 'winter') { announce('BLIZZARD', 'Slower drops · every piece has ice · old words snow over in 10s', 'winter'); sfx('winter'); }
       else { announce('THAW', 'Ice words score ×1.5 · snow melts · old words rot', 'thaw'); sfx('thaw'); }
     },
-    iceBreak: cells => { cells.forEach(([x, y]) => shatter(x, y)); sfx('ice'); },
+    iceBreak: cells => { cells.forEach(([x, y]) => shatter(x, y)); sfx('ice'); music.chime = 1; },
     rotted: cells => { cells.forEach(([x, y]) => shatter(x, y, 'rot')); sfx('rot'); },
     melted: cells => { cells.forEach(([x, y]) => shatter(x, y, 'steam')); sfx('melt'); },
     ignited: () => sfx('ignite'),
@@ -2498,6 +2549,7 @@ function deliver(t, k, n, src) {
 }
 function sendAttack(k, n, big) {
   if (!versusMode() || game.over || game.counting) return;
+  if (game.tut) game.tut.sent = (game.tut.sent || 0) + 1;
   const t = leaderFor('me');
   if (!t) return;
   if (big) toast('💥 Big play!', 'f');
@@ -2603,6 +2655,7 @@ function botStep(b, dt) {
 
 function onMeOver() {
   if (!game) return;
+  if (game.tut) { const g = game; setTimeout(() => { if (game === g) tutRescue(); }, 450); return; }
   if (versusMode()) {
     game.outAt.me = performance.now();
     if (game.mode === 'online' && net.r) net.r.presence({ st: 'out', score: game.me.score, b: game.me.encode() }).catch(() => {});
@@ -2712,17 +2765,159 @@ function finishBattle(reason) {
   const me = game.me, meAlive = me.phase !== 'over';
   me.phase = 'over'; me.cur = null;
   for (const b of game.bots) { b.board.phase = 'over'; b.board.cur = null; }
-  const before = unlockedIds();
-  if (me.score > game.best) { game.best = me.score; store.set('wordfall-best', String(me.score)); }
-  submitScore(me.score, false);
+  const before = unlockedIds(), real = !game.tut;
+  if (real && me.score > game.best) { game.best = me.score; store.set('wordfall-best', String(me.score)); }
+  if (real) submitScore(me.score, false);
   const place = ranked.findIndex(p => p.kind === 'me') + 1;
-  recordBattle(place, ranked.length);
+  if (real) recordBattle(place, ranked.length);
   const unlocked = newlyUnlocked(before);
   if (game.mode === 'online' && net.r) net.r.presence({ st: meAlive ? 'done' : 'out', score: me.score, b: me.encode() }).catch(() => {});
   document.body.classList.remove('finale');
-  recordRun(me, { place, players: ranked.length, tl: tlPack(ranked) });
+  if (real) recordRun(me, { place, players: ranked.length, tl: tlPack(ranked) });
   updatePanels();
   setTimeout(() => showBattleEnd(ranked, place, reason, [...unlocked, ...checkIconUnlocks()]), 450);
+}
+
+
+/* ================= Tutorials ================= */
+// Playable, slow-paced walkthroughs. A coach card gives one step at a time; action steps
+// finish when you do the thing, info steps pause the game (except in versus) until Next.
+const pwSum = B => Object.values(B.run.powers || {}).reduce((a, b) => a + (+b || 0), 0);
+const rotted = B => B.grid.some(r => r.some(c => c && (c.rubble || (c.rot || 0) > 0.25)));
+const cells = (y, xs) => xs.map(x => [x, y]);
+const TUTS = {
+  basics: {
+    name: 'Basics', icon: '🔤', desc: 'Move, drop, bank words across and cash them in down.',
+    variant: 'classic', script: ['we', 'bs', 'or', 'es', 'ca', 'ts'],
+    steps: [
+      { t: 'Welcome to Wordfall', b: 'Letters fall in pairs. Land them to spell words on the board. Everything runs slowly here, and you can’t lose: if the board fills up, it just clears.' },
+      { t: 'Move and drop', b: 'Move <b>WE</b> to the bottom-left corner with <kbd>←</kbd> <kbd>→</kbd>, then drop it with <kbd>Space</kbd>. On a phone, swipe and tap Drop.', tgt: cells(11, [0, 1]), done: (B, s0) => B.placed > s0.placed },
+      { t: 'Spell a word across', b: 'Put <b>BS</b> right next to it to spell <b>WEBS</b>. Real words of 3–5 letters across turn <b>gold</b>: they’re banked.', tgt: cells(11, [2, 3]), done: (B, s0) => B.placed > s0.placed },
+      { t: 'Bank another', b: 'Now <b>OR</b>, then <b>ES</b>, on the row above: <b>ORES</b>.', tgt: cells(10, [0, 1, 2, 3]), done: (B, s0) => B.placed >= s0.placed + 2 },
+      { t: 'Cash in down', b: 'Finish with <b>CA</b> and <b>TS</b> on top: <b>CATS</b>. Then read down: <b>COW</b> and <b>ARE</b> cross all three gold words. Words down cash in the gold words they cross, multiplied by how many.', tgt: cells(9, [0, 1, 2, 3]), done: (B, s0) => B.placed >= s0.placed + 2 },
+      { t: 'That’s the core loop', b: 'Bank words across, then cash them in with a word down. A full row of six letters scores <b>600</b> and clears. Pieces are random from here on.' },
+      { t: 'Glowing letters', b: 'Every fifth piece has a glowing letter. Use it in a word to earn its power.', done: B => !!B.power },
+      { t: 'Use your power', b: 'Press <kbd>F</kbd> (or tap the power) to use it. <span class="orbkey o-clear">⌫</span> Clear wipes your bottom row. <span class="orbkey o-scramble">🔀</span> Scramble reshuffles where your piece will land.', done: (B, s0) => pwSum(B) > s0.pw || (!B.power && !s0.power) },
+      { t: 'It speeds up', b: 'Every 10 blocks the game gets faster and words score more. Hazards like stones drop in too: score any word while they wait in the meter to block them. In a real game, a full stack ends your run.' },
+      { t: 'You’re ready', b: 'Try <b>Today’s drop</b> for a daily board everyone shares, or <b>Practice</b> at your own pace.', end: true },
+    ],
+  },
+  rot: {
+    name: 'Rot & Thaw', icon: '❄', desc: 'Seasons, rot, ice and Ignite, with 30-second seasons.',
+    variant: 'rot', seasons: [30000, 30000], script: ['we', 'bs'],
+    steps: [
+      { t: 'Rot & Thaw', b: 'The seasons turn: summer, then a blizzard, then summer again. Here each lasts 30 seconds and drops are slow.' },
+      { t: 'Bank a word', b: 'Drop <b>WE</b> and <b>BS</b> along the bottom to bank <b>WEBS</b>.', tgt: cells(11, [0, 1, 2, 3]), done: (B, s0) => B.placed >= s0.placed + 2 },
+      { t: 'Summer rots', b: 'In summer, gold words slowly <b>rot</b> into rubble, fastest next to glowing letters. Keep playing and watch the brown creep in. Cash words in before they rot.', done: B => rotted(B) || B.season === 'winter' },
+      { t: 'Here comes winter', b: 'Keep going until the blizzard hits. The music turns and the board frosts over.', done: B => B.season === 'winter' },
+      { t: 'Ice and snow', b: 'Blizzards slow the drops and put an <b>ice letter</b> in every piece. Ice holds one letter: land a second on it and it shatters. Letters you leave alone snow over after 10 seconds. Ice that survives scores <b>×1.5</b> at the thaw.' },
+      { t: 'Hold out', b: 'Use the ice letters in words and survive until the thaw.', done: B => B.season === 'summer' },
+      { t: 'Ignite', b: 'The <span class="orbkey o-ignite">🔥</span> glowing letter is the only power here. Score a word with it, then press <kbd>F</kbd>: your next block burns away rot it touches, melts ice, and its words score <b>×3</b>.', done: (B, s0) => pwSum(B) > s0.pw },
+      { t: 'You’ve got it', b: 'In a real game each season lasts 40 seconds and summer speeds up as it goes. Pick <b>❄ Rot &amp; Thaw</b> under Game mode for Practice, Vs bots or Online.', end: true },
+    ],
+  },
+  bot: {
+    name: 'Versus a bot', icon: '🤖', desc: 'A slow duel against an easy bot: attacks, blocking and the clock.',
+    variant: 'classic', versus: true, script: ['ca', 'ts'],
+    steps: [
+      { t: 'Your rival', b: 'The board on the right is your rival’s. Whoever has the <b>highest score</b> when the 3 minutes are up wins. Topping out ends your run in a real match; here your board just clears.' },
+      { t: 'Take the lead', b: 'Drop <b>CA</b> and <b>TS</b> along the bottom to bank <b>CATS</b>, or score any word.', tgt: cells(11, [0, 1, 2, 3]), done: (B, s0) => B.score > s0.score || B.banked.length > s0.banked },
+      { t: 'Attack letters', b: 'Glowing letters in versus are attacks: <span class="orbkey o-stretch">⇲</span> a stretched piece, <span class="orbkey o-stones">▦</span> stones, <span class="orbkey o-speed">⚡</span> fast drops. Score a word with one and it fires at the leader.', done: (B, s0) => (game.tut.sent || 0) > s0.sent },
+      { t: 'Incoming!', b: 'Your rival just sent you <b>stones</b>. They wait in the red meter beside your board for 3 seconds: score any word to block them.', enter: () => { const b = game.bots[0]; if (b) deliver({ kind: 'me' }, 'stones', 2, { id: b.id, name: b.name, kind: 'bot' }); }, done: (B, s0, ms) => ms > 4000 && !B.incoming.length },
+      { t: 'Big plays fight back', b: 'A full row, or a word down through 3 or more gold words, sends stones to the leader. In a Battle of 8, every two players knocked out raises a row of stone under everyone left.' },
+      { t: 'Finish the duel', b: 'Play out the match or leave whenever you like. Nothing in a tutorial counts toward your stats.', end: true },
+    ],
+  },
+};
+const coachEl = document.createElement('aside');
+coachEl.className = 'coach'; coachEl.hidden = true; coachEl.setAttribute('aria-live', 'polite');
+document.body.appendChild(coachEl);
+function startTutorial(id) {
+  const T = TUTS[id]; if (!T) return;
+  closeModal();
+  playTransition('Tutorial', () => startTutorialNow(id));
+}
+function startTutorialNow(id) {
+  const T = TUTS[id];
+  bankLiveGame();
+  const seed = (Math.random() * 2 ** 32) >>> 0, v = T.variant;
+  if (T.versus) {
+    game = { mode: 'bot', royale: false, variant: v, me: null, bots: [], over: false, outAt: {}, finale: false };
+    game.wotd = pickWotd((Math.random() * 2 ** 32) >>> 0);
+    game.me = new Board({ seed, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: myHooks(), hazards: false, variant: v, wotd: game.wotd, slow: 1.6, script: T.script });
+    const b = makeBot('bot-0', 'Bolt', 'easy', seed ^ 0x9e3779b9);
+    b.board.slow = 1.8;
+    game.bots.push(b);
+  } else {
+    game = { mode: 'practice', day: todayStr(), variant: v, me: null, bots: [], over: false, outAt: {} };
+    game.wotd = pickWotd((Math.random() * 2 ** 32) >>> 0);
+    game.me = new Board({ seed, orbKinds: ['clear', 'scramble'], hooks: myHooks(), hazards: false, variant: v, wotd: game.wotd, slow: 1.7, seasonMs: T.seasons, script: T.script });
+  }
+  game.best = +(store.get('wordfall-best') || 0);
+  game.tut = { id, i: -1, tgt: null, sent: 0 };
+  paused = false;
+  setLayout();
+  if (T.versus) buildOpps();
+  updatePanels();
+  closeModal(); hideTitle();
+  if (T.versus) countdown();
+  tutGo(0);
+}
+function tutSnap(B) { return { placed: B.placed, score: B.score, banked: B.banked.length, pw: pwSum(B), power: B.power, sent: game.tut.sent || 0 }; }
+function tutGo(i) {
+  const g = game, tu = g && g.tut; if (!tu) return;
+  const T = TUTS[tu.id], st = T.steps[i];
+  if (!st) { tutEnd(); return; }
+  tu.i = i; tu.s0 = tutSnap(g.me); tu.at = performance.now(); tu.ok = false;
+  tu.tgt = st.tgt ? new Set(st.tgt.map(([x, y]) => x + ',' + y)) : null;
+  if (st.enter) st.enter();
+  const info = !st.done;
+  if (info && !T.versus && !st.end) paused = true;
+  const dots = T.steps.map((_, k) => `<i class="${k < i ? 'd' : k === i ? 'on' : ''}"></i>`).join('');
+  coachEl.innerHTML = `<button class="co-x" type="button" aria-label="Leave the tutorial">×</button>
+    <span class="co-k">${T.icon} Tutorial · ${esc(T.name)}</span><h3>${esc(st.t)}</h3><p>${st.b}</p>
+    <div class="co-dots" aria-hidden="true">${dots}</div>
+    <div class="co-btns">${st.end ? '<button class="btn sm" type="button" data-a="menu">Back to menu</button><button class="btn sm ghostb" type="button" data-a="hide">Keep playing</button>'
+      : info ? '<button class="btn sm" type="button" data-a="next">Next</button>' : '<span class="co-wait">Your move…</span><button class="btn sm ghostb" type="button" data-a="next">Skip</button>'}</div>`;
+  coachEl.hidden = false;
+  coachEl.classList.remove('ok'); void coachEl.offsetWidth; coachEl.classList.add('in');
+  coachEl.querySelector('.co-x').onclick = () => { tutEnd(); showMenu(false); };
+  coachEl.querySelectorAll('[data-a]').forEach(b => { b.onclick = () => {
+    const a = b.dataset.a;
+    if (a === 'menu') { tutEnd(); showMenu(false); }
+    else if (a === 'hide') { coachEl.hidden = true; tu.tgt = null; paused = false; }
+    else { paused = false; tutGo(i + 1); }
+  }; });
+  if (info) coachEl.querySelector('[data-a]').focus({ preventScroll: true });
+}
+function tutTick() {
+  const tu = game.tut, st = tu && TUTS[tu.id].steps[tu.i];
+  if (!st || !st.done || tu.ok || coachEl.hidden) return;
+  if (st.done(game.me, tu.s0, performance.now() - tu.at)) {
+    tu.ok = true; tu.tgt = null;
+    coachEl.classList.add('ok');
+    sfx('power');
+    const g = game, i = tu.i;
+    setTimeout(() => { if (game === g && g.tut && g.tut.i === i) tutGo(i + 1); }, 800);
+  }
+}
+function tutEnd() { coachEl.hidden = true; if (game && game.tut) { game.tut.tgt = null; game.tut.i = 99; } paused = false; }
+// Topping out in a tutorial: clear the board and carry on.
+function tutRescue() {
+  const B = game && game.me; if (!B || !game.tut) return;
+  B.grid = emptyGrid(); B.banked = []; B.incoming = []; B.cur = null; B.phase = 'play'; B.lowY = -99;
+  B.spawn();
+  toast('Board cleared · keep going', 'o');
+  updatePanels();
+}
+function showTutPicker() {
+  openModal(`<h2>🎓 Tutorials</h2><p>Short, slow games that teach as you play. Nothing here counts toward your stats.</p>
+    <div class="tut-list">${Object.entries(TUTS).map(([id, T]) => `<button class="tut-pick" type="button" data-t="${id}"><span class="tut-ic" aria-hidden="true">${T.icon}</span><span><b>${esc(T.name)}</b><small>${esc(T.desc)}</small></span><span class="tut-go" aria-hidden="true">›</span></button>`).join('')}</div>
+    <div class="btnrow"><button class="btn ghostb sm" id="tutGuide" type="button">❄ Read the Rot &amp; Thaw guide</button><button class="btn ghostb sm" id="tutClose" type="button">Close</button></div>`);
+  document.querySelectorAll('.tut-pick').forEach(b => { b.onclick = () => startTutorial(b.dataset.t); });
+  $('#tutGuide').onclick = () => showRotGuide();
+  $('#tutClose').onclick = closeModal;
+  document.querySelector('.tut-pick').focus();
 }
 
 /* ================= Powers ================= */
@@ -2812,6 +3007,7 @@ function render(now) {
     const zone = B.power === 'scramble' && B.cur && B.phase === 'play' ? new Set((B.scrambleArea() || []).map(([x, y]) => x + ',' + y)) : null;
     if (B.scrFx && now > B.scrFx.until) B.scrFx = null;
     const sfxKeys = B.scrFx ? B.scrFx.keys : null;
+    const tgt = game.tut && game.tut.tgt;
     if (B.cur && (B.phase === 'play' || B.keepCur)) {
       let gy = B.cur.py;
       while (B.fits(B.cur.b, B.cur.px, gy + 1)) gy++;
@@ -2839,6 +3035,7 @@ function render(now) {
         else { cls = `c tile k-${c.k}` + (c.orb ? ` orb o-${c.orb}` : skinCls(c.ch)); if (c.orb) o = ORB[c.orb].icon; }
       } else if (ghost.has(k)) { cls = 'c ghost'; txt = ghost.get(k); }
       if (zone && zone.has(k)) cls += ' zone';
+      if (tgt && tgt.has(k) && !c && !cur.has(k)) cls += ' tgt';
       if (sfxKeys && sfxKeys.has(k) && c && !c.stone) cls += ' scrfx';
       const sn = c && c.snow && !cur.has(k) ? Math.round(c.snow * 20) / 20 : 0;
       if (sn) cls += ' snowy';
@@ -3396,6 +3593,7 @@ function renderHome() {
 }
 setInterval(() => { if (titleShown()) setText($('#tCountdown'), nextDropIn()); }, 20000);
 function showMenu(resumable, then) {
+  if (game && game.tut) tutEnd();
   if (titleEl.hidden && booted) { playTransition(null, () => { showMenuNow(resumable, true); if (then) then(); }, { after: 'intro' }); return; }
   showMenuNow(resumable);
   if (then) then();
@@ -3555,7 +3753,7 @@ function syncVariant() {
   $('#tVariant').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === variant)));
   $('#tVdesc').innerHTML = Object.entries(VDESC).map(([k, t]) => `<span${k === variant ? '' : ' class="off"'}>${t}</span>`).join('');
   const dv = dailyVariant(todayStr());
-  setOff($('#tGuide'), (playTab === 'daily' ? dv : variant) !== 'rot');
+  $('#playCard').classList.toggle('rotframe', (playTab === 'daily' ? dv : variant) === 'rot');
   $('#tDailyVar').textContent = dv === 'classic' ? 'Today: Classic' : `Today: ${VARIANTS[dv].icon} ${VARIANTS[dv].name}`;
   $('#tDailyVar').classList.toggle('on', dv !== 'classic');
 }
@@ -3566,7 +3764,7 @@ $('#tOnlineRow').onclick = () => { setPlayTab('online'); showOnline(); };
 $('#tHow').onclick = () => showHowTo();
 $('#tTut').onclick = () => showTutorial();
 $('#tTutNew').hidden = !!store.get('wordfall-tut');
-$('#tGuide').onclick = () => showRotGuide();
+$('#tGuide').onclick = () => showTutPicker();
 let histPane = 'runs';
 $('#tHistory').onclick = () => openPage('hist');
 
@@ -3784,6 +3982,7 @@ function submitScore(score, isDaily) {
 }
 // A game you leave half-way still counts.
 function bankLiveGame() {
+  if (game && game.tut) return;
   if (game && game.me && !game.over && game.me.score > 0) {
     submitScore(game.me.score, game.mode === 'daily');
     if (game.mode === 'daily') recordDaily();
@@ -5096,10 +5295,11 @@ const MELODY = [
   67, 0, 72, 76, 74, 0, 72, 0,
   71, 0, 74, 0, 79, 77, 76, 74,
 ];
-// Rot & Thaw swaps in a song per season. The two are one theme in two moods: winter plays
-// the summer tune in the minor over the same chord shapes, so each season turns into the next.
-// Each builds in layers as the season goes on (music.sFrac runs 0 → 1), starts fuller from the
-// second cycle on (music.late), and the last bar of a season winds up into the next one.
+// Rot & Thaw has a song per season. The two are one theme in two moods: winter plays the
+// summer tune in the minor over the same chord shapes, on the same bar grid, and they
+// crossfade over 8 seconds around each change while the tempo glides between them.
+// Each builds in layers as the season goes on (music.sFrac runs 0 → 1) and starts fuller
+// from the second cycle on (music.late).
 const SEASON_SONGS = {
   // Blizzard, D minor: Dm – A – B♭ – Gm. A 16th-note string ostinato drives from the first beat
   // (you're holding out, not resting), over a heartbeat, wind and icy bells. Then an ice-crack
@@ -5209,18 +5409,47 @@ function thump(t, vol) {
   g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.2);
   o.connect(g); g.connect(music.out); o.start(t); o.stop(t + 0.24);
 }
+// Each season's song plays on its own bus so the two can crossfade (music.mixW: 0 summer, 1 winter).
+function musicBus(name) {
+  const c = music.ctx; let b = music[name];
+  if (!b || b.context !== c) { b = c.createGain(); b.gain.value = 0; b.connect(music.out); music[name] = b; }
+  return b;
+}
+// Sounds that follow the board: crackling while something burns, glassy sparkles that grow
+// with the ice on the board, a run of glass notes when ice shatters, and trembling strings
+// as the stack nears the top.
+function playCues(s, t, spb, root) {
+  const st = s % 16, k = music.key;
+  if (music.burn) {
+    if (Math.random() < 0.7) noiseHit(t + Math.random() * spb * 0.8, 0.012 + Math.random() * 0.02, 0.025 + Math.random() * 0.035, 2500 + Math.random() * 5000, 'highpass');
+    if (Math.random() < 0.18) noiseHit(t, 0.05, 0.05, 300 + Math.random() * 300, 'bandpass');
+  }
+  if (music.ice > 0 && st % 2 === 1 && Math.random() < Math.min(0.75, 0.12 * music.ice)) {
+    const sc = [0, 7, 12, 14, 19, 24];
+    tone('sine', mtof(root + 48 + k + sc[Math.floor(Math.random() * sc.length)]), t, spb * 3, 0.014 + 0.002 * Math.min(8, music.ice));
+  }
+  if (music.chime) {
+    music.chime = 0;
+    [12, 7, 2, 0, -5].forEach((d, i) => { const f = mtof(root + 48 + k + d), at = t + i * spb * 0.5; tone('sine', f, at, spb * 2.5, 0.05); tone('sine', f * 2.76, at, spb * 0.8, 0.01); });
+  }
+  const h = music.stack || 0;
+  if (h >= 7) { const p = Math.min(1, (h - 6) / 5); stab('sawtooth', mtof(root + 36 + k + (st % 2)), t, spb * 0.9, 0.012 + 0.03 * p, 1400 + 2200 * p); }
+}
 function playStep(s, t, spb) {
   if (music.season) {
-    // A new season lands on a downbeat with a crash; the old one sweeps into it.
-    if (music.fresh) { music.fresh = false; crash(t, 0.1); thump(t, 0.6); }
-    if (!music.rose && music.sLeft > 0.2 && music.sLeft < 2.2) {
-      music.rose = true;
-      const w = music.season === 'winter';
-      riser(t, music.sLeft, w ? 0.09 : 0.07, w ? 350 : 4500, w ? 7000 : 260);
-    }
+    const base = music.out, xw = music.mixW || 0, gS = Math.cos(xw * Math.PI / 2), gW = Math.sin(xw * Math.PI / 2);
+    const bS = musicBus('busS'), bW = musicBus('busW');
+    bS.gain.setTargetAtTime(gS, t, 0.12); bW.gain.setTargetAtTime(gW, t, 0.12);
+    try {
+      if (gS > 0.02) { music.out = bS; music.sFrac = music.fS; music.sLeft = music.leftS; music.late = music.lateS; playSummer(s, t, spb); }
+      if (gW > 0.02) { music.out = bW; music.sFrac = music.fW; music.sLeft = music.leftW; music.late = music.lateW; playWinter(s, t, spb); }
+    } finally { music.out = base; }
+    // A soft shimmer swells into the thaw.
+    if (!music.rose && music.season === 'winter' && music.leftW > 0.3 && music.leftW < 3.2) { music.rose = true; riser(t, music.leftW, 0.035, 900, 6000); }
+    playCues(s, t, spb, 38);
+    return;
   }
-  if (music.season === 'winter') return playWinter(s, t, spb);
-  if (music.season === 'summer') return playSummer(s, t, spb);
+  playCues(s, t, spb, 45);
   const st = s % 16, ch = CHORDS[Math.floor((s % 64) / 16)], k = music.key;
   if (music.danger && (st === 0 || st === 3)) thump(t, st === 0 ? 0.7 : 0.45);
   if (st === 0 || st === 8 || st === 10) kick(t);
@@ -5266,17 +5495,16 @@ function playWinter(s, t, spb) {
     tone('sine', fq, t, spb * 5, 0.058); tone('sine', fq * 2.76, t, spb * 1.4, 0.011);
     if (late) tone('triangle', mtof(n + k), t, spb * 1.6, 0.03);
   }
-  // Holding out for the thaw: a snare roll and climbing toms through the last bar.
-  if (last) { const p = 1 - music.sLeft / (16 * spb); noiseHit(t, 0.06, 0.03 + 0.13 * p, 1800, 'bandpass'); if (st % 2 === 0) tom(t, 110 + 100 * p, 0.1 + 0.1 * p); }
+  // Holding out for the thaw: a soft roll and climbing toms through the last bar.
+  if (last) { const p = 1 - music.sLeft / (16 * spb); noiseHit(t, 0.05, 0.015 + 0.05 * p, 1800, 'bandpass'); if (st % 4 === 0) tom(t, 110 + 80 * p, 0.05 + 0.06 * p); }
 }
 function playSummer(s, t, spb) {
   const S = SEASON_SONGS.summer, st = s % 16, bar = Math.floor((s % 64) / 16), ch = S.chords[bar], k = music.key, late = music.late;
   const f = music.sFrac || 0, lvl = late ? (f < 0.3 ? 1 : 2) : f < 0.12 ? 0 : f < 0.45 ? 1 : 2;
-  const r = ch.r + k, last = music.sLeft > 0 && music.sLeft < 16 * spb;
+  const r = ch.r + k;
   if (music.danger && (st === 0 || st === 3)) thump(t, st === 0 ? 0.7 : 0.45);
-  // Four on the floor, with an extra push into the next bar once it's hot. It drops out for
-  // the last beat before the blizzard so the crash lands.
-  if ((st % 4 === 0 || (lvl === 2 && st === 14)) && !(last && st >= 12)) kick(t);
+  // Four on the floor, with an extra push into the next bar once it's hot.
+  if (st % 4 === 0 || (lvl === 2 && st === 14)) kick(t);
   // Claps on 2 and 4, and a snare fill at the end of each 4-bar phrase.
   if (lvl >= 1 && (st === 4 || st === 12)) { noiseHit(t, 0.12, 0.16, 1900, 'bandpass'); noiseHit(t, 0.05, 0.06, 5000, 'highpass'); }
   if (lvl >= 1 && bar === 3 && st >= 12) noiseHit(t, 0.07, 0.06 + 0.02 * (st - 12), 2200, 'bandpass');
@@ -5316,16 +5544,33 @@ function musicTick() {
   else if (!want && music.playing) { music.playing = false; clearInterval(music.timer); }
   const fin = !titleShown() && !!game && !!game.finale && !game.over;
   music.key = fin ? 3 : 0;
-  const was = music.season;
-  music.season = !titleShown() && game && game.variant === 'rot' && !game.over && game.me.phase !== 'over' ? game.me.season : null;
-  // A new season restarts the song on bar 1 (with a crash, unless the game just began).
-  if (music.season !== was) { music.rose = false; if (music.season) { music.step = 0; music.fresh = !!was; } }
-  const sa = music.season ? game.me.seasonAt() : null, match = !!sa && sa.name === music.season;
-  music.sFrac = match ? sa.frac : music.season ? 1 : 0;
-  music.sLeft = match ? sa.left / 1000 : 0;
-  music.late = !!music.season && (fin || game.me.elapsed >= ROT_SUMMER_MS + ROT_WINTER_MS);
+  const was = music.season, on = !titleShown() && !!game && game.variant === 'rot' && !game.over && game.me.phase !== 'over';
+  const B = game && game.me, sa = on ? B.seasonAt() : null;
+  music.season = sa ? sa.name : null;
+  if (music.season !== was) music.rose = false;
+  if (sa) {
+    // Crossfade over SX seconds either side of each change; each song knows which season it's
+    // playing (a summer tail, the summer itself, or a preview of the next one).
+    const SX = 4, into = sa.frac * (sa.name === 'summer' ? B.sumMs : B.winMs) / 1000, left = sa.left / 1000;
+    const n = Math.floor(B.elapsed / (B.sumMs + B.winMs)), L = c => fin || c >= 1;
+    if (sa.name === 'summer') {
+      const tail = n > 0 && into < SX;
+      music.mixW = left < SX ? 0.5 * (1 - left / SX) : tail ? 0.5 * (1 - into / SX) : 0;
+      Object.assign(music, { fS: sa.frac, leftS: left, lateS: L(n), fW: tail ? 1 : 0, leftW: 0, lateW: L(tail ? n - 1 : n) });
+    } else {
+      const head = into < SX;
+      music.mixW = head ? 0.5 + 0.5 * into / SX : left < SX ? 0.5 + 0.5 * left / SX : 1;
+      Object.assign(music, { fW: sa.frac, leftW: left, lateW: L(n), fS: head ? 1 : 0, leftS: 0, lateS: head ? L(n) : true });
+    }
+  }
+  // What the board is doing, for the cues.
+  const busy = !titleShown() && !!B && !game.over && B.phase !== 'over';
+  music.burn = busy && (B.burnLeft > 0 || !!(B.cur && B.cur.fire) || B.grid.some(r => r.some(c => c && c.burning)));
+  music.ice = busy ? B.grid.reduce((n, r) => n + r.filter(c => c && c.ice).length, 0) : 0;
+  music.stack = busy ? stackHeight(B.grid) : 0;
   if (music.playing) {
-    const rot = !music.season ? 0 : (music.season === 'winter' ? -6 + Math.round(8 * music.sFrac) : 2 + Math.round(22 * music.sFrac)) + (music.late ? 6 : 0);
+    const TS = 2 + 22 * (music.fS || 0) + (music.lateS ? 6 : 0), TW = -2 + 10 * (music.fW || 0) + (music.lateW ? 6 : 0);
+    const rot = !music.season ? 0 : Math.round(TS * (1 - music.mixW) + TW * music.mixW);
     const want = titleShown() ? 104 : 116 + Math.min(32, Math.round((game.me.speed() - 1) * 8)) + (game.me.rush > 0 ? 14 : 0) + (fin ? 18 : 0) + rot;
     // Glide to the new tempo over about half a second instead of jumping.
     music.bpm += (want - music.bpm) * (Math.abs(want - music.bpm) < 0.5 ? 1 : 0.12);
@@ -5398,6 +5643,7 @@ function frame(t) {
   if (game && !paused && !game.over && !game.counting) {
     if (game.me.phase !== 'over') game.me.tick(dt);
     for (const b of game.bots) if (!game.over && b.board.phase !== 'over') { b.board.tick(dt); botStep(b, dt); }
+    if (game.tut) tutTick(); else if (!coachEl.hidden) coachEl.hidden = true;
     if (versusMode() && !game.over) { tlSample(false); updateRise(); updateFinale(); broadcastBots(false); checkBattleEnd(); }
   }
   musicTick();
@@ -5411,6 +5657,6 @@ showMenu(false);
 requestAnimationFrame(frame);
 
 /* Test hook for automated checks (harmless in play). */
-window.__wordfall = { get game() { return game; }, tlSample, tlHit, playStep, get net() { return net; }, get paused() { return paused; }, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store };
+window.__wordfall = { get game() { return game; }, tlSample, tlHit, playStep, get net() { return net; }, get paused() { return paused; }, set paused(v) { paused = !!v; }, tutTick, startTutorialNow, musicTick, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store };
 })();
 </script>
