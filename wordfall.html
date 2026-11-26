@@ -647,8 +647,9 @@ div.hub-t{cursor:default}
 .pc-stack>.pc-pane[data-p="daily"]{grid-row:1/span 2}
 .pc-stack>#pcMode{grid-column:1;grid-row:2;align-self:end}
 .pc-stack>.off,#tGuide.off,#tVdesc>.off{visibility:hidden}
-#tVdesc{display:grid}
-#tVdesc>span{grid-area:1/1}
+.pm-vdesc{display:grid}
+.pm-vdesc>span{grid-area:1/1}
+.pm-vdesc>.off{visibility:hidden}
 /* Home screens as full-screen sheets */
 .modal.sheet{background:radial-gradient(ellipse at 50% 25%,#2a2456f0,#07061af7 72%);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:ovin .22s ease both;place-items:safe center;padding:28px 16px}
 .modal.sheet .card,.modal.sheet .card.wide,.modal.sheet .card.rguide{max-width:1000px;background:color-mix(in srgb,var(--panel) 45%,transparent);border:1px solid color-mix(in srgb,var(--line2) 60%,transparent);border-radius:18px;padding:28px clamp(16px,3vw,32px);box-shadow:none;animation:sheetin .3s cubic-bezier(.2,.8,.2,1) both}
@@ -819,6 +820,7 @@ div.hub-t{cursor:default}
 .pc-seed.set{box-shadow:0 0 14px -6px var(--mc)}
 .ps-ic{font-size:13px;line-height:1}
 .ps-in{flex:1;min-width:0;height:100%;padding:0;background:none;border:0;outline:0;color:var(--fg);font:600 12.5px var(--f-mono)}
+.ps-in:focus,.ps-in:focus-visible{outline:none}
 .ps-in::placeholder{color:var(--muted);opacity:1}
 .ps-x{flex:none;width:26px;height:26px;padding:0;border:0;border-radius:6px;background:none;color:var(--muted);font:700 17px/1 var(--f-ui);cursor:pointer}
 .ps-x:hover,.ps-x:focus-visible{background:var(--line2);color:var(--fg)}
@@ -849,6 +851,21 @@ div.hub-t{cursor:default}
 .calm .rc .flake{display:none}
 @media (prefers-reduced-motion:reduce){.rc .flake{display:none}}
 @media (max-width:560px){.t-card.play-card.rotframe{--rt:18px}#playCard{padding-bottom:84px}}
+/* Rot & Thaw touches on the card: an ice tile for the Practice icon, a netherrack title, and themed preview blocks. */
+.rotframe [data-p="practice"] .pm-ic{position:relative;font-size:0;border-radius:10px;background:linear-gradient(160deg,#fff 0%,#b8ecff 40%,#5cc8f5 100%);box-shadow:inset 0 -5px 0 #2f9fd6,inset 0 0 0 2px #fff,0 0 0 2px #38c6ff,0 0 16px 1px #5fd4ffcc}
+.rotframe [data-p="practice"] .pm-ic::after{content:'❄';position:absolute;inset:0 0 4px;display:grid;place-items:center;font-size:25px;line-height:1;color:#0a6fa8;text-shadow:0 0 4px #fff}
+.rotframe .pm-var{color:#b8574f;text-shadow:0 2px 0 #5c2320,0 0 18px #a8504a99}
+.rotframe [data-p="practice"] .ha-board i:nth-child(3),.rotframe [data-p="practice"] .ha-board i:nth-child(4){background:linear-gradient(160deg,#fff 0%,#b8ecff 40%,#5cc8f5 100%);color:#063a57;box-shadow:inset 0 -2px 0 #2f9fd6,0 0 0 1.5px #38c6ff,0 0 8px #5fd4ffaa}
+.rotframe [data-p="practice"] .ha-board i:nth-child(14){background:radial-gradient(circle at 28% 30%,#fff 0 14%,transparent 16%),radial-gradient(circle at 70% 62%,#fff 0 12%,transparent 14%),linear-gradient(#fbfdff,#dcecfb);color:#1b1930;box-shadow:inset 0 -2px 0 #b9cde4}
+.rotframe [data-p="practice"] .ha-board i:nth-child(17){background:radial-gradient(circle at 80% 78%,#5e211e 0 15%,transparent 19%),linear-gradient(#a8504a,#83342f);color:#ffeae4;box-shadow:inset 0 -2px 0 var(--nether-edge)}
+.rotframe [data-p="practice"] .ha-board i:nth-child(19){background:radial-gradient(circle at 80% 78%,#3b2a12 0 15%,transparent 19%),linear-gradient(#a8853e,#6e5126);color:#1b1930}
+.rotframe [data-p="practice"] .ha-board i:nth-child(20){background:radial-gradient(circle at 80% 22%,#6b4f22 0 13%,transparent 17%),linear-gradient(#d2ab55,#a8843c)}
+.rotframe [data-p="bot"] .av-t:nth-child(1 of .av-t) rect,.rotframe [data-p="online"] .av-t:nth-child(3 of .av-t) rect{fill:#8a6a34}
+.rotframe [data-p="bot"] .av-t:nth-child(4 of .av-t) rect,.rotframe [data-p="online"] .av-t:nth-child(1 of .av-t) rect{fill:#a8504a}
+.rotframe [data-p="bot"] .av-t:nth-child(4 of .av-t) text,.rotframe [data-p="online"] .av-t:nth-child(1 of .av-t) text{fill:#ffeae4}
+.rotframe [data-p="bot"] .av-t:nth-child(5 of .av-t) rect,.rotframe [data-p="online"] .av-t:nth-child(7 of .av-t) rect{fill:#f1f7ff}
+.rotframe [data-p="bot"] .av-fall .av-t rect,.rotframe [data-p="online"] .av-t:nth-child(5 of .av-t) rect{fill:#bfeaff;stroke:#38c6ff;stroke-width:1.2}
+.rotframe [data-p="bot"] .av-fall .av-t text,.rotframe [data-p="online"] .av-t:nth-child(5 of .av-t) text{fill:#063a57}
 /* Rot tiles: in Rot & Thaw the letters that give Ignite are netherrack blocks: a fully rotted tile in brick red with
    no flames, keeping the usual power badge (the 🔥 in the corner) to show it gives Ignite. */
 .c.orb.o-ignite{background:var(--nether);color:#ffeae4;text-shadow:0 1px 0 #4a1512;box-shadow:inset 0 -4px 0 var(--nether-edge);animation:none}
@@ -1518,7 +1535,7 @@ div.hub-t{cursor:default}
     <div class="pc-pane pd off" data-p="practice">
       <div class="pd-info">
         <div class="pm-head"><span class="pm-ic" aria-hidden="true">🎯</span><div><span class="tc-k pm-k" data-play="Practice">Practice · random seed</span><b class="pm-name pm-var">Classic</b></div></div>
-        <p class="pm-desc">Random pieces at your own pace. Hazards drop in every 10 blocks, then come faster. You get a random bonus word each game.</p>
+        <p class="pm-desc pm-vdesc"></p>
       </div>
       <div class="pd-art" aria-hidden="true"><span class="ha-board" aria-hidden="true"><i class="e"></i><i class="e"></i><i class="f">t</i><i class="f">h</i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i>o</i><i class="e"></i><i class="e"></i><i>r</i><i class="e"></i><i class="b">c</i><i class="b">a</i><i class="b">t</i><i class="b">e</i><i class="b">n</i><i class="b">d</i></span></div>
     </div>
@@ -1527,21 +1544,20 @@ div.hub-t{cursor:default}
         <div class="pm-head"><span class="pm-ic" aria-hidden="true">🤖</span><div><span class="tc-k pm-k" data-play="Vs bots">Vs bots · random seed</span><b class="pm-name pm-var">Classic</b></div></div>
         <div class="pc-field"><span class="tc-k">Opponents</span><div class="seg t-count" id="tCount"><button type="button" data-c="1" aria-pressed="true">Duel</button><button type="button" data-c="7" aria-pressed="false">Battle of 8</button></div></div>
         <div class="pc-field"><span class="tc-k">Bot skill</span><div class="t-lv" id="tLevels"><button type="button" data-l="easy">Easy</button><button type="button" data-l="normal">Normal</button><button type="button" data-l="hard">Hard</button></div></div>
-        <p class="pm-desc">Highest score wins. Topping out ends your run, so staying alive gives you more time to score.</p>
+        <p class="pm-desc pm-vdesc"></p>
       </div>
       <div class="pd-art" aria-hidden="true"><svg class="ha-art" viewBox="0 0 220 150" aria-hidden="true" focusable="false"><rect class="av-well" x="10" y="34" width="80" height="108" rx="9"/><rect class="av-well" x="130" y="34" width="80" height="108" rx="9"/><g class="av-t"><rect x="15" y="120" width="17" height="17" rx="4"/><text x="23.5" y="132.6">W</text></g><g class="av-t"><rect x="34" y="120" width="17" height="17" rx="4"/><text x="42.5" y="132.6">O</text></g><g class="av-t"><rect x="53" y="120" width="17" height="17" rx="4"/><text x="61.5" y="132.6">R</text></g><g class="av-t"><rect x="72" y="120" width="17" height="17" rx="4"/><text x="80.5" y="132.6">D</text></g><g class="av-t"><rect x="34" y="101" width="17" height="17" rx="4"/><text x="42.5" y="113.6">S</text></g><g class="av-t"><rect x="53" y="101" width="17" height="17" rx="4"/><text x="61.5" y="113.6">E</text></g><g class="av-t"><rect x="72" y="101" width="17" height="17" rx="4"/><text x="80.5" y="113.6">A</text></g><g class="av-fall"><g class="av-t"><rect x="34" y="52" width="17" height="17" rx="4"/><text x="42.5" y="64.6">G</text></g><g class="av-t"><rect x="53" y="52" width="17" height="17" rx="4"/><text x="61.5" y="64.6">O</text></g></g><g class="av-b"><rect x="135" y="120" width="17" height="17" rx="4"/><text x="143.5" y="132.6">B</text></g><g class="av-b"><rect x="154" y="120" width="17" height="17" rx="4"/><text x="162.5" y="132.6">E</text></g><g class="av-b"><rect x="173" y="120" width="17" height="17" rx="4"/><text x="181.5" y="132.6">E</text></g><g class="av-b"><rect x="192" y="120" width="17" height="17" rx="4"/><text x="200.5" y="132.6">P</text></g><g class="av-b"><rect x="154" y="101" width="17" height="17" rx="4"/><text x="162.5" y="113.6">0</text></g><g class="av-b"><rect x="173" y="101" width="17" height="17" rx="4"/><text x="181.5" y="113.6">1</text></g><g class="av-b"><rect x="192" y="101" width="17" height="17" rx="4"/><text x="200.5" y="113.6">0</text></g><g class="av-b"><rect x="192" y="82" width="17" height="17" rx="4"/><text x="200.5" y="94.6">1</text></g><rect class="av-tag" x="28" y="14" width="44" height="18" rx="9"/><text class="av-tagt" x="50" y="27">YOU</text><line class="av-ant" x1="170" y1="4" x2="170" y2="12"/><circle class="av-antd" cx="170" cy="4" r="3"/><rect class="av-head" x="148" y="12" width="44" height="28" rx="8"/><rect class="av-eye" x="156" y="20" width="10" height="8" rx="2.5"/><rect class="av-eye" x="174" y="20" width="10" height="8" rx="2.5"/><rect class="av-mouth" x="162" y="32" width="16" height="3" rx="1.5"/><path class="av-spark" d="M96 62l-8-6M124 62l8-6M96 108l-8 6M124 108l8 6"/><circle class="av-vs" cx="110" cy="85" r="18"/><text class="av-vst" x="110" y="91">VS</text></svg></div>
     </div>
     <div class="pc-pane pd off" data-p="online">
       <div class="pd-info">
         <div class="pm-head"><span class="pm-ic" aria-hidden="true">👥</span><div><span class="tc-k pm-k" data-play="Online">Online · random seed</span><b class="pm-name pm-var">Classic</b></div></div>
-        <p class="pm-desc">Race friends who have this page open. Pick a room code, share it, and start when everyone's in.</p>
+        <p class="pm-desc pm-vdesc"></p>
       </div>
       <div class="pd-art" aria-hidden="true"><svg class="ha-art" viewBox="0 0 220 150" aria-hidden="true" focusable="false"><rect class="av-well" x="10" y="34" width="80" height="108" rx="9"/><rect class="av-well" x="130" y="34" width="80" height="108" rx="9"/><g class="av-t"><rect x="15" y="120" width="17" height="17" rx="4"/><text x="23.5" y="132.6">L</text></g><g class="av-t"><rect x="34" y="120" width="17" height="17" rx="4"/><text x="42.5" y="132.6">I</text></g><g class="av-t"><rect x="53" y="120" width="17" height="17" rx="4"/><text x="61.5" y="132.6">V</text></g><g class="av-t"><rect x="72" y="120" width="17" height="17" rx="4"/><text x="80.5" y="132.6">E</text></g><g class="av-t"><rect x="15" y="101" width="17" height="17" rx="4"/><text x="23.5" y="113.6">R</text></g><g class="av-t"><rect x="34" y="101" width="17" height="17" rx="4"/><text x="42.5" y="113.6">A</text></g><g class="av-t"><rect x="53" y="101" width="17" height="17" rx="4"/><text x="61.5" y="113.6">C</text></g><g class="av-t"><rect x="72" y="101" width="17" height="17" rx="4"/><text x="80.5" y="113.6">E</text></g><g class="av-b"><rect x="135" y="120" width="17" height="17" rx="4"/><text x="143.5" y="132.6">P</text></g><g class="av-b"><rect x="154" y="120" width="17" height="17" rx="4"/><text x="162.5" y="132.6">L</text></g><g class="av-b"><rect x="173" y="120" width="17" height="17" rx="4"/><text x="181.5" y="132.6">A</text></g><g class="av-b"><rect x="192" y="120" width="17" height="17" rx="4"/><text x="200.5" y="132.6">Y</text></g><g class="av-b"><rect x="135" y="101" width="17" height="17" rx="4"/><text x="143.5" y="113.6">O</text></g><g class="av-b"><rect x="173" y="101" width="17" height="17" rx="4"/><text x="181.5" y="113.6">N</text></g><g class="av-b"><rect x="173" y="82" width="17" height="17" rx="4"/><text x="181.5" y="94.6">E</text></g><rect class="av-p1" x="35" y="2" width="30" height="30" rx="8"/><circle class="av-pp" cx="50" cy="14" r="5"/><path class="av-pp" d="M41 28c1.5-6 5-8.5 9-8.5s7.5 2.5 9 8.5z"/><rect class="av-p2" x="155" y="2" width="30" height="30" rx="8"/><circle class="av-pp" cx="170" cy="14" r="5"/><path class="av-pp" d="M161 28c1.5-6 5-8.5 9-8.5s7.5 2.5 9 8.5z"/><path class="av-link" d="M66 17C82 17 88 44 110 44S138 17 154 17"/><circle class="av-globe" cx="110" cy="85" r="18"/><path class="av-mer" d="M92 85h36M110 67c-9 9-9 27 0 36M110 67c9 9 9 27 0 36M95 76h30M95 94h30"/><circle class="av-ping" cx="110" cy="85" r="18"/></svg></div>
     </div>
     <div class="pc-mode off" id="pcMode">
       <span class="tc-k">Game mode</span>
       <div id="tVariant"></div>
-      <p class="t-vdesc" id="tVdesc"></p>
     </div>
     </div>
     <div class="pc-row">
@@ -3844,7 +3860,7 @@ $('#pkCards').querySelectorAll('.pk-card').forEach(c => {
 $('#tLb').onclick = () => openPage('lb');
 for (const id of ['#picker']) $(id).addEventListener('click', e => { if (e.target === e.currentTarget || e.target.classList.contains('ov-in')) closeOv(); });
 const VDESC = {
-  classic: 'The standard game.',
+  classic: 'The standard game: spell across, cash in down. No seasons and no rot, just you against the stack.',
   rot: 'Seasons turn every 40s. Blizzards slow everything, add ice to every piece and snow over your words. Summer melts it, speeds up and rots words, fastest next to rot tiles. Score a rot tile for 🔥 Ignite, which burns rot away.',
 };
 // Rot & Thaw play card: a half-played stack of real board cells along the bottom (rubble, rotting blocks with
@@ -3917,7 +3933,8 @@ function syncSeedText() {
 function syncVariant(dir = 0) {
   document.querySelectorAll('.mpick').forEach(el => drawModePicker(el, dir));
   document.querySelectorAll('#playCard .pm-var').forEach(el => { el.textContent = VARIANTS[variant].name; });
-  $('#tVdesc').innerHTML = Object.entries(VDESC).map(([k, t]) => `<span${k === variant ? '' : ' class="off"'}>${t}</span>`).join('');
+  const vd = Object.entries(VDESC).map(([k, t]) => `<span${k === variant ? '' : ' class="off"'}>${t}</span>`).join('');
+  document.querySelectorAll('#playCard .pm-vdesc').forEach(el => { el.innerHTML = vd; });
   const dv = dailyVariant(todayStr());
   $('#playCard').classList.toggle('rotframe', (playTab === 'daily' ? dv : variant) === 'rot');
   rotDeco();

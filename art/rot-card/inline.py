@@ -40,6 +40,21 @@ CSS = f"""/* ROT-CARD: the play box in Rot & Thaw. Night sky fading into rot at 
 .calm .rc .flake{{display:none}}
 @media (prefers-reduced-motion:reduce){{.rc .flake{{display:none}}}}
 @media (max-width:560px){{.t-card.play-card.rotframe{{--rt:18px}}#playCard{{padding-bottom:84px}}}}
+/* Rot & Thaw touches on the card: an ice tile for the Practice icon, a netherrack title, and themed preview blocks. */
+.rotframe [data-p="practice"] .pm-ic{{position:relative;font-size:0;border-radius:10px;background:linear-gradient(160deg,#fff 0%,#b8ecff 40%,#5cc8f5 100%);box-shadow:inset 0 -5px 0 #2f9fd6,inset 0 0 0 2px #fff,0 0 0 2px #38c6ff,0 0 16px 1px #5fd4ffcc}}
+.rotframe [data-p="practice"] .pm-ic::after{{content:'❄';position:absolute;inset:0 0 4px;display:grid;place-items:center;font-size:25px;line-height:1;color:#0a6fa8;text-shadow:0 0 4px #fff}}
+.rotframe .pm-var{{color:#b8574f;text-shadow:0 2px 0 #5c2320,0 0 18px #a8504a99}}
+.rotframe [data-p="practice"] .ha-board i:nth-child(3),.rotframe [data-p="practice"] .ha-board i:nth-child(4){{background:linear-gradient(160deg,#fff 0%,#b8ecff 40%,#5cc8f5 100%);color:#063a57;box-shadow:inset 0 -2px 0 #2f9fd6,0 0 0 1.5px #38c6ff,0 0 8px #5fd4ffaa}}
+.rotframe [data-p="practice"] .ha-board i:nth-child(14){{background:radial-gradient(circle at 28% 30%,#fff 0 14%,transparent 16%),radial-gradient(circle at 70% 62%,#fff 0 12%,transparent 14%),linear-gradient(#fbfdff,#dcecfb);color:#1b1930;box-shadow:inset 0 -2px 0 #b9cde4}}
+.rotframe [data-p="practice"] .ha-board i:nth-child(17){{background:radial-gradient(circle at 80% 78%,#5e211e 0 15%,transparent 19%),linear-gradient(#a8504a,#83342f);color:#ffeae4;box-shadow:inset 0 -2px 0 var(--nether-edge)}}
+.rotframe [data-p="practice"] .ha-board i:nth-child(19){{background:radial-gradient(circle at 80% 78%,#3b2a12 0 15%,transparent 19%),linear-gradient(#a8853e,#6e5126);color:#1b1930}}
+.rotframe [data-p="practice"] .ha-board i:nth-child(20){{background:radial-gradient(circle at 80% 22%,#6b4f22 0 13%,transparent 17%),linear-gradient(#d2ab55,#a8843c)}}
+.rotframe [data-p="bot"] .av-t:nth-child(1 of .av-t) rect,.rotframe [data-p="online"] .av-t:nth-child(3 of .av-t) rect{{fill:#8a6a34}}
+.rotframe [data-p="bot"] .av-t:nth-child(4 of .av-t) rect,.rotframe [data-p="online"] .av-t:nth-child(1 of .av-t) rect{{fill:#a8504a}}
+.rotframe [data-p="bot"] .av-t:nth-child(4 of .av-t) text,.rotframe [data-p="online"] .av-t:nth-child(1 of .av-t) text{{fill:#ffeae4}}
+.rotframe [data-p="bot"] .av-t:nth-child(5 of .av-t) rect,.rotframe [data-p="online"] .av-t:nth-child(7 of .av-t) rect{{fill:#f1f7ff}}
+.rotframe [data-p="bot"] .av-fall .av-t rect,.rotframe [data-p="online"] .av-t:nth-child(5 of .av-t) rect{{fill:#bfeaff;stroke:#38c6ff;stroke-width:1.2}}
+.rotframe [data-p="bot"] .av-fall .av-t text,.rotframe [data-p="online"] .av-t:nth-child(5 of .av-t) text{{fill:#063a57}}
 /* Rot tiles: in Rot & Thaw the letters that give Ignite are netherrack blocks: a fully rotted tile in brick red with
    no flames, keeping the usual power badge (the 🔥 in the corner) to show it gives Ignite. */
 .c.orb.o-ignite{{background:var(--nether);color:#ffeae4;text-shadow:0 1px 0 #4a1512;box-shadow:inset 0 -4px 0 var(--nether-edge);animation:none}}
