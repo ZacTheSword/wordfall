@@ -821,22 +821,24 @@ div.hub-t{cursor:default}
 /* /ROT-CARD */
 
 /* Tutorials */
-.coach{position:relative;display:flex;flex-direction:column;gap:8px;padding:12px 14px!important;border:2px solid var(--bank)!important;box-shadow:0 0 24px -10px var(--bank)}
+.coach{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:10px;row-gap:5px;padding:10px 14px!important;align-self:stretch;margin:2px 0;border:2px solid var(--bank)!important;box-shadow:0 0 24px -10px var(--bank)}
 .coach.in{animation:coachin .3s ease-out}
 .coach.ok{border-color:var(--full)!important;box-shadow:0 0 24px -8px var(--full)}
 .coach.ok h3::after{content:' ✓';color:var(--full)}
-.coach h3{margin:0;font:400 18px/1.15 var(--f-display);color:var(--fg)}
+.coach h3{margin:0;font:400 17px/1.15 var(--f-display);color:var(--fg)}
 .coach p{margin:0;font-size:13.5px;line-height:1.5;color:#dcd8f6}
 .coach p b{color:var(--fg)}
 .coach kbd{font:600 11px var(--f-mono);background:var(--line);color:var(--fg);padding:1px 6px;border-radius:4px}
 .co-k{font:700 10.5px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--bank)}
 .co-x{position:absolute;top:6px;right:8px;width:28px;height:28px;border:0;border-radius:8px;background:none;color:var(--muted);font-size:18px;cursor:pointer}
 .co-x:hover,.co-x:focus-visible{background:var(--line);color:var(--fg)}
+.coach>.co-k,.coach>h3,.coach>p{grid-column:1/-1}.coach>.co-k{padding-right:30px}
 .co-dots{display:flex;gap:5px}.co-dots i{width:7px;height:7px;border-radius:50%;background:var(--line2)}.co-dots i.d{background:var(--full)}.co-dots i.on{background:var(--bank)}
 .co-btns{display:flex;gap:8px;align-items:center;justify-content:flex-end}
 .co-wait{margin-right:auto;font:600 12px var(--f-mono);color:var(--muted)}
 @keyframes coachin{from{opacity:.2}}
-@media (max-width:819px){body.tutoring .right,body.solo.tutoring .right{display:flex}.coach{padding:8px 10px!important;gap:5px}.coach h3{font-size:15px}.coach p{font-size:12px;line-height:1.4}.co-dots{display:none}body.tutoring{--cell:clamp(18px, min(calc((100dvh - 500px) / 12.6), calc((100vw - 56px) / 6)), 46px)}}
+body.tutoring{--cell:clamp(20px, min(calc((100dvh - 326px - var(--coachH, 130px)) / 12), 8vw), 46px)}
+@media (max-width:819px){.coach{padding:8px 10px!important;gap:5px}.coach h3{font-size:15px}.coach p{font-size:12px;line-height:1.4}.co-dots{display:none}body.tutoring{--cell:clamp(18px, min(calc((100dvh - 392px - var(--coachH, 110px)) / 12.6), calc((100vw - 56px) / 6)), 46px)}}
 .c.tgt{outline:2px dashed var(--bank);outline-offset:-3px;background:color-mix(in srgb,var(--bank) 16%,var(--empty));animation:tgtpulse 1s ease-in-out infinite alternate}
 @keyframes tgtpulse{to{background:color-mix(in srgb,var(--bank) 32%,var(--empty))}}
 .pk-cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;width:100%;align-items:stretch}
@@ -2872,7 +2874,8 @@ const TUTS = {
 };
 const coachEl = document.createElement('aside');
 coachEl.className = 'panel coach'; coachEl.hidden = true; coachEl.setAttribute('aria-live', 'polite');
-$('.right').prepend(coachEl);
+$('#well').parentElement.before(coachEl);
+if (window.ResizeObserver) new ResizeObserver(() => { if (!coachEl.hidden && coachEl.offsetHeight) document.body.style.setProperty('--coachH', coachEl.offsetHeight + 'px'); }).observe(coachEl);
 function startTutorial(id) {
   const T = TUTS[id]; if (!T) return;
   closeModal();
@@ -2923,6 +2926,7 @@ function tutGo(i) {
   coachEl.hidden = false; document.body.classList.add('tutoring');
   coachEl.classList.remove('ok'); void coachEl.offsetWidth; coachEl.classList.add('in');
   coachEl.querySelector('.co-x').onclick = () => { tutEnd(); showMenu(false); };
+  if (coachEl.offsetHeight) document.body.style.setProperty('--coachH', coachEl.offsetHeight + 'px');
   coachEl.querySelectorAll('[data-a]').forEach(b => { b.onclick = () => {
     const a = b.dataset.a;
     if (a === 'menu') { tutEnd(); showMenu(false); }
