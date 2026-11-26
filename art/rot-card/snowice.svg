@@ -1,0 +1,16 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='240' height='54' viewBox='0 0 240 54'>
+  <!-- Snow cap with a clear ice glaze over its top; tiles left to right. -->
+  <defs>
+    <linearGradient id='s' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#ffffff'/><stop offset='.72' stop-color='#eef7fc'/><stop offset='1' stop-color='#c9dfec'/></linearGradient>
+    <linearGradient id='i' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#f2fdff' stop-opacity='.9'/><stop offset='.45' stop-color='#a8e2ff' stop-opacity='.5'/><stop offset='1' stop-color='#86d3ff' stop-opacity='.38'/></linearGradient>
+    <linearGradient id='c' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#d8f4ff' stop-opacity='.85'/><stop offset='1' stop-color='#9fdcff' stop-opacity='.35'/></linearGradient>
+  </defs>
+  <path d='M0 0H240V33C228 36 220 42 206 40C192 38 186 33 172 35C158 37 150 44 134 42C118 40 112 34 96 36C80 38 74 43 58 41C42 39 36 33 22 35C12 36 6 38 0 33Z' fill='#7d5048' opacity='.55' transform='translate(0 3)'/>
+  <path d='M0 0H240V33C228 36 220 42 206 40C192 38 186 33 172 35C158 37 150 44 134 42C118 40 112 34 96 36C80 38 74 43 58 41C42 39 36 33 22 35C12 36 6 38 0 33Z' fill='url(#s)'/>
+  <path d='M0 31C14 34 20 30 34 33M70 39C84 41 92 37 104 35M150 40C160 41 168 36 180 34M212 38C222 37 230 34 240 33' stroke='#b9d3e3' stroke-width='1.4' fill='none' stroke-linecap='round'/>
+  <path d='M0 0H240V17C226 19 214 23 200 21C186 19 178 15 162 17C146 19 138 24 120 22C102 20 96 16 80 18C64 20 54 24 40 22C26 20 14 16 0 17Z' fill='url(#i)'/>
+  <path d='M240 17C226 19 214 23 200 21C186 19 178 15 162 17C146 19 138 24 120 22C102 20 96 16 80 18C64 20 54 24 40 22C26 20 14 16 0 17' stroke='#ffffff' stroke-opacity='.75' stroke-width='1.2' fill='none'/>
+  <path d='M0 3.5H240' stroke='#ffffff' stroke-opacity='.9' stroke-width='1.6'/>
+  <path d='M18 9L40 7M98 11L112 10M150 8L176 6M206 12L220 11' stroke='#ffffff' stroke-opacity='.75' stroke-width='2' stroke-linecap='round'/>
+  <path d='M55 40L58.5 52L62 40ZM128 41L130.5 49L133 41ZM201 39L204.5 50L208 39ZM92 36L94 42L96 36Z' fill='url(#c)'/>
+</svg>
