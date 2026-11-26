@@ -914,7 +914,9 @@ div.hub-t{cursor:default}
 .pm-var{font-size:min(28px,calc(100cqi / var(--len,8) * 1.45));white-space:nowrap}
 .pm-k{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* SEED: type words to pin the pieces and bonus word; empty means a random seed each game. */
-.pc-row{display:flex;align-items:center}
+.pc-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:10px;align-items:center}
+.pc-row>.pc-guide{justify-self:start}
+@media (min-width:901px){.pc-row{grid-template-columns:minmax(0,1fr) 200px}}
 .pc-seed{display:flex;align-items:center;gap:6px;min-width:0;height:34px;box-sizing:border-box;padding:0 3px 0 10px;border-radius:8px;border:1px dashed color-mix(in srgb,var(--mc) 45%,var(--line2));background:#0d0b1fd9;cursor:text;transition:border-color .15s,box-shadow .15s}
 .pc-seed:focus-within,.pc-seed.set{border-style:solid;border-color:var(--mc)}
 .pc-seed.set{box-shadow:0 0 14px -6px var(--mc)}
@@ -1193,22 +1195,27 @@ div.hub-t{cursor:default}
 .c.hintv{box-shadow:inset 0 0 0 2px var(--vert),0 0 16px -2px var(--vert)}
 @media (prefers-reduced-motion:reduce){.lv-card,.sr.new .sr-ic{animation:none}}
 .calm .lv-card,.calm .sr.new .sr-ic{animation:none}
-/* Game speed: Slow / Normal / Fast, beside the tutorial button and in online rooms. */
-.pc-row{flex-wrap:wrap;gap:8px 12px}
-.pace{display:flex;align-items:center;gap:8px;margin-left:auto}
-.pace-seg{display:flex;border:1px solid var(--line2);border-radius:9px;overflow:hidden;background:#0d0b1fd9;width:max-content;max-width:100%}
-.pace-seg button{all:unset;box-sizing:border-box;cursor:pointer;display:grid;justify-items:center;align-content:center;gap:2px;padding:5px 10px;min-width:78px;font:800 12.5px/1.1 var(--f-ui);color:var(--fg);border-left:1px solid var(--line2);text-align:center}
-.pace-seg button:first-child{border-left:0}
-.pace-seg button small{font:700 10.5px/1.1 var(--f-ui);color:var(--muted);white-space:nowrap}
-.pace-seg button:hover{background:color-mix(in srgb,var(--mc) 16%,transparent)}
-.pace-seg button[aria-pressed="true"]{background:var(--mc);color:var(--ink)}
-.pace-seg button[aria-pressed="true"] small{color:var(--ink);opacity:.8}
-.pace-seg button.lock{cursor:not-allowed;color:var(--muted);background:repeating-linear-gradient(135deg,#ffffff07 0 8px,transparent 8px 16px)}
-.pace-seg button.lock small{color:color-mix(in srgb,var(--muted) 80%,transparent)}
-.pace-seg button:focus-visible{outline:2px solid var(--mc);outline-offset:-2px}
-.pace-seg button.nope{animation:nope .3s}
-.pc-field .pace-seg{width:100%}.pc-field .pace-seg button{flex:1}
-@media (max-width:560px){.pace{margin-left:0;width:100%}.pace>.tc-k{display:none}.pace .pace-seg{width:100%}.pace-seg button{flex:1;min-width:0;padding:5px 4px}}
+/* Game speed: − Slow / Normal / Fast + , above Change mode and in online rooms. */
+.pace{min-width:0}
+.pace-step{display:grid;grid-template-columns:36px minmax(0,1fr) 36px;height:42px;box-sizing:border-box;border-radius:11px;border:1.5px solid color-mix(in srgb,var(--mc) 50%,var(--line2));background:#0d0b1fd9;overflow:hidden}
+.pst-b{all:unset;box-sizing:border-box;position:relative;cursor:pointer;display:grid;place-items:center;font:700 20px/1 var(--f-ui);color:var(--fg)}
+.pst-b:hover{background:color-mix(in srgb,var(--mc) 18%,transparent)}
+.pst-b:focus-visible{outline:2px solid var(--mc);outline-offset:-3px;border-radius:9px}
+.pst-b[aria-disabled="true"]{cursor:default;color:color-mix(in srgb,var(--muted) 45%,transparent);background:none}
+.pst-b.lock{cursor:not-allowed;color:var(--muted)}
+.pst-lk{position:absolute;right:2px;bottom:3px;font-size:9px;font-style:normal;line-height:1}
+.pst-v{display:grid;align-content:center;justify-items:center;gap:3px;min-width:0;border-inline:1px solid var(--line2);text-align:center}
+.pst-v b{font:400 15px/1 var(--f-display);letter-spacing:.05em;text-transform:uppercase;color:var(--mc);white-space:nowrap}
+.pst-v small{font:700 10.5px/1 var(--f-ui);color:var(--muted);white-space:nowrap}
+.pace-step.nope{animation:nope .3s}
+.pc-field .pace-step{width:100%}
+@media (max-width:560px){.pc-row,.ps-actions{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}.pace-step{grid-template-columns:30px minmax(0,1fr) 30px}.pst-v b{font-size:13px;letter-spacing:.03em}.pst-v small{font-size:10px}}
+/* Which speed a score or run was played at. */
+.ptag{display:inline-block;vertical-align:2px;margin-left:7px;padding:2px 6px 1px;border-radius:5px;font:800 9.5px/1.2 var(--f-ui);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:var(--muted);border:1px solid var(--line2);background:#ffffff08}
+.ptag.p-slow{color:#8fd6c1;border-color:#8fd6c155}
+.ptag.p-fast{color:#ffb15c;border-color:#ffb15c66;background:#ffb15c14}
+.tb-sc .ptag{margin:0 8px 0 0;vertical-align:1px}.lb-col .ptag{margin:0}
+.lb-col .ptag{justify-self:center}
 .hub-grid.g3{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(200px,1fr)}
 .hub-t.wide2{grid-column:1/-1;position:relative}
 .ht-open{all:unset;box-sizing:border-box;display:flex;flex-direction:column;flex:1;cursor:pointer;min-width:0}
@@ -1812,7 +1819,7 @@ div.hub-t{cursor:default}
     </div>
     <div class="pc-row">
       <button class="btn sm ghostb pc-guide" id="tGuide" type="button">🎓 Tutorial</button>
-      <div class="pace" id="tPace"><span class="tc-k">Speed</span></div>
+      <div class="pace" id="tPace"></div>
     </div>
     <div class="ps-actions">
       <button class="t-play" id="tPlay" type="button">Play</button>
@@ -1944,8 +1951,8 @@ const MODES = {
 const MODE_KEYS = Object.keys(MODES), isSoon = k => !!MODES[k]?.soon;
 const DAILY_VARIANTS = ['classic', 'rot', 'classic'];
 const dailyVariant = day => DAILY_VARIANTS[hashStr('wordfall-mode:' + day) % DAILY_VARIANTS.length];
-// Points multiplier: +0.2 per speed-up, so x3 at the 100th block.
-const MULT_STEP = 0.2, MULT_MAX = 3;
+// Points multiplier: +0.2 per speed-up past Normal's starting speed, so x3 at top speed.
+const MULT_STEP = 0.2;
 // ...and from block 40 they come faster and hit harder.
 const HAZARD_TIERS = [
   { from: 0,   every: 10, stones: 2 },
@@ -1960,19 +1967,33 @@ const LOCK_RESETS = 4;            // moves/rotations that restart that timer, pe
 const LOCK_MAX_MS = 1500;         // hard limit on time spent on the ground at one height
 const MAX_CLEARS = 1;
 const RISE_EVERY = 2;             // battles: every 2 knockouts push a stone row up under everyone left
-const SPEED_EVERY = 10;           // every 10 blocks placed...
-const SPEED_STEP = 1.25;          // ...the game gets 1.25x faster
-const SPEED_MAX_STEPS = 10;       // tops out at about x9.3
-// Game speed, picked on every play card. Slow drops at half speed, speeds up half as often and scores
-// half; Normal is the classic game; Fast starts at double speed (4x Slow), speeds up like Normal and
-// scores x1.5. Players see them as points x1 / x2 / x3 and speed x0.5 / x1 / x2.
+// One speed ladder for every game speed. Rung 0 is Normal's starting speed; each rung up is 1.25x
+// faster, and rung 10 (about x9.3) is the top speed for everyone.
+const SPEED_STEP = 1.25;          // each speed-up is 1.25x faster
+const TOP_RUNG = 10;              // the top speed: Normal reaches it at the 100th block
+// Game speed, picked on every play card. All three climb the same ladder to the same top speed:
+//   Slow   starts 3 rungs down; its first 3 speed-ups come every 20 blocks, then every 10 like Normal.
+//   Normal starts at rung 0 and speeds up every 10 blocks.
+//   Fast   starts 3 rungs up (about double speed) and speeds up every 10 blocks.
+// Points follow the rung you're on (x1 up to x3, never below x1), times the speed's bonus:
+// Slow x0.8, Normal x1, Fast x1.25. ms scales the short-lived caps (finale, seasons, fast drops).
 const PACES = {
-  slow: { name: 'Slow', icon: '🐢', ms: 2, every: 20, pts: 0.5, x: 1, sx: 0.5 },
-  normal: { name: 'Normal', icon: '▶', ms: 1, every: 10, pts: 1, x: 2, sx: 1 },
-  fast: { name: 'Fast', icon: '⚡', ms: 0.5, every: 10, pts: 1.5, x: 3, sx: 2 },
+  slow: { name: 'Slow', start: -3, easy: 3, bonus: 0.8, ms: 2 },
+  normal: { name: 'Normal', start: 0, easy: 0, bonus: 1, ms: 1 },
+  fast: { name: 'Fast', start: 3, easy: 0, bonus: 1.25, ms: 0.5 },
 };
+// Blocks from the start of the ramp to the k-th speed-up, and speed-ups after n blocks.
+function paceStepAt(p, k) { const e = PACES[p].easy; return k <= e ? 20 * k : 20 * e + 10 * (k - e); }
+function paceSteps(p, n) { const P = PACES[p], e = P.easy; n = Math.max(0, n);
+  return Math.min(TOP_RUNG - P.start, n < 20 * e ? Math.floor(n / 20) : e + Math.floor((n - 20 * e) / 10)); }
+const rungAt = (p, n) => PACES[p].start + paceSteps(p, n);
+// The points multiplier on a rung for a speed, and how it reads (x1, x1.25, x3.75).
+const rungMult = (p, r) => (1 + MULT_STEP * Math.max(0, r)) * PACES[p].bonus;
+const fmtX = v => '×' + String(+(+v).toFixed(2));
+const paceTag = p => PACES[p] ? `<span class="ptag p-${p}" title="Played at ${PACES[p].name} speed">${PACES[p].name}</span>` : '';
 const PACE_KEYS = ['slow', 'normal', 'fast'];
 const paceOf = p => PACES[p] ? p : 'normal';
+const blocksToTop = p => paceStepAt(paceOf(p), TOP_RUNG - PACES[paceOf(p)].start);
 const INCOMING_MS = 3000;         // attacks wait this long in the meter before they land
 const FINALE_MS = 60000;          // the last minute of a battle speeds everyone up             // you can hold one Clear at a time            // how long a speed-up attack lasts
 const ATTACKS = ['stretch', 'stones', 'speed'];  // attack letters take turns in this order
@@ -2242,6 +2263,7 @@ class Board {
       slow: +slow > 0 ? +slow : 1, sumMs: seasonMs ? seasonMs[0] : ROT_SUMMER_MS, winMs: seasonMs ? seasonMs[1] : ROT_WINTER_MS, script: Array.isArray(script) ? script.slice() : null,
       // Game speed (see PACES). ramp:false holds the speed steady (the first tutorial); rampAt is the block
       // count the speed-ups count from. dropFrac carries part-points from drops at Slow and Fast.
+      // The speed and the points both come from the rung (see PACES).
       pace: paceOf(pace), ramp: ramp !== false, rampAt: 0, dropFrac: 0,
     });
     this.queue = [this.nextPiece(), this.nextPiece()];
@@ -2356,7 +2378,7 @@ class Board {
   }
   hardDrop() { while (this.move(0, 1)) this.dropPts(2 * this.wotdX); this.lock(); }
   softDrop() { if (this.move(0, 1)) { this.dropPts(this.wotdX); this.dropAcc = 0; } }
-  dropPts(v) { this.dropFrac += v * PACES[this.pace].pts; const n = Math.floor(this.dropFrac + 1e-9); this.dropFrac -= n; this.score += n; }
+  dropPts(v) { this.dropFrac += v * PACES[this.pace].bonus; const n = Math.floor(this.dropFrac + 1e-9); this.dropFrac -= n; this.score += n; }
   holdPiece() {
     if (!this.canHold) return;
     const cur = this.cur;
@@ -2386,9 +2408,9 @@ class Board {
       this.checkIce();
     }
     this.chain = 0;
+    const r0 = this.rung();
     this.placed++;
-    const sk = this.placed - this.rampAt, se = this.every();
-    if (this.ramp && sk > 0 && sk % se === 0 && sk / se <= SPEED_MAX_STEPS) this.h('speedup', this.speedX(), this.multX(), this.speedSteps() >= SPEED_MAX_STEPS);
+    if (this.rung() > r0) this.h('speedup', this.speedX(), this.multX(), this.rung() >= TOP_RUNG);
     if (this.hazards) {
       this.dropped++;
       const now = this.hazardLevel(), T = this.hzTiers();
@@ -2402,14 +2424,16 @@ class Board {
     }
     this.settle();
   }
-  every() { return PACES[this.pace].every; }
-  speedSteps() { return this.ramp ? Math.min(SPEED_MAX_STEPS, Math.floor(Math.max(0, this.placed - this.rampAt) / this.every())) : 0; }
-  speed() { return SPEED_STEP ** this.speedSteps(); }
-  pointMult() { return Math.min(MULT_MAX, 1 + MULT_STEP * this.speedSteps()); }
-  // What the Speed and Points chips show: the ramp times the game speed (Slow x1, Normal x2, Fast x3 points).
-  speedX() { return this.speed() * PACES[this.pace].sx; }
-  multX() { return this.pointMult() * PACES[this.pace].x; }
-  pts(base) { return Math.round(base * this.pointMult() * this.wotdX * PACES[this.pace].pts); }
+  // The rung on the shared speed ladder: where this speed starts, plus the speed-ups so far.
+  steps() { return this.ramp ? paceSteps(this.pace, this.placed - this.rampAt) : 0; }
+  rung() { return PACES[this.pace].start + this.steps(); }
+  speed() { return SPEED_STEP ** this.rung(); }
+  // What the Speed and Points chips show: speed against Normal's start, and the points multiplier.
+  speedX() { return this.speed(); }
+  multX() { return rungMult(this.pace, this.rung()); }
+  pts(base) { return Math.round(base * this.multX() * this.wotdX); }
+  // Blocks in the stretch you're on now, for the bar under the chips.
+  stepLen() { const k = this.steps(); return paceStepAt(this.pace, k + 1) - paceStepAt(this.pace, k); }
   // Word of the day: scoring it doubles everything you've scored and everything you score after.
   checkWotd(word) {
     if (!this.wotd || this.wotdHit || word !== this.wotd) return;
@@ -2420,17 +2444,17 @@ class Board {
   spendPower(k) { this.power = null; this.lastPowerAt = this.elapsed; this.run.powers[k] = (this.run.powers[k] || 0) + 1; }
   noteBoost(bx, n) { if (bx.ice) this.run.iceWords += n; if (bx.fire) this.run.fireWords += n; }
   // Blocks until the next speed-up: 0 at top speed, -1 when the speed is held steady.
-  speedIn() { if (!this.ramp) return -1; const e = this.every(); return this.speedSteps() >= SPEED_MAX_STEPS ? 0 : e - (Math.max(0, this.placed - this.rampAt) % e); }
+  speedIn() { if (!this.ramp) return -1; if (this.rung() >= TOP_RUNG) return 0; return paceStepAt(this.pace, this.steps() + 1) - Math.max(0, this.placed - this.rampAt); }
   level() { return 1 + Math.floor(this.score / 800); }
   interval() {
     // Every floor scales with the game speed, and a floor never slows a drop that is already faster.
     const m = PACES[this.pace].ms, cap = (v, f, k) => Math.max(Math.min(v, f * m), v * k);
-    let base = Math.max(90 * m, 950 * m / this.speed()) * this.slow;
+    let base = Math.max(90, 950 / this.speed()) * this.slow;
     if (this.finale) base = cap(base, 80, 0.6);
     if (this.variant === 'rot') base = cap(base, 80, this.seasonPace());
     return Math.max(45, this.rush > 0 ? cap(base, 70, 0.4) : base);
   }
-  multTag() { return this.pointMult() > 1 ? `  (pts ×${this.multX().toFixed(1)})` : ''; }
+  multTag() { const x = this.multX(); return Math.abs(x - 1) > 1e-9 ? `  (pts ${fmtX(x)})` : ''; }
   noteWord(w) { if (w.length > this.longest.length) this.longest = w; }
   addLog(kind, word, pts, mult) { const R = this.run; R.list.push([word, pts, kind]); R.len[Math.max(3, Math.min(6, word.length))]++; if (kind === 'v') R.vert++; if (kind === 'f') R.full++;
     this.log.push({ kind, word, pts, mult }); if (this.log.length > 60) this.log.shift(); this.lastEvent = (kind === 'v' ? '↓ ' : '') + word.toUpperCase() + ' +' + pts; }
@@ -3092,7 +3116,7 @@ function onMeOver() {
   if (newBest) { game.best = game.me.score; store.set('wordfall-best', String(game.me.score)); }
   if (game.mode === 'daily' && game.me.score > 0) recordDaily();
   const unlocked = newlyUnlocked(before);
-  submitScore(game.me.score, game.mode === 'daily', game.mode === 'daily' ? tlShort(mine) : null);
+  submitScore(game.me.score, game.mode === 'daily', game.mode === 'daily' ? tlShort(mine) : null, game.me.pace);
   const rec = recordRun(game.me, { tl: soloTl(mine, riv) });
   if (rec) tlTopFill(rec, mine, riv);
   updatePanels();
@@ -3194,7 +3218,7 @@ function finishBattle(reason) {
   for (const b of game.bots) { b.board.phase = 'over'; b.board.cur = null; }
   const before = unlockedIds(), real = !game.tut;
   if (real && me.score > game.best) { game.best = me.score; store.set('wordfall-best', String(me.score)); }
-  if (real) submitScore(me.score, false);
+  if (real) submitScore(me.score, false, null, me.pace);
   const place = ranked.findIndex(p => p.kind === 'me') + 1;
   if (real) recordBattle(place, ranked.length);
   const unlocked = newlyUnlocked(before);
@@ -3220,7 +3244,7 @@ const TUTS = {
     variant: 'classic', pace: 'slow', strict: true, wotd: 'planet',
     script: ['ca', 'ts', 'be', 'ar', 'du', 'ck', 'pl', 'an', 'et', 'St', 'ar', 'bo', 'at'],
     steps: [
-      { t: 'Welcome to Wordfall', b: 'Letters fall in pairs. Land them to spell words. Everything here runs at 🐢 Slow and never speeds up, and you can’t lose: if the board fills up, it just clears.' },
+      { t: 'Welcome to Wordfall', b: 'Letters fall in pairs. Land them to spell words. Everything here runs at Slow speed and never speeds up, and you can’t lose: if the board fills up, it just clears.' },
       { t: 'Move and drop', b: 'Move <b>CA</b> onto the glowing outline with <kbd>←</kbd> <kbd>→</kbd>, then drop it with <kbd>Space</kbd>. On a phone, swipe to move and tap Drop.', tgt: cells(11, [0, 1], 'ca') },
       { t: 'Spell a word across', b: 'Drop <b>TS</b> on the outline to spell <b>CATS</b>. Real words of 3 to 5 letters across turn <b>gold</b>: they’re banked, ready to cash in.', tgt: cells(11, [2, 3], 'ts') },
       { t: 'Stack another', b: 'Build <b>BEAR</b> on top of it: <b>BE</b> first, then <b>AR</b>.', tgt: cells(10, [0, 1, 2, 3], 'bear') },
@@ -3231,7 +3255,7 @@ const TUTS = {
       { t: 'Use your power', b: 'You earned <span class="orbkey o-clear">⌫</span> <b>Clear</b>: it wipes your bottom row. Press <kbd>F</kbd>, or tap the power under your score.', tgt: [], oops: 'Use your power first: press F or tap it', done: (B, s0) => pwSum(B) > s0.pw },
       { t: 'Block a hazard', b: 'Two <b>stones</b> are waiting in the red meter beside your board. Score any word before they land to block them: spell <b>BOAT</b>.', tgt: cells(11, [0, 1, 2, 3], 'boat'), hold: true, enter: () => tutStones(), done: B => !B.incoming.length && !B.pending.stones },
       { t: 'Blocked!', b: 'Hazards you don’t block land on your board: <b>stones</b> take up space until a word clears next to them, a <b>stretched piece</b> adds a hard letter, and <b>fast drops</b> hurry you for a while. Bigger words block more.' },
-      { t: 'It speeds up', b: 'In a real run the drops get faster as you place blocks, and words score more. Pick a speed on the play card: 🐢 Slow scores ×1, Normal ×2 and ⚡ Fast ×3.' },
+      { t: 'It speeds up', b: 'In a real run the drops get faster as you place blocks, and words score more. Pick a speed on the play card: Slow starts gentle, Fast starts near the top, and all three climb to the same top speed.' },
       { t: 'Your first run', b: 'From here the pieces are random, hazards arrive on their own and the speed ramps up. If the stack reaches the top, the run ends. Good luck!', end: true },
     ],
   },
@@ -3600,8 +3624,8 @@ function render(now) {
   renderIncoming();
   renderMeter(B);
   setText($('#sSpeed'), '×' + B.speedX().toFixed(2));
-  setText($('#sMult'), '×' + B.multX().toFixed(1));
-  setText($('#sPace'), B.pace === 'normal' ? 'Speed' : `${PACES[B.pace].icon} ${PACES[B.pace].name}`);
+  setText($('#sMult'), '×' + B.multX().toFixed(2).replace(/0$/, ''));
+  setText($('#sPace'), B.pace === 'normal' ? 'Speed' : `${PACES[B.pace].name} speed`);
   const cdl = B.powerCool(), pwb = $('#pwSlot');
   pwb.classList.toggle('cool', cdl > 0);
   pwb.style.setProperty('--cd', (cdl / POWER_CD_MS).toFixed(3));
@@ -3624,7 +3648,7 @@ function render(now) {
   document.body.classList.toggle('hot', rotOn && B.season === 'summer' && sea.name === 'summer' && sea.frac > 0.55);
   if (rotOn) setText($('#sSeason'), into ? `${into === 'freeze' ? '❄ Blizzard' : '☀ Thaw'} in ${fmtTime(sea.left)}` : `${B.season === 'winter' ? '❄ Winter' : '☀ Summer'} ${fmtTime(sea.left)}`);
   $('#sSeason').classList.toggle('soon', !!into);
-  const sIn = B.speedIn(), se = B.every();
+  const sIn = B.speedIn(), se = B.stepLen();
   const bw = sIn > 0 ? ((se - sIn) / se * 100) + '%' : sIn ? '0%' : '100%', bar = $('#spdBar i');
   if (bar.style.width !== bw) bar.style.width = bw;
   setText($('#spdNote'), sIn > 0 ? `Faster in ${sIn} block${sIn === 1 ? '' : 's'}` : sIn ? 'Speed stays steady' : 'Top speed');
@@ -3891,7 +3915,7 @@ function announce(title, sub, kind, extra) {
 }
 function announceSpeed(sp, pm, top) {
   announce('SPEED UP', `speed ×${sp.toFixed(2)}${top ? ' · TOP SPEED' : ''}`, '',
-    `POINTS ×${pm.toFixed(1)}${top ? ' · MAX' : ''}`);
+    `POINTS ${fmtX(pm)}${top ? ' · MAX' : ''}`);
   for (const id of ['#sSpeed', '#sMult']) { const dd = $(id); dd.classList.remove('bump'); void dd.offsetWidth; dd.classList.add('bump'); }
   setTimeout(() => sfx('mult'), 300);
   if (fxOk()) withFx(() => { const t = music.ctx.currentTime + 0.02; [0, 4, 7, 12].forEach((n, i) => tone('square', mtof(72 + n), t + i * 0.07, 0.12, 0.05)); });
@@ -4261,8 +4285,8 @@ const HOWTO_HTML = `
       <li><b>Every fifth piece has a glowing letter.</b> Score a word with it:
         <span class="orbkey o-clear">⌫</span> earns a Clear that wipes your bottom row (no points), and <span class="orbkey o-scramble">🔀</span> earns a Scramble that shuffles the 3×3 patch where your piece is about to land (dashed outline), hunting for new words. You hold one power at a time: press <b>F</b> (or <b>1</b>) to use it. After using a power, the next one needs a <b>3 second</b> cooldown. In versus, attack letters fire at your rival as you score, taking turns:
         <span class="orbkey o-stretch">⇲</span> their next piece grows one hard letter, <span class="orbkey o-stones">▦</span> 1–4 stones land on them (bigger words, more stones), <span class="orbkey o-speed">⚡</span> their drops speed up for 12s. Attacks always go to the leader. Stones crumble when a word clears next to them.</li>
-      <li><b>Pick a speed on the play card.</b> <b>🐢 Slow</b> drops at half speed and scores ×1. <b>Normal</b> is the classic game and scores ×2. <b>⚡ Fast</b> starts at double speed and scores ×3.</li>
-      <li><b>Every 10 blocks you place (20 on Slow), the game gets 1.25× faster</b> (up to about ×9.3), and <b>word points go up</b>, up to 3 times as much at the top. The Speed and Points chips under your score show where you are.</li>
+      <li><b>Pick a speed on the play card with − and +.</b> All three climb to the same top speed. <b>Slow</b> starts at half speed and eases in, <b>Normal</b> is the classic game, and <b>Fast</b> starts at double speed. Points get a bonus for the speed you pick: Slow ×0.8, Normal ×1, Fast ×1.25.</li>
+      <li><b>Every 10 blocks you place, the game gets 1.25× faster</b> (Slow’s first three speed-ups take 20), up to about ×9.3. Once you’re past Normal’s starting speed, <b>word points go up</b> with each speed-up, up to 3 times as much at the top. The Speed and Points chips under your score show where you are.</li>
       <li><b>Incoming attacks wait in the meter</b> beside your board for 3 seconds. Score any word to block them: bigger words block more.</li>
       <li><b>Big plays fight back:</b> a full row, or a word down through 3 or more words, sends stones to the leader.</li>
       <li><b>Battles</b> pit you against 1 or 7 bots, or friends online. <b>Highest score wins.</b> Topping out ends your run, so staying alive gives you more time to score. Every 2 players knocked out, a row of stone rises under everyone still playing. Battles have hazards too, the same for everyone: every 12 blocks at first, then faster at 0:45, 1:30 and 2:15. In the last minute, or when only two are left, everything speeds up. Your board flashes red when the stack nears the top. Knocked out? Click any board to watch it.</li>
@@ -4524,7 +4548,7 @@ const LOCKABLE = ['normal', 'fast', 'practice', 'daily', 'bot', 'online', 'rot']
 const LV_START = { new: [], mid: ['normal', 'practice', 'daily', 'online'] };
 function has(k) { const S = prog(); return !LOCKABLE.includes(k) || !LV_START[S.level] || LV_START[S.level].includes(k) || !!S.unl[k]; }
 const LOCK_Q = { practice: 'first', normal: 'first', daily: 'daily', fast: 'fast', bot: 'bots', online: 'online', rot: 'rot' };
-const UNLOCK_NAME = { practice: '🎯 Practice', normal: '▶ Normal speed', daily: "📅 Today's drop", fast: '⚡ Fast speed', bot: '🤖 Vs bots', online: '👥 Online', rot: '❄ Rot & Thaw' };
+const UNLOCK_NAME = { practice: '🎯 Practice', normal: 'Normal speed', daily: "📅 Today's drop", fast: 'Fast speed', bot: '🤖 Vs bots', online: '👥 Online', rot: '❄ Rot & Thaw' };
 const questById = id => QUESTS.find(q => q.id === id);
 function lockMsg(k) { const q = questById(LOCK_Q[k]); return q ? `${q.icon} Quest: ${q.name}. ${q.desc}` : ''; }
 // The Tutorial card: new players see it until their first run is done (lessons first, then the run);
@@ -4553,7 +4577,7 @@ const QUESTS = [
     parts: r => [['First run', r.onboard || prog().tut || prog().level === 'pro' ? 1 : 0, 1]] },
   { id: 'daily', path: true, icon: '📅', name: 'Daily habit', desc: 'Score 2,500 in one run.', gems: 50, unlock: ['daily'],
     parts: r => [['Points in one run', r.score, 2500]] },
-  { id: 'fast', path: true, icon: '⚡', name: 'Need for speed', desc: 'Score 5,000 in one run.', gems: 50, unlock: ['fast'],
+  { id: 'fast', path: true, icon: '💨', name: 'Need for speed', desc: 'Score 5,000 in one run.', gems: 50, unlock: ['fast'],
     parts: r => [['Points in one run', r.score, 5000]] },
   { id: 'bots', path: true, icon: '🤖', name: 'Sparring partner', desc: 'Spell three words of 5 or more letters and score 4,000, in one run.', gems: 75, unlock: ['bot'],
     parts: r => [['Words of 5+ letters', n5(r), 3], ['Points', r.score, 4000]] },
@@ -4573,7 +4597,7 @@ const QUESTS = [
     parts: r => [['Minutes', Math.floor((+r.time || 0) / 60000), 6]] },
   { id: 'streak', icon: '🔥', name: 'On a roll', desc: "Play Today's drop 3 days in a row.", gems: 150, needs: 'daily',
     parts: () => [['Days in a row', getStats().maxStreak, 3]] },
-  { id: 'speed', icon: '🚀', name: 'Speed demon', desc: 'Score 12,000 in one run on ⚡ Fast.', gems: 300, theme: 'ember', needs: 'fast',
+  { id: 'speed', icon: '🚀', name: 'Speed demon', desc: 'Score 12,000 in one run on Fast.', gems: 300, theme: 'ember', needs: 'fast',
     parts: r => [['Points on Fast', r.pace === 'fast' ? r.score : 0, 12000]] },
   { id: 'champ', icon: '🏆', name: 'Champion', desc: 'Win a Battle of 8.', gems: 300, needs: 'bot',
     parts: r => [['Battle of 8 win', r.royale && r.place === 1 ? 1 : 0, 1]] },
@@ -4614,7 +4638,7 @@ function questNews() { const n = (game && game.questNews) || []; if (game) game.
 
 // First visit: three big cards. Later, Settings opens the same sheet to change level.
 const LEVELS = [
-  ['new', '🌱', 'New player', "I've never played Wordfall.", ['A guided tutorial at 🐢 Slow speed', 'Unlock speeds and modes through Quests']],
+  ['new', '🌱', 'New player', "I've never played Wordfall.", ['A guided tutorial at Slow speed', 'Unlock speeds and modes through Quests']],
   ['mid', '🎮', 'Intermediate', 'I know the basics.', ['A short refresher at Normal speed', "Practice, Today's drop and Online open"]],
   ['pro', '🏆', 'Experienced', 'I know my way around.', ['No tutorial', 'Everything unlocked from the start']],
 ];
@@ -4657,32 +4681,47 @@ function drawTutCard(tc) {
   const mid = prog().level === 'mid';
   setText($('#tutK'), tc === 'run' ? 'Lessons done' : mid ? 'Before you start' : 'Start here');
   setText($('#tutName'), tc === 'run' ? 'Your first run' : mid ? 'Quick refresher' : 'Learn to play');
-  setText($('#tutDesc'), tc === 'run' ? 'Play your first run at 🐢 Slow speed. When it ends, Practice and Normal speed unlock, and Quests unlock the rest.'
+  setText($('#tutDesc'), tc === 'run' ? 'Play your first run at Slow speed. When it ends, Practice and Normal speed unlock, and Quests unlock the rest.'
     : mid ? 'A short run through the basics at Normal speed, with fewer prompts. Your first run starts on the same board. Practice, Today’s drop and Online are already open, so skip it if you like.'
-    : 'A guided game on an easy board at 🐢 Slow speed that never speeds up. Glowing outlines show where each piece goes, and your first real run starts on the same board when you’re done.');
-  $('#tutList').innerHTML = (tc === 'run' ? ['🐢 Slow speed', 'Random pieces', 'Hazards on', 'Unlocks Practice'] : TUT_TOPICS)
+    : 'A guided game on an easy board at Slow speed that never speeds up. Glowing outlines show where each piece goes, and your first real run starts on the same board when you’re done.');
+  $('#tutList').innerHTML = (tc === 'run' ? ['Slow speed', 'Random pieces', 'Hazards on', 'Unlocks Practice'] : TUT_TOPICS)
     .map((t, i) => `<li>${tc === 'run' ? '' : `<b>${i + 1}</b>`}${esc(t)}</li>`).join('');
 }
 
 // Game speed picker: on the play card and in online rooms. Every copy shows the same pick; a locked
 // speed says what unlocks it.
 function paceOk(p) { return paceLock(paceOf(p)) ? PACE_KEYS.find(k => !paceLock(k)) || 'slow' : paceOf(p); }
-function paceSeg() { return `<div class="pace-seg" role="group" aria-label="Game speed">${PACE_KEYS.map(k => paceBtn(k)).join('')}</div>`; }
-function paceBtn(k) {
-  const P = PACES[k], lock = paceLock(k), on = !lock && paceOk(pace) === k;
-  return `<button type="button" data-pace="${k}" class="${lock ? 'lock' : ''}" aria-pressed="${on}"${lock ? ` aria-disabled="true" title="${esc(lock)}"` : ` title="${esc(P.name)} speed: ×${P.x} points"`}>`
-    + `<b>${lock ? '🔒' : k === 'normal' ? '' : P.icon} ${P.name}</b><small>${lock ? esc(lock) : `×${P.x} points`}</small></button>`;
+// − slower, + faster; the middle shows the speed and its points bonus.
+function paceSeg() {
+  const cur = paceOk(pace), i = PACE_KEYS.indexOf(cur), P = PACES[cur];
+  const side = (d, sym, word) => {
+    const k = PACE_KEYS[i + d], lock = k ? paceLock(k) : '';
+    const lbl = !k ? `Already the ${d < 0 ? 'slowest' : 'fastest'} speed` : lock ? `${PACES[k].name} speed is locked: ${lock}` : `${word}: ${PACES[k].name} speed, ${fmtX(PACES[k].bonus)} points`;
+    return `<button type="button" class="pst-b${lock ? ' lock' : ''}" data-pace-step="${d}"${!k || lock ? ' aria-disabled="true"' : ''} aria-label="${esc(lbl)}" title="${esc(lbl)}">${sym}${lock ? '<i class="pst-lk" aria-hidden="true">🔒</i>' : ''}</button>`;
+  };
+  return `<div class="pace-step" role="group" aria-label="Game speed" data-pace="${cur}">${side(-1, '−', 'Slower')}`
+    + `<span class="pst-v" aria-live="polite"><b>${P.name}</b><small>${fmtX(P.bonus)} points</small></span>${side(1, '+', 'Faster')}</div>`;
 }
 function drawPace() {
-  document.querySelectorAll('.pace-seg').forEach(el => { el.outerHTML = paceSeg(); });
+  document.querySelectorAll('.pace-step').forEach(el => { el.outerHTML = paceSeg(); });
 }
 function setPace(k, btn) {
-  if (paceLock(k)) { if (btn) { btn.classList.remove('nope'); void btn.offsetWidth; btn.classList.add('nope'); } return; }
+  if (!PACES[k] || paceLock(k)) return;
   pace = paceOf(k); store.set('wordfall-pace', pace);
   drawPace();
-  const nb = document.querySelector(`.pace-seg [data-pace="${pace}"]`); if (btn && nb) nb.focus({ preventScroll: true });
 }
-document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('.pace-seg [data-pace]'); if (b) setPace(b.dataset.pace, b); });
+function nope(el) { el.classList.remove('nope'); void el.offsetWidth; el.classList.add('nope'); }
+document.addEventListener('click', e => {
+  const b = e.target.closest && e.target.closest('.pace-step [data-pace-step]'); if (!b) return;
+  const d = +b.dataset.paceStep, box = b.closest('.pace-step'), k = PACE_KEYS[PACE_KEYS.indexOf(paceOk(pace)) + d];
+  if (!k) { nope(box); return; }
+  if (paceLock(k)) { nope(box); toast(`🔒 ${PACES[k].name} speed: ${lockMsg(k) || paceLock(k)}`); return; }
+  // Keep focus on the same side after the redraw, so − and + can be pressed again.
+  const inLobby = !!b.closest('.pc-field'), side = d;
+  setPace(k);
+  const nb = document.querySelector(`${inLobby ? '.pc-field ' : '#tPace '}.pace-step [data-pace-step="${side}"]`);
+  if (nb) nb.focus({ preventScroll: true });
+});
 $('#tPace').insertAdjacentHTML('beforeend', paceSeg());
 modePicker($('#tVariant'));
 $('#playCard [data-p="practice"] .pd-art').insertAdjacentHTML('beforeend', Object.entries(MODE_BOARDS).map(([k, c]) => modeBoard(k, c)).join(''));
@@ -4960,10 +4999,12 @@ function supaDb(sb) {
       const q = { orderBy: () => q, limit: () => q, onSnapshot(cb, onErr) {
         let live = true;
         const load = async () => {
-          const { data, error } = await sb.from('leaderboard').select('id,best,daily,day,name,icon').order('best', { ascending: false }).limit(500);
+          const cols = 'id,best,daily,day,name,icon';
+          let { data, error } = await sb.from('leaderboard').select(lb.noPace ? cols : cols + ',best_pace,daily_pace').order('best', { ascending: false }).limit(500);
+          if (error && !lb.noPace && paceMissing(error)) { lb.noPace = true; ({ data, error } = await sb.from('leaderboard').select(cols).order('best', { ascending: false }).limit(500)); }
           if (!live) return;
           if (error) { if (onErr) onErr(error); return; }
-          cb({ docs: (data || []).map(r => ({ id: r.id, exists: true, data: () => r })), metadata: { fromCache: false } });
+          cb({ docs: (data || []).map(r => ({ id: r.id, exists: true, data: () => ({ ...r, bp: r.best_pace, dp: r.daily_pace }) })), metadata: { fromCache: false } });
         };
         lbReload = load; load();
         const ch = sb.channel('wordfall-scores').on('postgres_changes', { event: '*', schema: 'public', table: 'scores' }, () => load()).subscribe();
@@ -4976,18 +5017,27 @@ function supaDb(sb) {
       const id = String(path).split('/')[1];
       return {
         async get() {
-          const one = cols => sb.from('scores').select(cols).eq('user_id', id).maybeSingle();
-          let q = await one(lb.noDtl ? 'best,daily,day' : 'best,daily,day,daily_tl');
-          if (q.error && !lb.noDtl && dtlMissing(q.error)) { lb.noDtl = true; q = await one('best,daily,day'); }
+          const one = () => sb.from('scores').select('best,daily,day' + (lb.noDtl ? '' : ',daily_tl') + (lb.noPace ? '' : ',best_pace,daily_pace')).eq('user_id', id).maybeSingle();
+          let q = await one();
+          for (let t = 0; t < 2 && q.error; t++) {
+            if (!lb.noDtl && dtlMissing(q.error)) lb.noDtl = true; else if (!lb.noPace && paceMissing(q.error)) lb.noPace = true; else break;
+            q = await one();
+          }
           if (q.error) throw q.error;
           const data = q.data;
-          return { exists: !!data, data: () => data && { ...data, dtl: data.daily_tl, name: net.nick, icon: myIcon } };
+          return { exists: !!data, data: () => data && { ...data, dtl: data.daily_tl, bp: data.best_pace, dp: data.daily_pace, name: net.nick, icon: myIcon } };
         },
         async set(v) {
           const row = { user_id: id, best: v.best, daily: v.daily, day: v.day || null, updated_at: new Date().toISOString() };
           if (!lb.noDtl) row.daily_tl = v.dtl || null;
+          if (!lb.noPace) { row.best_pace = PACES[v.bp] ? v.bp : null; row.daily_pace = PACES[v.dp] ? v.dp : null; }
           let { error } = await sb.from('scores').upsert(row);
-          if (error && 'daily_tl' in row && dtlMissing(error)) { lb.noDtl = true; delete row.daily_tl; ({ error } = await sb.from('scores').upsert(row)); }
+          for (let t = 0; t < 2 && error; t++) {
+            if ('daily_tl' in row && dtlMissing(error)) { lb.noDtl = true; delete row.daily_tl; }
+            else if ('best_pace' in row && paceMissing(error)) { lb.noPace = true; delete row.best_pace; delete row.daily_pace; }
+            else break;
+            ({ error } = await sb.from('scores').upsert(row));
+          }
           if (error) throw error;
           if (lbReload) lbReload();
         },
@@ -4998,7 +5048,9 @@ function supaDb(sb) {
 }
 
 // The daily_tl column comes from supabase/daily-timeline.sql; until that has run, scores post without it.
-const dtlMissing = e => /daily_tl|42703|PGRST204/.test(`${e && e.code} ${e && e.message}`);
+const dtlMissing = e => /daily_tl/.test(`${e && e.message}`) || (/42703|PGRST204/.test(`${e && e.code}`) && !/_pace/.test(`${e && e.message}`));
+// best_pace and daily_pace come from supabase/score-speed.sql; until that has run, scores show no speed tag.
+const paceMissing = e => /_pace/.test(`${e && e.message}`) || (/42703|PGRST204/.test(`${e && e.code}`) && !/daily_tl/.test(`${e && e.message}`));
 
 /* ================= Leaderboard (shared db: scores/<viewer id>) ================= */
 // Each player keeps one document: { best, day, daily } — their best game ever, and their best
@@ -5021,7 +5073,7 @@ const cleanScore = v => { const n = Math.floor(+v); return n > 0 && n < 1e8 ? n 
 function subscribeBoard() {
   const t = setTimeout(() => { lb.slow = true; renderBoard(); }, 10000);
   lb.db.collection('scores').orderBy('best', 'desc').limit(500).onSnapshot(snap => {
-    lb.docs = snap.docs.filter(d => d.exists).map(d => { const x = d.data() || {}; return { id: d.id, best: cleanScore(x.best), daily: cleanScore(x.daily), day: DAY_RE.test(x.day) ? x.day : '', name: cleanNick(x.name), icon: ICON_BY[x.icon] ? x.icon : '', dtl: x.dtl ? cleanTl(x.dtl) : null }; });
+    lb.docs = snap.docs.filter(d => d.exists).map(d => { const x = d.data() || {}; return { id: d.id, best: cleanScore(x.best), daily: cleanScore(x.daily), day: DAY_RE.test(x.day) ? x.day : '', name: cleanNick(x.name), icon: ICON_BY[x.icon] ? x.icon : '', dtl: x.dtl ? cleanTl(x.dtl) : null, bp: PACES[x.bp] ? x.bp : '', dp: PACES[x.dp] ? x.dp : '' }; });
     if (!snap.metadata.fromCache) { clearTimeout(t); lb.loaded = true; lb.slow = false; lb.failed = false; syncLocalBest(); }
     renderBoard();
   }, () => { clearTimeout(t); lb.failed = true; renderBoard(); });
@@ -5034,7 +5086,7 @@ function syncLocalBest() {
   const local = cleanScore(store.get('wordfall-best'));
   if (local > (mine ? mine.best : 0)) submitScore(local, false);
 }
-function submitScore(score, isDaily, dtl) {
+function submitScore(score, isDaily, dtl, sp) {
   score = cleanScore(score);
   if (!lb.db || !lb.uid || !score || lb.canWrite === false) return;
   lb.chain = lb.chain.then(async () => {
@@ -5046,7 +5098,10 @@ function submitScore(score, isDaily, dtl) {
     // A new best Today's drop brings its score-over-time line, so others can race it.
     const prevTl = cur.day === today && cur.dtl ? cleanTl(cur.dtl) : null;
     const next = { best: Math.max(prevBest, score), day: today, daily: isDaily ? Math.max(prevDaily, score) : prevDaily, name: net.nick, icon: myIcon,
-      dtl: isDaily && score > prevDaily && dtl && dtl.day === today ? dtl : prevTl };
+      dtl: isDaily && score > prevDaily && dtl && dtl.day === today ? dtl : prevTl,
+      // The speed each score was played at.
+      bp: score > prevBest && PACES[sp] ? sp : PACES[cur.bp] ? cur.bp : null,
+      dp: isDaily && score > prevDaily && PACES[sp] ? sp : cur.day === today && PACES[cur.dp] ? cur.dp : null };
     if (next.best === prevBest && next.daily === prevDaily && cur.name === next.name && cur.icon === next.icon) return;
     await ref.set(next);
   }).catch(e => { if (e && e.code === 'invalid_argument') { lb.canWrite = false; renderBoard(); } });
@@ -5057,7 +5112,7 @@ function bankLiveGame() {
   if (game && game.me && !game.over && game.me.score > 0) {
     tlSample(true);
     const mine = versusMode() ? null : tlPack([ME]);
-    submitScore(game.me.score, game.mode === 'daily', game.mode === 'daily' ? tlShort(mine) : null);
+    submitScore(game.me.score, game.mode === 'daily', game.mode === 'daily' ? tlShort(mine) : null, game.me.pace);
     if (game.mode === 'daily') recordDaily();
     if (game.me.score > (+store.get('wordfall-best') || 0)) store.set('wordfall-best', String(game.me.score));
     recordRun(game.me, versusMode() ? { quit: true, tl: tlPack(rankBattlers()) } : { quit: true, tl: soloTl(mine, soloRivals()) });
@@ -5086,7 +5141,7 @@ async function renderBoard() {
   setText($('#srLb'), ti >= 0 ? `You're #${ti + 1} today` : tRows.length ? `${tRows.length} on today's board` : 'Be first on today\'s board');
   if (!list) return;
   const rows = lb.docs
-    .map(d => ({ id: d.id, name: d.name, icon: d.icon, score: all ? d.best : (d.day === today ? d.daily : 0) }))
+    .map(d => ({ id: d.id, name: d.name, icon: d.icon, score: all ? d.best : (d.day === today ? d.daily : 0), sp: all ? d.bp : d.dp }))
     .filter(r => r.score > 0)
     .sort((a, b) => b.score - a.score);
   const myIdx = lb.uid ? rows.findIndex(r => r.id === lb.uid) : -1;
@@ -5106,7 +5161,7 @@ async function renderBoard() {
     const who = lbWho(r, ps[r.id] || {}, r.id === lb.uid); who.classList.add('big');
     const sc = document.createElement('b'); sc.className = 'lb-sc'; sc.textContent = r.score.toLocaleString();
     const step = document.createElement('span'); step.className = 'lb-step'; step.textContent = rk;
-    col.append(who, sc, step); pod.appendChild(col);
+    col.append(who, sc); if (r.sp) col.insertAdjacentHTML('beforeend', paceTag(r.sp)); col.append(step); pod.appendChild(col);
   }
   list.innerHTML = '';
   for (const r of show) {
@@ -5117,6 +5172,7 @@ async function renderBoard() {
     li.className = `tb-row r${r.rank}` + (me ? ' me' : '');
     const rk = document.createElement('span'); rk.className = 'tb-rk'; rk.textContent = r.rank;
     const sc = document.createElement('span'); sc.className = 'tb-sc'; sc.textContent = r.score.toLocaleString();
+    if (r.sp) sc.insertAdjacentHTML('afterbegin', paceTag(r.sp));
     li.append(rk, lbWho(r, ps[r.id] || {}, me), sc);
     list.appendChild(li);
   }
@@ -5426,7 +5482,7 @@ function runBody(r, opt = {}) {
   const fav = favWord(r.list), pw = r.powers || {}, used = POWERS.filter(k => +pw[k] > 0);
   const kind = k => k === 'v' ? 'v' : k === 'f' ? 'f' : 'h';
   const chart = tlHTML(r);
-  return `<div class="rb${chart ? ' has-tl' : ''}"><div class="rb-when"><p>${fmtWhen(r.at)}${r.variant === 'rot' ? ' · ❄ Rot &amp; Thaw' : ''}${r.pace && r.pace !== 'normal' && PACES[r.pace] ? ` · ${PACES[r.pace].icon} ${PACES[r.pace].name}` : ''} · ${fmtUp(+r.time || 0)}${r.place ? ` · placed #${+r.place} of ${+r.players}` : ''}${r.quit ? ' · left early' : ''}</p>${opt.seed === false ? '' : seedBtn(r)}</div>
+  return `<div class="rb${chart ? ' has-tl' : ''}"><div class="rb-when"><p>${fmtWhen(r.at)}${r.variant === 'rot' ? ' · ❄ Rot &amp; Thaw' : ''}${PACES[r.pace] ? ` · ${PACES[r.pace].name} speed` : ''} · ${fmtUp(+r.time || 0)}${r.place ? ` · placed #${+r.place} of ${+r.players}` : ''}${r.quit ? ' · left early' : ''}</p>${opt.seed === false ? '' : seedBtn(r)}</div>
     <div class="rb-top">${chart}
     <div class="rs-grid rb-tiles">
       ${rsTile('Words', +r.words || 0, `${+r.vert || 0} down · ${+r.full || 0} full row${+r.full === 1 ? '' : 's'}`)}
@@ -5739,7 +5795,7 @@ const ICONS = [
   { id: 'gem', name: 'Gem', c: '#17998b', g: '<path d="M7 4.5h10l3.5 5L12 20 3.5 9.5zM3.5 9.5h17M10 4.5l-1.5 5L12 20l3.5-10.5-1.5-5"/>', need: 'Score the bonus word in a game', ok: s => s.runs.some(r => r.wotdHit) },
   { id: 'stack', name: 'Stack', c: '#d4613f', g: '<rect x="6" y="4.5" width="12" height="4" rx="1"/><rect x="6" y="10" width="12" height="4" rx="1"/><rect x="6" y="15.5" width="12" height="4" rx="1"/>', need: 'Cash in a ×3 stack', ok: s => s.runs.some(r => +r.topStack >= 3) },
   { id: 'book', name: 'Book', c: '#5175d0', g: '<path d="M5 5.5A1.5 1.5 0 0 1 6.5 4H19v14H6.5A1.5 1.5 0 0 0 5 19.5zM5 19.5A1.5 1.5 0 0 0 6.5 21H19M9 8h6"/>', need: 'Score 250 words in total', ok: s => s.words >= 250 },
-  { id: 'rocket', name: 'Rocket', c: '#e0435f', g: '<path d="M12 3c3 2 4.8 5.6 4 10.5l-2 2.5h-4l-2-2.5C7.2 8.6 9 5 12 3zM10 16l-1.5 4M14 16l1.5 4"/><circle cx="12" cy="9.5" r="1.6"/>', need: 'Reach top speed (100 blocks in one game)', ok: s => s.runs.some(r => +r.placed >= 100) },
+  { id: 'rocket', name: 'Rocket', c: '#e0435f', g: '<path d="M12 3c3 2 4.8 5.6 4 10.5l-2 2.5h-4l-2-2.5C7.2 8.6 9 5 12 3zM10 16l-1.5 4M14 16l1.5 4"/><circle cx="12" cy="9.5" r="1.6"/>', need: 'Reach top speed in one game', ok: s => s.runs.some(r => +r.placed >= blocksToTop(r.pace)) },
   { id: 'calendar', name: 'Calendar', c: '#2b9467', g: '<rect x="4.5" y="5.5" width="15" height="14" rx="2"/><path d="M4.5 10h15M9 3.5v4M15 3.5v4M9.5 14.8l1.8 1.8 3.4-3.4"/>', need: 'Play Today\'s drop 7 days in a row', ok: s => s.maxStreak >= 7 },
 ];
 const ICON_BY = Object.fromEntries(ICONS.map(i => [i.id, i]));
@@ -5849,7 +5905,7 @@ function trendSVG(runs) {
 }
 function renderHistPage() {
   const runs = getRuns(), x = fullStats(), ws = loadJSON(WSTATS_KEY, {}), s = achStats();
-  setPgHead('History', 'Your last 50 games and every word you\'ve ever scored. Kept on this device.',
+  setPgHead('History', 'Your last 100 games and every word you\'ve ever scored.',
     `<div class="seg" id="hpTabs"><button type="button" data-h="runs" aria-pressed="${histPane === 'runs'}">Runs</button><button type="button" data-h="words" aria-pressed="${histPane === 'words'}">Wordstistics</button></div>`);
   const top = `<div class="hp-stats">
       ${rsTile('Best score', x.best ? x.best.toLocaleString() : '–')}
@@ -5865,7 +5921,7 @@ function renderHistPage() {
     histSel = Math.min(histSel, Math.max(0, runs.length - 1));
     pgBody.innerHTML = top + `<div class="pg-card hp-chart"><h3 class="rs-h">Recent scores</h3>${trendSVG(runs)}</div>` + (runs.length ? `<div class="pg-split hp-split">
       <div class="pg-card"><h3 class="rs-h">Runs, newest first</h3><div class="runlist">${runs.map((r, i) => `<button class="runrow${i === histSel ? ' on' : ''}" type="button" data-i="${i}" aria-pressed="${i === histSel}">
-        <span class="rr-m"><b>${esc(MODE_NAME(r) + tlVs(r))}${r.variant === 'rot' ? ' · ❄' : ''}</b><small>${fmtWhen(r.at)}${r.quit ? ' · left early' : ''}</small></span>
+        <span class="rr-m"><b>${esc(MODE_NAME(r) + tlVs(r))}${r.variant === 'rot' ? ' · ❄' : ''}${paceTag(r.pace)}</b><small>${fmtWhen(r.at)}${r.quit ? ' · left early' : ''}</small></span>
         <span class="rr-w">${tlSpark(r)}${+r.words || 0} word${+r.words === 1 ? '' : 's'}${r.wotdHit ? ' · ⭐' : ''}${r.place ? ' ' + tlResult(r) : ''}</span>
         <b class="rr-s">${n0(r.score)}</b></button>`).join('')}</div></div>
       <div class="pg-card hp-detail" id="hpDetail"></div></div>` : `<div class="pg-card"><p>No runs yet. Play a game and it will show up here.</p></div>`);
@@ -6425,7 +6481,7 @@ function endHero(c) {
   const sbtn = c.rec || game ? seedBtn(c.rec || { sw: game.seedWords, seed: game.seed, variant: game.variant }, 'es-chip seedbtn') : '';
   if (sbtn) chips.push(sbtn);
   const rp = c.rec ? c.rec.pace : game && game.pace;
-  if (PACES[rp]) chips.push(`<span class="es-chip pace-chip" title="Game speed">${PACES[rp].icon} ${PACES[rp].name} · ×${PACES[rp].x} points</span>`);
+  if (PACES[rp]) chips.push(`<span class="es-chip pace-chip" title="Game speed and its points bonus">${PACES[rp].name} speed · ${fmtX(PACES[rp].bonus)} points</span>`);
   if (c.unlocked && c.unlocked.length) chips.push(`<span class="es-chip gold">🎁 Unlocked: ${c.unlocked.map(esc).join(', ')}</span>`);
   for (const q of c.quests || []) chips.push(`<span class="es-chip gold q-chip">${esc(q)}</span>`);
   const sub = `<b>${c.words}</b> word${c.words === 1 ? '' : 's'} · <b>${fmtUp(c.time)}</b>${c.kind === 'solo' ? ` · best <b>${n0(c.best)}</b>` : ''}`;
@@ -6475,7 +6531,7 @@ function renderEndBody() {
     const isThis = r => c.rec && r.at === c.rec.at;
     el.innerHTML = `<div class="pg-card hp-chart"><h3 class="rs-h">Recent scores</h3>${trendSVG(runs)}</div>
       <div class="pg-split hp-split"><div class="pg-card"><h3 class="rs-h">Runs, newest first</h3><div class="runlist">${runs.map((r, i) => `<button class="runrow${i === endHistSel ? ' on' : ''}" type="button" data-i="${i}" aria-pressed="${i === endHistSel}">
-        <span class="rr-m"><b>${isThis(r) ? 'This run · ' : ''}${esc(MODE_NAME(r) + tlVs(r))}${r.variant === 'rot' ? ' · ❄' : ''}</b><small>${fmtWhen(r.at)}${r.quit ? ' · left early' : ''}</small></span>
+        <span class="rr-m"><b>${isThis(r) ? 'This run · ' : ''}${esc(MODE_NAME(r) + tlVs(r))}${r.variant === 'rot' ? ' · ❄' : ''}${paceTag(r.pace)}</b><small>${fmtWhen(r.at)}${r.quit ? ' · left early' : ''}</small></span>
         <span class="rr-w">${tlSpark(r)}${+r.words || 0} word${+r.words === 1 ? '' : 's'}${r.wotdHit ? ' · ⭐' : ''}${r.place ? ' ' + tlResult(r) : ''}</span>
         <b class="rr-s">${n0(r.score)}</b></button>`).join('')}</div></div>
       <div class="pg-card hp-detail" id="esDetail"></div></div>`;
