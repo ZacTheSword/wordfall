@@ -1133,6 +1133,7 @@ div.hub-t{cursor:default}
 .lv-line{color:var(--muted)}
 .lv-card ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:13px}
 .lv-go{margin-top:auto;align-self:stretch;text-align:center;padding:10px;border-radius:9px;background:var(--mc);color:var(--ink);font:400 16px/1 var(--f-display);text-transform:uppercase;letter-spacing:.06em}
+.ov-back.lv-in-btn{font:600 13.5px/1.4 var(--f-ui);text-transform:none;letter-spacing:0;border:0;background:none;box-shadow:none;color:var(--accent);text-decoration:underline;text-underline-offset:3px;padding:6px 10px;margin-top:-4px}
 .lv-note{margin:-6px 0 0;font-size:12.5px;color:var(--muted);text-align:center}
 @keyframes lvin{from{opacity:0;transform:translateY(16px)}}
 @media (max-width:760px){.lv-cards{grid-template-columns:minmax(0,1fr);gap:10px}.lv-card{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:6px 12px;padding:14px}.lv-ic{grid-row:span 2;width:48px;height:48px;font-size:26px}.lv-card>b{font-size:20px}.lv-card ul,.lv-go{grid-column:1/-1}.lv-go{padding:8px}}
@@ -1837,6 +1838,7 @@ div.hub-t{cursor:default}
       <p class="lv-sub" id="lvSub"></p>
       <div class="lv-cards" id="lvCards"></div>
       <p class="lv-note">You can change this any time in Settings › Gameplay.</p>
+      <button class="ov-back lv-in-btn" id="lvSignIn" type="button" hidden>Played before on another device? Sign in to bring your progress back ›</button>
       <button class="ov-back" id="lvBack" type="button" hidden>‹ Back</button>
     </div>
   </div>
@@ -2024,7 +2026,7 @@ function todayStr() { const d = new Date(); return `${d.getFullYear()}-${String(
 const store = {
   mem: new Map(),
   get(k) { try { const v = localStorage.getItem(k); if (v !== null) return v; } catch {} return this.mem.has(k) ? this.mem.get(k) : null; },
-  set(k, v) { this.mem.set(k, String(v)); try { localStorage.setItem(k, v); } catch {} },
+  set(k, v) { this.mem.set(k, String(v)); try { localStorage.setItem(k, v); } catch {} if (syncSt) syncTouch(k); },
 };
 // Seed words: typed on the play card (or in an online room); empty means a fresh random seed each game.
 const normSeed = t => String(t || '').trim().toLowerCase().replace(/\s+/g, ' ').slice(0, 40);
@@ -4502,10 +4504,21 @@ function prog() {
   }
   if (lv === 'ask') lv = '';
   progS = { level: lv, tut: !!q.tut, done: ob(q.done), unl: ob(q.unl), own: ob(q.own), st: ob(q.st),
-    fresh: Array.isArray(q.fresh) ? q.fresh.filter(x => typeof x === 'string') : [], gems: Math.max(0, Math.floor(+q.gems || 0)) };
+    fresh: Array.isArray(q.fresh) ? q.fresh.filter(x => typeof x === 'string') : [], buy: questBuy(q),
+    // Gems: earned from finished quests, minus everything bought.
+    get gems() { return Math.max(0, questEarned(this.done) - Object.values(this.buy).reduce((a, b) => a + (+b || 0), 0)); },
+    set gems(v) { this.buy.adj = (+this.buy.adj || 0) + (this.gems - Math.floor(+v || 0)); } };
   return progS;
 }
-function saveProg() { const S = prog(); store.set('wordfall-quests', JSON.stringify({ tut: S.tut, done: S.done, unl: S.unl, own: S.own, st: S.st, fresh: S.fresh, gems: S.gems })); }
+function saveProg() { const S = prog(); store.set('wordfall-quests', JSON.stringify({ tut: S.tut, done: S.done, unl: S.unl, own: S.own, st: S.st, fresh: S.fresh, buy: S.buy, gems: S.gems })); }
+function questEarned(done) { return QUESTS.reduce((a, q) => a + (done && done[q.id] && done[q.id] !== 'free' ? q.gems : 0), 0); }
+// Purchases, by item. Progress saved before purchases were kept item by item keeps what it had spent.
+function questBuy(q) {
+  const b = {};
+  if (q.buy && typeof q.buy === 'object' && !Array.isArray(q.buy)) { for (const [k, v] of Object.entries(q.buy)) if (Number.isFinite(+v)) b[k] = +v; }
+  else if (q.gems != null) { const sp = questEarned(q.done && typeof q.done === 'object' ? q.done : {}) - Math.floor(+q.gems || 0); if (sp > 0) b.legacy = sp; }
+  return b;
+}
 // What each level starts with; experienced players (and anyone not asked yet) have everything.
 const LOCKABLE = ['normal', 'fast', 'practice', 'daily', 'bot', 'online', 'rot'];
 const LV_START = { new: [], mid: ['normal', 'practice', 'daily', 'online'] };
@@ -4592,7 +4605,6 @@ function questDone(q) {
   S.fresh = [...S.fresh.filter(x => x !== q.id), q.id];
   for (const k of q.unlock || []) S.unl[k] = 1;
   if (free) return `${q.icon} Quest done: ${q.name}`;
-  S.gems += q.gems;
   if (q.theme) S.own['theme:' + q.theme] = 1;
   if (q.tile && !ownedSkins.has(q.tile)) { ownedSkins.add(q.tile); saveSkins(); }
   if (q.id === 'first' && !has(playTab)) { playTab = 'practice'; store.set('wordfall-playtab', playTab); }
@@ -4615,6 +4627,7 @@ function showLevelPick() {
     + `<span class="lv-ic" aria-hidden="true">${ic}</span><b>${n}</b><span class="lv-line">${esc(line)}</span><ul>${pts.map(p => `<li>${esc(p)}</li>`).join('')}</ul>`
     + `<span class="lv-go">${S.level === k ? '✓ Current' : 'Choose'}</span></button>`).join('');
   $('#lvBack').hidden = !S.level;
+  $('#lvSignIn').hidden = !!S.level || !acct.avail || !!acct.user;
   $('#lvSub').textContent = S.level ? 'Change how much of the game starts unlocked. Your quests, gems and unlocks are kept.' : 'Pick one and we’ll set the game up to match.';
   showOv($('#levelPick'), $('#lvCards .lv-card.on') || $('#lvCards .lv-card'));
 }
@@ -4636,6 +4649,7 @@ function setLevel(lv) {
 }
 $('#lvCards').addEventListener('click', e => { const b = e.target.closest('[data-lv]'); if (b) setLevel(b.dataset.lv); });
 $('#lvBack').onclick = () => lvReturn();
+$('#lvSignIn').onclick = () => openPage('settings', { sec: 'profile' });
 
 // The Tutorial card on the play box.
 const TUT_TOPICS = ['Move and drop', 'Spell across', 'Cash in down', '⭐ Bonus word', 'Powers', 'Block hazards', 'First run'];
@@ -4761,6 +4775,8 @@ async function acctSession(session) {
   if (acct.ready) acctApply();
 }
 function acctApply() {
+  if (acct.user && (!syncSt || syncSt.uid !== acct.user.id)) syncStart();
+  if (!acct.user) syncSt = null;
   lb.uid = acct.user ? acct.user.id : null;
   lb.canWrite = acct.user ? !!acctName() : null;
   lb.synced = false;
@@ -4809,6 +4825,130 @@ async function acctGoogle() {
   if (error) { store.set('wordfall-oauth', ''); throw new Error('Google sign-in isn\'t available right now.'); }
 }
 function acctSignOut() { return acct.sb.auth.signOut().catch(() => {}); }
+
+/* ----- Your history and progress on your account -----
+   Signed-in players keep their last 100 runs (a row each in `runs`) and the rest of their progress
+   (one row in `player_data`: quests, gems, unlocks, level, owned tiles and icons, stats) on the server.
+   Signing in merges the account's copy with this device; after that each change is saved back.
+   Needs supabase/player-sync.sql; until it has run, everything stays on the device as before. */
+var syncSt = null;
+const SYNC_KEYS = ['wordfall-quests', 'wordfall-level', 'wordfall-best', 'wordfall-stats', 'wordfall-wordstats', 'wordfall-skins-owned',
+  'wordfall-letter-skins', 'wordfall-icons-owned', 'wordfall-skin', 'wordfall-tut', 'wordfall-rotguide'];
+const isObj = v => !!v && typeof v === 'object' && !Array.isArray(v);
+const jsonOr = (t, d) => { try { const v = JSON.parse(t); return v == null ? d : v; } catch { return d; } };
+const syncMissing = e => !!e && (['42P01', 'PGRST205', 'PGRST204', 'PGRST202'].includes(e.code) || /does not exist|could not find the table|schema cache/i.test(e.message || ''));
+function mergeQuests(x, y) {
+  const o = v => isObj(v) ? v : {}, bx = questBuy(x), by = questBuy(y), out = { tut: !!(x.tut || y.tut), done: {}, unl: { ...o(y.unl), ...o(x.unl) },
+    own: { ...o(y.own), ...o(x.own) }, st: { ...o(y.st) }, buy: { ...by }, fresh: [...new Set([...[].concat(x.fresh || []), ...[].concat(y.fresh || [])])] };
+  for (const [k, v] of Object.entries(bx)) out.buy[k] = Math.max(+out.buy[k] || 0, v);
+  // A quest done on either device is done; one that paid its reward beats one done for free.
+  for (const [id, v] of [...Object.entries(o(y.done)), ...Object.entries(o(x.done))]) {
+    const p = out.done[id];
+    out.done[id] = p === undefined || p === 'free' ? v : v === 'free' ? p : Math.min(+p || Date.now(), +v || Date.now());
+  }
+  for (const [id, st] of Object.entries(o(x.st))) if (!out.st[id] || (+(st && st.p) || 0) > (+out.st[id].p || 0)) out.st[id] = st;
+  return out;
+}
+// a: this device, b: the account. Progress merges; preferences keep this device's choice.
+function mergeKey(k, a, b) {
+  if (a == null || a === '') return b;
+  if (b == null || b === '') return a;
+  if (k === 'wordfall-level') return ['new', 'mid', 'pro'].includes(b) ? b : a;   // the account's level wins
+  if (k === 'wordfall-best') return String(Math.max(+a || 0, +b || 0));
+  if (k === 'wordfall-skins-owned' || k === 'wordfall-icons-owned') return JSON.stringify([...new Set([...[].concat(jsonOr(a, [])), ...[].concat(jsonOr(b, []))])]);
+  if (k === 'wordfall-wordstats') return (+jsonOr(b, {}).runs || 0) > (+jsonOr(a, {}).runs || 0) ? b : a;
+  if (k === 'wordfall-stats') {
+    const x = jsonOr(a, {}), y = jsonOr(b, {}), late = String(y.lastDaily || '') > String(x.lastDaily || '') ? y : x, mx = f => Math.max(+x[f] || 0, +y[f] || 0);
+    return JSON.stringify({ ...x, ...y, wins: mx('wins'), bigWins: mx('bigWins'), maxStreak: mx('maxStreak'), streak: +late.streak || 0, lastDaily: late.lastDaily || '' });
+  }
+  if (k === 'wordfall-quests') return JSON.stringify(mergeQuests(jsonOr(a, {}), jsonOr(b, {})));
+  return a;
+}
+async function syncStart() {
+  const sb = acct.sb, uid = acct.user && acct.user.id;
+  if (!sb || !uid) return;
+  const st = syncSt = { uid, on: false, t: 0, state: 'loading', at: 0 };
+  let pd, rr;
+  try {
+    [pd, rr] = await Promise.all([
+      sb.from('player_data').select('data').eq('user_id', uid).maybeSingle(),
+      sb.from('runs').select('at,data').eq('user_id', uid).order('at', { ascending: false }).limit(RUNS_MAX),
+    ]);
+  } catch (e) { pd = rr = { error: e }; }
+  if (syncSt !== st) return;
+  const err = pd.error || rr.error;
+  if (err) { st.state = syncMissing(err) ? 'missing' : 'error'; if (curPage === 'settings') renderPage(); return; }
+  const keys = isObj(pd.data && pd.data.data) && isObj(pd.data.data.keys) ? pd.data.data.keys : {};
+  // This device was last saved to a different account: show this account's progress instead of mixing them.
+  const prev = store.get('wordfall-sync-uid'), swap = !!prev && prev !== uid;
+  let changed = false;
+  for (const k of SYNC_KEYS) {
+    const a = store.get(k), b = typeof keys[k] === 'string' ? keys[k] : null, v = swap ? b : mergeKey(k, a, b);
+    if ((v || '') !== (a || '')) { store.set(k, v || ''); changed = true; }
+  }
+  const cloud = (rr.data || []).map(x => x.data).filter(x => isObj(x) && Number.isFinite(+x.at));
+  const mine = swap ? [] : getRuns(), inCloud = new Set(cloud.map(x => +x.at)), onDevice = new Set(mine.map(x => +x.at));
+  const upload = mine.filter(x => Number.isFinite(+x.at) && !inCloud.has(+x.at)).slice(0, RUNS_MAX);
+  const back = cloud.filter(x => !onDevice.has(+x.at)).length;
+  if (back || swap) store.set(RUNS_KEY, JSON.stringify([...cloud, ...upload].sort((p, q) => q.at - p.at).slice(0, RUNS_MAX)));
+  store.set('wordfall-sync-uid', uid);
+  st.on = true; st.state = 'on';
+  if (changed || back || swap) syncReload();
+  if (back && !swap) toast(`☁ ${back} run${back === 1 ? '' : 's'} from your account added to History`, 'o');
+  // Runs played on this device before signing in join the account.
+  if (upload.length) {
+    const rows = upload.map(x => ({ user_id: uid, at: Math.round(+x.at), data: x }));
+    const { error } = await sb.from('runs').upsert(rows, { onConflict: 'user_id,at', ignoreDuplicates: true }).then(x => x, e => ({ error: e }));
+    if (error) for (const row of rows) await sb.from('runs').upsert(row, { onConflict: 'user_id,at', ignoreDuplicates: true }).then(() => {}, () => {});
+  }
+  syncPush();
+}
+// Bring what's in memory in line with storage after a merge.
+function syncReload() {
+  progS = null;
+  ownedSkins = new Set(['classic', ...[].concat(readJSON('wordfall-skins-owned', [])).filter(id => SKIN_BY_ID[id])]);
+  letterSkins = {};
+  { const m = readJSON('wordfall-letter-skins', {}); for (const ch of ABC) if (m && ownedSkins.has(m[ch]) && m[ch] !== 'classic') letterSkins[ch] = m[ch]; }
+  rebuildSkinClasses();
+  ownedIcons = new Set(['tile', ...[].concat(readJSON('wordfall-icons-owned', [])).filter(id => ICON_BY[id])]);
+  applySkin(store.get('wordfall-skin') || 'classic');
+  if (game) game.best = Math.max(+game.best || 0, +store.get('wordfall-best') || 0);
+  if (paceLock(pace)) { pace = paceOk(pace); store.set('wordfall-pace', pace); }
+  if (titleShown()) { setPlayTab(playTabOk()); drawPace(); renderHome(); }
+  if (curPage) renderPage();
+  if (prog().level && openOv && openOv.id === 'levelPick' && !lvFrom) lvReturn();
+}
+function syncTouch(k) {
+  const st = syncSt;
+  if (!st || !st.on || !SYNC_KEYS.includes(k)) return;
+  clearTimeout(st.t);
+  st.t = setTimeout(syncPush, 1500);
+}
+async function syncPush() {
+  const st = syncSt;
+  if (!st || !st.on) return;
+  clearTimeout(st.t); st.t = 0;
+  const keys = {};
+  for (const k of SYNC_KEYS) { const v = store.get(k); if (v != null && v !== '') keys[k] = v; }
+  const { error } = await acct.sb.from('player_data').upsert({ user_id: st.uid, data: { v: 1, keys }, updated_at: new Date().toISOString() }).then(x => x, e => ({ error: e }));
+  if (syncSt !== st) return;
+  st.state = error ? 'error' : 'on'; st.at = Date.now();
+}
+function syncRun(entry) {
+  const st = syncSt;
+  if (!st || !st.on || !entry) return;
+  acct.sb.from('runs').upsert({ user_id: st.uid, at: Math.round(+entry.at), data: entry }, { onConflict: 'user_id,at', ignoreDuplicates: true })
+    .then(({ error }) => { if (syncSt === st) st.state = error ? 'error' : 'on'; }, () => { if (syncSt === st) st.state = 'error'; });
+}
+// Save straight away if the page is closing with a change waiting.
+document.addEventListener('visibilitychange', () => { if (document.hidden && syncSt && syncSt.t) syncPush(); });
+function syncNote() {
+  const st = syncSt;
+  if (!st || st.state === 'loading') return '☁ Loading your saved history…';
+  if (st.state === 'missing') return 'Your history is kept on this device only for now: saving it to accounts isn’t switched on yet.';
+  if (st.state === 'error') return '☁ Couldn’t reach the server just now. Your progress is safe on this device and saves to your account when it can.';
+  return '☁ Your last 100 runs, quests, gems, unlocks and stats are saved to your account, so they come back on any device.';
+}
 
 /* ----- Leaderboard storage on Supabase -----
    Gives the leaderboard code the same calls it uses on claude.ai:
@@ -4991,7 +5131,7 @@ async function renderBoard() {
 }
 
 /* ================= Run history & Wordstistics ================= */
-const RUNS_KEY = 'wordfall-runs', WSTATS_KEY = 'wordfall-wordstats', RUNS_MAX = 50;
+const RUNS_KEY = 'wordfall-runs', WSTATS_KEY = 'wordfall-wordstats', RUNS_MAX = 100;
 function loadJSON(k, d) { try { const v = JSON.parse(store.get(k) || 'null'); return v && typeof v === 'object' ? v : d; } catch { return d; } }
 const getRuns = () => { const r = loadJSON(RUNS_KEY, []); return Array.isArray(r) ? r.filter(x => x && typeof x === 'object') : []; };
 // Save the run you just played (once), and add its words to your all-time word stats.
@@ -5011,6 +5151,7 @@ function recordRun(B, extra = {}) {
   };
   game.recorded = entry;
   store.set(RUNS_KEY, JSON.stringify([entry, ...getRuns()].slice(0, RUNS_MAX)));
+  syncRun(entry);
   const ws = loadJSON(WSTATS_KEY, {});
   ws.runs = (+ws.runs || 0) + 1;
   ws.w = ws.w && typeof ws.w === 'object' ? ws.w : {};
@@ -5800,7 +5941,7 @@ function renderShopPage() {
     if (pq('#shPick')) pq('#shPick').onclick = () => { shopCat = 'letters'; renderShopPage(); };
     if (pq('#shGetAll')) pq('#shGetAll').onclick = () => { for (const k of SKINS) if (!k.price) ownedSkins.add(k.id); saveSkins(); renderShopPage(); };
     if (pq('#shBuy')) pq('#shBuy').onclick = () => { const k = SKIN_BY_ID[id], S = prog(); if (S.gems < k.price || ownedSkins.has(id)) return;
-      S.gems -= k.price; saveProg(); ownedSkins.add(id); saveSkins(); toast(`🛍 ${k.name} tiles added`, 'o'); renderShopPage(); };
+      S.buy['tile:' + id] = k.price; saveProg(); ownedSkins.add(id); saveSkins(); toast(`🛍 ${k.name} tiles added`, 'o'); renderShopPage(); };
   } else if (shopCat === 'icons') {
     pick('icons', '.sh-item');
     const id = shopPick.icons;
@@ -5810,7 +5951,7 @@ function renderShopPage() {
     pick('themes', '.skin');
     if (pq('#shTheme')) pq('#shTheme').onclick = () => { applySkin(shopPick.themes); renderShopPage(); };
     if (pq('#shBuyTheme')) pq('#shBuyTheme').onclick = () => { const t = THEMES.find(q => q.id === shopPick.themes), S = prog(); if (!t || !t.price || S.gems < t.price) return;
-      S.gems -= t.price; S.own['theme:' + t.id] = 1; saveProg(); applySkin(t.id); renderShopPage(); };
+      S.buy['theme:' + t.id] = t.price; S.own['theme:' + t.id] = 1; saveProg(); applySkin(t.id); renderShopPage(); };
   } else wireInv();
   if (fresh.length) toast(`🎁 Unlocked: ${fresh.join(', ')}`, 'o');
 }
@@ -5922,7 +6063,7 @@ function acctHTML() {
   if (!acct.avail) return '';
   if (!acct.user) {
     const up = acctMode === 'up';
-    return `<div class="acct"><div class="acct-h"><h3>Account</h3><small>Sign in to post scores on the leaderboard and keep your username on any device.</small></div>
+    return `<div class="acct"><div class="acct-h"><h3>Account</h3><small>Sign in to post scores on the leaderboard, keep your username, and save your history and progress so they come back on any device.</small></div>
       <button class="btn acct-g" id="acG" type="button">${GOOGLE_G}<span>Continue with Google</span></button>
       <div class="acct-or">or use a username</div>
       <div class="seg" id="acMode"><button type="button" data-m="in" aria-pressed="${!up}">Sign in</button><button type="button" data-m="up" aria-pressed="${up}">Create account</button></div>
@@ -5935,6 +6076,7 @@ function acctHTML() {
   }
   return `<div class="acct on"><div class="acct-h"><h3>Account</h3><small>${acct.kind === 'google' ? 'Signed in with Google' : 'Signed in with your username'}</small></div>
     ${acctName() ? '' : '<p class="set-note warn">Pick a username below to put your scores on the leaderboard.</p>'}
+    <p class="set-note">${syncNote()}</p>
     <div class="btnrow"><button class="btn sm ghostb" id="acOut" type="button">Sign out</button></div></div>`;
 }
 function wireAcct() {
@@ -7258,6 +7400,6 @@ showMenu(false);
 requestAnimationFrame(frame);
 
 /* Test hook for automated checks (harmless in play). */
-window.__wordfall = { get game() { return game; }, endSting, tlSample, tlHit, playStep, get net() { return net; }, joinRoom, leaveRoom, get paused() { return paused; }, set paused(v) { paused = !!v; }, tutTick, startTutorialNow, musicTick, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store, prog, setLevel, showLevelPick, tutToRun, questsAfterRun, get QUESTS() { return QUESTS; }, get pace() { return pace; } };
+window.__wordfall = { get game() { return game; }, endSting, tlSample, tlHit, playStep, get net() { return net; }, joinRoom, leaveRoom, get paused() { return paused; }, set paused(v) { paused = !!v; }, tutTick, startTutorialNow, musicTick, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store, prog, setLevel, showLevelPick, tutToRun, questsAfterRun, mergeKey, syncStart, get syncSt() { return syncSt; }, get QUESTS() { return QUESTS; }, get pace() { return pace; } };
 })();
 </script>
