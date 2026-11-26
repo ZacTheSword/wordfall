@@ -851,10 +851,8 @@ div.hub-t{cursor:default}
 .calm .rc .flake{display:none}
 @media (prefers-reduced-motion:reduce){.rc .flake{display:none}}
 @media (max-width:560px){.t-card.play-card.rotframe{--rt:18px}#playCard{padding-bottom:84px}}
-/* Rot & Thaw touches on the card: an ice tile for the Practice icon, a netherrack title, and themed preview blocks. */
-.rotframe [data-p="practice"] .pm-ic{position:relative;font-size:0;border-radius:10px;background:linear-gradient(160deg,#fff 0%,#b8ecff 40%,#5cc8f5 100%);box-shadow:inset 0 -5px 0 #2f9fd6,inset 0 0 0 2px #fff,0 0 0 2px #38c6ff,0 0 16px 1px #5fd4ffcc}
-.rotframe [data-p="practice"] .pm-ic::after{content:'❄';position:absolute;inset:0 0 4px;display:grid;place-items:center;font-size:25px;line-height:1;color:#0a6fa8;text-shadow:0 0 4px #fff}
-.rotframe .pm-var{color:#b8574f;text-shadow:0 2px 0 #5c2320,0 0 18px #a8504a99}
+/* Rot & Thaw touches on the card: a plain netherrack tile for the Practice icon, and themed preview blocks. */
+.rotframe [data-p="practice"] .pm-ic{font-size:0;border-radius:10px;background:var(--nether);box-shadow:inset 0 -5px 0 var(--nether-edge),0 0 0 1px #2a0806}
 .rotframe [data-p="practice"] .ha-board i:nth-child(3),.rotframe [data-p="practice"] .ha-board i:nth-child(4){background:linear-gradient(160deg,#fff 0%,#b8ecff 40%,#5cc8f5 100%);color:#063a57;box-shadow:inset 0 -2px 0 #2f9fd6,0 0 0 1.5px #38c6ff,0 0 8px #5fd4ffaa}
 .rotframe [data-p="practice"] .ha-board i:nth-child(14){background:radial-gradient(circle at 28% 30%,#fff 0 14%,transparent 16%),radial-gradient(circle at 70% 62%,#fff 0 12%,transparent 14%),linear-gradient(#fbfdff,#dcecfb);color:#1b1930;box-shadow:inset 0 -2px 0 #b9cde4}
 .rotframe [data-p="practice"] .ha-board i:nth-child(17){background:radial-gradient(circle at 80% 78%,#5e211e 0 15%,transparent 19%),linear-gradient(#a8504a,#83342f);color:#ffeae4;box-shadow:inset 0 -2px 0 var(--nether-edge)}
