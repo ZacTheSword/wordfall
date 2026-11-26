@@ -795,26 +795,68 @@ div.hub-t{cursor:default}
 .calm .es-hero>*{animation:none}
 @media (prefers-reduced-motion:reduce){.es-hero>*{animation:none}}
 /* /END-SCREEN */
-/* MODE-PICKER: ‹ name › arrows that cycle through the game modes (VARIANTS), ready for more modes. */
-.mpick{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;width:100%;border:1px solid var(--line2);border-radius:8px;overflow:hidden;background:color-mix(in srgb,var(--panel) 90%,transparent)}
-.mp-arr{display:grid;place-items:center;background:none;border:0;padding:0;color:var(--muted);cursor:pointer;transition:background .15s,color .15s}
-.mp-arr svg{width:10px;height:16px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-.mp-arr:hover,.mp-arr:focus-visible{background:var(--line2);color:var(--fg)}
-.mp-arr:active svg{transform:scale(.85)}
-.mp-cur{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:7px 8px 6px;background:var(--line2);min-width:0;overflow:hidden}
-.mp-name{display:block;height:16px;font-size:13px;line-height:16px;font-weight:800;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-.mp-name.go-l{animation:mpL .22s ease-out}.mp-name.go-r{animation:mpR .22s ease-out}
-@keyframes mpL{from{transform:translateX(-14px);opacity:0}}@keyframes mpR{from{transform:translateX(14px);opacity:0}}
-.mp-dots{display:flex;gap:4px}
-.mp-dots i{width:7px;height:7px;border-radius:2px;background:#ffffff2e;box-shadow:inset 0 -1.5px 0 #0004}
-.mp-dots i.on{background:var(--mc,var(--fg))}
-.calm .mp-name{animation:none}
-@media (prefers-reduced-motion:reduce){.mp-name{animation:none}}
-.pm-head>div{min-width:0}
+/* MODE-PICKER: a tile per game mode (icon and name only); the picked one lifts and glows. Coming-soon
+   modes get a dashed edge and a Soon tag. Phones scroll the row sideways. Seed box sits beside it. */
+.pc-mode{grid-template-columns:minmax(0,2fr) minmax(0,1fr);column-gap:10px;row-gap:12px;align-items:start}
+.pm-col{display:grid;gap:9px;min-width:0;align-content:start}
+.pc-mode .pc-seed{height:44px}
+@media (min-width:901px){.pc-mode{grid-template-columns:minmax(0,1fr) 200px}}
+@media (max-width:560px){.pc-mode{grid-template-columns:minmax(0,1fr)}}
+.mtiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:8px}
+.mt{position:relative;display:flex;align-items:center;gap:9px;min-width:0;height:44px;box-sizing:border-box;padding:0 10px 3px 8px;border-radius:10px;border:1.5px solid var(--line2);background:#0d0b1fd9;color:var(--fg);font:800 13px var(--f-ui);text-align:left;cursor:pointer;box-shadow:inset 0 -4px 0 #0006;transition:transform .15s,border-color .15s,box-shadow .15s,background .15s}
+.mt>b{min-width:0;font:inherit;line-height:1.12;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+.mt:hover{border-color:color-mix(in srgb,var(--mc) 60%,var(--line2))}
+.mt.on{border-color:var(--mc);background:linear-gradient(color-mix(in srgb,var(--mc) 22%,#0d0b1f),#0d0b1f);box-shadow:inset 0 -4px 0 #0006,0 0 0 1px var(--mc),0 0 18px -6px var(--mc);transform:translateY(-2px)}
+.mt.soon{border-style:dashed}
+.mt.soon:not(.on)>b{color:var(--muted)}
+.mt.soon:not(.on) .mi{opacity:.55;filter:saturate(.7)}
+.mt:disabled{cursor:not-allowed;opacity:.6}
+.mt-soon{position:absolute;top:-7px;right:7px;padding:0 5px;border-radius:4px;background:#2a2650;color:var(--muted);font:700 8.5px/14px var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.mt.on .mt-soon{background:var(--mc);color:#14122b}
+.calm .mt{transition:none}
+@media (max-width:560px){
+  .mtiles{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:max-content;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;margin:-8px -4px -6px;padding:8px 4px 6px}
+  .mtiles::-webkit-scrollbar{display:none}
+  .mt{scroll-snap-align:start}
+}
+/* Mode icon tiles: on the picker (.mi) and, for coming-soon modes, the Practice icon. */
+.mi{flex:none;position:relative;display:grid;place-items:center;width:26px;height:26px;border-radius:6px;font:900 14px/1 var(--f-ui);font-style:normal}
+.mi::after,.pm-ic[data-i]::after{font:900 1em/1 var(--f-ui)}
+.pm-ic[data-i]{border-radius:10px}
+.mi[data-i="classic"]{background:var(--tile);color:var(--ink);box-shadow:inset 0 -3px 0 #c4ae7f}
+.mi[data-i="classic"]::after{content:'W'}
+.mi[data-i="rot"]{background:linear-gradient(160deg,#fff,#b8ecff 40%,#5cc8f5);color:#0a6fa8;box-shadow:inset 0 -3px 0 #2f9fd6,0 0 0 1.5px #38c6ff}
+.mi[data-i="rot"]::after{content:'❄'}
+:is(.mi,.pm-ic)[data-i="puzzle"]{background:linear-gradient(160deg,#d9fff4,#6fe3c4 55%,#33b892);box-shadow:inset 0 -.2em 0 #23977a}
+:is(.mi,.pm-ic)[data-i="puzzle"]::after{content:'';box-sizing:border-box;width:50%;height:50%;border:.13em solid #0b5c4a;border-radius:.12em;background:linear-gradient(#0b5c4a 0 0) center/.13em 100% no-repeat,linear-gradient(#0b5c4a 0 0) center/100% .13em no-repeat;margin-bottom:.1em}
+:is(.mi,.pm-ic)[data-i="chaos"]{background:repeating-linear-gradient(135deg,#ff4f9a 0 .3em,#3a0d26 .3em .6em);box-shadow:inset 0 -.2em 0 #0007,0 0 0 1.5px #ff4f9a}
+:is(.mi,.pm-ic)[data-i="chaos"]::after{content:'!';display:grid;place-items:center;width:1.05em;height:1.05em;border-radius:50%;background:#1a0612;color:#ff7ab3;font-size:.85em;margin-bottom:.1em}
+:is(.mi,.pm-ic)[data-i="amnesia"]{background:linear-gradient(160deg,#f3efff,#b8a7ff 60%,#8f7be8);color:#4b37b0;box-shadow:inset 0 -.2em 0 #6f5bd6}
+:is(.mi,.pm-ic)[data-i="amnesia"]::after{content:'?';opacity:.4;margin-bottom:.1em}
+:is(.mi,.pm-ic)[data-i="bounty"]{background:linear-gradient(160deg,#fff3c4,#ffc94a 55%,#d99a1a);box-shadow:inset 0 -.2em 0 #b07a10}
+:is(.mi,.pm-ic)[data-i="bounty"]::after{content:'';width:62%;height:62%;border-radius:50%;margin-bottom:.1em;background:radial-gradient(circle closest-side,#c0392b 0 22%,#fff3c4 23% 46%,#c0392b 47% 70%,#fff3c4 71% 90%,#c0392b 91%)}
+/* Coming-soon mode cards: their own colour and backdrop, a preview board, and a locked Play button. */
+.t-card.play-card[data-v="puzzle"]{--mc:#6fe3c4;background:radial-gradient(ellipse at 85% 0%,color-mix(in srgb,var(--mc) 22%,transparent),transparent 55%),linear-gradient(#6fe3c40c 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,#6fe3c40c 1px,transparent 1px) 0 0/24px 24px,color-mix(in srgb,var(--panel) 92%,transparent)}
+.t-card.play-card[data-v="chaos"]{--mc:#ff4f9a;background:radial-gradient(ellipse at 85% 0%,color-mix(in srgb,var(--mc) 22%,transparent),transparent 55%),repeating-linear-gradient(135deg,#ff4f9a0b 0 16px,transparent 16px 32px),color-mix(in srgb,var(--panel) 92%,transparent)}
+.t-card.play-card[data-v="amnesia"]{--mc:#b8a7ff;background:radial-gradient(ellipse at 85% 0%,color-mix(in srgb,var(--mc) 22%,transparent),transparent 55%),radial-gradient(ellipse at 10% 100%,#b8a7ff24,transparent 55%),radial-gradient(ellipse at 60% 70%,#ffffff0a,transparent 45%),color-mix(in srgb,var(--panel) 92%,transparent)}
+.t-card.play-card[data-v="bounty"]{--mc:#ffc94a;background:radial-gradient(ellipse at 85% 0%,color-mix(in srgb,var(--mc) 22%,transparent),transparent 55%),radial-gradient(circle at 8% 92%,#ffc94a1c,transparent 38%),color-mix(in srgb,var(--panel) 92%,transparent)}
+.pd-art>.ha-board[data-for]{display:none}
+.play-card:is([data-v="puzzle"],[data-v="chaos"],[data-v="amnesia"],[data-v="bounty"]) .pd-art>.ha-board:not([data-for]){display:none}
+.play-card[data-v="puzzle"] .pd-art>[data-for="puzzle"],.play-card[data-v="chaos"] .pd-art>[data-for="chaos"],.play-card[data-v="amnesia"] .pd-art>[data-for="amnesia"],.play-card[data-v="bounty"] .pd-art>[data-for="bounty"]{display:grid}
+.ha-board i.lit{background:linear-gradient(160deg,#d9fff4,#6fe3c4 60%,#38b893);color:#063d31;box-shadow:inset 0 -2px 0 #23977a,0 0 8px #6fe3c4aa}
+.ha-board i.hz{background:repeating-linear-gradient(135deg,#ff4f9a 0 3px,#3a0d26 3px 6px);color:#fff;text-shadow:0 0 2px #000,0 1px 0 #000}
+.ha-board i.tl{transform:rotate(-14deg)}.ha-board i.tr{transform:rotate(12deg)}.ha-board i.ud{transform:rotate(180deg)}
+.ha-board i.ban{background:linear-gradient(135deg,transparent 44%,#b8a7ff 44% 56%,transparent 56%);color:#b8a7ff66;box-shadow:none;outline:1.5px dashed #b8a7ffaa;outline-offset:-1.5px}
+.ha-board i.tg{background:#ffc94a1a;color:#ffc94a;box-shadow:inset 0 0 0 1.5px #ffc94a,0 0 8px #ffc94a55}
+.ha-board i.gd{background:linear-gradient(160deg,#fff3c4,#ffc94a 55%,#d99a1a);color:#3a2600;box-shadow:inset 0 -2px 0 #b07a10,0 0 8px #ffc94a99}
+.ha-board i.x3{position:relative;overflow:visible}
+.ha-board i.x3::after{content:'×3';position:absolute;top:-9px;right:-11px;padding:1px 3px;border-radius:4px;background:#ffc94a;color:#2b1d00;font:900 8px/1.2 var(--f-ui);box-shadow:0 0 8px #ffc94a}
+.ps-actions .t-play:disabled{cursor:not-allowed;filter:none;border-color:color-mix(in srgb,var(--mc) 45%,var(--line2));background:repeating-linear-gradient(135deg,#ffffff08 0 12px,transparent 12px 24px),#1b1838;color:color-mix(in srgb,var(--mc) 70%,var(--muted));box-shadow:inset 0 -4px 0 #0005;font-size:20px;line-height:24px}
+.pm-head>div{min-width:0;flex:1 1 0;container-type:inline-size}
+.pm-var{font-size:min(28px,calc(100cqi / var(--len,8) * 1.45));white-space:nowrap}
 .pm-k{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* SEED: type words to pin the pieces and bonus word; empty means a random seed each game. */
-.pc-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:10px;align-items:center}
-.pc-row>.pc-guide{justify-self:start}
+.pc-row{display:flex;align-items:center}
 .pc-seed{display:flex;align-items:center;gap:6px;min-width:0;height:34px;box-sizing:border-box;padding:0 3px 0 10px;border-radius:8px;border:1px dashed color-mix(in srgb,var(--mc) 45%,var(--line2));background:#0d0b1fd9;cursor:text;transition:border-color .15s,box-shadow .15s}
 .pc-seed:focus-within,.pc-seed.set{border-style:solid;border-color:var(--mc)}
 .pc-seed.set{box-shadow:0 0 14px -6px var(--mc)}
@@ -825,10 +867,7 @@ div.hub-t{cursor:default}
 .ps-x{flex:none;width:26px;height:26px;padding:0;border:0;border-radius:6px;background:none;color:var(--muted);font:700 17px/1 var(--f-ui);cursor:pointer}
 .ps-x:hover,.ps-x:focus-visible{background:var(--line2);color:var(--fg)}
 .pc-seed:not(.set) .ps-x{visibility:hidden}
-#pcSeed.off{visibility:hidden}
 .pc-field .pc-seed{width:100%}
-@media (min-width:901px){.pc-row{grid-template-columns:minmax(0,1fr) 200px}}
-@media (max-width:560px){.pc-row{grid-template-columns:auto minmax(0,1fr)}}
 /* /MODE-PICKER */
 /* ROT-CARD: the play box in Rot & Thaw. Night sky fading into rot at the bottom, a half-played
    stack of real board cells along the bottom (rubble, rotting blocks, netherrack power tiles, snow and ice on top),
@@ -1554,13 +1593,14 @@ div.hub-t{cursor:default}
       <div class="pd-art" aria-hidden="true"><svg class="ha-art" viewBox="0 0 220 150" aria-hidden="true" focusable="false"><rect class="av-well" x="10" y="34" width="80" height="108" rx="9"/><rect class="av-well" x="130" y="34" width="80" height="108" rx="9"/><g class="av-t"><rect x="15" y="120" width="17" height="17" rx="4"/><text x="23.5" y="132.6">L</text></g><g class="av-t"><rect x="34" y="120" width="17" height="17" rx="4"/><text x="42.5" y="132.6">I</text></g><g class="av-t"><rect x="53" y="120" width="17" height="17" rx="4"/><text x="61.5" y="132.6">V</text></g><g class="av-t"><rect x="72" y="120" width="17" height="17" rx="4"/><text x="80.5" y="132.6">E</text></g><g class="av-t"><rect x="15" y="101" width="17" height="17" rx="4"/><text x="23.5" y="113.6">R</text></g><g class="av-t"><rect x="34" y="101" width="17" height="17" rx="4"/><text x="42.5" y="113.6">A</text></g><g class="av-t"><rect x="53" y="101" width="17" height="17" rx="4"/><text x="61.5" y="113.6">C</text></g><g class="av-t"><rect x="72" y="101" width="17" height="17" rx="4"/><text x="80.5" y="113.6">E</text></g><g class="av-b"><rect x="135" y="120" width="17" height="17" rx="4"/><text x="143.5" y="132.6">P</text></g><g class="av-b"><rect x="154" y="120" width="17" height="17" rx="4"/><text x="162.5" y="132.6">L</text></g><g class="av-b"><rect x="173" y="120" width="17" height="17" rx="4"/><text x="181.5" y="132.6">A</text></g><g class="av-b"><rect x="192" y="120" width="17" height="17" rx="4"/><text x="200.5" y="132.6">Y</text></g><g class="av-b"><rect x="135" y="101" width="17" height="17" rx="4"/><text x="143.5" y="113.6">O</text></g><g class="av-b"><rect x="173" y="101" width="17" height="17" rx="4"/><text x="181.5" y="113.6">N</text></g><g class="av-b"><rect x="173" y="82" width="17" height="17" rx="4"/><text x="181.5" y="94.6">E</text></g><rect class="av-p1" x="35" y="2" width="30" height="30" rx="8"/><circle class="av-pp" cx="50" cy="14" r="5"/><path class="av-pp" d="M41 28c1.5-6 5-8.5 9-8.5s7.5 2.5 9 8.5z"/><rect class="av-p2" x="155" y="2" width="30" height="30" rx="8"/><circle class="av-pp" cx="170" cy="14" r="5"/><path class="av-pp" d="M161 28c1.5-6 5-8.5 9-8.5s7.5 2.5 9 8.5z"/><path class="av-link" d="M66 17C82 17 88 44 110 44S138 17 154 17"/><circle class="av-globe" cx="110" cy="85" r="18"/><path class="av-mer" d="M92 85h36M110 67c-9 9-9 27 0 36M110 67c9 9 9 27 0 36M95 76h30M95 94h30"/><circle class="av-ping" cx="110" cy="85" r="18"/></svg></div>
     </div>
     <div class="pc-mode off" id="pcMode">
-      <span class="tc-k">Game mode</span>
-      <div id="tVariant"></div>
+      <div class="pm-col"><span class="tc-k">Game mode</span><div id="tVariant"></div></div>
+      <div class="pm-col"><span class="tc-k">Seed</span>
+      <div class="pc-seed" id="pcSeed"><span class="ps-ic" aria-hidden="true">🌱</span><input class="ps-in" id="tSeed" type="text" maxlength="40" placeholder="Random seed" aria-label="Seed words. Leave empty for a random seed." autocomplete="off" spellcheck="false" enterkeyhint="done"><button class="ps-x" type="button" aria-label="Clear seed">×</button></div>
+      </div>
     </div>
     </div>
     <div class="pc-row">
       <button class="btn sm ghostb pc-guide" id="tGuide" type="button">🎓 Tutorial</button>
-      <div class="pc-seed" id="pcSeed"><span class="ps-ic" aria-hidden="true">🌱</span><input class="ps-in" id="tSeed" type="text" maxlength="40" placeholder="Random seed" aria-label="Seed words. Leave empty for a random seed." autocomplete="off" spellcheck="false" enterkeyhint="done"><button class="ps-x" type="button" aria-label="Clear seed">×</button></div>
     </div>
     <div class="ps-actions">
       <button class="t-play" id="tPlay" type="button">Play</button>
@@ -1668,6 +1708,13 @@ const BURN_MIN = 0.05;            // how rotten a letter must be before it can b
 const MELT_MS = 10000;            // and take 10s of summer to melt
 // Game modes. Today's drop picks one from this list by the date, so add new modes here.
 const VARIANTS = { classic: { name: 'Classic' }, rot: { name: 'Rot & Thaw', icon: '❄' } };
+// Every mode on the picker. The soon ones are placeholders: their card shows, but Play stays locked.
+const MODES = {
+  classic: { name: 'Classic' }, rot: { name: 'Rot & Thaw' },
+  puzzle: { name: 'Puzzle Box', soon: true }, chaos: { name: 'Chaos Carnage', soon: true },
+  amnesia: { name: 'Amnesia', soon: true }, bounty: { name: 'Bounty', soon: true },
+};
+const MODE_KEYS = Object.keys(MODES), isSoon = k => !!MODES[k]?.soon;
 const DAILY_VARIANTS = ['classic', 'rot', 'classic'];
 const dailyVariant = day => DAILY_VARIANTS[hashStr('wordfall-mode:' + day) % DAILY_VARIANTS.length];
 // Points multiplier: +0.2 per speed-up, so x3 at the 100th block.
@@ -2583,6 +2630,7 @@ let botLevel = store.get('wordfall-bot') || 'normal';
 if (!BOT_LEVELS[botLevel]) botLevel = 'normal';
 let botCount = store.get('wordfall-botcount') === '7' ? 7 : 1;
 let variant = store.get('wordfall-variant') === 'rot' ? 'rot' : 'classic';
+let pickMode = variant; // the mode the play card shows; a coming-soon pick is never saved
 const PLAY_MODES = ['daily', 'practice', 'bot', 'online'];
 let playTab = PLAY_MODES.includes(store.get('wordfall-playtab')) ? store.get('wordfall-playtab') : 'daily';
 let openOv = null, ovReturn = null;
@@ -3811,14 +3859,13 @@ function setPlayTab(m) {
   pc.dataset.m = playTab;
   pc.querySelectorAll('.pc-pane').forEach(p => setOff(p, p.dataset.p !== playTab));
   setOff($('#pcMode'), playTab === 'daily');
-  setOff($('#pcSeed'), playTab === 'daily');
   syncVariant();
 }
 function syncBotSel() {
   $('#tLevels').querySelectorAll('button').forEach(b => { b.setAttribute('aria-pressed', String(b.dataset.l === botLevel)); b.classList.toggle('last', b.dataset.l === botLevel); });
   $('#tCount').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.c === botCount)));
 }
-$('#tPlay').onclick = () => playTab === 'online' ? showOnline() : playTab === 'bot' ? startBot(botLevel, botCount) : startSolo(playTab);
+$('#tPlay').onclick = () => $('#tPlay').disabled ? null : playTab === 'online' ? showOnline() : playTab === 'bot' ? startBot(botLevel, botCount) : startSolo(playTab);
 // Full-screen sheets on the home page: the mode picker and the leaderboard.
 function showOv(el, focusEl) {
   if (openOv) closeOv(true);
@@ -3859,6 +3906,10 @@ $('#tLb').onclick = () => openPage('lb');
 for (const id of ['#picker']) $(id).addEventListener('click', e => { if (e.target === e.currentTarget || e.target.classList.contains('ov-in')) closeOv(); });
 const VDESC = {
   classic: 'The standard game: spell across, cash in down. No seasons and no rot, just you against the stack.',
+  puzzle: 'Tiles fall slowly. You have 3 minutes to fit as many words on the board as you can, until no tile left can be placed. Finished words light up and stay put, racking up points toward your score.',
+  chaos: 'Another mode-shifting event. Game-changing mechanics take over mid-run to challenge you, so adapt to each new rule or get buried.',
+  amnesia: 'Ban specific letters from falling. Every 30 seconds another letter is banned, so the longer the game goes, the fewer letters you have to spell with.',
+  bounty: 'Word targets appear as you play. Score as many of them as you can to rack up massive multipliers.',
   rot: 'Seasons turn every 40s. Blizzards slow everything, add ice to every piece and snow over your words. Summer melts it, speeds up and rots words, fastest next to rot tiles. Score a rot tile for 🔥 Ignite, which burns rot away.',
 };
 // Rot & Thaw play card: a half-played stack of real board cells along the bottom (rubble, rotting blocks with
@@ -3888,26 +3939,48 @@ function rotDeco() {
   for (let k = 0; k < 26; k++) out += `<i class="flake${k % 3 ? '' : ' b'}" style="left:${(h(k, 9) * 100).toFixed(1)}%;--fall:${H + 10}px;animation-duration:${(6 + h(k, 4) * 6).toFixed(1)}s;animation-delay:-${(h(k, 2) * 12).toFixed(1)}s;opacity:${(0.35 + h(k, 6) * 0.6).toFixed(2)}"></i>`;
   d.innerHTML = out;
 }
-// Game-mode picker: ‹ name › arrows (and ←/→ while focused) step through VARIANTS in order.
-const MODE_KEYS = Object.keys(VARIANTS);
-const chev = d => `<svg viewBox="0 0 10 16" aria-hidden="true" focusable="false"><path d="${d < 0 ? 'M8 2 2 8l6 6' : 'M2 2l6 6-6 6'}"/></svg>`;
-function setVariant(v, dir = 0) { variant = VARIANTS[v] ? v : 'classic'; store.set('wordfall-variant', variant); syncVariant(dir); }
-function modePicker(el) {
-  el.className = 'mpick'; el.setAttribute('role', 'group'); el.setAttribute('aria-label', 'Game mode');
-  el.innerHTML = `<button class="mp-arr" type="button" data-d="-1" aria-label="Previous game mode">${chev(-1)}</button>`
-    + `<div class="mp-cur" aria-live="polite"><b class="mp-name"></b><span class="mp-dots" aria-hidden="true">${MODE_KEYS.map(() => '<i></i>').join('')}</span></div>`
-    + `<button class="mp-arr" type="button" data-d="1" aria-label="Next game mode">${chev(1)}</button>`;
-  const step = d => setVariant(MODE_KEYS[(MODE_KEYS.indexOf(variant) + d + MODE_KEYS.length) % MODE_KEYS.length], d);
-  el.querySelectorAll('.mp-arr').forEach(b => { b.onclick = () => step(+b.dataset.d); });
-  el.addEventListener('keydown', e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); e.stopPropagation(); step(e.key === 'ArrowLeft' ? -1 : 1); } });
-  drawModePicker(el, 0);
+// Game-mode picker: a tile per mode (icon and name). ←/→ step through them while one is focused.
+// The online room's picker can't pick coming-soon modes.
+const MODE_BOARDS = {
+  puzzle: 'e e e f.b f.e e  lit.s lit.k lit.y e e e  lit.c lit.a lit.t e p.o e  lit.w lit.o lit.r lit.d p.i p.n',
+  chaos: 'e e f.z e e e  e hz.! e e e e  tl.c p.h tr.a ud.o p.s e  p.b tr.o p.m p.b hz.! tl.y',
+  amnesia: 'ban.q ban.z e f.a e ban.x  e e e e e e  e p.m e e p.t e  p.l p.e p.m p.o p.n p.s',
+  bounty: 'e e e f.g f.o e  e e e e e e  e e tg.s tg.t tg.a tg+x3.r  gd.c gd.o gd.i gd.n p.a p.t',
+};
+const modeBoard = (k, cells) => `<span class="ha-board" data-for="${k}" aria-hidden="true">${cells.trim().split(/\s+/).map(t => { const [c, l = ''] = t.split('.'); return c === 'p' ? `<i>${l}</i>` : `<i class="${c.replace(/\+/g, ' ')}">${l}</i>`; }).join('')}</span>`;
+function setVariant(v) {
+  pickMode = MODES[v] ? v : 'classic';
+  if (!isSoon(pickMode)) { variant = pickMode; store.set('wordfall-variant', variant); }
+  syncVariant();
 }
-function drawModePicker(el, dir) {
-  const v = VARIANTS[variant], nm = el.querySelector('.mp-name');
-  if (!nm) return;
-  nm.textContent = (v.icon ? v.icon + ' ' : '') + v.name;
-  el.querySelectorAll('.mp-dots i').forEach((d, i) => d.classList.toggle('on', MODE_KEYS[i] === variant));
-  if (dir) { nm.classList.remove('go-l', 'go-r'); void nm.offsetWidth; nm.classList.add(dir < 0 ? 'go-l' : 'go-r'); }
+function modePicker(el, room = false) {
+  el.className = 'mtiles'; el.dataset.room = room ? '1' : '';
+  el.setAttribute('role', 'group'); el.setAttribute('aria-label', 'Game mode');
+  el.innerHTML = MODE_KEYS.map(k => {
+    const soon = isSoon(k), nm = esc(MODES[k].name);
+    return `<button class="mt${soon ? ' soon' : ''}" type="button" data-v="${k}" aria-pressed="false"${soon ? ` aria-label="${nm}, coming soon"` : ''}${soon && room ? ' disabled' : ''}>`
+      + `<i class="mi" data-i="${k}" aria-hidden="true"></i><b>${nm}</b>${soon ? '<span class="mt-soon" aria-hidden="true">Soon</span>' : ''}</button>`;
+  }).join('');
+  el.querySelectorAll('.mt').forEach(b => { b.onclick = () => setVariant(b.dataset.v); });
+  el.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    e.preventDefault(); e.stopPropagation();
+    const bs = [...el.querySelectorAll('.mt:not(:disabled)')], i = Math.max(0, bs.indexOf(document.activeElement));
+    const nb = bs[(i + (e.key === 'ArrowLeft' ? -1 : 1) + bs.length) % bs.length];
+    nb.focus({ preventScroll: true }); setVariant(nb.dataset.v);
+  });
+  drawModePicker(el);
+}
+function drawModePicker(el) {
+  const cur = el.dataset.room ? variant : pickMode;
+  el.querySelectorAll('.mt').forEach(b => { const on = b.dataset.v === cur; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+  // On phones the tiles scroll sideways: keep the picked one in view.
+  const on = el.querySelector('.mt.on');
+  if (on && el.scrollWidth > el.clientWidth + 1) {
+    const t = on.getBoundingClientRect(), box = el.getBoundingClientRect();
+    if (t.left < box.left) el.scrollLeft += t.left - box.left - 6;
+    else if (t.right > box.right) el.scrollLeft += t.right - box.right + 6;
+  }
 }
 // Seed box: shared by the play card and the online room; every copy shows the same words.
 const seedField = id => `<div class="pc-seed${seedWords ? ' set' : ''}"><span class="ps-ic" aria-hidden="true">🌱</span><input class="ps-in" id="${id}" type="text" maxlength="40" placeholder="Random seed" aria-label="Seed words. Leave empty for a random seed." autocomplete="off" spellcheck="false" enterkeyhint="done" value="${esc(seedWords)}"><button class="ps-x" type="button" aria-label="Clear seed">×</button></div>`;
@@ -3928,19 +4001,29 @@ function bindSeed(f) {
 function syncSeedText() {
   document.querySelectorAll('#playCard .pm-k').forEach(k => { k.textContent = `${k.dataset.play} · ${seedWords ? 'seed: ' + seedWords : 'random seed'}`; });
 }
-function syncVariant(dir = 0) {
-  document.querySelectorAll('.mpick').forEach(el => drawModePicker(el, dir));
-  document.querySelectorAll('#playCard .pm-var').forEach(el => { el.textContent = VARIANTS[variant].name; });
-  const vd = Object.entries(VDESC).map(([k, t]) => `<span${k === variant ? '' : ' class="off"'}>${t}</span>`).join('');
-  document.querySelectorAll('#playCard .pm-vdesc').forEach(el => { el.innerHTML = vd; });
-  const dv = dailyVariant(todayStr());
-  $('#playCard').classList.toggle('rotframe', (playTab === 'daily' ? dv : variant) === 'rot');
+function syncVariant() {
+  document.querySelectorAll('.mtiles').forEach(el => drawModePicker(el));
+  const pc = $('#playCard'), dv = dailyVariant(todayStr()), shown = playTab === 'daily' ? dv : pickMode, soon = isSoon(shown);
+  pc.dataset.v = shown;
+  pc.querySelectorAll('.pm-var').forEach(el => { el.textContent = MODES[pickMode].name; el.style.setProperty('--len', MODES[pickMode].name.length); });
+  const vd = Object.entries(VDESC).map(([k, t]) => `<span${k === pickMode ? '' : ' class="off"'}>${t}</span>`).join('');
+  pc.querySelectorAll('.pm-vdesc').forEach(el => { el.innerHTML = vd; });
+  const ic = pc.querySelector('[data-p="practice"] .pm-ic');
+  if (isSoon(pickMode)) { ic.dataset.i = pickMode; ic.textContent = ''; } else if (ic.dataset.i) { delete ic.dataset.i; ic.textContent = '🎯'; }
+  pc.classList.toggle('rotframe', shown === 'rot');
   rotDeco();
+  // Coming-soon modes: the card shows, but Play is locked and there's no tutorial yet.
+  const play = $('#tPlay');
+  play.disabled = soon;
+  play.textContent = soon ? '🔒 Coming soon' : 'Play';
+  if (soon) play.title = `${MODES[shown].name} is coming soon`; else play.removeAttribute('title');
+  setOff($('#tGuide'), soon);
   $('#tGuide').textContent = `🎓 Tutorial: ${TUTS[tutFor()].name}`;
   $('#tDailyVar').textContent = dv === 'classic' ? 'Today: Classic' : `Today: ${VARIANTS[dv].icon} ${VARIANTS[dv].name}`;
   $('#tDailyVar').classList.toggle('on', dv !== 'classic');
 }
 modePicker($('#tVariant'));
+$('#playCard [data-p="practice"] .pd-art').insertAdjacentHTML('beforeend', Object.entries(MODE_BOARDS).map(([k, c]) => modeBoard(k, c)).join(''));
 bindSeed($('#pcSeed'));
 syncSeedText();
 syncVariant();
@@ -4917,7 +5000,7 @@ function renderLobbyPage() {
         <div class="pc-field"><span class="tc-k">Seed · the starter's seed is used</span>${seedField('lSeed')}</div>
         <div class="btnrow"><button class="btn" id="mStart" type="button">Start match</button><button class="btn ghostb quitb" id="mLeave" type="button">Leave room</button></div>
       </aside></div>`;
-  modePicker(pq('#lVar'));
+  modePicker(pq('#lVar'), true);
   bindSeed(pq('#lSeed').parentNode);
   copyBtn(pq('#lCopy'), net.code.toUpperCase(), pq('.on-side .on-code'));
   pq('#mStart').onclick = async () => {
