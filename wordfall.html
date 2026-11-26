@@ -798,6 +798,7 @@ div.hub-t{cursor:default}
    stack of real board cells along the bottom (rubble, rotting blocks, netherrack power tiles, snow and ice on top),
    pixel snow falling behind the card, and a dark red glow round the rim. rotDeco() in the page script builds the
    stack; rotskin.svg lives in art/rot-card and is copied in by art/rot-card/inline.py. */
+:root{--nether:radial-gradient(circle at 25% 70%,#5e211e 0 12%,transparent 14%),radial-gradient(circle at 72% 30%,#6c2825 0 10%,transparent 12%),linear-gradient(#a8504a,#83342f);--nether-edge:#5c2320}
 .play-card{position:relative}
 .rc{display:none;position:absolute;inset:0;pointer-events:none;border-radius:12px;overflow:hidden;z-index:0}
 .play-card.rotframe .rc{display:block}
@@ -806,27 +807,21 @@ div.hub-t{cursor:default}
 .rotframe .pd-art,.rotframe .t-switch{background:#0d0b1fd9}
 .rc .c{position:absolute!important;margin:0;width:var(--rt);height:var(--rt);--cell:var(--rt);--pc:#c4ae7f;animation:none!important}
 .rc .c.tile.ice::before{font-size:.5em}
-.rc .c.nether{background:linear-gradient(#a8504a,#83342f);box-shadow:inset 0 -4px 0 #5c2320}
-.rc .c.nether::after{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 25% 70%,#5e211e 0 12%,transparent 14%),radial-gradient(circle at 72% 30%,#6c2825 0 10%,transparent 12%)}
+.rc .c.nether{background:var(--nether);box-shadow:inset 0 -4px 0 var(--nether-edge)}
 .rc .flake{position:absolute;top:-6px;width:3px;height:3px;background:#e9f6ff;box-shadow:0 0 4px #bfeaff;animation:rcfall linear infinite}
 .rc .flake.b{width:4px;height:4px}
 @keyframes rcfall{to{transform:translate(18px,var(--fall,640px))}}
 .calm .rc .flake{display:none}
 @media (prefers-reduced-motion:reduce){.rc .flake{display:none}}
 @media (max-width:560px){.t-card.play-card.rotframe{--rt:18px;padding-bottom:84px}}
-/* Rot tiles: in Rot & Thaw the letters that give Ignite are burning red rot, crowned with flame. */
-.c.orb.o-ignite{background:radial-gradient(circle at 28% 24%,#ffd0cc 0 7%,transparent 9%),radial-gradient(ellipse 62% 48% at 34% 28%,#ff8c8c,transparent 72%),radial-gradient(ellipse 95% 70% at 82% 96%,#b8304a 0 52%,transparent 74%),#e8505e;color:#2a0710;text-shadow:0 1px 0 #ffc2bd99;border-radius:42% 42% 34% 34%/46% 46% 30% 30%;box-shadow:inset 0 -4px 0 #7a1830,0 0 0 2px #2a0f17,0 0 14px 2px #ff6a3c88;animation:rotpulse 1.2s ease-in-out infinite alternate;z-index:3}
-.c.orb.o-ignite::after{content:'';top:auto;right:auto;bottom:66%;left:-6%;width:112%;height:56%;border-radius:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-1.5 -1 43 26'%3E%3Cg stroke-linejoin='round'%3E%3Cpath d='M2 24C-.5 18 3 14 5.5 9.5C6.5 13.5 8.6 14.6 10 13.6C9.6 8.6 13.6 4.6 19 .6C18.8 5.8 21.6 9 23 12C24.8 9 27.4 7.4 30.6 5.6C30.2 10.8 33.6 13.6 34.8 17C36 15 37 13.4 38.4 12C40.6 17 40.4 21 38 24Z' fill='%23f2883a' stroke='%232a0f17' stroke-width='2.2'/%3E%3Cpath d='M8.4 24C7.4 20.4 9 18 10.4 16C11.2 18 12.8 19 14.2 18.2C14 14.2 16.8 11.2 19.8 8.6C20 12.4 22 14.6 23.2 17.4C25 15.4 26.8 14.4 28.8 13.4C28.8 17.4 31.4 19.6 31.6 24Z' fill='%23f8d35a'/%3E%3Cpath d='M14 24C13.4 21.6 14.8 20 16 19C16.6 20.4 17.8 21 18.8 20.2C18.8 17.6 20.4 15.6 22 14.2C22.4 16.8 24 18.6 24.4 20.8C25.4 20 26.2 19.6 27 19.2C27.4 21.4 26.8 23 26.2 24Z' fill='%23fff6d6'/%3E%3C/g%3E%3C/svg%3E") center bottom/100% 100% no-repeat;box-shadow:none;transform-origin:50% 100%;animation:rotflame .45s ease-in-out infinite alternate;pointer-events:none}
-.c.cur.orb.o-ignite{box-shadow:inset 0 -4px 0 #7a1830,0 0 0 2px #2a0f17,0 0 0 4px #ff9a3c,0 0 18px 3px #ff6a3c}
-.mini i.orb.o-ignite{background:linear-gradient(165deg,#ff8c8c,#e8505e 45%,#b8304a);color:#2a0710;border-radius:42% 42% 34% 34%;box-shadow:0 0 0 1.5px #2a0f17,0 0 8px #ff6a3c;animation:none}
-.rg-art i.orb{background:radial-gradient(ellipse 62% 48% at 34% 28%,#ff8c8c,transparent 72%),radial-gradient(ellipse 95% 70% at 82% 96%,#b8304a 0 52%,transparent 74%),#e8505e;color:#2a0710;text-shadow:none;border-radius:42% 42% 34% 34%/46% 46% 30% 30%;box-shadow:inset 0 -3px 0 #7a1830,0 0 0 1.5px #2a0f17,0 0 10px #ff6a3c88}
-.rg-art i.orb::after{content:'';top:-12px;right:auto;left:-2px;width:34px;height:15px;font-size:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-1.5 -1 43 26'%3E%3Cg stroke-linejoin='round'%3E%3Cpath d='M2 24C-.5 18 3 14 5.5 9.5C6.5 13.5 8.6 14.6 10 13.6C9.6 8.6 13.6 4.6 19 .6C18.8 5.8 21.6 9 23 12C24.8 9 27.4 7.4 30.6 5.6C30.2 10.8 33.6 13.6 34.8 17C36 15 37 13.4 38.4 12C40.6 17 40.4 21 38 24Z' fill='%23f2883a' stroke='%232a0f17' stroke-width='2.2'/%3E%3Cpath d='M8.4 24C7.4 20.4 9 18 10.4 16C11.2 18 12.8 19 14.2 18.2C14 14.2 16.8 11.2 19.8 8.6C20 12.4 22 14.6 23.2 17.4C25 15.4 26.8 14.4 28.8 13.4C28.8 17.4 31.4 19.6 31.6 24Z' fill='%23f8d35a'/%3E%3Cpath d='M14 24C13.4 21.6 14.8 20 16 19C16.6 20.4 17.8 21 18.8 20.2C18.8 17.6 20.4 15.6 22 14.2C22.4 16.8 24 18.6 24.4 20.8C25.4 20 26.2 19.6 27 19.2C27.4 21.4 26.8 23 26.2 24Z' fill='%23fff6d6'/%3E%3C/g%3E%3C/svg%3E") center bottom/100% 100% no-repeat}
-.rotchip{display:inline-block;width:1.05em;height:1.05em;vertical-align:-.15em;border-radius:42% 42% 34% 34%/46% 46% 30% 30%;background:linear-gradient(165deg,#ff8c8c,#e8505e 45%,#b8304a);box-shadow:0 0 0 1.5px #2a0f17,0 0 6px #ff6a3c;position:relative;margin:.3em .15em 0}
-.rotchip::after{content:'';position:absolute;left:-12%;right:-12%;bottom:68%;height:70%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-1.5 -1 43 26'%3E%3Cg stroke-linejoin='round'%3E%3Cpath d='M2 24C-.5 18 3 14 5.5 9.5C6.5 13.5 8.6 14.6 10 13.6C9.6 8.6 13.6 4.6 19 .6C18.8 5.8 21.6 9 23 12C24.8 9 27.4 7.4 30.6 5.6C30.2 10.8 33.6 13.6 34.8 17C36 15 37 13.4 38.4 12C40.6 17 40.4 21 38 24Z' fill='%23f2883a' stroke='%232a0f17' stroke-width='2.2'/%3E%3Cpath d='M8.4 24C7.4 20.4 9 18 10.4 16C11.2 18 12.8 19 14.2 18.2C14 14.2 16.8 11.2 19.8 8.6C20 12.4 22 14.6 23.2 17.4C25 15.4 26.8 14.4 28.8 13.4C28.8 17.4 31.4 19.6 31.6 24Z' fill='%23f8d35a'/%3E%3Cpath d='M14 24C13.4 21.6 14.8 20 16 19C16.6 20.4 17.8 21 18.8 20.2C18.8 17.6 20.4 15.6 22 14.2C22.4 16.8 24 18.6 24.4 20.8C25.4 20 26.2 19.6 27 19.2C27.4 21.4 26.8 23 26.2 24Z' fill='%23fff6d6'/%3E%3C/g%3E%3C/svg%3E") center bottom/100% 100% no-repeat}
-@keyframes rotpulse{to{filter:brightness(1.12) saturate(1.1);transform:translateY(-1px)}}
-@keyframes rotflame{from{transform:scale(.9,.84)}to{transform:scale(1.04,1.08)}}
-.calm .c.orb.o-ignite,.calm .c.orb.o-ignite::after{animation:none}
-@media (prefers-reduced-motion:reduce){.c.orb.o-ignite,.c.orb.o-ignite::after{animation:none}}
+/* Rot tiles: in Rot & Thaw the letters that give Ignite are netherrack blocks: a fully rotted tile in brick red, no flames. */
+.c.orb.o-ignite{background:var(--nether);color:#ffeae4;text-shadow:0 1px 0 #4a1512;box-shadow:inset 0 -4px 0 var(--nether-edge);animation:none}
+.c.orb.o-ignite::after{content:none}
+.c.cur.orb.o-ignite{box-shadow:inset 0 -4px 0 var(--nether-edge),0 0 0 2px var(--pc)}
+.mini i.orb.o-ignite{background:var(--nether);color:#ffeae4;box-shadow:inset 0 -2px 0 var(--nether-edge);animation:none}
+.rg-art i.orb{background:var(--nether);color:#ffeae4;text-shadow:none;box-shadow:inset 0 -3px 0 var(--nether-edge)}
+.rg-art i.orb::after{content:none}
+.rotchip{display:inline-block;width:1em;height:1em;vertical-align:-.12em;margin:0 .1em;border-radius:3px;background:var(--nether);box-shadow:inset 0 -2px 0 var(--nether-edge)}
 /* /ROT-CARD */
 
 /* Tutorials */
@@ -2866,7 +2861,7 @@ const TUTS = {
       { t: 'Here comes winter', b: 'Keep going until the blizzard hits. The music turns and the board frosts over.', done: B => B.season === 'winter' },
       { t: 'Ice and snow', b: 'Blizzards slow the drops and put an <b>ice letter</b> in every piece. Ice holds one letter: land a second on it and it shatters. Letters you leave alone snow over after 10 seconds. Ice that survives scores <b>×1.5</b> at the thaw.' },
       { t: 'Hold out', b: 'Use the ice letters in words and survive until the thaw.', done: B => B.season === 'summer' },
-      { t: 'Rot tiles and Ignite', b: 'Every fifth piece carries a burning <i class="rotchip"></i> <b>rot tile</b>, the only power here. Score a word with it to earn 🔥 Ignite, then press <kbd>F</kbd>: your next block burns away rot it touches, melts ice, and its words score <b>×3</b>.', done: (B, s0) => pwSum(B) > s0.pw },
+      { t: 'Rot tiles and Ignite', b: 'Every fifth piece carries a <i class="rotchip"></i> <b>rot tile</b>, the only power here. Score a word with it to earn 🔥 Ignite, then press <kbd>F</kbd>: your next block burns away rot it touches, melts ice, and its words score <b>×3</b>.', done: (B, s0) => pwSum(B) > s0.pw },
       { t: 'You’ve got it', b: 'In a real game each season lasts 40 seconds and summer speeds up as it goes. Pick <b>❄ Rot &amp; Thaw</b> under Game mode for Practice, Vs bots or Online.', end: true },
     ],
   },
@@ -3690,7 +3685,7 @@ const ROT_GUIDE = [
   { t: 'The thaw', art: rgArt(['c a:ice t', '>☀ thaw', 'c:bank a:bank t:bank', '>❄ ×1.5']),
     p: `<p>When summer arrives the snow melts away over 10 seconds, and ice turns into ordinary letters.</p><p>Any word a thawed letter completes scores <b>×1.5</b>.</p>` },
   { t: 'Summer rot', art: rgArt(['_ _ _ k:orb _', 'c:bank.rot a:bank.rot t:bank.rot d:scorch.rotb o:scorch.rotb', '#:rub #:rub #:rub _ _', '>slow rot · fast by rot tiles · rubble']),
-    p: `<p>Banked words you leave alone slowly <b>rot</b>, then crumble into <b>rubble</b> after 20 seconds.</p><p>Letters next to a burning <i class="rotchip"></i> <b>rot tile</b> rot <b>much faster</b> (8 seconds). Land a piece against a rotting word, or cash it in, to save it.</p>` },
+    p: `<p>Banked words you leave alone slowly <b>rot</b>, then crumble into <b>rubble</b> after 20 seconds.</p><p>Letters next to a <i class="rotchip"></i> <b>rot tile</b> rot <b>much faster</b> (8 seconds). Land a piece against a rotting word, or cash it in, to save it.</p>` },
   { t: '🔥 Ignite', art: rgArt(['_ f:emb i:emb _ _', '#:burn r:burn.rotb #:burn e n', '>burns joined rot · words ×3']),
     p: `<p>Score a word with a <i class="rotchip"></i> <b>rot tile</b> (every fifth piece has one) to earn <b>Ignite</b>, the only power in this mode, then press <b>F</b>. Your falling block catches fire.</p><p>Where it lands it <b>burns away any rot it touches</b>, along with all the rot and rubble joined to it. It also melts nearby ice, keeps its neighbours free of snow and rot, and any word using its letters scores <b>×3</b>.</p>` },
 ];
