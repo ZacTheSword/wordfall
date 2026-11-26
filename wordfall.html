@@ -2727,12 +2727,12 @@ function battlers() {
   const out = [{ ...ME, name: game.mode === 'online' ? (net.nick || 'You') : 'You', score: game.me.score, alive: game.me.phase !== 'over', str: game.me.encode() }];
   for (const b of game.bots) out.push({ id: b.id, name: b.name, kind: 'bot', score: b.board.score, alive: b.board.phase !== 'over', str: b.board.encode(), bot: b });
   if (game.mode === 'online' && net.match) {
-    for (const p of matchPeers()) out.push({ id: p.peer, name: peerNick(p), kind: 'peer', score: +p.presence.score || 0, alive: p.presence.st === 'play', str: typeof p.presence.b === 'string' ? p.presence.b : '' });
+    for (const p of matchPeers()) out.push({ id: p.peer, name: peerNick(p), kind: 'peer', score: +p.presence.score || 0, alive: p.presence.st === 'play' && !p.lost, str: typeof p.presence.b === 'string' ? p.presence.b : '' });
     if (!isHost()) {
-      const hostHere = net.peers.some(p => p.peer === net.match.host);
+      const hostOk = hostBotsLive();
       for (const nb of net.match.bots) {
         const st = net.botStates.get(nb.id) || { s: 0, b: '', st: 'play' };
-        out.push({ id: nb.id, name: nb.name, kind: 'rbot', score: st.s, alive: hostHere && st.st === 'play', str: st.b });
+        out.push({ id: nb.id, name: nb.name, kind: 'rbot', score: st.s, alive: hostOk && st.st === 'play', str: st.b });
       }
     }
   }
@@ -5562,21 +5562,75 @@ async function supabaseRooms() {
   const client = await supaClient();
   if (!client) return null;
   const me = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2)) ;
+  // Supabase lets each client update its presence only 5 times in 30 seconds, and closes the
+  // channel past that, which froze every board a few seconds into a match. So presence here
+  // only says who is in the room: one track on joining, and again (at most every 7.5 s) when
+  // the player's status changes. The state the game sets many times a second (score, board)
+  // travels as a broadcast instead: sent when it changes, a few times a second at most, and
+  // repeated every few seconds so a dropped message or a newcomer catches up.
   const join = name => new Promise((resolve, reject) => {
     const ch = client.channel(name, { config: { presence: { key: me }, broadcast: { self: false } } });
-    const topics = new Map(), watchers = new Set();
-    let peers = [], mine = {}, done = false;
+    const topics = new Map(), watchers = new Set(), states = new Map();
+    let keys = [], metas = {}, mine = {}, done = false, live = false, gone = false;
+    let sentAt = 0, sendT = 0, trackAt = -1e9, trackT = 0, needTrack = false, tellQ = false;
     const deliver = (t, data, from) => {
       const msg = { topic: t, data, peer: from, sameTab: from === me, by: null, guest: false, at: Date.now() };
       (topics.get(t) || []).slice().forEach(fn => { try { fn(msg); } catch (e) { console.error(e); } });
     };
+    // Who is here: everyone in the room's presence, anyone whose state arrived in the last few
+    // seconds (their presence may be catching up after a reconnect), and this tab while its
+    // channel is connected. A tab that has lost its connection doesn't list itself.
+    const peersNow = () => {
+      const now = Date.now(), ids = new Set(keys);
+      for (const [k, v] of states) if (now - v.at < 6000) ids.add(k);
+      if (live) ids.add(me); else ids.delete(me);
+      return [...ids].map(k => ({ peer: k, kind: 'viewer', sameTab: k === me, isMe: k === me, guest: false, by: null,
+        presence: k === me ? { ...mine } : { ...(states.get(k)?.p || metas[k] || {}) } }));
+    };
+    const tell = () => {
+      if (tellQ || gone) return;
+      tellQ = true;
+      queueMicrotask(() => {
+        tellQ = false;
+        if (gone) return;
+        const peers = peersNow();
+        watchers.forEach(fn => { try { fn({ peers, joined: [], updated: [], left: [] }); } catch (e) { console.error(e); } });
+      });
+    };
+    const sendState = () => {
+      clearTimeout(sendT); sendT = 0;
+      if (gone || !live) return;
+      sentAt = Date.now();
+      ch.send({ type: 'broadcast', event: 's', payload: { from: me, p: mine } }).catch(() => {});
+    };
+    // More players, longer gaps, so the room stays well inside Supabase's message limits.
+    const queueState = () => {
+      if (sendT || gone) return;
+      const wait = Math.max(250, 120 * keys.length) - (Date.now() - sentAt);
+      if (wait <= 0) sendState(); else sendT = setTimeout(sendState, wait);
+    };
+    const track = () => {
+      clearTimeout(trackT); trackT = 0;
+      if (gone || !live) return;
+      const wait = trackAt + 7500 - Date.now();
+      if (wait > 0) { trackT = setTimeout(track, wait); return; }
+      trackAt = Date.now(); needTrack = false;
+      ch.track({ p: mine }).catch(() => {});
+    };
+    const beat = setInterval(() => { if (live && Date.now() - sentAt > 4000) queueState(); tell(); }, 2000);
     ch.on('presence', { event: 'sync' }, () => {
       const st = ch.presenceState();
-      peers = Object.keys(st).map(k => {
-        const metas = st[k] || [], last = metas[metas.length - 1] || {};
-        return { peer: k, kind: 'viewer', sameTab: k === me, isMe: k === me, guest: false, by: null, presence: last.p && typeof last.p === 'object' ? last.p : {} };
-      });
-      watchers.forEach(fn => { try { fn({ peers, joined: [], updated: [], left: [] }); } catch (e) { console.error(e); } });
+      keys = Object.keys(st);
+      metas = {};
+      for (const k of keys) { const m = st[k] || [], last = m[m.length - 1] || {}; metas[k] = last.p && typeof last.p === 'object' ? last.p : {}; }
+      tell();
+    });
+    ch.on('presence', { event: 'join' }, ({ key }) => { if (key !== me) queueState(); });   // greet newcomers
+    ch.on('presence', { event: 'leave' }, ({ key, currentPresences }) => { if (key !== me && !(currentPresences || []).length) states.delete(key); });   // gone, not just re-tracked
+    ch.on('broadcast', { event: 's' }, ({ payload }) => {
+      if (!payload || typeof payload.from !== 'string' || payload.from === me || !payload.p || typeof payload.p !== 'object') return;
+      states.set(payload.from, { p: payload.p, at: Date.now() });
+      tell();
     });
     ch.on('broadcast', { event: 'm' }, ({ payload }) => {
       if (!payload || typeof payload.t !== 'string' || typeof payload.from !== 'string') return;
@@ -5585,21 +5639,40 @@ async function supabaseRooms() {
     const api = Object.freeze({
       name,
       async presence(patch) {
-        for (const [k, v] of Object.entries(patch || {})) { if (v === null) delete mine[k]; else mine[k] = v; }
-        await ch.track({ p: mine });
+        let status = false;
+        for (const [k, v] of Object.entries(patch || {})) {
+          if (!['score', 'b', 'hb'].includes(k)) status = true;
+          if (v === null) delete mine[k]; else mine[k] = v;
+        }
+        if (status || needTrack) track();
+        queueState(); tell();
       },
-      onPeers(fn) { watchers.add(fn); if (peers.length) setTimeout(() => fn({ peers, joined: peers, updated: [], left: [] }), 0); return () => watchers.delete(fn); },
+      onPeers(fn) { watchers.add(fn); setTimeout(() => { if (!gone && watchers.has(fn)) fn({ peers: peersNow(), joined: [], updated: [], left: [] }); }, 0); return () => watchers.delete(fn); },
       on(t, fn) { if (!topics.has(t)) topics.set(t, []); topics.get(t).push(fn); return () => { const a = topics.get(t) || []; const i = a.indexOf(fn); if (i >= 0) a.splice(i, 1); }; },
       async emit(t, data) {
         deliver(t, data, me);   // the sender hears its own events, like the platform's rooms
         const r = await ch.send({ type: 'broadcast', event: 'm', payload: { t, d: data === undefined ? null : data, from: me } });
         if (r !== 'ok') throw Object.assign(new Error('send failed'), { code: 'upstream_error' });
       },
-      async leave() { watchers.clear(); topics.clear(); try { await client.removeChannel(ch); } catch {} },
+      async leave() {
+        gone = true; live = false;
+        clearInterval(beat); clearTimeout(sendT); clearTimeout(trackT);
+        watchers.clear(); topics.clear();
+        try { await client.removeChannel(ch); } catch {}
+      },
     });
+    // Supabase rejoins a dropped channel by itself; each time it's back, re-announce this tab.
     ch.subscribe(status => {
-      if (status === 'SUBSCRIBED' && !done) { done = true; resolve(api); }
-      else if ((status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') && !done) { done = true; reject(Object.assign(new Error(status), { code: 'upstream_error' })); }
+      if (gone) return;
+      if (status === 'SUBSCRIBED') {
+        live = true; needTrack = true;
+        if (Object.keys(mine).length) { track(); sendState(); }
+        tell();
+        if (!done) { done = true; resolve(api); }
+      } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT' || status === 'CLOSED') {
+        if (!done) { done = true; reject(Object.assign(new Error(status), { code: 'upstream_error' })); return; }
+        live = false; tell();
+      }
     });
   });
   return { join, selfHosted: true };
@@ -5634,6 +5707,10 @@ async function joinRoom(nick, code) {
   net.offs.push(r.on('start', msg => onNetStart(msg)));
   net.offs.push(r.on('attack', msg => onNetAttack(msg)));
   net.offs.push(r.on('bots', msg => onNetBots(msg)));
+  net.offs.push(r.on('bye', msg => {
+    const x = !msg.sameTab && net.match && msg.data && msg.data.m === net.match.mid && net.match.roster.get(msg.peer);
+    if (x) { x.left = true; checkBattleEnd(); }
+  }));
   await r.presence({ nick, ic: myIcon, st: 'lobby', score: 0, b: '', m: 0 });
 }
 async function leaveRoom() {
@@ -5642,6 +5719,13 @@ async function leaveRoom() {
   if (net.r) { try { await net.r.leave(); } catch {} }
   net.r = null; net.peers = []; net.match = null;
 }
+// A closing tab says goodbye, so the rest of the match counts it out at once instead of
+// waiting out the grace period, then leaves the room.
+addEventListener('pagehide', () => {
+  if (!net.r) return;
+  if (net.match && game && game.mode === 'online' && !game.over) net.r.emit('bye', { m: net.match.mid }).catch(() => {});
+  leaveRoom();
+});
 const roomPeers = () => net.peers.filter(p => p.kind === 'viewer');
 function renderLobbyList() {
   const ul = $('#plist'); if (!ul) return;
@@ -5673,7 +5757,9 @@ function onNetStart(msg) {
   const bots = (Array.isArray(d.bots) ? d.bots : []).slice(0, 11)
     .filter(b => b && typeof b.id === 'string' && /^bot-\d{1,2}$/.test(b.id))
     .map(b => ({ id: b.id, name: cleanNick(b.name) || 'Bot', level: BOT_LEVELS[b.level] ? b.level : 'easy' }));
-  net.match = { seed, mid, ids: d.ids.filter(x => typeof x === 'string').slice(0, 12), host: typeof d.host === 'string' ? d.host : '', bots };
+  const t0 = performance.now();
+  net.match = { seed, mid, ids: d.ids.filter(x => typeof x === 'string').slice(0, 12), host: typeof d.host === 'string' ? d.host : '', bots,
+    roster: new Map(), hostSeen: t0, botsAt: t0 + 4000 };
   net.botStates = new Map();
   const nv = VARIANTS[d.variant] ? d.variant : 'classic';
   hideEnd(); game = { mode: 'online', variant: nv, me: null, bots: [], over: false, outAt: {}, finale: false, seedWords: normSeed(typeof d.sw === 'string' ? d.sw : '') };
@@ -5696,10 +5782,53 @@ function netPush() {
   const go = () => { net.lastPush = performance.now(); if (net.r && game && game.mode === 'online' && !game.over) net.r.presence({ score: game.me.score, b: game.me.encode() }).catch(() => {}); };
   if (performance.now() - net.lastPush > 250) go(); else net.pushT = setTimeout(go, 250);
 }
-function matchPeers() {
-  if (!net.match) return [];
-  return net.peers.filter(p => !p.sameTab && p.kind === 'viewer' && p.presence.m === net.match.mid && net.match.ids.includes(p.peer));
+// The match roster: every player who has started this match, with the last state heard from
+// them. Someone who drops out of the room for a moment keeps their place; a player missing for
+// longer than NET_GRACE, silent while "playing" for longer than NET_STALE (boards send a
+// heartbeat every NET_BEAT), back in the lobby, or gone with a goodbye (their tab closed)
+// counts as out with their last score. While
+// this tab is offline itself the clocks stand still, so a dropped connection can't hand
+// anyone a win; the round timer still ends the match.
+const NET_GRACE = 8000, NET_STALE = 10000, NET_BEAT = 3000;
+function noteRoster() {
+  const M = net.match; if (!M) return;
+  const now = performance.now();
+  if (!net.peers.some(p => p.sameTab)) {
+    for (const x of M.roster.values()) { x.seen = now; x.heard = now; }
+    M.hostSeen = now; M.botsAt = Math.max(M.botsAt, now);
+    return;
+  }
+  for (const p of net.peers) {
+    if (p.sameTab || p.kind !== 'viewer' || !M.ids.includes(p.peer)) continue;
+    const pr = p.presence || {}, x = M.roster.get(p.peer);
+    if (p.peer === M.host) M.hostSeen = now;
+    if (pr.m !== M.mid) { if (x && pr.st === 'lobby') x.left = true; continue; }
+    const key = `${pr.st}|${pr.score}|${pr.hb}|${pr.b}`;
+    if (!x) M.roster.set(p.peer, { peer: p.peer, presence: pr, seen: now, heard: now, key, left: false });
+    else { x.presence = pr; x.seen = now; if (x.key !== key) { x.key = key; x.heard = now; } }
+  }
 }
+function matchPeers() {
+  const M = net.match;
+  if (!M) return [];
+  noteRoster();
+  const now = performance.now();
+  return [...M.roster.values()].map(x => ({ peer: x.peer, presence: x.presence,
+    lost: x.left || now - x.seen > NET_GRACE || (x.presence.st === 'play' && now - x.heard > NET_STALE) }));
+}
+// The host's bots count as out once the host has left, or its bot updates stop coming.
+function hostBotsLive() {
+  const M = net.match, now = performance.now();
+  return !!M && !M.roster.get(M.host)?.left && now - M.hostSeen < NET_GRACE && now - M.botsAt < NET_STALE;
+}
+// While a match runs, every board re-sends its state every few seconds even when nothing
+// changed, so the others can tell a quiet board from a dropped connection.
+setInterval(() => {
+  if (net.r && net.match && game && game.mode === 'online' && !game.over) {
+    net.hb = ((net.hb || 0) + 1) % 1000;
+    net.r.presence({ hb: net.hb }).catch(() => {});
+  }
+}, NET_BEAT);
 // The host shares its bots' boards with the room twice a second.
 let botCastAt = 0;
 function broadcastBots(force) {
@@ -5712,6 +5841,7 @@ function broadcastBots(force) {
 function onNetBots(msg) {
   const d = msg.data || {};
   if (msg.sameTab || !net.match || msg.peer !== net.match.host || d.m !== net.match.mid || !Array.isArray(d.list)) return;
+  net.match.botsAt = performance.now();
   for (const x of d.list.slice(0, 12)) {
     if (!x || !net.match.bots.some(b => b.id === x.id)) continue;
     net.botStates.set(x.id, { s: cleanScore(x.s), b: typeof x.b === 'string' ? x.b.slice(0, ROWS * COLS) : '', st: x.st === 'out' ? 'out' : 'play' });
@@ -6304,6 +6434,6 @@ showMenu(false);
 requestAnimationFrame(frame);
 
 /* Test hook for automated checks (harmless in play). */
-window.__wordfall = { get game() { return game; }, endSting, tlSample, tlHit, playStep, get net() { return net; }, get paused() { return paused; }, set paused(v) { paused = !!v; }, tutTick, startTutorialNow, musicTick, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store };
+window.__wordfall = { get game() { return game; }, endSting, tlSample, tlHit, playStep, get net() { return net; }, joinRoom, leaveRoom, get paused() { return paused; }, set paused(v) { paused = !!v; }, tutTick, startTutorialNow, musicTick, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store };
 })();
 </script>
