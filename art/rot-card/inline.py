@@ -42,15 +42,13 @@ CSS = f"""/* ROT-CARD: the play box dressed as a frozen courtyard with rot break
 .rc-ground{{left:0;right:0;bottom:0;height:70px;background:{U['ground']} repeat-x center bottom/auto 70px}}
 .rc-lamp{{bottom:14px;width:30px;height:72px;background:{U['lantern']} center bottom/contain no-repeat}}
 .rc-lamp.l{{left:27%}}.rc-lamp.r{{right:27%}}
-.rc-rot{{left:-6px;bottom:-4px;width:150px;height:106px;background:{U['rot']} left bottom/contain no-repeat}}
-.rc-thaw{{right:-6px;bottom:-4px;width:140px;height:99px;background:{U['thaw']} right bottom/contain no-repeat}}
-.rc-glow{{right:40px;bottom:40px;width:50px;height:50px;border-radius:50%;background:radial-gradient(#ff9a3c99,transparent 68%);animation:rcember .7s ease-in-out infinite alternate}}
+.rc-rot{{left:-6px;bottom:-4px;width:150px;height:106px;background:{U['rotpile']} left bottom/contain no-repeat}}
+.rc-thaw{{right:-6px;bottom:-4px;width:140px;height:99px;background:{U['frozen']} right bottom/contain no-repeat}}
+.rc-glow{{left:13px;bottom:32px;width:60px;height:60px;border-radius:50%;background:radial-gradient(#ff8a3c99,transparent 68%);animation:rcember .7s ease-in-out infinite alternate}}
 .rc-snow{{inset:0;opacity:.8;background-image:radial-gradient(2px 2px at 20px 30px,#fff,transparent),radial-gradient(2.5px 2.5px at 110px 140px,#eaf6ff,transparent),radial-gradient(1.6px 1.6px at 70px 90px,#ffffffcc,transparent),radial-gradient(1.6px 1.6px at 150px 20px,#ffffffaa,transparent);background-size:170px 210px,170px 210px,120px 160px,120px 160px;animation:rcsnow 11s linear infinite}}
 .rc-ice{{top:-18px;width:128px;height:120px;background:{U['crystals']} left top/contain no-repeat}}
 .rc-ice.l{{left:-24px}}.rc-ice.r{{right:-24px;transform:scaleX(-1)}}
-.rc-plq{{position:absolute;top:-12px;left:50%;transform:translateX(-50%);padding:6px 16px 5px;border-radius:8px;background:linear-gradient(#3c3fa6,#25236a);border:2px solid {INK};box-shadow:0 3px 0 {INK},0 0 18px -4px #62f0ff,inset 0 -3px 0 #0005;color:#e6fbff;font:400 12px/1 var(--f-display);letter-spacing:.12em;white-space:nowrap;text-shadow:0 0 8px #62f0ff,0 1px 0 {INK}}}
-.rc-plq::before{{content:'';position:absolute;left:-5px;right:-5px;top:-8px;height:12px;background:{U['btncap']} repeat-x left top/auto 12px}}
-.rc-plq::after{{content:'';position:absolute;left:10%;right:10%;bottom:-13px;height:12px;background:{U['cornice']} repeat-x center bottom/auto 30px;clip-path:inset(42% 0 0 0)}}
+.rc-medal{{left:50%;top:-16px;width:56px;height:66px;transform:translateX(-50%);background:{U['medal']} center top/contain no-repeat;filter:drop-shadow(0 3px 0 #15123a88)}}
 .rotframe .t-play{{position:relative;border:2px solid {INK};background:linear-gradient(#effdff,#a9eaff 45%,#58c6f2);color:#0b2450;text-shadow:0 1px 0 #fff9;box-shadow:inset 0 -5px 0 #2c86cf,inset 0 2px 0 #fff,0 0 0 2px #62f0ff55,0 0 34px -6px #62f0ff}}
 .rotframe .t-play::before{{content:'';position:absolute;left:5px;right:5px;top:-10px;height:16px;background:{U['btncap']} repeat-x left top/auto 16px;pointer-events:none}}
 .rotframe .t-switch{{border-color:#7fe3ffaa;background:#1d1b54e6;box-shadow:inset 0 0 22px -8px #62f0ff}}
@@ -71,11 +69,25 @@ CSS = f"""/* ROT-CARD: the play box dressed as a frozen courtyard with rot break
 @media (max-width:560px){{
   .t-card.play-card.rotframe{{padding:44px 18px 82px}}
   .rc-rot{{width:118px;height:83px}}.rc-thaw{{width:112px;height:79px}}
-  .rc-glow{{right:32px;bottom:30px;width:40px;height:40px}}
+  .rc-glow{{left:9px;bottom:24px;width:46px;height:46px}}
+  .rc-medal{{width:46px;height:54px;top:-14px}}
   .rc-ice{{width:96px;height:90px;top:-13px}}.rc-ice.l{{left:-14px}}.rc-ice.r{{right:-14px}}
   .rc-roots{{bottom:60px;height:140px;width:17px}}
   .rc-ring{{bottom:30px;width:150%}}
 }}
+/* Rot tiles: in Rot & Thaw the letters that give Ignite are burning red rot, crowned with flame. */
+.c.orb.o-ignite{{background:radial-gradient(circle at 28% 24%,#ffd0cc 0 7%,transparent 9%),radial-gradient(ellipse 62% 48% at 34% 28%,#ff8c8c,transparent 72%),radial-gradient(ellipse 95% 70% at 82% 96%,#b8304a 0 52%,transparent 74%),#e8505e;color:#2a0710;text-shadow:0 1px 0 #ffc2bd99;border-radius:42% 42% 34% 34%/46% 46% 30% 30%;box-shadow:inset 0 -4px 0 #7a1830,0 0 0 2px #2a0f17,0 0 14px 2px #ff6a3c88;animation:rotpulse 1.2s ease-in-out infinite alternate;z-index:3}}
+.c.orb.o-ignite::after{{content:'';top:auto;right:auto;bottom:66%;left:-6%;width:112%;height:56%;border-radius:0;background:{U['tileflame']} center bottom/100% 100% no-repeat;box-shadow:none;transform-origin:50% 100%;animation:rotflame .45s ease-in-out infinite alternate;pointer-events:none}}
+.c.cur.orb.o-ignite{{box-shadow:inset 0 -4px 0 #7a1830,0 0 0 2px #2a0f17,0 0 0 4px #ff9a3c,0 0 18px 3px #ff6a3c}}
+.mini i.orb.o-ignite{{background:linear-gradient(165deg,#ff8c8c,#e8505e 45%,#b8304a);color:#2a0710;border-radius:42% 42% 34% 34%;box-shadow:0 0 0 1.5px #2a0f17,0 0 8px #ff6a3c;animation:none}}
+.rg-art i.orb{{background:radial-gradient(ellipse 62% 48% at 34% 28%,#ff8c8c,transparent 72%),radial-gradient(ellipse 95% 70% at 82% 96%,#b8304a 0 52%,transparent 74%),#e8505e;color:#2a0710;text-shadow:none;border-radius:42% 42% 34% 34%/46% 46% 30% 30%;box-shadow:inset 0 -3px 0 #7a1830,0 0 0 1.5px #2a0f17,0 0 10px #ff6a3c88}}
+.rg-art i.orb::after{{content:'';top:-12px;right:auto;left:-2px;width:34px;height:15px;font-size:0;background:{U['tileflame']} center bottom/100% 100% no-repeat}}
+.rotchip{{display:inline-block;width:1.05em;height:1.05em;vertical-align:-.15em;border-radius:42% 42% 34% 34%/46% 46% 30% 30%;background:linear-gradient(165deg,#ff8c8c,#e8505e 45%,#b8304a);box-shadow:0 0 0 1.5px #2a0f17,0 0 6px #ff6a3c;position:relative;margin:.3em .15em 0}}
+.rotchip::after{{content:'';position:absolute;left:-12%;right:-12%;bottom:68%;height:70%;background:{U['tileflame']} center bottom/100% 100% no-repeat}}
+@keyframes rotpulse{{to{{filter:brightness(1.12) saturate(1.1);transform:translateY(-1px)}}}}
+@keyframes rotflame{{from{{transform:scale(.9,.84)}}to{{transform:scale(1.04,1.08)}}}}
+.calm .c.orb.o-ignite,.calm .c.orb.o-ignite::after{{animation:none}}
+@media (prefers-reduced-motion:reduce){{.c.orb.o-ignite,.c.orb.o-ignite::after{{animation:none}}}}
 /* /ROT-CARD */
 """
 
@@ -83,7 +95,7 @@ MARKUP = ('<div class="rc" aria-hidden="true"><i class="rc-bg"></i><i class="rc-
           '<i class="rc-roots l"></i><i class="rc-roots r"></i><i class="rc-wisp a"></i><i class="rc-wisp b"></i><i class="rc-ring"></i>'
           '<i class="rc-top"></i><i class="rc-ground"></i><i class="rc-lamp l"></i><i class="rc-lamp r"></i><i class="rc-rot"></i>'
           '<i class="rc-thaw"></i><i class="rc-glow"></i><i class="rc-snow"></i></div>'
-          '<div class="rc-o" aria-hidden="true"><i class="rc-ice l"></i><i class="rc-ice r"></i><span class="rc-plq">Rot &amp; Thaw</span></div>')
+          '<div class="rc-o" aria-hidden="true"><i class="rc-ice l"></i><i class="rc-ice r"></i><i class="rc-medal"></i></div>')
 
 s = open(PAGE, encoding='utf-8').read()
 # CSS: replace a previous ROT-CARD block, or the old frame block it grew out of.
@@ -93,7 +105,7 @@ else:
     a = s.index('/* Rot & Thaw frame around the play box'); b = s.index('/* Tutorials */', a)
 s = s[:a] + CSS + ('' if '/* /ROT-CARD */' in s[a:b] else '\n') + s[b:]
 # Markup inside #playCard.
-s, n = re.subn(r'<div class="rf" aria-hidden="true">.*?</span></div>|<div class="rc" aria-hidden="true">.*?<span class="rc-plq">Rot &amp; Thaw</span></div>', lambda m: MARKUP, s, count=1, flags=re.S)
+s, n = re.subn(r'<div class="rc" aria-hidden="true">.*?<div class="rc-o" aria-hidden="true">.*?</div>', lambda m: MARKUP, s, count=1, flags=re.S)
 assert n == 1, 'play card markup not found'
 open(PAGE, 'w', encoding='utf-8', newline='\n').write(s)
 print('inlined', len(U), 'sprites;', sum(len(v) for v in U.values()) // 1024, 'KB of data URIs')
