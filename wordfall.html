@@ -794,32 +794,26 @@ div.hub-t{cursor:default}
 .calm .es-hero>*{animation:none}
 @media (prefers-reduced-motion:reduce){.es-hero>*{animation:none}}
 /* /END-SCREEN */
-/* ROT-CARD: the play box in Rot & Thaw. A textured brown-red rot skin, a snow cap glazed
-   with ice along the top, and clear ice layered round the edges over the rot.
-   Textures (rotskin.svg, snowice.svg) live in art/rot-card and are copied in by art/rot-card/inline.py. */
+/* ROT-CARD: the play box in Rot & Thaw. Night sky fading into rot at the bottom, a half-played
+   stack of real board cells along the bottom (rubble, rotting blocks, netherrack power tiles, snow and ice on top),
+   pixel snow falling behind the card, and a dark red glow round the rim. rotDeco() in the page script builds the
+   stack; rotskin.svg lives in art/rot-card and is copied in by art/rot-card/inline.py. */
 .play-card{position:relative}
-.rc,.rc-o{display:none;position:absolute;inset:0;pointer-events:none}
-.rc{border-radius:12px;overflow:hidden;z-index:0}
+.rc{display:none;position:absolute;inset:0;pointer-events:none;border-radius:12px;overflow:hidden;z-index:0}
 .play-card.rotframe .rc{display:block}
 .play-card>.pc-stack,.play-card>.pc-guide,.play-card>.ps-actions{position:relative;z-index:2}
-.t-card.play-card.rotframe{--mc:#bfeaff;border-color:#d6f3ff;background:#6a2620;padding:52px 26px 26px;box-shadow:0 0 0 2px #1c0806,0 0 26px -6px #9fdcffaa,0 26px 60px -22px #000}
-.rc i{position:absolute;display:block}
-.rc-skin{inset:0;background:radial-gradient(ellipse 120% 95% at 50% 45%,transparent 50%,#240906b0),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E %3C%21-- Rot skin: seamless brown-red mottling with fine grain (tiles at 260px). --%3E %3Cfilter id='dark' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.022' numOctaves='3' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .17 0 0 0 0 .04 0 0 0 0 .03 3.4 0 0 0 -1.6'/%3E%3C/filter%3E %3Cfilter id='lite' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.03' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .66 0 0 0 0 .3 0 0 0 0 .2 0 3.2 0 0 -1.75'/%3E%3C/filter%3E %3Cfilter id='pits' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.09' numOctaves='2' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .02 0 0 0 0 .02 0 0 5 0 -2.85'/%3E%3C/filter%3E %3Cfilter id='grain' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='1' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.4 0 0 0 -.5'/%3E%3C/filter%3E %3Crect width='260' height='260' filter='url(%23lite)' opacity='.7'/%3E %3Crect width='260' height='260' filter='url(%23dark)'/%3E %3Crect width='260' height='260' filter='url(%23pits)' opacity='.8'/%3E %3Crect width='260' height='260' filter='url(%23grain)' opacity='.35'/%3E %3C/svg%3E ") 0 0/260px 260px,#6a2620}
-.rc-rim{inset:0;border-radius:inherit;padding:12px;background:linear-gradient(90deg,#ffffff38,transparent 30% 70%,#ffffff2e),linear-gradient(165deg,#f2fcffeb,#c8eeffa6 20%,#a8e2ff7a 48%,#c8eeff94 76%,#eefaffd9);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
-.rc-frost{inset:12px;border-radius:5px;box-shadow:0 0 0 1px #f4fdffd9,0 0 0 2.5px #7fcfff55,inset 0 0 18px #bfeaff3d}
-.rc-cap{left:0;right:0;top:0;height:54px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='54' viewBox='0 0 240 54'%3E %3C%21-- Snow cap with a clear ice glaze over its top; tiles left to right. --%3E %3Cdefs%3E %3ClinearGradient id='s' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ffffff'/%3E%3Cstop offset='.72' stop-color='%23eef7fc'/%3E%3Cstop offset='1' stop-color='%23c9dfec'/%3E%3C/linearGradient%3E %3ClinearGradient id='i' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23f2fdff' stop-opacity='.9'/%3E%3Cstop offset='.45' stop-color='%23a8e2ff' stop-opacity='.5'/%3E%3Cstop offset='1' stop-color='%2386d3ff' stop-opacity='.38'/%3E%3C/linearGradient%3E %3ClinearGradient id='c' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23d8f4ff' stop-opacity='.85'/%3E%3Cstop offset='1' stop-color='%239fdcff' stop-opacity='.35'/%3E%3C/linearGradient%3E %3C/defs%3E %3Cpath d='M0 0H240V33C228 36 220 42 206 40C192 38 186 33 172 35C158 37 150 44 134 42C118 40 112 34 96 36C80 38 74 43 58 41C42 39 36 33 22 35C12 36 6 38 0 33Z' fill='%237d5048' opacity='.55' transform='translate(0 3)'/%3E %3Cpath d='M0 0H240V33C228 36 220 42 206 40C192 38 186 33 172 35C158 37 150 44 134 42C118 40 112 34 96 36C80 38 74 43 58 41C42 39 36 33 22 35C12 36 6 38 0 33Z' fill='url(%23s)'/%3E %3Cpath d='M0 31C14 34 20 30 34 33M70 39C84 41 92 37 104 35M150 40C160 41 168 36 180 34M212 38C222 37 230 34 240 33' stroke='%23b9d3e3' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E %3Cpath d='M0 0H240V17C226 19 214 23 200 21C186 19 178 15 162 17C146 19 138 24 120 22C102 20 96 16 80 18C64 20 54 24 40 22C26 20 14 16 0 17Z' fill='url(%23i)'/%3E %3Cpath d='M240 17C226 19 214 23 200 21C186 19 178 15 162 17C146 19 138 24 120 22C102 20 96 16 80 18C64 20 54 24 40 22C26 20 14 16 0 17' stroke='%23ffffff' stroke-opacity='.75' stroke-width='1.2' fill='none'/%3E %3Cpath d='M0 3.5H240' stroke='%23ffffff' stroke-opacity='.9' stroke-width='1.6'/%3E %3Cpath d='M18 9L40 7M98 11L112 10M150 8L176 6M206 12L220 11' stroke='%23ffffff' stroke-opacity='.75' stroke-width='2' stroke-linecap='round'/%3E %3Cpath d='M55 40L58.5 52L62 40ZM128 41L130.5 49L133 41ZM201 39L204.5 50L208 39ZM92 36L94 42L96 36Z' fill='url(%23c)'/%3E %3C/svg%3E ") repeat-x left top/auto 54px;filter:drop-shadow(0 2px 2px #1c080699)}
-.rotframe .t-play{position:relative;border:2px solid #1c0806;background:linear-gradient(#f2fcff,#bfeaff 45%,#7fcff2);color:#3a110c;text-shadow:0 1px 0 #fff9;box-shadow:inset 0 -5px 0 #4a9fd0,inset 0 2px 0 #fff,0 0 0 2px #bfeaff55,0 0 26px -6px #9fdcff}
-.rotframe .t-switch{border-color:#d6f3ff88;background:#2a0d0ae6;box-shadow:inset 0 0 20px -8px #bfeaff}
-.rotframe .pd-art{background:radial-gradient(circle at 50% 25%,#bfeaff22,transparent 65%),#250b09e6;border-color:#d6f3ff77;box-shadow:none}
-.rotframe .pd-stats>div,.rotframe .seg{background:#250b09d9}
-.rotframe .pc-mode{border-top-color:#d6f3ff44}
-.rotframe .t-vdesc,.rotframe .pm-desc,.rotframe .tc-sub{color:#f2dcd5}
-.rotframe .pc-guide{background:#250b09cc}
-.rotframe .seg button[aria-pressed="true"]{background:linear-gradient(#e9faff,#a8e2ff);color:#3a110c}
-@media (max-width:560px){
-  .t-card.play-card.rotframe{padding:48px 16px 20px}
-  .rc-rim{padding:9px}.rc-frost{inset:9px}
-}
+.t-card.play-card.rotframe{--mc:#9fdcff;--rt:22px;border-color:#7a2219;padding-bottom:100px;background:linear-gradient(#141b3d 0%,#16142f 50%,#2a1411cc 100%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E %3C%21-- Rot skin: seamless brown-red mottling with fine grain (tiles at 260px). --%3E %3Cfilter id='dark' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.022' numOctaves='3' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .17 0 0 0 0 .04 0 0 0 0 .03 3.4 0 0 0 -1.6'/%3E%3C/filter%3E %3Cfilter id='lite' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.03' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .66 0 0 0 0 .3 0 0 0 0 .2 0 3.2 0 0 -1.75'/%3E%3C/filter%3E %3Cfilter id='pits' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.09' numOctaves='2' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .02 0 0 0 0 .02 0 0 5 0 -2.85'/%3E%3C/filter%3E %3Cfilter id='grain' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='1' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.4 0 0 0 -.5'/%3E%3C/filter%3E %3Crect width='260' height='260' filter='url(%23lite)' opacity='.7'/%3E %3Crect width='260' height='260' filter='url(%23dark)'/%3E %3Crect width='260' height='260' filter='url(%23pits)' opacity='.8'/%3E %3Crect width='260' height='260' filter='url(%23grain)' opacity='.35'/%3E %3C/svg%3E ") 0 0/260px 260px,#2a1411;box-shadow:0 0 0 1px #2a0806,0 0 32px -4px #a3241ab3,0 0 80px -18px #7a1410,0 24px 60px -24px #000}
+.rotframe .pd-art,.rotframe .t-switch{background:#0d0b1fd9}
+.rc .c{position:absolute!important;margin:0;width:var(--rt);height:var(--rt);--cell:var(--rt);--pc:#c4ae7f;animation:none!important}
+.rc .c.tile.ice::before{font-size:.5em}
+.rc .c.nether{background:linear-gradient(#843838,#5a2020);box-shadow:inset 0 -4px 0 #3a0f0f}
+.rc .c.nether::after{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 25% 70%,#3a0d0d 0 12%,transparent 14%),radial-gradient(circle at 72% 30%,#4a1414 0 10%,transparent 12%)}
+.rc .flake{position:absolute;top:-6px;width:3px;height:3px;background:#e9f6ff;box-shadow:0 0 4px #bfeaff;animation:rcfall linear infinite}
+.rc .flake.b{width:4px;height:4px}
+@keyframes rcfall{to{transform:translate(18px,var(--fall,640px))}}
+.calm .rc .flake{display:none}
+@media (prefers-reduced-motion:reduce){.rc .flake{display:none}}
+@media (max-width:560px){.t-card.play-card.rotframe{--rt:18px;padding-bottom:84px}}
 /* Rot tiles: in Rot & Thaw the letters that give Ignite are burning red rot, crowned with flame. */
 .c.orb.o-ignite{background:radial-gradient(circle at 28% 24%,#ffd0cc 0 7%,transparent 9%),radial-gradient(ellipse 62% 48% at 34% 28%,#ff8c8c,transparent 72%),radial-gradient(ellipse 95% 70% at 82% 96%,#b8304a 0 52%,transparent 74%),#e8505e;color:#2a0710;text-shadow:0 1px 0 #ffc2bd99;border-radius:42% 42% 34% 34%/46% 46% 30% 30%;box-shadow:inset 0 -4px 0 #7a1830,0 0 0 2px #2a0f17,0 0 14px 2px #ff6a3c88;animation:rotpulse 1.2s ease-in-out infinite alternate;z-index:3}
 .c.orb.o-ignite::after{content:'';top:auto;right:auto;bottom:66%;left:-6%;width:112%;height:56%;border-radius:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-1.5 -1 43 26'%3E%3Cg stroke-linejoin='round'%3E%3Cpath d='M2 24C-.5 18 3 14 5.5 9.5C6.5 13.5 8.6 14.6 10 13.6C9.6 8.6 13.6 4.6 19 .6C18.8 5.8 21.6 9 23 12C24.8 9 27.4 7.4 30.6 5.6C30.2 10.8 33.6 13.6 34.8 17C36 15 37 13.4 38.4 12C40.6 17 40.4 21 38 24Z' fill='%23f2883a' stroke='%232a0f17' stroke-width='2.2'/%3E%3Cpath d='M8.4 24C7.4 20.4 9 18 10.4 16C11.2 18 12.8 19 14.2 18.2C14 14.2 16.8 11.2 19.8 8.6C20 12.4 22 14.6 23.2 17.4C25 15.4 26.8 14.4 28.8 13.4C28.8 17.4 31.4 19.6 31.6 24Z' fill='%23f8d35a'/%3E%3Cpath d='M14 24C13.4 21.6 14.8 20 16 19C16.6 20.4 17.8 21 18.8 20.2C18.8 17.6 20.4 15.6 22 14.2C22.4 16.8 24 18.6 24.4 20.8C25.4 20 26.2 19.6 27 19.2C27.4 21.4 26.8 23 26.2 24Z' fill='%23fff6d6'/%3E%3C/g%3E%3C/svg%3E") center bottom/100% 100% no-repeat;box-shadow:none;transform-origin:50% 100%;animation:rotflame .45s ease-in-out infinite alternate;pointer-events:none}
@@ -1476,7 +1470,7 @@ div.hub-t{cursor:default}
     </div>
   </header>
   <section class="t-card play-card" id="playCard" data-m="daily" aria-label="Play">
-    <div class="rc" aria-hidden="true"><i class="rc-skin"></i><i class="rc-rim"></i><i class="rc-frost"></i><i class="rc-cap"></i></div><div class="rc-o" aria-hidden="true"></div>
+    <div class="rc" aria-hidden="true"></div>
     <div class="pc-stack">
     <div class="pc-pane pd" data-p="daily">
       <div class="pd-info">
@@ -3814,17 +3808,47 @@ const VDESC = {
   classic: 'The standard game.',
   rot: 'Seasons turn every 40s. Blizzards slow everything, add ice to every piece and snow over your words. Summer melts it, speeds up and rots words, fastest next to rot tiles. Score a rot tile for 🔥 Ignite, which burns rot away.',
 };
+// Rot & Thaw play card: a half-played stack of real board cells along the bottom (rubble, rotting blocks with
+// netherrack power tiles among them, snow and ice on top) and pixel snow falling behind the card.
+function rotDeco() {
+  const card = $('#playCard'), d = card.querySelector('.rc');
+  if (!card.classList.contains('rotframe')) { if (d.dataset.k) { d.textContent = ''; d.dataset.k = ''; } return; }
+  const t = parseFloat(getComputedStyle(card).getPropertyValue('--rt')) || 22, w = d.clientWidth, H = d.clientHeight, gap = 2, m = 8;
+  const key = `${w}x${H}x${t}`;
+  if (!w || d.dataset.k === key) return;
+  d.dataset.k = key;
+  const h = (i, s = 1) => { const x = Math.sin(i * 12.9898 * s + 78.233) * 43758.5453; return x - Math.floor(x); };
+  const cell = (cls, x, y, st = '') => `<i class="c ${cls}" style="left:${x.toFixed(1)}px;top:${y.toFixed(1)}px;${st}"></i>`;
+  const cols = Math.floor((w - 2 * m + gap) / (t + gap)), x0 = (w - cols * (t + gap) + gap) / 2;
+  let out = '';
+  for (let i = 0; i < cols; i++) {
+    const n = 1 + Math.floor(h(i, 7) * 3), x = x0 + i * (t + gap), hot = h(i, 11);
+    for (let r = 0; r < n; r++) {
+      const y = H - m - t - r * (t + gap), top = r === n - 1;
+      if (r === 0) out += cell('stone rubble', x, y);
+      else if (!top) out += cell(hot < 0.45 ? 'nether' : 'tile rotting', x, y, `--rot:${(0.6 + h(i, r) * 0.4).toFixed(2)}`);
+      else if (h(i, 5) < 0.5) out += cell('tile ice', x, y);
+      else if (hot < 0.3) out += cell('nether', x, y);
+      else out += cell('tile snowy rotting', x, y, '--snow:.9;--rot:.5');
+    }
+  }
+  for (let k = 0; k < 26; k++) out += `<i class="flake${k % 3 ? '' : ' b'}" style="left:${(h(k, 9) * 100).toFixed(1)}%;--fall:${H + 10}px;animation-duration:${(6 + h(k, 4) * 6).toFixed(1)}s;animation-delay:-${(h(k, 2) * 12).toFixed(1)}s;opacity:${(0.35 + h(k, 6) * 0.6).toFixed(2)}"></i>`;
+  d.innerHTML = out;
+}
 function syncVariant() {
   $('#tVariant').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === variant)));
   $('#tVdesc').innerHTML = Object.entries(VDESC).map(([k, t]) => `<span${k === variant ? '' : ' class="off"'}>${t}</span>`).join('');
   const dv = dailyVariant(todayStr());
   $('#playCard').classList.toggle('rotframe', (playTab === 'daily' ? dv : variant) === 'rot');
+  rotDeco();
   $('#tGuide').textContent = `🎓 Tutorial: ${TUTS[tutFor()].name}`;
   $('#tDailyVar').textContent = dv === 'classic' ? 'Today: Classic' : `Today: ${VARIANTS[dv].icon} ${VARIANTS[dv].name}`;
   $('#tDailyVar').classList.toggle('on', dv !== 'classic');
 }
 $('#tVariant').querySelectorAll('button').forEach(b => { b.onclick = () => { variant = b.dataset.v === 'rot' ? 'rot' : 'classic'; store.set('wordfall-variant', variant); syncVariant(); }; });
 syncVariant();
+if (window.ResizeObserver) new ResizeObserver(() => rotDeco()).observe($('#playCard'));
+document.fonts?.ready.then(rotDeco);
 $('#tLevels').querySelectorAll('button').forEach(b => { b.onclick = () => { botLevel = b.dataset.l; store.set('wordfall-bot', botLevel); syncBotSel(); }; });
 $('#tOnlineRow').onclick = () => { setPlayTab('online'); showOnline(); };
 $('#tHow').onclick = () => showHowTo();
