@@ -28,7 +28,7 @@ CSS = f"""/* ROT-CARD: the play box in Rot & Thaw. Night sky fading into rot at 
 #playCard{{padding-bottom:100px}} /* room for the rot stack, kept in every mode so the card never changes height */
 .rc{{display:none;position:absolute;inset:0;pointer-events:none;border-radius:12px;overflow:hidden;z-index:0}}
 .play-card.rotframe .rc{{display:block}}
-.play-card>.pc-stack,.play-card>.pc-guide,.play-card>.ps-actions{{position:relative;z-index:2}}
+.play-card>.pc-stack,.play-card>.pc-row,.play-card>.pc-guide,.play-card>.ps-actions{{position:relative;z-index:2}}
 .t-card.play-card.rotframe{{--mc:#9fdcff;--rt:22px;border-color:#a8504a;background:linear-gradient(#141b3d 0%,#16142f 50%,#2a1411cc 100%),{U['rotskin']} 0 0/260px 260px,#2a1411;box-shadow:0 0 0 1px #2a0806,0 0 32px -4px #a8504acc,0 0 80px -18px #83342f,0 24px 60px -24px #000}}
 .rotframe .pd-art,.rotframe .t-switch{{background:#0d0b1fd9}}
 .rc .c{{position:absolute!important;margin:0;width:var(--rt);height:var(--rt);--cell:var(--rt);--pc:#c4ae7f;animation:none!important}}

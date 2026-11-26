@@ -794,6 +794,40 @@ div.hub-t{cursor:default}
 .calm .es-hero>*{animation:none}
 @media (prefers-reduced-motion:reduce){.es-hero>*{animation:none}}
 /* /END-SCREEN */
+/* MODE-PICKER: ‹ name › arrows that cycle through the game modes (VARIANTS), ready for more modes. */
+.mpick{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;width:100%;border:1px solid var(--line2);border-radius:8px;overflow:hidden;background:color-mix(in srgb,var(--panel) 90%,transparent)}
+.mp-arr{display:grid;place-items:center;background:none;border:0;padding:0;color:var(--muted);cursor:pointer;transition:background .15s,color .15s}
+.mp-arr svg{width:10px;height:16px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.mp-arr:hover,.mp-arr:focus-visible{background:var(--line2);color:var(--fg)}
+.mp-arr:active svg{transform:scale(.85)}
+.mp-cur{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:7px 8px 6px;background:var(--line2);min-width:0;overflow:hidden}
+.mp-name{display:block;height:16px;font-size:13px;line-height:16px;font-weight:800;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.mp-name.go-l{animation:mpL .22s ease-out}.mp-name.go-r{animation:mpR .22s ease-out}
+@keyframes mpL{from{transform:translateX(-14px);opacity:0}}@keyframes mpR{from{transform:translateX(14px);opacity:0}}
+.mp-dots{display:flex;gap:4px}
+.mp-dots i{width:7px;height:7px;border-radius:2px;background:#ffffff2e;box-shadow:inset 0 -1.5px 0 #0004}
+.mp-dots i.on{background:var(--mc,var(--fg))}
+.calm .mp-name{animation:none}
+@media (prefers-reduced-motion:reduce){.mp-name{animation:none}}
+.pm-head>div{min-width:0}
+.pm-k{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* SEED: type words to pin the pieces and bonus word; empty means a random seed each game. */
+.pc-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:10px;align-items:center}
+.pc-row>.pc-guide{justify-self:start}
+.pc-seed{display:flex;align-items:center;gap:6px;min-width:0;height:34px;box-sizing:border-box;padding:0 3px 0 10px;border-radius:8px;border:1px dashed color-mix(in srgb,var(--mc) 45%,var(--line2));background:#0d0b1fd9;cursor:text;transition:border-color .15s,box-shadow .15s}
+.pc-seed:focus-within,.pc-seed.set{border-style:solid;border-color:var(--mc)}
+.pc-seed.set{box-shadow:0 0 14px -6px var(--mc)}
+.ps-ic{font-size:13px;line-height:1}
+.ps-in{flex:1;min-width:0;height:100%;padding:0;background:none;border:0;outline:0;color:var(--fg);font:600 12.5px var(--f-mono)}
+.ps-in::placeholder{color:var(--muted);opacity:1}
+.ps-x{flex:none;width:26px;height:26px;padding:0;border:0;border-radius:6px;background:none;color:var(--muted);font:700 17px/1 var(--f-ui);cursor:pointer}
+.ps-x:hover,.ps-x:focus-visible{background:var(--line2);color:var(--fg)}
+.pc-seed:not(.set) .ps-x{visibility:hidden}
+#pcSeed.off{visibility:hidden}
+.pc-field .pc-seed{width:100%}
+@media (min-width:901px){.pc-row{grid-template-columns:minmax(0,1fr) 200px}}
+@media (max-width:560px){.pc-row{grid-template-columns:auto minmax(0,1fr)}}
+/* /MODE-PICKER */
 /* ROT-CARD: the play box in Rot & Thaw. Night sky fading into rot at the bottom, a half-played
    stack of real board cells along the bottom (rubble, rotting blocks, netherrack power tiles, snow and ice on top),
    pixel snow falling behind the card, and a netherrack-red glow round the rim. rotDeco() in the page script builds the
@@ -803,7 +837,7 @@ div.hub-t{cursor:default}
 #playCard{padding-bottom:100px} /* room for the rot stack, kept in every mode so the card never changes height */
 .rc{display:none;position:absolute;inset:0;pointer-events:none;border-radius:12px;overflow:hidden;z-index:0}
 .play-card.rotframe .rc{display:block}
-.play-card>.pc-stack,.play-card>.pc-guide,.play-card>.ps-actions{position:relative;z-index:2}
+.play-card>.pc-stack,.play-card>.pc-row,.play-card>.pc-guide,.play-card>.ps-actions{position:relative;z-index:2}
 .t-card.play-card.rotframe{--mc:#9fdcff;--rt:22px;border-color:#a8504a;background:linear-gradient(#141b3d 0%,#16142f 50%,#2a1411cc 100%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E %3C%21-- Rot skin: seamless brown-red mottling with fine grain (tiles at 260px). --%3E %3Cfilter id='dark' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.022' numOctaves='3' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .17 0 0 0 0 .04 0 0 0 0 .03 3.4 0 0 0 -1.6'/%3E%3C/filter%3E %3Cfilter id='lite' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.03' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .66 0 0 0 0 .3 0 0 0 0 .2 0 3.2 0 0 -1.75'/%3E%3C/filter%3E %3Cfilter id='pits' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.09' numOctaves='2' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .02 0 0 0 0 .02 0 0 5 0 -2.85'/%3E%3C/filter%3E %3Cfilter id='grain' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='1' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.4 0 0 0 -.5'/%3E%3C/filter%3E %3Crect width='260' height='260' filter='url(%23lite)' opacity='.7'/%3E %3Crect width='260' height='260' filter='url(%23dark)'/%3E %3Crect width='260' height='260' filter='url(%23pits)' opacity='.8'/%3E %3Crect width='260' height='260' filter='url(%23grain)' opacity='.35'/%3E %3C/svg%3E ") 0 0/260px 260px,#2a1411;box-shadow:0 0 0 1px #2a0806,0 0 32px -4px #a8504acc,0 0 80px -18px #83342f,0 24px 60px -24px #000}
 .rotframe .pd-art,.rotframe .t-switch{background:#0d0b1fd9}
 .rc .c{position:absolute!important;margin:0;width:var(--rt);height:var(--rt);--cell:var(--rt);--pc:#c4ae7f;animation:none!important}
@@ -1483,14 +1517,14 @@ div.hub-t{cursor:default}
     </div>
     <div class="pc-pane pd off" data-p="practice">
       <div class="pd-info">
-        <div class="pm-head"><span class="pm-ic" aria-hidden="true">🎯</span><div><span class="tc-k">Solo · no clock</span><b class="pm-name">Practice</b></div></div>
+        <div class="pm-head"><span class="pm-ic" aria-hidden="true">🎯</span><div><span class="tc-k pm-k" data-play="Practice">Practice · random seed</span><b class="pm-name pm-var">Classic</b></div></div>
         <p class="pm-desc">Random pieces at your own pace. Hazards drop in every 10 blocks, then come faster. You get a random bonus word each game.</p>
       </div>
       <div class="pd-art" aria-hidden="true"><span class="ha-board" aria-hidden="true"><i class="e"></i><i class="e"></i><i class="f">t</i><i class="f">h</i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i>o</i><i class="e"></i><i class="e"></i><i>r</i><i class="e"></i><i class="b">c</i><i class="b">a</i><i class="b">t</i><i class="b">e</i><i class="b">n</i><i class="b">d</i></span></div>
     </div>
     <div class="pc-pane pd off" data-p="bot">
       <div class="pd-info">
-        <div class="pm-head"><span class="pm-ic" aria-hidden="true">🤖</span><div><span class="tc-k">Solo · battle</span><b class="pm-name">Vs bots</b></div></div>
+        <div class="pm-head"><span class="pm-ic" aria-hidden="true">🤖</span><div><span class="tc-k pm-k" data-play="Vs bots">Vs bots · random seed</span><b class="pm-name pm-var">Classic</b></div></div>
         <div class="pc-field"><span class="tc-k">Opponents</span><div class="seg t-count" id="tCount"><button type="button" data-c="1" aria-pressed="true">Duel</button><button type="button" data-c="7" aria-pressed="false">Battle of 8</button></div></div>
         <div class="pc-field"><span class="tc-k">Bot skill</span><div class="t-lv" id="tLevels"><button type="button" data-l="easy">Easy</button><button type="button" data-l="normal">Normal</button><button type="button" data-l="hard">Hard</button></div></div>
         <p class="pm-desc">Highest score wins. Topping out ends your run, so staying alive gives you more time to score.</p>
@@ -1499,18 +1533,21 @@ div.hub-t{cursor:default}
     </div>
     <div class="pc-pane pd off" data-p="online">
       <div class="pd-info">
-        <div class="pm-head"><span class="pm-ic" aria-hidden="true">👥</span><div><span class="tc-k">Live · casual</span><b class="pm-name">Online</b></div></div>
+        <div class="pm-head"><span class="pm-ic" aria-hidden="true">👥</span><div><span class="tc-k pm-k" data-play="Online">Online · random seed</span><b class="pm-name pm-var">Classic</b></div></div>
         <p class="pm-desc">Race friends who have this page open. Pick a room code, share it, and start when everyone's in.</p>
       </div>
       <div class="pd-art" aria-hidden="true"><svg class="ha-art" viewBox="0 0 220 150" aria-hidden="true" focusable="false"><rect class="av-well" x="10" y="34" width="80" height="108" rx="9"/><rect class="av-well" x="130" y="34" width="80" height="108" rx="9"/><g class="av-t"><rect x="15" y="120" width="17" height="17" rx="4"/><text x="23.5" y="132.6">L</text></g><g class="av-t"><rect x="34" y="120" width="17" height="17" rx="4"/><text x="42.5" y="132.6">I</text></g><g class="av-t"><rect x="53" y="120" width="17" height="17" rx="4"/><text x="61.5" y="132.6">V</text></g><g class="av-t"><rect x="72" y="120" width="17" height="17" rx="4"/><text x="80.5" y="132.6">E</text></g><g class="av-t"><rect x="15" y="101" width="17" height="17" rx="4"/><text x="23.5" y="113.6">R</text></g><g class="av-t"><rect x="34" y="101" width="17" height="17" rx="4"/><text x="42.5" y="113.6">A</text></g><g class="av-t"><rect x="53" y="101" width="17" height="17" rx="4"/><text x="61.5" y="113.6">C</text></g><g class="av-t"><rect x="72" y="101" width="17" height="17" rx="4"/><text x="80.5" y="113.6">E</text></g><g class="av-b"><rect x="135" y="120" width="17" height="17" rx="4"/><text x="143.5" y="132.6">P</text></g><g class="av-b"><rect x="154" y="120" width="17" height="17" rx="4"/><text x="162.5" y="132.6">L</text></g><g class="av-b"><rect x="173" y="120" width="17" height="17" rx="4"/><text x="181.5" y="132.6">A</text></g><g class="av-b"><rect x="192" y="120" width="17" height="17" rx="4"/><text x="200.5" y="132.6">Y</text></g><g class="av-b"><rect x="135" y="101" width="17" height="17" rx="4"/><text x="143.5" y="113.6">O</text></g><g class="av-b"><rect x="173" y="101" width="17" height="17" rx="4"/><text x="181.5" y="113.6">N</text></g><g class="av-b"><rect x="173" y="82" width="17" height="17" rx="4"/><text x="181.5" y="94.6">E</text></g><rect class="av-p1" x="35" y="2" width="30" height="30" rx="8"/><circle class="av-pp" cx="50" cy="14" r="5"/><path class="av-pp" d="M41 28c1.5-6 5-8.5 9-8.5s7.5 2.5 9 8.5z"/><rect class="av-p2" x="155" y="2" width="30" height="30" rx="8"/><circle class="av-pp" cx="170" cy="14" r="5"/><path class="av-pp" d="M161 28c1.5-6 5-8.5 9-8.5s7.5 2.5 9 8.5z"/><path class="av-link" d="M66 17C82 17 88 44 110 44S138 17 154 17"/><circle class="av-globe" cx="110" cy="85" r="18"/><path class="av-mer" d="M92 85h36M110 67c-9 9-9 27 0 36M110 67c9 9 9 27 0 36M95 76h30M95 94h30"/><circle class="av-ping" cx="110" cy="85" r="18"/></svg></div>
     </div>
     <div class="pc-mode off" id="pcMode">
       <span class="tc-k">Game mode</span>
-      <div class="seg" id="tVariant"><button type="button" data-v="classic">Classic</button><button type="button" data-v="rot">❄ Rot &amp; Thaw</button></div>
+      <div id="tVariant"></div>
       <p class="t-vdesc" id="tVdesc"></p>
     </div>
     </div>
-    <button class="btn sm ghostb pc-guide" id="tGuide" type="button">🎓 Tutorial</button>
+    <div class="pc-row">
+      <button class="btn sm ghostb pc-guide" id="tGuide" type="button">🎓 Tutorial</button>
+      <div class="pc-seed" id="pcSeed"><span class="ps-ic" aria-hidden="true">🌱</span><input class="ps-in" id="tSeed" type="text" maxlength="40" placeholder="Random seed" aria-label="Seed words. Leave empty for a random seed." autocomplete="off" spellcheck="false" enterkeyhint="done"><button class="ps-x" type="button" aria-label="Clear seed">×</button></div>
+    </div>
     <div class="ps-actions">
       <button class="t-play" id="tPlay" type="button">Play</button>
       <button class="t-switch" id="tSwitch" type="button" aria-haspopup="dialog">▦ Change mode<span>4 ways to play</span></button>
@@ -1693,6 +1730,11 @@ const store = {
   get(k) { try { const v = localStorage.getItem(k); if (v !== null) return v; } catch {} return this.mem.has(k) ? this.mem.get(k) : null; },
   set(k, v) { this.mem.set(k, String(v)); try { localStorage.setItem(k, v); } catch {} },
 };
+// Seed words: typed on the play card (or in an online room); empty means a fresh random seed each game.
+const normSeed = t => String(t || '').trim().toLowerCase().replace(/\s+/g, ' ').slice(0, 40);
+let seedWords = normSeed(store.get('wordfall-seed'));
+const pickSeed = () => seedWords ? hashStr('wordfall-seed:' + seedWords) : (Math.random() * 2 ** 32) >>> 0;
+const runWotd = seed => pickWotd(seedWords ? hashStr('wordfall-wotd:' + seed) : (Math.random() * 2 ** 32) >>> 0);
 const fmtTime = ms => { const s = Math.max(0, Math.ceil(ms / 1000)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
 const fmtUp = ms => { const s = Math.floor(ms / 1000); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
 
@@ -2614,10 +2656,10 @@ function startBot(level, count = botCount) {
 function startSoloNow(mode, boot = false) {
   bankLiveGame();
   const day = todayStr();
-  const seed = mode === 'daily' ? hashStr('wordfall3:' + day) : (Math.random() * 2 ** 32) >>> 0;
+  const seed = mode === 'daily' ? hashStr('wordfall3:' + day) : pickSeed();
   const v = mode === 'daily' ? dailyVariant(day) : variant;
-  hideEnd(); game = { mode, day, variant: v, me: null, bots: [], over: false, outAt: {} };
-  game.wotd = pickWotd(mode === 'daily' ? hashStr('wordfall-wotd:' + day) : (Math.random() * 2 ** 32) >>> 0);
+  hideEnd(); game = { mode, day, variant: v, me: null, bots: [], over: false, outAt: {}, seedWords: mode === 'daily' ? '' : seedWords };
+  game.wotd = mode === 'daily' ? pickWotd(hashStr('wordfall-wotd:' + day)) : runWotd(seed);
   game.me = new Board({ seed, orbKinds: ['clear', 'scramble'], hooks: myHooks(), hazards: true, variant: v, wotd: game.wotd });
   game.best = +(store.get('wordfall-best') || 0);
   paused = false;
@@ -2639,9 +2681,9 @@ function startBotNow(level, count = botCount) {
   bankLiveGame();
   botLevel = BOT_LEVELS[level] ? level : 'normal'; store.set('wordfall-bot', botLevel);
   botCount = count === 7 ? 7 : 1; store.set('wordfall-botcount', String(botCount));
-  const seed = (Math.random() * 2 ** 32) >>> 0;
-  hideEnd(); game = { mode: 'bot', royale: botCount > 1, variant, me: null, bots: [], over: false, outAt: {}, finale: false };
-  game.wotd = pickWotd((Math.random() * 2 ** 32) >>> 0);
+  const seed = pickSeed();
+  hideEnd(); game = { mode: 'bot', royale: botCount > 1, variant, me: null, bots: [], over: false, outAt: {}, finale: false, seedWords };
+  game.wotd = runWotd(seed);
   game.me = new Board({ seed, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: myHooks(), hazards: 'versus', variant, wotd: game.wotd });
   const names = shuffled(BOT_NAMES);
   for (let i = 0; i < botCount; i++) game.bots.push(makeBot('bot-' + i, names[i], botLevel, seed ^ Math.imul(0x9e3779b9, i + 1)));
@@ -3755,6 +3797,7 @@ function setPlayTab(m) {
   pc.dataset.m = playTab;
   pc.querySelectorAll('.pc-pane').forEach(p => setOff(p, p.dataset.p !== playTab));
   setOff($('#pcMode'), playTab === 'daily');
+  setOff($('#pcSeed'), playTab === 'daily');
   syncVariant();
 }
 function syncBotSel() {
@@ -3831,8 +3874,49 @@ function rotDeco() {
   for (let k = 0; k < 26; k++) out += `<i class="flake${k % 3 ? '' : ' b'}" style="left:${(h(k, 9) * 100).toFixed(1)}%;--fall:${H + 10}px;animation-duration:${(6 + h(k, 4) * 6).toFixed(1)}s;animation-delay:-${(h(k, 2) * 12).toFixed(1)}s;opacity:${(0.35 + h(k, 6) * 0.6).toFixed(2)}"></i>`;
   d.innerHTML = out;
 }
-function syncVariant() {
-  $('#tVariant').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === variant)));
+// Game-mode picker: ‹ name › arrows (and ←/→ while focused) step through VARIANTS in order.
+const MODE_KEYS = Object.keys(VARIANTS);
+const chev = d => `<svg viewBox="0 0 10 16" aria-hidden="true" focusable="false"><path d="${d < 0 ? 'M8 2 2 8l6 6' : 'M2 2l6 6-6 6'}"/></svg>`;
+function setVariant(v, dir = 0) { variant = VARIANTS[v] ? v : 'classic'; store.set('wordfall-variant', variant); syncVariant(dir); }
+function modePicker(el) {
+  el.className = 'mpick'; el.setAttribute('role', 'group'); el.setAttribute('aria-label', 'Game mode');
+  el.innerHTML = `<button class="mp-arr" type="button" data-d="-1" aria-label="Previous game mode">${chev(-1)}</button>`
+    + `<div class="mp-cur" aria-live="polite"><b class="mp-name"></b><span class="mp-dots" aria-hidden="true">${MODE_KEYS.map(() => '<i></i>').join('')}</span></div>`
+    + `<button class="mp-arr" type="button" data-d="1" aria-label="Next game mode">${chev(1)}</button>`;
+  const step = d => setVariant(MODE_KEYS[(MODE_KEYS.indexOf(variant) + d + MODE_KEYS.length) % MODE_KEYS.length], d);
+  el.querySelectorAll('.mp-arr').forEach(b => { b.onclick = () => step(+b.dataset.d); });
+  el.addEventListener('keydown', e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); e.stopPropagation(); step(e.key === 'ArrowLeft' ? -1 : 1); } });
+  drawModePicker(el, 0);
+}
+function drawModePicker(el, dir) {
+  const v = VARIANTS[variant], nm = el.querySelector('.mp-name');
+  if (!nm) return;
+  nm.textContent = (v.icon ? v.icon + ' ' : '') + v.name;
+  el.querySelectorAll('.mp-dots i').forEach((d, i) => d.classList.toggle('on', MODE_KEYS[i] === variant));
+  if (dir) { nm.classList.remove('go-l', 'go-r'); void nm.offsetWidth; nm.classList.add(dir < 0 ? 'go-l' : 'go-r'); }
+}
+// Seed box: shared by the play card and the online room; every copy shows the same words.
+const seedField = id => `<div class="pc-seed${seedWords ? ' set' : ''}"><span class="ps-ic" aria-hidden="true">🌱</span><input class="ps-in" id="${id}" type="text" maxlength="40" placeholder="Random seed" aria-label="Seed words. Leave empty for a random seed." autocomplete="off" spellcheck="false" enterkeyhint="done" value="${esc(seedWords)}"><button class="ps-x" type="button" aria-label="Clear seed">×</button></div>`;
+function setSeed(t, from) {
+  seedWords = normSeed(t); store.set('wordfall-seed', seedWords);
+  document.querySelectorAll('.pc-seed').forEach(f => { f.classList.toggle('set', !!seedWords); const i = f.querySelector('input'); if (i !== from && i !== document.activeElement) i.value = seedWords; });
+  syncSeedText();
+}
+function bindSeed(f) {
+  const inp = f.querySelector('input');
+  inp.value = seedWords;
+  inp.oninput = () => setSeed(inp.value, inp);
+  inp.onkeydown = e => { if (e.key === 'Enter' || e.key === 'Escape') { e.preventDefault(); inp.blur(); } };
+  inp.onblur = () => { inp.value = seedWords; };
+  f.querySelector('.ps-x').onclick = () => { setSeed(''); inp.value = ''; inp.focus(); };
+  f.onclick = e => { if (e.target === f || e.target.classList.contains('ps-ic')) inp.focus(); };
+}
+function syncSeedText() {
+  document.querySelectorAll('#playCard .pm-k').forEach(k => { k.textContent = `${k.dataset.play} · ${seedWords ? 'seed: ' + seedWords : 'random seed'}`; });
+}
+function syncVariant(dir = 0) {
+  document.querySelectorAll('.mpick').forEach(el => drawModePicker(el, dir));
+  document.querySelectorAll('#playCard .pm-var').forEach(el => { el.textContent = VARIANTS[variant].name; });
   $('#tVdesc').innerHTML = Object.entries(VDESC).map(([k, t]) => `<span${k === variant ? '' : ' class="off"'}>${t}</span>`).join('');
   const dv = dailyVariant(todayStr());
   $('#playCard').classList.toggle('rotframe', (playTab === 'daily' ? dv : variant) === 'rot');
@@ -3841,7 +3925,9 @@ function syncVariant() {
   $('#tDailyVar').textContent = dv === 'classic' ? 'Today: Classic' : `Today: ${VARIANTS[dv].icon} ${VARIANTS[dv].name}`;
   $('#tDailyVar').classList.toggle('on', dv !== 'classic');
 }
-$('#tVariant').querySelectorAll('button').forEach(b => { b.onclick = () => { variant = b.dataset.v === 'rot' ? 'rot' : 'classic'; store.set('wordfall-variant', variant); syncVariant(); }; });
+modePicker($('#tVariant'));
+bindSeed($('#pcSeed'));
+syncSeedText();
 syncVariant();
 if (window.ResizeObserver) new ResizeObserver(() => rotDeco()).observe($('#playCard'));
 document.fonts?.ready.then(rotDeco);
@@ -4812,12 +4898,12 @@ function renderLobbyPage() {
       <aside class="pg-card on-side"><span class="tc-k">Room code</span><b class="on-code">${C}</b>
         <button class="btn sm ghostb" id="lCopy" type="button">Copy code</button>
         <label class="chk"><input type="checkbox" id="fBots"${net.fill ? ' checked' : ''}> Fill to 8 players with bots</label>
-        <div class="pc-field"><span class="tc-k">Game mode</span><div class="seg" id="lVar"><button type="button" data-v="classic">Classic</button><button type="button" data-v="rot">❄ Rot &amp; Thaw</button></div></div>
+        <div class="pc-field"><span class="tc-k">Game mode</span><div id="lVar"></div></div>
+        <div class="pc-field"><span class="tc-k">Seed · the starter's seed is used</span>${seedField('lSeed')}</div>
         <div class="btnrow"><button class="btn" id="mStart" type="button">Start match</button><button class="btn ghostb quitb" id="mLeave" type="button">Leave room</button></div>
       </aside></div>`;
-  const syncV = () => pqa('#lVar button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === variant)));
-  pqa('#lVar button').forEach(b => { b.onclick = () => { variant = b.dataset.v === 'rot' ? 'rot' : 'classic'; store.set('wordfall-variant', variant); syncVariant(); syncV(); }; });
-  syncV();
+  modePicker(pq('#lVar'));
+  bindSeed(pq('#lSeed').parentNode);
   copyBtn(pq('#lCopy'), net.code.toUpperCase(), pq('.on-side .on-code'));
   pq('#mStart').onclick = async () => {
     const ids = roomPeers().filter(p => p.presence.st !== 'play').map(p => p.peer);
@@ -4825,7 +4911,7 @@ function renderLobbyPage() {
     const names = shuffled(BOT_NAMES);
     const bots = net.fill ? Array.from({ length: Math.max(0, 8 - ids.length) }, (_, i) => ({ id: 'bot-' + i, name: names[i], level: i % 3 === 0 ? 'normal' : 'easy' })) : [];
     pq('#mStart').disabled = true;
-    try { await net.r.emit('start', { seed: (Math.random() * 2 ** 31) | 0, ids, host: net.myPeer, bots, variant }); }
+    try { await net.r.emit('start', { seed: seedWords ? pickSeed() : (Math.random() * 2 ** 31) | 0, mid: (Math.random() * 2 ** 31) | 0, sw: seedWords, ids, host: net.myPeer, bots, variant }); }
     catch (e) { pq('#mStart').disabled = false; setText(pq('#lMsg'), e && e.code === 'not_permitted' ? 'Your access can\'t start matches. Ask the owner to share the page with edit access.' : 'Couldn\'t start. Try again.'); }
   };
   pq('#fBots').onchange = () => { net.fill = pq('#fBots').checked; store.set('wordfall-fill', net.fill ? 'on' : 'off'); renderLobbyList(); };
@@ -5195,6 +5281,7 @@ function endHero(c) {
   if (c.newBest) chips.push('<span class="es-chip gold">★ New personal best</span>');
   if (c.kind === 'battle' && c.win) chips.push('<span class="es-chip gold">🏆 Winner</span>');
   if (c.wotd) chips.push(`<span class="es-chip${c.wotdHit ? ' good' : ''}">⭐ ${esc(c.wotdLbl)}: <b>${UP(c.wotd)}</b> ${c.wotdHit ? '· ×2' : '· missed'}</span>`);
+  if (game && game.seedWords) chips.push(`<span class="es-chip">🌱 Seed: <b>${esc(game.seedWords)}</b></span>`);
   if (c.unlocked && c.unlocked.length) chips.push(`<span class="es-chip gold">🎁 Unlocked: ${c.unlocked.map(esc).join(', ')}</span>`);
   const sub = `<b>${c.words}</b> word${c.words === 1 ? '' : 's'} · <b>${fmtUp(c.time)}</b>${c.kind === 'solo' ? ` · best <b>${n0(c.best)}</b>` : ''}`;
   return `<h2 class="es-head" ${d()}>${esc(c.head)}</h2>${score}<p class="es-sub" ${d()}>${sub}</p>`
@@ -5402,14 +5489,14 @@ function onNetStart(msg) {
   if (typeof d.seed !== 'number' || !Array.isArray(d.ids) || !d.ids.includes(net.myPeer)) return;
   if (game && game.mode === 'online' && !game.over) return;
   bankLiveGame();
-  const seed = d.seed >>> 0;
+  const seed = d.seed >>> 0, mid = typeof d.mid === 'number' ? d.mid >>> 0 : seed;
   const bots = (Array.isArray(d.bots) ? d.bots : []).slice(0, 11)
     .filter(b => b && typeof b.id === 'string' && /^bot-\d{1,2}$/.test(b.id))
     .map(b => ({ id: b.id, name: cleanNick(b.name) || 'Bot', level: BOT_LEVELS[b.level] ? b.level : 'easy' }));
-  net.match = { seed, ids: d.ids.filter(x => typeof x === 'string').slice(0, 12), host: typeof d.host === 'string' ? d.host : '', bots };
+  net.match = { seed, mid, ids: d.ids.filter(x => typeof x === 'string').slice(0, 12), host: typeof d.host === 'string' ? d.host : '', bots };
   net.botStates = new Map();
   const nv = VARIANTS[d.variant] ? d.variant : 'classic';
-  hideEnd(); game = { mode: 'online', variant: nv, me: null, bots: [], over: false, outAt: {}, finale: false };
+  hideEnd(); game = { mode: 'online', variant: nv, me: null, bots: [], over: false, outAt: {}, finale: false, seedWords: normSeed(typeof d.sw === 'string' ? d.sw : '') };
   game.wotd = pickWotd(hashStr('wordfall-wotd:' + seed));
   game.me = new Board({ seed, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: { ...myHooks(), changed: () => { updatePanels(); netPush(); } }, hazards: 'versus', variant: nv, wotd: game.wotd });
   if (isHost()) game.bots = bots.map((b, i) => makeBot(b.id, b.name, b.level, seed ^ Math.imul(0x85ebca6b, i + 1)));
@@ -5419,7 +5506,7 @@ function onNetStart(msg) {
   buildOpps();
   updatePanels();
   closeModal(); hideTitle();
-  net.r.presence({ st: 'play', score: 0, b: game.me.encode(), m: seed }).catch(() => {});
+  net.r.presence({ st: 'play', score: 0, b: game.me.encode(), m: mid }).catch(() => {});
   countdown();
   playTransition(runLabel('online'), null);
 }
@@ -5431,7 +5518,7 @@ function netPush() {
 }
 function matchPeers() {
   if (!net.match) return [];
-  return net.peers.filter(p => !p.sameTab && p.kind === 'viewer' && p.presence.m === net.match.seed && net.match.ids.includes(p.peer));
+  return net.peers.filter(p => !p.sameTab && p.kind === 'viewer' && p.presence.m === net.match.mid && net.match.ids.includes(p.peer));
 }
 // The host shares its bots' boards with the room twice a second.
 let botCastAt = 0;
@@ -5440,11 +5527,11 @@ function broadcastBots(force) {
   const now = performance.now();
   if (!force && now - botCastAt < 500) return;
   botCastAt = now;
-  net.r.emit('bots', { m: net.match.seed, list: game.bots.map(b => ({ id: b.id, s: b.board.score, b: b.board.encode(), st: b.board.phase === 'over' ? 'out' : 'play' })) }).catch(() => {});
+  net.r.emit('bots', { m: net.match.mid, list: game.bots.map(b => ({ id: b.id, s: b.board.score, b: b.board.encode(), st: b.board.phase === 'over' ? 'out' : 'play' })) }).catch(() => {});
 }
 function onNetBots(msg) {
   const d = msg.data || {};
-  if (msg.sameTab || !net.match || msg.peer !== net.match.host || d.m !== net.match.seed || !Array.isArray(d.list)) return;
+  if (msg.sameTab || !net.match || msg.peer !== net.match.host || d.m !== net.match.mid || !Array.isArray(d.list)) return;
   for (const x of d.list.slice(0, 12)) {
     if (!x || !net.match.bots.some(b => b.id === x.id)) continue;
     net.botStates.set(x.id, { s: cleanScore(x.s), b: typeof x.b === 'string' ? x.b.slice(0, ROWS * COLS) : '', st: x.st === 'out' ? 'out' : 'play' });
