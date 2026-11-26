@@ -31,8 +31,8 @@ CSS = f"""/* ROT-CARD: the play box in Rot & Thaw. Night sky fading into rot at 
 .rotframe .pd-art,.rotframe .t-switch{{background:#0d0b1fd9}}
 .rc .c{{position:absolute!important;margin:0;width:var(--rt);height:var(--rt);--cell:var(--rt);--pc:#c4ae7f;animation:none!important}}
 .rc .c.tile.ice::before{{font-size:.5em}}
-.rc .c.nether{{background:linear-gradient(#843838,#5a2020);box-shadow:inset 0 -4px 0 #3a0f0f}}
-.rc .c.nether::after{{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 25% 70%,#3a0d0d 0 12%,transparent 14%),radial-gradient(circle at 72% 30%,#4a1414 0 10%,transparent 12%)}}
+.rc .c.nether{{background:linear-gradient(#a8504a,#83342f);box-shadow:inset 0 -4px 0 #5c2320}}
+.rc .c.nether::after{{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 25% 70%,#5e211e 0 12%,transparent 14%),radial-gradient(circle at 72% 30%,#6c2825 0 10%,transparent 12%)}}
 .rc .flake{{position:absolute;top:-6px;width:3px;height:3px;background:#e9f6ff;box-shadow:0 0 4px #bfeaff;animation:rcfall linear infinite}}
 .rc .flake.b{{width:4px;height:4px}}
 @keyframes rcfall{{to{{transform:translate(18px,var(--fall,640px))}}}}
