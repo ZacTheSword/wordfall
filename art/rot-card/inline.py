@@ -25,21 +25,21 @@ CSS = f"""/* ROT-CARD: the play box in Rot & Thaw. Night sky fading into rot at 
    stack; rotskin.svg lives in art/rot-card and is copied in by art/rot-card/inline.py. */
 :root{{--nether:radial-gradient(circle at 25% 70%,#5e211e 0 12%,transparent 14%),radial-gradient(circle at 72% 30%,#6c2825 0 10%,transparent 12%),linear-gradient(#a8504a,#83342f);--nether-edge:#5c2320}}
 .play-card{{position:relative}}
+#playCard{{padding-bottom:100px}} /* room for the rot stack, kept in every mode so the card never changes height */
 .rc{{display:none;position:absolute;inset:0;pointer-events:none;border-radius:12px;overflow:hidden;z-index:0}}
 .play-card.rotframe .rc{{display:block}}
 .play-card>.pc-stack,.play-card>.pc-guide,.play-card>.ps-actions{{position:relative;z-index:2}}
-.t-card.play-card.rotframe{{--mc:#9fdcff;--rt:22px;border-color:#a8504a;padding-bottom:100px;background:linear-gradient(#141b3d 0%,#16142f 50%,#2a1411cc 100%),{U['rotskin']} 0 0/260px 260px,#2a1411;box-shadow:0 0 0 1px #2a0806,0 0 32px -4px #a8504acc,0 0 80px -18px #83342f,0 24px 60px -24px #000}}
+.t-card.play-card.rotframe{{--mc:#9fdcff;--rt:22px;border-color:#a8504a;background:linear-gradient(#141b3d 0%,#16142f 50%,#2a1411cc 100%),{U['rotskin']} 0 0/260px 260px,#2a1411;box-shadow:0 0 0 1px #2a0806,0 0 32px -4px #a8504acc,0 0 80px -18px #83342f,0 24px 60px -24px #000}}
 .rotframe .pd-art,.rotframe .t-switch{{background:#0d0b1fd9}}
 .rc .c{{position:absolute!important;margin:0;width:var(--rt);height:var(--rt);--cell:var(--rt);--pc:#c4ae7f;animation:none!important}}
 .rc .c.tile.ice::before{{font-size:.5em}}
 .rc .c.nether{{background:var(--nether);box-shadow:inset 0 -4px 0 var(--nether-edge)}}
-.rc .c.nether::after{{content:'🔥';position:absolute;top:-4px;right:-4px;width:11px;height:11px;display:grid;place-items:center;border-radius:50%;background:var(--ink);font-size:6.5px;line-height:1;box-shadow:0 0 0 1.5px var(--o-ignite)}}
 .rc .flake{{position:absolute;top:-6px;width:3px;height:3px;background:#e9f6ff;box-shadow:0 0 4px #bfeaff;animation:rcfall linear infinite}}
 .rc .flake.b{{width:4px;height:4px}}
 @keyframes rcfall{{to{{transform:translate(18px,var(--fall,640px))}}}}
 .calm .rc .flake{{display:none}}
 @media (prefers-reduced-motion:reduce){{.rc .flake{{display:none}}}}
-@media (max-width:560px){{.t-card.play-card.rotframe{{--rt:18px;padding-bottom:84px}}}}
+@media (max-width:560px){{.t-card.play-card.rotframe{{--rt:18px}}#playCard{{padding-bottom:84px}}}}
 /* Rot tiles: in Rot & Thaw the letters that give Ignite are netherrack blocks: a fully rotted tile in brick red with
    no flames, keeping the usual power badge (the 🔥 in the corner) to show it gives Ignite. */
 .c.orb.o-ignite{{background:var(--nether);color:#ffeae4;text-shadow:0 1px 0 #4a1512;box-shadow:inset 0 -4px 0 var(--nether-edge);animation:none}}
