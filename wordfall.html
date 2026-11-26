@@ -869,6 +869,39 @@ div.hub-t{cursor:default}
 .pc-seed:not(.set) .ps-x{visibility:hidden}
 .pc-field .pc-seed{width:100%}
 /* /MODE-PICKER */
+/* DAILY-MODE: Today's drop shows the day's game mode where Practice picks one (same tiles and icons), with
+   tomorrow's beside it and a locked seed. The card's blocks take the look of that mode. */
+.play-card .pc-stack>.pc-pane[data-p="daily"]{grid-row:1}
+.pc-stack>#pcDaily{grid-column:1;grid-row:2;align-self:start}
+.mtiles.dm{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}
+.dm .mt{height:64px;cursor:default}
+.dm .mt:not(.on):hover{border-color:var(--line2)}
+.dm .mt.on{gap:12px;padding:0 14px 4px 12px}
+.dm .mt.on .mi{width:40px;height:40px;border-radius:8px;font-size:21px}
+.dm .mt.on>b{font:400 19px/1.1 var(--f-display);color:var(--mc);text-transform:uppercase;letter-spacing:.02em;text-shadow:0 0 14px color-mix(in srgb,var(--mc) 45%,transparent)}
+.dm .mt.next{border-style:dashed}
+.dm .mt.next>b{color:var(--muted)}
+.dm .mt.next .mi{opacity:.6;filter:saturate(.7)}
+.mt-tag{position:absolute;top:-7px;right:7px;padding:0 5px;border-radius:4px;background:#2a2650;color:var(--muted);font:700 8.5px/14px var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.mt.on .mt-tag{background:var(--mc);color:#14122b}
+.ps-lock{display:flex;align-items:center;gap:6px;min-width:0;height:44px;box-sizing:border-box;padding:0 10px;border-radius:8px;border:1px solid var(--line2);background:#0d0b1fd9;color:var(--muted);font:600 12.5px/1.25 var(--f-mono);overflow:hidden}
+@media (max-width:560px){
+  .mtiles.dm{grid-template-columns:minmax(0,3fr) minmax(0,2fr);grid-auto-flow:row;overflow:visible;margin:0;padding:0}
+  .dm .mt{height:44px}
+  .dm .mt.on{gap:9px;padding:0 10px 3px 8px}
+  .dm .mt.on .mi{width:28px;height:28px;border-radius:6px;font-size:15px}
+  .dm .mt.on>b{font-size:15px}
+}
+@media (max-width:360px){.dm .mt.next .mi{display:none}.dm .mt.next{padding-left:10px}.dm .mt.on>b{font-size:13px}}
+/* Rot & Thaw day: ice date tiles, snow on the word of the day, and a preview stack of ice, snow, rot and netherrack. */
+.play-card[data-v="rot"] .t-ic i{background:linear-gradient(160deg,#fff 0%,#b8ecff 40%,#5cc8f5 100%);color:#063a57;box-shadow:inset 0 -4px 0 #2f9fd6,0 0 0 1.5px #38c6ff,0 0 14px -2px #5fd4ff}
+.play-card[data-v="rot"] #tcWotd i{background:radial-gradient(circle at 18% 0,#fff 0 .36em,transparent .4em),radial-gradient(circle at 56% 0,#fff 0 .3em,transparent .34em),radial-gradient(circle at 90% 0,#fff 0 .34em,transparent .38em),linear-gradient(#fff 0 .18em,transparent .18em),var(--tile);box-shadow:inset 0 -3px 0 #bbb,0 -1px 0 #fff}
+.play-card[data-v="rot"] #pdBoard i:nth-child(3),.play-card[data-v="rot"] #pdBoard i:nth-child(4){background:linear-gradient(160deg,#fff 0%,#b8ecff 40%,#5cc8f5 100%);color:#063a57;box-shadow:inset 0 -3px 0 #2f9fd6,0 0 0 1.5px #38c6ff,0 0 10px #5fd4ffaa}
+.play-card[data-v="rot"] #pdBoard i:nth-child(20),.play-card[data-v="rot"] #pdBoard i:nth-child(30){background:radial-gradient(circle at 28% 30%,#fff 0 14%,transparent 16%),radial-gradient(circle at 70% 62%,#fff 0 12%,transparent 14%),linear-gradient(#fbfdff,#dcecfb);color:#1b1930;box-shadow:inset 0 -3px 0 #b9cde4}
+.play-card[data-v="rot"] #pdBoard i:nth-child(25){background:var(--nether);color:#ffeae4;box-shadow:inset 0 -3px 0 var(--nether-edge)}
+.play-card[data-v="rot"] #pdBoard i:nth-child(26){background:radial-gradient(circle at 25% 70%,#3b2a12 0 13%,transparent 15%),radial-gradient(circle at 72% 30%,#4a3418 0 11%,transparent 13%),linear-gradient(#a8853e,#6e5126);color:#1b1930}
+.play-card[data-v="rot"] #pdBoard i:nth-child(28){background:radial-gradient(circle at 70% 32%,#6b4f22 0 11%,transparent 13%),linear-gradient(#d2ab55,#a8843c)}
+.play-card[data-v="rot"] #pdBoard i:nth-child(31),.play-card[data-v="rot"] #pdBoard i:nth-child(33),.play-card[data-v="rot"] #pdBoard i:nth-child(34),.play-card[data-v="rot"] #pdBoard i:nth-child(36){background:radial-gradient(circle at 18% 0,#fff 0 .36em,transparent .4em),radial-gradient(circle at 56% 0,#fff 0 .3em,transparent .34em),radial-gradient(circle at 90% 0,#fff 0 .34em,transparent .38em),linear-gradient(#fff 0 .18em,transparent .18em),var(--bank)}
 /* ROT-CARD: the play box in Rot & Thaw. Night sky fading into rot at the bottom, a half-played
    stack of real board cells along the bottom (rubble, rotting blocks, netherrack power tiles, snow and ice on top),
    pixel snow falling behind the card, and a netherrack-red glow round the rim. rotDeco() in the page script builds the
@@ -1558,14 +1591,13 @@ div.hub-t{cursor:default}
     <div class="pc-stack">
     <div class="pc-pane pd" data-p="daily">
       <div class="pd-info">
-        <div class="tc-head"><span class="t-ic" id="tDay"><i>0</i><i>1</i></span><div><span class="tc-k">Today's drop</span><b class="tc-date" id="tcDate"></b></div><em class="t-var" id="tDailyVar"></em></div>
+        <div class="tc-head"><span class="t-ic" id="tDay"><i>0</i><i>1</i></span><div><span class="tc-k">Today's drop</span><b class="tc-date" id="tcDate"></b></div></div>
         <div class="tc-wotd big"><span class="tc-k">⭐ Word of the day</span><span class="wotd" id="tcWotd"></span><small>Score it today for ×2 on your final score.</small></div>
         <div class="pd-stats">
           <div><span class="tc-k">Your best</span><b id="tBest">0</b></div>
           <div><span class="tc-k">Streak</span><b id="tcStreak">0</b><span class="tc-dots" id="tcDots"></span></div>
           <div><span class="tc-k">Today's rank</span><b id="tcRank">–</b></div>
         </div>
-        <p class="tc-sub">Same pieces, hazards and word for everyone today.</p>
       </div>
       <div class="pd-art" aria-hidden="true"><span class="ha-board big" id="pdBoard"></span></div>
     </div>
@@ -1591,6 +1623,10 @@ div.hub-t{cursor:default}
         <p class="pm-desc pm-vdesc"></p>
       </div>
       <div class="pd-art" aria-hidden="true"><svg class="ha-art" viewBox="0 0 220 150" aria-hidden="true" focusable="false"><rect class="av-well" x="10" y="34" width="80" height="108" rx="9"/><rect class="av-well" x="130" y="34" width="80" height="108" rx="9"/><g class="av-t"><rect x="15" y="120" width="17" height="17" rx="4"/><text x="23.5" y="132.6">L</text></g><g class="av-t"><rect x="34" y="120" width="17" height="17" rx="4"/><text x="42.5" y="132.6">I</text></g><g class="av-t"><rect x="53" y="120" width="17" height="17" rx="4"/><text x="61.5" y="132.6">V</text></g><g class="av-t"><rect x="72" y="120" width="17" height="17" rx="4"/><text x="80.5" y="132.6">E</text></g><g class="av-t"><rect x="15" y="101" width="17" height="17" rx="4"/><text x="23.5" y="113.6">R</text></g><g class="av-t"><rect x="34" y="101" width="17" height="17" rx="4"/><text x="42.5" y="113.6">A</text></g><g class="av-t"><rect x="53" y="101" width="17" height="17" rx="4"/><text x="61.5" y="113.6">C</text></g><g class="av-t"><rect x="72" y="101" width="17" height="17" rx="4"/><text x="80.5" y="113.6">E</text></g><g class="av-b"><rect x="135" y="120" width="17" height="17" rx="4"/><text x="143.5" y="132.6">P</text></g><g class="av-b"><rect x="154" y="120" width="17" height="17" rx="4"/><text x="162.5" y="132.6">L</text></g><g class="av-b"><rect x="173" y="120" width="17" height="17" rx="4"/><text x="181.5" y="132.6">A</text></g><g class="av-b"><rect x="192" y="120" width="17" height="17" rx="4"/><text x="200.5" y="132.6">Y</text></g><g class="av-b"><rect x="135" y="101" width="17" height="17" rx="4"/><text x="143.5" y="113.6">O</text></g><g class="av-b"><rect x="173" y="101" width="17" height="17" rx="4"/><text x="181.5" y="113.6">N</text></g><g class="av-b"><rect x="173" y="82" width="17" height="17" rx="4"/><text x="181.5" y="94.6">E</text></g><rect class="av-p1" x="35" y="2" width="30" height="30" rx="8"/><circle class="av-pp" cx="50" cy="14" r="5"/><path class="av-pp" d="M41 28c1.5-6 5-8.5 9-8.5s7.5 2.5 9 8.5z"/><rect class="av-p2" x="155" y="2" width="30" height="30" rx="8"/><circle class="av-pp" cx="170" cy="14" r="5"/><path class="av-pp" d="M161 28c1.5-6 5-8.5 9-8.5s7.5 2.5 9 8.5z"/><path class="av-link" d="M66 17C82 17 88 44 110 44S138 17 154 17"/><circle class="av-globe" cx="110" cy="85" r="18"/><path class="av-mer" d="M92 85h36M110 67c-9 9-9 27 0 36M110 67c9 9 9 27 0 36M95 76h30M95 94h30"/><circle class="av-ping" cx="110" cy="85" r="18"/></svg></div>
+    </div>
+    <div class="pc-mode" id="pcDaily">
+      <div class="pm-col"><span class="tc-k">Today's game mode</span><div class="mtiles dm" id="tDailyMode" role="img"></div></div>
+      <div class="pm-col"><span class="tc-k">Seed</span><div class="ps-lock" title="Same pieces, hazards and word for everyone today."><span class="ps-ic" aria-hidden="true">🔒</span>Same for everyone</div></div>
     </div>
     <div class="pc-mode off" id="pcMode">
       <div class="pm-col"><span class="tc-k">Game mode</span><div id="tVariant"></div></div>
@@ -3859,6 +3895,7 @@ function setPlayTab(m) {
   pc.dataset.m = playTab;
   pc.querySelectorAll('.pc-pane').forEach(p => setOff(p, p.dataset.p !== playTab));
   setOff($('#pcMode'), playTab === 'daily');
+  setOff($('#pcDaily'), playTab !== 'daily');
   syncVariant();
 }
 function syncBotSel() {
@@ -4019,8 +4056,12 @@ function syncVariant() {
   if (soon) play.title = `${MODES[shown].name} is coming soon`; else play.removeAttribute('title');
   setOff($('#tGuide'), soon);
   $('#tGuide').textContent = `🎓 Tutorial: ${TUTS[tutFor()].name}`;
-  $('#tDailyVar').textContent = dv === 'classic' ? 'Today: Classic' : `Today: ${VARIANTS[dv].icon} ${VARIANTS[dv].name}`;
-  $('#tDailyVar').classList.toggle('on', dv !== 'classic');
+  // Today's drop: the day's mode as a big tile, with tomorrow's beside it.
+  const tm = new Date(); tm.setDate(tm.getDate() + 1);
+  const nv = dailyVariant(`${tm.getFullYear()}-${String(tm.getMonth() + 1).padStart(2, '0')}-${String(tm.getDate()).padStart(2, '0')}`);
+  const dTile = (k, cls, tag) => `<span class="mt ${cls}" aria-hidden="true"><i class="mi" data-i="${k}"></i><b>${esc(MODES[k].name)}</b><span class="mt-tag">${tag}</span></span>`;
+  $('#tDailyMode').innerHTML = dTile(dv, 'on', 'Today') + dTile(nv, 'next', 'Tomorrow');
+  $('#tDailyMode').setAttribute('aria-label', `Today's game mode: ${MODES[dv].name}. Tomorrow: ${MODES[nv].name}.`);
 }
 modePicker($('#tVariant'));
 $('#playCard [data-p="practice"] .pd-art').insertAdjacentHTML('beforeend', Object.entries(MODE_BOARDS).map(([k, c]) => modeBoard(k, c)).join(''));
