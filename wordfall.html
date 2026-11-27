@@ -1678,7 +1678,8 @@ div.hub-t{cursor:default}
 .ha .pd-info{gap:12px}
 /* No box round the art: it sits low, just above the best score and speed. */
 .ha .pd-art{min-width:0;min-height:150px;padding:6px 0 4px;background:none;border:0;border-radius:0;place-items:end center}
-.ha .pd-art .ha-board:not(.big){transform:scale(1.2);transform-origin:50% 100%}
+.ha .pd-art>*{zoom:var(--fit,1)}
+.ha .pd-art{overflow:hidden}
 .ha .pd-art .ha-art{max-width:250px}
 .ha .play-card .pm-desc{margin:0;font-size:13.5px;line-height:1.5}
 .ha .pm-name{font-size:min(30px,calc(100cqi / var(--len,8) * 1.5));white-space:nowrap}
@@ -1821,6 +1822,29 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
 .lbr-note:empty{display:none}
 .lbr-all{margin-top:auto;height:44px;border-radius:10px;border:1px solid var(--line2);background:color-mix(in srgb,var(--bank) 14%,var(--well));color:var(--fg);font:700 13.5px var(--f-ui);cursor:pointer}
 .lbr-all:hover,.lbr-all:focus-visible{border-color:var(--bank);outline:none}
+/* Wide screens: the whole home page fits the window. Every box keeps its size whichever
+   mode or way to play is picked; the card's art scales to the room that's left (fitArt). */
+@media (min-width:1021px) and (min-height:600px){
+  .title:has(.t-wrap.home.ha:not([hidden])){padding-block:14px}
+  .title .t-wrap.home.ha{height:min(calc(100dvh - 28px),980px);grid-template-rows:auto auto minmax(0,1fr)}
+  .ha .t-card.play-card,.t-hub2,.t-lbr{min-height:0}
+  .ha .t-card.play-card{overflow:hidden}
+  .ha .pc-stack,.ha .pc-stack>.pc-pane{min-height:0}
+  .ha .pd-art{min-height:0}
+  .t-hub2{grid-template-rows:minmax(0,1fr) minmax(0,1fr) auto}
+  .h2t{min-height:0}
+  .h2t .ht-art{flex:1;min-height:0;overflow:hidden}
+  .t-lbr{overflow:hidden}
+  .t-lbr .lbr-list{min-height:0;overflow-y:auto}
+}
+@media (min-width:1021px) and (min-height:600px) and (max-height:820px){
+  .ha .t-top{padding:6px 16px}
+  .ha .pm-head{gap:10px}
+  .ha .ps-actions .t-play{padding:14px 12px;font-size:22px}
+  .ha .pd-stats>div{padding:6px 10px}.ha .pd-stats b{font-size:17px}
+  .ha .t-card.play-card{padding:14px;gap:10px}
+  .title .ha #playCard.rotframe{padding-bottom:78px}
+}
 /* Change mode sheet: game mode, description and seed under the ways to play */
 .pk-sec{margin:0 0 -4px;font:700 11.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:left;width:100%;max-width:1200px}
 .pk-mode{width:100%;max-width:1200px;box-sizing:border-box;display:grid;gap:12px;padding:16px;border-radius:14px;background:color-mix(in srgb,var(--panel) 70%,transparent);border:1px solid var(--line2);text-align:left}
@@ -1830,7 +1854,11 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
 .pk-done{min-width:180px;align-self:center;margin-inline:auto}
 .pk-mode #pcMode>.pm-col:first-child>.tc-k,.pk-mode #pcDaily>.pm-col:first-child>.tc-k{display:none}
 .pk-mode>.pc-mode{border-top:0;padding-top:0}
-@media (max-width:1180px){
+@media (min-width:1021px) and (max-width:1180px){
+  .title .t-wrap.home.ha{grid-template-columns:330px minmax(0,1fr) 250px}
+  .hm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:1020px){
   .title .t-wrap.home.ha{grid-template-columns:350px minmax(0,1fr);grid-template-areas:"bar bar" "top top" "card hub" "lbr lbr"}
   .t-lbr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center}
   .t-lbr .lbr-list{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
@@ -1847,10 +1875,9 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
   .hb-pill .hb-x{display:none}
   .tt-season{font-size:17px}
   .ha .pd-art{display:grid;min-height:110px;padding-top:12px}
-  .ha .pc-stack>.pc-pane.off{display:none}
   .ha .pd-wotd .wotd i{width:34px;font-size:17px}
-  .ha .pd-art .ha-board:not(.big){transform:none}
-  .t-hub2{gap:10px;grid-template-rows:minmax(170px,auto) minmax(170px,auto) auto}
+  .t-hub2{gap:10px;grid-template-rows:212px 212px auto}
+  .h2t .ht-art{flex:1;min-height:0;overflow:hidden}
   .hc-txt b{display:none}
   .hc-panel{min-height:440px}
   .hc-tab{padding:0 10px;font-size:12.5px}
@@ -1993,7 +2020,7 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
     <span class="hb-pill" title="Next drop"><i aria-hidden="true">⏱</i><span class="hb-x">Next drop</span><b id="tCountdown">–</b></span>
   </div>
   <header class="t-top">
-    <div class="tt-left"><span class="tt-k">Today's drop · <span id="hbDate"></span></span><b class="tt-season">Season 0</b></div>
+    <div class="tt-left"><span class="tt-k">Today's drop · <span id="hbDate"></span></span><b class="tt-season">Season 0 - Test Build</b></div>
     <div class="tt-mid"><h1 class="logo t-logo" aria-label="Wordfall"><span style="--i:0">W</span><span style="--i:1">O</span><span style="--i:2">R</span><span style="--i:3">D</span><span style="--i:4">F</span><span style="--i:5">A</span><span style="--i:6">L</span><span style="--i:7">L</span></h1><p class="t-tag">Spell across. Cash in down.</p></div>
     <div class="tt-right">
       <!-- ARTIFACT-ONLY -->
@@ -2053,7 +2080,7 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
     </div>
     <div class="pc-row">
       <button class="btn sm ghostb pc-guide" id="tGuide" type="button">🎓 Tutorial</button>
-      <div class="pc-best" id="pcBest" aria-live="polite"><span class="pcb-k">🏆 Best · <span id="pcBestMode">Classic</span></span><b id="pcBestV">–</b></div>
+      <div class="pc-best" id="pcBest" aria-live="polite"><span class="pcb-k">🏆 Best</span><b id="pcBestV">–</b></div>
       <div class="pace" id="tPace"></div>
     </div>
     <div class="ps-actions">
@@ -4792,6 +4819,22 @@ function bindSeed(f) {
 function syncSeedText() {
   document.querySelectorAll('#playCard .pm-k').forEach(k => { k.textContent = `${k.dataset.play} · ${seedWords ? 'seed: ' + seedWords : 'random seed'}`; });
 }
+// Scale each card's art to fit the room its pane leaves it (the box sizes never change).
+function fitArt() {
+  for (const a of document.querySelectorAll('.ha .pd-art')) {
+    const k = [...a.children].find(c => !c.hidden && getComputedStyle(c).display !== 'none');
+    if (!k) continue;
+    const max = k.classList.contains('ha-board') && !k.classList.contains('big') ? 1.2 : 1;
+    k.style.setProperty('--fit', '1');
+    const kr = k.getBoundingClientRect(), cs = getComputedStyle(a);
+    const ah = a.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom), aw = a.clientWidth;
+    if (!kr.height || !kr.width || !aw) continue;
+    const f = Math.min(max, ah / kr.height, aw / kr.width);
+    k.style.setProperty('--fit', Math.max(0.3, f).toFixed(3));
+    k.style.visibility = f < 0.42 ? 'hidden' : '';
+  }
+}
+if (window.ResizeObserver) { const ro = new ResizeObserver(() => fitArt()); document.querySelectorAll('.pd-art').forEach(a => ro.observe(a)); }
 function syncVariant() {
   document.querySelectorAll('.mtiles').forEach(el => drawModePicker(el));
   const pc = $('#playCard'), dv = dailyVariant(todayStr()), tc = tutCard(), shown = tc ? 'classic' : playTab === 'daily' ? dv : pickMode, soon = isSoon(shown);
@@ -4807,6 +4850,7 @@ function syncVariant() {
   if (isSoon(pickMode)) { ic.dataset.i = pickMode; ic.textContent = ''; } else if (ic.dataset.i) { delete ic.dataset.i; ic.textContent = '🎯'; }
   pc.classList.toggle('rotframe', shown === 'rot');
   renderModeBest();
+  requestAnimationFrame(fitArt);
   rotDeco();
   // Coming-soon modes: the card shows, but Play is locked and there's no tutorial yet. A way to play or a
   // mode still locked behind a quest says so, and Play opens that quest instead.
@@ -5796,7 +5840,6 @@ function noteModeBest(e) {
 function renderModeBest() {
   const pc = $('#playCard'); if (!pc) return;
   const v = pc.dataset.v || 'classic', b = modeBests()[v], el = $('#pcBest');
-  setText($('#pcBestMode'), (MODES[v] || MODES.classic).name);
   el.classList.toggle('none', !b);
   $('#pcBestV').innerHTML = b ? `${(+b.s || 0).toLocaleString()} ${paceTag(b.p)}` : 'No runs yet';
 }
