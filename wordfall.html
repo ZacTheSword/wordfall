@@ -1646,7 +1646,7 @@ div.hub-t{cursor:default}
 @media (max-width:640px){.acct-f{grid-template-columns:minmax(0,1fr)}}
 .set-note.warn{color:var(--bank)}
 /* HOME-A: player bar, Season banner, play card, four tiles and a leaderboard column. */
-.title .t-wrap.home.ha{max-width:1320px;grid-template-columns:340px minmax(0,1fr) 290px;grid-template-areas:"bar bar bar" "top top top" "card hub lbr";gap:14px;align-items:stretch}
+.title .t-wrap.home.ha{max-width:1320px;grid-template-columns:356px minmax(0,1fr) 290px;grid-template-areas:"bar bar bar" "top top top" "card hub lbr";gap:14px;align-items:stretch}
 .t-bar{grid-area:bar;display:flex;align-items:center;gap:10px;min-width:0;padding:8px 12px 8px 8px;border-radius:14px;background:color-mix(in srgb,var(--panel) 88%,transparent);border:1px solid var(--line2);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .hb-me{display:flex;align-items:center;gap:4px;min-width:0;margin-right:auto;padding:3px;border-radius:12px;background:var(--well);border:1px solid color-mix(in srgb,var(--o-clear) 45%,var(--line2))}
 .hb-me .t-me{border:0;background:none;height:40px;max-width:200px}
@@ -1672,31 +1672,38 @@ div.hub-t{cursor:default}
 .ha .pc-stack{flex:1;grid-template-rows:minmax(0,1fr)}
 .ha .pc-stack>.pc-pane,.ha .pc-stack>.pc-pane[data-p="daily"]{grid-row:1}
 .ha .pc-pane.pd{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch;gap:12px}
-.ha .pc-pane.pd[data-p="daily"]{grid-template-rows:auto minmax(0,1fr)}
+.ha .pc-pane.pd[data-p="daily"]{grid-template-rows:auto auto minmax(0,1fr) auto}
 .ha .pc-pane.pd[data-p="daily"] .pd-info{display:contents}
 .ha .pc-pane.pd[data-p="daily"] .pd-stats{order:3}
 .ha .pd-info{gap:12px}
-.ha .pd-art{min-width:0;min-height:190px}
-.ha .pd-art .ha-board:not(.big){transform:scale(1.25)}
-.ha .play-card .pm-vdesc,.ha .play-card .pm-desc:not(#tutDesc){display:none}
+/* No box round the art: it sits low, just above the best score and speed. */
+.ha .pd-art{min-width:0;min-height:150px;padding:6px 0 4px;background:none;border:0;border-radius:0;place-items:end center}
+.ha .pd-art .ha-board:not(.big){transform:scale(1.2);transform-origin:50% 100%}
+.ha .pd-art .ha-art{max-width:250px}
+.ha .play-card .pm-desc{margin:0;font-size:13.5px;line-height:1.5}
 .ha .pm-name{font-size:min(30px,calc(100cqi / var(--len,8) * 1.5));white-space:nowrap}
 .ha .pm-ic,.ha .pm-head .t-ic{width:48px;height:48px;font-size:24px}
-.ha .pd-wotd{gap:10px;padding:18px 12px}
+.ha .pd-wotd{gap:10px;padding:6px 0 4px}
 .ha .pd-wotd .tc-wotd{justify-items:center;text-align:center;gap:10px}
 .ha .pd-wotd .wotd{justify-content:center}
 .ha .pd-wotd .wotd i{width:38px;font-size:19px}
 .ha .pd-stats{gap:8px}.ha .pd-stats>div{padding:8px 10px}.ha .pd-stats b{font-size:19px}
-.pc-me{margin:0;text-align:center;font:600 13.5px var(--f-mono);color:var(--muted)}
-.pc-me:empty,.play-card[data-m="daily"] .pc-me,.play-card[data-m="tut"] .pc-me{display:none}
-.ha .pc-row{grid-template-columns:minmax(0,1fr)}
+.pc-best{display:none}
+.ha .pc-best{display:grid;align-content:center;gap:4px;min-width:0;height:46px;box-sizing:border-box;padding:0 12px;border-radius:11px;background:#0d0b1fb3;border:1px solid var(--line2)}
+.pcb-k{font:700 10px/1 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--bank);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ha .pc-best b{display:flex;align-items:center;gap:6px;font:700 16px/1 var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ha .pc-best b .ptag{margin:0}
+.ha .pc-best.none b{font:600 12.5px/1 var(--f-ui);color:var(--muted)}
+.ha .pc-row{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+.ha .pace-step{grid-template-columns:32px minmax(0,1fr) 32px}
 .ha .pc-row>.pc-guide{display:none}
 .ha .pace-step{height:46px}
 .ha .ps-actions{grid-template-columns:minmax(0,1fr)}
 .ha .ps-actions .t-play{padding:20px 12px;font-size:25px}
 .ha .ps-actions .t-switch[hidden]{display:none}
-.play-card.rotframe .pc-me{color:#d9e8f5}
+.play-card.rotframe .pc-best{background:#081420cc}
 /* Four tiles */
-.t-hub2{grid-area:hub;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(220px,1fr);gap:14px;min-width:0}
+.t-hub2{grid-area:hub;position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(170px,1fr) minmax(170px,1fr) auto;gap:14px;min-width:0}
 .h2t{position:relative;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;border:1px solid var(--line2);background:var(--panel);box-shadow:0 18px 40px -22px #000;transition:transform .15s,border-color .15s,box-shadow .15s}
 .h2t:hover,.h2t:focus-within{transform:translateY(-3px);border-color:var(--mc);box-shadow:0 0 0 1px var(--mc),0 18px 40px -18px var(--mc)}
 .h2t .ht-art{min-height:0;gap:8px;padding:14px}
@@ -1731,6 +1738,67 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
 .hs-sw{display:grid;place-items:center;width:62px;height:72px;border-radius:10px;background:linear-gradient(180deg,var(--sky2),var(--sky3));border:1.5px solid var(--accent);box-shadow:0 0 16px -6px var(--accent)}
 .hs-th.mid .hs-sw{width:72px;height:86px}
 .hs-sw i{display:grid;place-items:center;width:28px;height:28px;border-radius:6px;font:400 15px/1 var(--f-display);font-style:normal;background:var(--tile);color:var(--ink);box-shadow:inset 0 -3px 0 #0003}
+/* Chat bar under the tiles: opens into a panel that grows up over them. */
+.hchat{grid-column:1/-1;min-width:0}
+.hc-bar{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:10px;width:100%;height:52px;padding:0 14px;border-radius:14px;cursor:pointer;background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line2);box-shadow:0 18px 40px -22px #000;transition:border-color .15s}
+.hc-bar:hover,.hc-bar:focus-visible{border-color:var(--accent)}
+.hc-ic{font-size:18px;line-height:1}
+.hc-txt{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
+.hc-txt b{font:400 17px/1 var(--f-display);text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}
+.hc-prev{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 13.5px var(--f-ui);color:var(--muted)}
+.hc-prev em{font-style:normal;font-weight:700;color:var(--fg)}
+.hc-new{flex:none;padding:4px 9px;border-radius:999px;background:var(--accent);color:var(--ink);font:800 11.5px/1 var(--f-ui);white-space:nowrap}
+.hc-up{flex:none;font:800 17px/1 var(--f-ui);color:var(--muted)}
+.hc-panel{position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;border-radius:14px;background:var(--panel);border:1px solid var(--line2);box-shadow:0 26px 60px -20px #000;overflow:hidden;clip-path:inset(calc(100% - 52px) 0 0 0 round 14px);transition:clip-path .28s cubic-bezier(.2,.8,.2,1)}
+.hc-panel.in{clip-path:inset(0 0 0 0 round 14px)}
+.hc-panel[hidden]{display:none}
+.calm .hc-panel{transition:none}
+@media (prefers-reduced-motion:reduce){.hc-panel{transition:none}}
+.hc-head{display:flex;align-items:flex-end;gap:8px;padding:8px 8px 0 10px;border-bottom:1px solid var(--line)}
+.hc-tabs{display:flex;gap:2px;flex:1;min-width:0}
+.hc-tab{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:7px;height:42px;padding:0 14px;border-radius:10px 10px 0 0;border-bottom:2px solid transparent;margin-bottom:-1px;font:700 13.5px var(--f-ui);color:var(--muted);white-space:nowrap}
+.hc-tab:hover{color:var(--fg)}
+.hc-tab[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent);background:#ffffff08}
+.hc-tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.hc-dot{min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:9px;background:var(--accent);color:var(--ink);font:800 10.5px/18px var(--f-ui);font-style:normal;text-align:center}
+.hc-dot:empty{display:none}
+.hc-x{all:unset;box-sizing:border-box;cursor:pointer;display:grid;place-items:center;width:38px;height:38px;margin-bottom:3px;border-radius:9px;font:700 20px/1 var(--f-ui);color:var(--muted)}
+.hc-x:hover,.hc-x:focus-visible{background:#ffffff12;color:var(--fg)}
+.hc-list{list-style:none;margin:0;padding:10px 10px 6px;flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:1px}
+.hc-list:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.hc-m{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:0 10px;padding:6px;border-radius:9px;align-items:start}
+.hc-m:hover{background:#ffffff07}
+.hc-m.cont{padding-top:0}
+.hc-m.cont .hc-av,.hc-m.cont .hc-mh{display:none}
+.hc-m.cont .hc-mb{grid-column:2}
+.hc-av{grid-row:1/span 2;display:grid}
+.hc-av .pi{--ps:28px}
+.hc-mh{display:flex;align-items:baseline;gap:8px;min-width:0}
+.hc-mh b{font:700 13.5px var(--f-ui);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hc-m.me .hc-mh b{color:var(--o-clear)}
+.hc-mh time{flex:none;font:600 11px var(--f-mono);color:var(--muted)}
+.hc-mb{min-width:0}
+.hc-mb p{margin:1px 0 0;font-size:14px;line-height:1.4;overflow-wrap:anywhere;color:#e6e3fa}
+.hc-del{all:unset;cursor:pointer;grid-column:3;grid-row:1;padding:2px 6px;border-radius:6px;font-size:12px;color:var(--muted);opacity:0}
+.hc-m:hover .hc-del,.hc-del:focus-visible,.hc-n:hover .hc-del{opacity:1}
+.hc-del:hover{color:var(--bad)}
+.hc-day{align-self:center;margin:8px 0 4px;font:700 10.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hc-n{position:relative;display:grid;gap:5px;padding:12px 14px;margin-bottom:8px;border-radius:12px;background:#0d0b1fb3;border:1px solid var(--line)}
+.hc-n.new{border-color:var(--accent);box-shadow:0 0 18px -10px var(--accent)}
+.hc-nk{font:700 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--bank)}
+.hc-n b{font:700 15.5px/1.3 var(--f-ui)}
+.hc-n p{margin:0;font-size:13.5px;line-height:1.5;color:#dcd8f6;white-space:pre-line;overflow-wrap:anywhere}
+.hc-n .hc-del{position:absolute;top:8px;right:8px}
+.hc-empty{margin:auto;padding:24px 12px;text-align:center;font-size:13.5px;line-height:1.5;color:var(--muted)}
+.hc-form{display:flex;gap:8px;padding:10px 10px 12px;border-top:1px solid var(--line)}
+.hc-form[hidden],.hc-gate[hidden]{display:none}
+.hc-form input{flex:1;min-width:0;height:42px;box-sizing:border-box;padding:0 12px;border-radius:10px;border:1px solid var(--line2);background:var(--well);color:var(--fg);font:500 14px var(--f-ui)}
+.hc-form input:focus{outline:none;border-color:var(--accent)}
+.hc-post input:first-child{flex:.8}
+.hc-form .btn{height:42px;padding:0 18px}
+.hc-gate{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;padding:12px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);text-align:center}
+.hc-note{margin:0;padding:0 12px 10px;font-size:12.5px;color:var(--vert)}
+.hc-note:empty{display:none}
 /* Leaderboard column */
 .t-lbr{grid-area:lbr;display:flex;flex-direction:column;gap:10px;min-width:0;padding:16px 14px;border-radius:14px;background:color-mix(in srgb,var(--panel) 88%,transparent);border:1px solid var(--line2)}
 .lbr-h{margin:0;text-align:center;font:400 17px/1.1 var(--f-display);text-transform:uppercase;letter-spacing:.03em}
@@ -1763,7 +1831,7 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
 .pk-mode #pcMode>.pm-col:first-child>.tc-k,.pk-mode #pcDaily>.pm-col:first-child>.tc-k{display:none}
 .pk-mode>.pc-mode{border-top:0;padding-top:0}
 @media (max-width:1180px){
-  .title .t-wrap.home.ha{grid-template-columns:330px minmax(0,1fr);grid-template-areas:"bar bar" "top top" "card hub" "lbr lbr"}
+  .title .t-wrap.home.ha{grid-template-columns:350px minmax(0,1fr);grid-template-areas:"bar bar" "top top" "card hub" "lbr lbr"}
   .t-lbr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center}
   .t-lbr .lbr-list{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
   .t-lbr .lbr-gap{display:none}
@@ -1778,10 +1846,14 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
   .hb-pill{flex:1;justify-content:center;height:34px;padding:0 10px;font-size:13px}
   .hb-pill .hb-x{display:none}
   .tt-season{font-size:17px}
-  .ha .pd-art{display:grid;min-height:150px}
+  .ha .pd-art{display:grid;min-height:110px;padding-top:12px}
+  .ha .pc-stack>.pc-pane.off{display:none}
   .ha .pd-wotd .wotd i{width:34px;font-size:17px}
   .ha .pd-art .ha-board:not(.big){transform:none}
-  .t-hub2{gap:10px;grid-auto-rows:minmax(190px,auto)}
+  .t-hub2{gap:10px;grid-template-rows:minmax(170px,auto) minmax(170px,auto) auto}
+  .hc-txt b{display:none}
+  .hc-panel{min-height:440px}
+  .hc-tab{padding:0 10px;font-size:12.5px}
   .h2t .ht-art{padding:10px 8px}
   .h2t .ha-big{font-size:28px}
   .h2-btn{font-size:15px}
@@ -1938,8 +2010,9 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
     <div class="pc-pane pd" data-p="daily">
       <div class="pd-info">
         <div class="pm-head"><span class="t-ic" id="tDay"><i>0</i><i>1</i></span><div><span class="tc-k">Today's drop · <span id="tcDate"></span></span><b class="pm-name" id="tcMode">Classic</b></div></div>
+        <p class="pm-desc pm-vdesc"></p>
         <div class="pd-stats">
-          <div><span class="tc-k">Your best</span><b id="tBest">0</b></div>
+          <div><span class="tc-k">Today's best</span><b id="tBest">0</b></div>
           <div><span class="tc-k">Streak</span><b id="tcStreak">0</b><span class="tc-dots" id="tcDots"></span></div>
           <div><span class="tc-k">Today's rank</span><b id="tcRank">–</b></div>
         </div>
@@ -1978,9 +2051,9 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
       <div class="pd-art" aria-hidden="true"><span class="ha-board big tut-art"><i class="e"></i><i class="e"></i><i class="f">c</i><i class="f">k</i><i class="e"></i><i class="e"></i><i>d</i><i>u</i><i class="tg vh">c</i><i class="tg">k</i><i class="e"></i><i class="e"></i><i class="b">b</i><i class="b">e</i><i class="b vh">a</i><i class="b">r</i><i class="e"></i><i class="e"></i><i class="b">c</i><i class="b">a</i><i class="b vh">t</i><i class="b">s</i><i class="e"></i><i class="e"></i></span></div>
     </div>
     </div>
-    <p class="pc-me" id="pcMe"></p>
     <div class="pc-row">
       <button class="btn sm ghostb pc-guide" id="tGuide" type="button">🎓 Tutorial</button>
+      <div class="pc-best" id="pcBest" aria-live="polite"><span class="pcb-k">🏆 Best · <span id="pcBestMode">Classic</span></span><b id="pcBestV">–</b></div>
       <div class="pace" id="tPace"></div>
     </div>
     <div class="ps-actions">
@@ -1993,6 +2066,23 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
     <div class="h2t m-quest" id="tQuestsTile"><div class="ht-art" id="hbQuest"></div><div class="ht-cap"><button class="h2-btn" id="tQuests" type="button"><b>Quests</b></button><span class="h2-go" aria-hidden="true">›</span></div></div>
     <div class="h2t m-modes"><div class="ht-art" id="hbModes"></div><div class="ht-cap"><button class="h2-btn" id="tModes" type="button" aria-haspopup="dialog"><b>Change mode</b></button><span class="h2-go" aria-hidden="true">›</span></div></div>
     <div class="h2t m-shop"><div class="ht-art" id="hbShop"></div><div class="ht-cap"><button class="h2-btn" id="tShop" type="button"><b>Shop</b></button><span class="h2-go" aria-hidden="true">›</span></div></div>
+    <section class="hchat" id="hChat" aria-label="Chat and announcements">
+      <button class="hc-bar" id="hcBar" type="button" aria-expanded="false" aria-controls="hcPanel"><span class="hc-ic" aria-hidden="true">💬</span><span class="hc-txt"><b>Chat</b><span class="hc-prev" id="hcPrev">Announcements and chat with other players</span></span><span class="hc-new" id="hcNew" hidden></span><span class="hc-up" aria-hidden="true">⌃</span></button>
+      <div class="hc-panel" id="hcPanel" hidden>
+        <div class="hc-head">
+          <div class="hc-tabs" role="tablist" aria-label="Chat">
+            <button class="hc-tab" id="hcTab-news" type="button" role="tab" data-t="news" aria-selected="false" aria-controls="hcList">📢 Announcements<i class="hc-dot" id="hcNewsN"></i></button>
+            <button class="hc-tab" id="hcTab-chat" type="button" role="tab" data-t="chat" aria-selected="true" aria-controls="hcList">💬 Global chat<i class="hc-dot" id="hcChatN"></i></button>
+          </div>
+          <button class="hc-x" id="hcClose" type="button" aria-label="Close chat">⌄</button>
+        </div>
+        <ol class="hc-list" id="hcList" role="log" aria-live="polite" tabindex="0"></ol>
+        <form class="hc-form" id="hcForm" autocomplete="off"><input id="hcIn" type="text" maxlength="200" placeholder="Say something to everyone…" aria-label="Message"><button class="btn" type="submit">Send</button></form>
+        <form class="hc-form hc-post" id="hcPost" autocomplete="off" hidden><input id="hcPostT" type="text" maxlength="80" placeholder="Announcement title" aria-label="Announcement title"><input id="hcPostB" type="text" maxlength="1000" placeholder="Details (optional)" aria-label="Announcement details"><button class="btn" type="submit">Post</button></form>
+        <div class="hc-gate" id="hcGate" hidden><span id="hcGateT"></span><button class="btn sm ghostb" id="hcGateB" type="button" hidden></button></div>
+        <p class="hc-note" id="hcNote" role="status"></p>
+      </div>
+    </section>
   </div>
   <aside class="t-lbr m-lb" aria-labelledby="hbLbH">
     <h2 class="lbr-h" id="hbLbH">Today's leaderboard</h2>
@@ -4405,8 +4495,7 @@ function renderHome() {
   const L = (ch, c = '') => `<i class="${c}">${ch}</i>`, E = '<i class="e"></i>';
   renderMe();
   renderQuestTile();
-  const runs = getRuns(), best = cleanScore(store.get('wordfall-best'));
-  setText($('#pcMe'), best || runs.length ? `🏆 Best ${n0(best)} · ${runs.length} run${runs.length === 1 ? '' : 's'}` : '');
+  renderModeBest();
   $('#pdBoard').innerHTML = [E, E, L('t', 'f'), L('h', 'f'), E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, L('o'), E, E, E, E, L('r'), L('a'), E, L('e'), E, L('s'), ...w.split('').map(ch => L(ch, 'b w'))].join('');
   renderHist();
   renderModesTile();
@@ -4423,7 +4512,8 @@ function showMenuNow(resumable, noIntro = false) {
   const fromGame = titleEl.hidden;
   closeModal();
   paused = true;
-  $('#tBest').textContent = (+(store.get('wordfall-best') || 0)).toLocaleString();
+  { const td = todayStr(), tb = getRuns().reduce((m, x) => x.mode === 'daily' && x.day === td ? Math.max(m, cleanScore(x.score)) : m, 0);
+    $('#tBest').textContent = tb ? tb.toLocaleString() : '–'; }
   renderHome();
   $('#tDay').innerHTML = String(new Date().getDate()).padStart(2, '0').split('').map(d => `<i>${d}</i>`).join('');
   syncBotSel();
@@ -4716,6 +4806,7 @@ function syncVariant() {
   const ic = pc.querySelector('[data-p="practice"] .pm-ic');
   if (isSoon(pickMode)) { ic.dataset.i = pickMode; ic.textContent = ''; } else if (ic.dataset.i) { delete ic.dataset.i; ic.textContent = '🎯'; }
   pc.classList.toggle('rotframe', shown === 'rot');
+  renderModeBest();
   rotDeco();
   // Coming-soon modes: the card shows, but Play is locked and there's no tutorial yet. A way to play or a
   // mode still locked behind a quest says so, and Play opens that quest instead.
@@ -5050,6 +5141,7 @@ function acctApply() {
   lb.canWrite = acct.user ? !!acctName() : null;
   lb.synced = false;
   if (lb.loaded) syncLocalBest();
+  renderChat();
   renderMe(); renderBoard();
   // Signing out takes you out of any room you're waiting in (a match in progress can finish).
   if (!acct.user && net.r && !(game && game.mode === 'online' && !game.over)) leaveRoom().then(() => { if (curPage === 'online') renderPage(); });
@@ -5101,7 +5193,7 @@ function acctSignOut() { return acct.sb.auth.signOut().catch(() => {}); }
    Signing in merges the account's copy with this device; after that each change is saved back.
    Needs supabase/player-sync.sql; until it has run, everything stays on the device as before. */
 var syncSt = null;
-const SYNC_KEYS = ['wordfall-quests', 'wordfall-level', 'wordfall-best', 'wordfall-stats', 'wordfall-wordstats', 'wordfall-skins-owned',
+const SYNC_KEYS = ['wordfall-quests', 'wordfall-level', 'wordfall-best', 'wordfall-modebest', 'wordfall-stats', 'wordfall-wordstats', 'wordfall-skins-owned',
   'wordfall-letter-skins', 'wordfall-icons-owned', 'wordfall-skin', 'wordfall-tut', 'wordfall-rotguide'];
 const isObj = v => !!v && typeof v === 'object' && !Array.isArray(v);
 const jsonOr = (t, d) => { try { const v = JSON.parse(t); return v == null ? d : v; } catch { return d; } };
@@ -5124,6 +5216,14 @@ function mergeKey(k, a, b) {
   if (b == null || b === '') return a;
   if (k === 'wordfall-level') return ['new', 'mid', 'pro'].includes(b) ? b : a;   // the account's level wins
   if (k === 'wordfall-best') return String(Math.max(+a || 0, +b || 0));
+  if (k === 'wordfall-modebest') {
+    const x = jsonOr(a, {}), y = jsonOr(b, {}), out = {};
+    for (const m of new Set([...Object.keys(isObj(x) ? x : {}), ...Object.keys(isObj(y) ? y : {})])) {
+      const p = x[m], q = y[m];
+      out[m] = !isObj(q) ? p : !isObj(p) ? q : (+q.s || 0) > (+p.s || 0) ? q : p;
+    }
+    return JSON.stringify(out);
+  }
   if (k === 'wordfall-skins-owned' || k === 'wordfall-icons-owned') return JSON.stringify([...new Set([...[].concat(jsonOr(a, [])), ...[].concat(jsonOr(b, []))])]);
   if (k === 'wordfall-wordstats') return (+jsonOr(b, {}).runs || 0) > (+jsonOr(a, {}).runs || 0) ? b : a;
   if (k === 'wordfall-stats') {
@@ -5299,6 +5399,7 @@ const cleanScore = v => { const n = Math.floor(+v); return n > 0 && n < 1e8 ? n 
   if (lb.db) subscribeBoard();
   renderBoard();
   if (lb.self) acctInit();
+  chatInit();
 })();
 function subscribeBoard() {
   const t = setTimeout(() => { lb.slow = true; renderBoard(); }, 10000);
@@ -5418,9 +5519,287 @@ async function renderBoard() {
   renderLbMe(rows, myIdx, tRows, ti);
 }
 
+/* ================= Chat & announcements (home page) =================
+   On claude.ai: shared db docs chat/<viewer id> (that player's last 20 messages) and
+   news/<id> (announcements the artifact's owner posts). On the website: the Supabase tables
+   from supabase/chat.sql (chat_messages, read through the chat_feed view, and announcements);
+   until that has run, the panel says chat isn't switched on yet. */
+const CHAT_LEN = 200, CHAT_GAP = 3000;
+const chat = { tab: 'chat', open: false, started: false, ready: false, newsReady: false, off: false, err: '', note: '', owner: false, sb: null,
+  msgs: [], news: [], names: {}, last: 0, reload: null,
+  seenChat: +store.get('wordfall-chat-seen') || 0, seenNews: +store.get('wordfall-news-seen') || 0 };
+const cleanMsg = v => String(v || '').replace(/[\u0000-\u001f\u007f\u200b-\u200f\u202a-\u202e\u2066-\u2069]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, CHAT_LEN);
+const chatMe = () => lb.self ? (acct.user ? acct.user.id : null) : lb.uid;
+function chatAgo(t) {
+  const d = (Date.now() - t) / 1000;
+  return d < 45 ? 'now' : d < 3600 ? Math.round(d / 60) + 'm' : d < 86400 ? Math.round(d / 3600) + 'h' : new Date(t).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+}
+async function chatInit() {
+  if (chat.started) return;
+  chat.started = true;
+  if (lb.self) {
+    const sb = await supaClient().catch(() => null);
+    if (!sb) { chat.off = true; chat.ready = chat.newsReady = true; renderChat(); return; }
+    chat.sb = sb;
+    const loadChat = async () => {
+      const { data, error } = await sb.from('chat_feed').select('id,user_id,body,created_at,name,icon').order('id', { ascending: false }).limit(60);
+      chat.ready = true;
+      if (error) { if (syncMissing(error)) chat.off = true; else chat.err = "Chat couldn't load. It'll try again soon."; renderChat(); return; }
+      chat.off = false; chat.err = '';
+      chat.msgs = (data || []).reverse().map(x => ({ id: 's' + x.id, uid: x.user_id, name: cleanNick(x.name), icon: ICON_BY[x.icon] ? x.icon : '', b: cleanMsg(x.body), t: Date.parse(x.created_at) || 0 })).filter(m => m.b);
+      renderChat();
+    };
+    const loadNews = async () => {
+      const { data, error } = await sb.from('announcements').select('id,title,body,created_at').order('created_at', { ascending: false }).limit(20);
+      chat.newsReady = true;
+      if (!error) chat.news = (data || []).map(x => ({ id: 's' + x.id, title: String(x.title || '').slice(0, 80), body: String(x.body || '').slice(0, 1000), t: Date.parse(x.created_at) || 0 })).filter(n => n.title);
+      renderChat();
+    };
+    chat.reload = loadChat;
+    loadChat(); loadNews();
+    let tm = null;
+    sb.channel('wordfall-chat')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages' }, () => { clearTimeout(tm); tm = setTimeout(loadChat, 200); })
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'announcements' }, () => loadNews())
+      .subscribe();
+    setInterval(() => { if (!document.hidden) { loadChat(); loadNews(); } }, 90000);
+    return;
+  }
+  if (!lb.db) { chat.off = true; chat.ready = chat.newsReady = true; renderChat(); return; }
+  chat.owner = !!(lb.user && await lb.user.isOwner().catch(() => false));
+  const slow = setTimeout(() => { if (!chat.ready) { chat.err = 'Chat is taking a while to load…'; renderChat(); } }, 10000);
+  lb.db.collection('chat').orderBy('at', 'desc').limit(40).onSnapshot(snap => {
+    const out = [];
+    for (const d of snap.docs) {
+      if (!d.exists) continue;
+      const x = d.data() || {}, name = cleanNick(x.name), icon = ICON_BY[x.icon] ? x.icon : '';
+      for (const m of Array.isArray(x.msgs) ? x.msgs.slice(-20) : []) {
+        const b = cleanMsg(m && m.b), t = Math.floor(+(m && m.t) || 0);
+        if (b && t > 0 && t < Date.now() + 60000) out.push({ id: d.id + ':' + t, uid: d.id, name, icon, b, t });
+      }
+    }
+    chat.msgs = out.sort((a, b) => a.t - b.t).slice(-80);
+    if (!snap.metadata || !snap.metadata.fromCache) { clearTimeout(slow); chat.ready = true; chat.err = ''; }
+    renderChat();
+  }, () => { clearTimeout(slow); chat.ready = true; chat.err = "Chat couldn't load right now."; renderChat(); });
+  lb.db.collection('news').orderBy('at', 'desc').limit(20).onSnapshot(snap => {
+    chat.news = snap.docs.filter(d => d.exists).map(d => { const x = d.data() || {}; return { id: d.id, title: String(x.title || '').slice(0, 80), body: String(x.body || '').slice(0, 1000), t: Math.floor(+x.at || 0) }; }).filter(n => n.title).sort((a, b) => b.t - a.t);
+    chat.newsReady = true; renderChat();
+  }, () => { chat.newsReady = true; renderChat(); });
+}
+// Who may post: signed in, with a username on the website; Contributor access or better on claude.ai.
+function chatCan() {
+  if (chat.off) return { msg: lb.self ? "Global chat isn't switched on yet." : "Chat isn't available here." };
+  if (lb.self) {
+    if (!acct.ready) return { msg: 'Checking your account…' };
+    if (!acct.user) return { msg: 'Sign in to chat with other players.', act: 'Sign in' };
+    if (!acctName()) return { msg: 'Pick a username to chat.', act: 'Pick a username' };
+    return { ok: true };
+  }
+  if (!lb.uid) return { msg: 'Sign in to claude.ai to chat.' };
+  if (lb.canWrite === false) return { msg: 'You can read the chat but not post. Ask the owner for Contributor access.' };
+  return { ok: true };
+}
+async function chatSend(text) {
+  const b = cleanMsg(text);
+  if (!b || !chatCan().ok) return false;
+  const now = Date.now();
+  if (now - chat.last < CHAT_GAP) { chatNote('One message every few seconds, please.'); return false; }
+  chat.last = now;
+  try {
+    if (lb.self) {
+      const { error } = await chat.sb.from('chat_messages').insert({ user_id: acct.user.id, body: b });
+      if (error) throw error;
+      if (chat.reload) chat.reload();
+    } else {
+      const ref = lb.db.doc('chat/' + lb.uid), snap = await ref.get(), cur = snap.exists ? snap.data() || {} : {};
+      const msgs = [...(Array.isArray(cur.msgs) ? cur.msgs : []), { t: now, b }].slice(-20);
+      await ref.set({ name: net.nick || '', icon: myIcon, at: now, msgs });
+    }
+    chatNote('');
+    return true;
+  } catch (e) {
+    chat.last = 0;
+    chatNote(/slow down/i.test(`${e && e.message}`) ? 'Slow down a little.' : "That message didn't send. Try again.");
+    return false;
+  }
+}
+// The owner can take down a message or an announcement (claude.ai only; on the website, use the Supabase dashboard).
+async function chatRemove(m) {
+  try {
+    const ref = lb.db.doc('chat/' + m.uid), snap = await ref.get();
+    if (!snap.exists) return;
+    const x = snap.data() || {};
+    await ref.set({ ...x, msgs: (Array.isArray(x.msgs) ? x.msgs : []).filter(q => Math.floor(+q.t) !== m.t) });
+  } catch { chatNote("Couldn't remove that message."); }
+}
+function chatNote(t) { chat.note = t; setText($('#hcNote'), t); }
+function chatNameFor(m) { return m.uid === chatMe() ? (net.nick || chat.names[m.uid] || 'You') : (m.name || chat.names[m.uid] || 'Player'); }
+let chatNameAsk = null;
+function chatAskNames() {
+  if (lb.self || !lb.user || chatNameAsk) return;
+  const need = [...new Set(chat.msgs.filter(m => !m.name && !(m.uid in chat.names)).map(m => m.uid))].slice(0, 50);
+  if (!need.length) return;
+  chatNameAsk = lb.user.profiles(need).then(ps => { for (const id of need) chat.names[id] = (ps[id] && ps[id].name) || ''; }, () => { for (const id of need) chat.names[id] = ''; })
+    .finally(() => { chatNameAsk = null; renderChat(); });
+}
+function chatMarkSeen() {
+  if (!chat.open) return;
+  if (chat.tab === 'chat' && chat.msgs.length) { const t = chat.msgs[chat.msgs.length - 1].t; if (t > chat.seenChat) { chat.seenChat = t; store.set('wordfall-chat-seen', String(t)); } }
+  if (chat.tab === 'news' && chat.news.length) { const t = chat.news[0].t; if (t > chat.seenNews) { chat.seenNews = t; store.set('wordfall-news-seen', String(t)); } }
+}
+function renderChat() {
+  const list = $('#hcList');
+  if (!list) return;
+  chatAskNames();
+  const me = chatMe(), prevSeenNews = chat.seenNews;
+  const newsN = chat.news.filter(n => n.t > chat.seenNews).length;
+  const chatN = chat.msgs.filter(m => m.t > chat.seenChat && m.uid !== me).length;
+  // The bar: an unread announcement first, else the latest message.
+  const prev = $('#hcPrev'), lastM = chat.msgs[chat.msgs.length - 1];
+  prev.textContent = '';
+  if (newsN) { const em = document.createElement('em'); em.textContent = '📢 '; prev.append(em, chat.news[0].title); }
+  else if (lastM) { const em = document.createElement('em'); em.textContent = chatNameFor(lastM) + ': '; prev.append(em, lastM.b); }
+  else prev.textContent = chat.off ? 'Announcements and chat with other players' : chat.ready ? 'No messages yet. Say hi to everyone playing!' : 'Announcements and chat with other players';
+  const badge = $('#hcNew'), bn = newsN ? `${newsN} announcement${newsN > 1 ? 's' : ''}` : chatN ? `${chatN > 9 ? '9+' : chatN} new` : '';
+  badge.hidden = !bn || chat.open; setText(badge, bn);
+  setText($('#hcNewsN'), newsN ? String(newsN) : '');
+  setText($('#hcChatN'), chatN && chat.tab !== 'chat' ? (chatN > 9 ? '9+' : String(chatN)) : '');
+  for (const b of document.querySelectorAll('.hc-tab')) b.setAttribute('aria-selected', String(b.dataset.t === chat.tab));
+  if (!chat.open) return;
+  // The panel.
+  const can = chatCan(), onChat = chat.tab === 'chat';
+  $('#hcForm').hidden = !onChat || !can.ok;
+  $('#hcPost').hidden = onChat || !chat.owner;
+  const gate = onChat && !can.ok && !chat.off;
+  $('#hcGate').hidden = !gate;
+  if (gate) { setText($('#hcGateT'), can.msg); const gb = $('#hcGateB'); gb.hidden = !can.act; if (can.act) setText(gb, can.act); }
+  setText($('#hcNote'), chat.err || chat.note);
+  const nearEnd = list.scrollHeight - list.scrollTop - list.clientHeight < 60, was = list.dataset.t;
+  list.textContent = '';
+  list.dataset.t = chat.tab;
+  const empty = t => { const li = document.createElement('li'); li.className = 'hc-empty'; li.textContent = t; list.appendChild(li); };
+  if (onChat) {
+    if (chat.off) empty(lb.self ? "Global chat isn't switched on yet. Once it is, everyone playing can talk here." : "Chat isn't available here.");
+    else if (!chat.ready) empty('Loading chat…');
+    else if (!chat.msgs.length) empty('No messages yet. Say hi to everyone playing!');
+    let prevM = null, prevDay = '';
+    for (const m of chat.msgs) {
+      const day = new Date(m.t).toDateString();
+      if (day !== prevDay && prevDay) { const li = document.createElement('li'); li.className = 'hc-day'; li.textContent = day === new Date().toDateString() ? 'Today' : new Date(m.t).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }); list.appendChild(li); prevM = null; }
+      prevDay = day;
+      const li = document.createElement('li');
+      li.className = 'hc-m' + (m.uid === me ? ' me' : '') + (prevM && prevM.uid === m.uid && m.t - prevM.t < 300000 ? ' cont' : '');
+      const av = document.createElement('span'); av.className = 'hc-av';
+      av.innerHTML = iconHTML((m.uid === me ? myIcon : m.icon) || 'tile');
+      const mb = document.createElement('div'); mb.className = 'hc-mb';
+      const mh = document.createElement('span'); mh.className = 'hc-mh';
+      const nm = document.createElement('b'); nm.textContent = chatNameFor(m);
+      const tm = document.createElement('time'); tm.dateTime = new Date(m.t).toISOString(); tm.textContent = chatAgo(m.t); tm.title = new Date(m.t).toLocaleString();
+      mh.append(nm, tm);
+      const p = document.createElement('p'); p.textContent = m.b;
+      mb.append(mh, p);
+      li.append(av, mb);
+      if (chat.owner && !lb.self) { const x = document.createElement('button'); x.type = 'button'; x.className = 'hc-del'; x.textContent = '🗑'; x.title = 'Remove this message'; x.setAttribute('aria-label', 'Remove this message'); x.onclick = () => chatRemove(m); li.appendChild(x); }
+      list.appendChild(li);
+      prevM = m;
+    }
+    if (nearEnd || was !== 'chat') list.scrollTop = list.scrollHeight;
+  } else {
+    if (!chat.newsReady) empty('Loading announcements…');
+    else if (!chat.news.length) empty(chat.owner ? 'No announcements yet. Post one below and everyone sees it here.' : 'No announcements yet. News about the game shows up here.');
+    for (const n of chat.news) {
+      const li = document.createElement('li'); li.className = 'hc-n' + (n.t > prevSeenNews ? ' new' : '');
+      const k = document.createElement('span'); k.className = 'hc-nk'; k.textContent = (n.t > prevSeenNews ? 'New · ' : '') + (n.t ? new Date(n.t).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) : '');
+      const b = document.createElement('b'); b.textContent = n.title;
+      li.append(k, b);
+      if (n.body) { const p = document.createElement('p'); p.textContent = n.body; li.appendChild(p); }
+      if (chat.owner && !lb.self) { const x = document.createElement('button'); x.type = 'button'; x.className = 'hc-del'; x.textContent = '🗑'; x.title = 'Remove this announcement'; x.setAttribute('aria-label', 'Remove this announcement'); x.onclick = () => lb.db.doc('news/' + n.id).delete().catch(() => chatNote("Couldn't remove that.")); li.appendChild(x); }
+      list.appendChild(li);
+    }
+    if (was !== 'news') list.scrollTop = 0;
+  }
+  chatMarkSeen();
+}
+function chatOpen(on) {
+  const p = $('#hcPanel'), bar = $('#hcBar');
+  if (on === chat.open) return;
+  chat.open = on;
+  bar.setAttribute('aria-expanded', String(on));
+  $('#hChat').classList.toggle('open', on);
+  if (on) {
+    if (chat.news.some(n => n.t > chat.seenNews)) chat.tab = 'news';
+    p.hidden = false;
+    void p.offsetWidth;
+    p.classList.add('in');
+    renderChat();
+    setTimeout(() => { const f = chat.tab === 'chat' && !$('#hcForm').hidden ? $('#hcIn') : $('#hcTab-' + chat.tab); if (f && chat.open) f.focus({ preventScroll: true }); }, 80);
+  } else {
+    p.classList.remove('in');
+    setTimeout(() => { if (!chat.open) p.hidden = true; }, 300);
+    renderChat();
+    if (p.contains(document.activeElement)) bar.focus({ preventScroll: true });
+  }
+}
+function chatTab(t) { chat.tab = t; chatNote(''); renderChat(); }
+$('#hcBar').onclick = () => chatOpen(true);
+$('#hcClose').onclick = () => chatOpen(false);
+for (const b of document.querySelectorAll('.hc-tab')) b.onclick = () => chatTab(b.dataset.t);
+$('#hcPanel').addEventListener('keydown', e => {
+  if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); chatOpen(false); return; }
+  if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && e.target.classList.contains('hc-tab')) {
+    const t = chat.tab === 'chat' ? 'news' : 'chat'; chatTab(t); $('#hcTab-' + t).focus();
+  }
+});
+document.addEventListener('pointerdown', e => { if (chat.open && !$('#hChat').contains(e.target)) chatOpen(false); });
+$('#hcForm').onsubmit = async e => {
+  e.preventDefault();
+  const inp = $('#hcIn'), v = inp.value;
+  if (!cleanMsg(v)) return;
+  inp.value = '';
+  if (!(await chatSend(v)) && !inp.value) inp.value = v;
+};
+$('#hcPost').onsubmit = async e => {
+  e.preventDefault();
+  const t = $('#hcPostT').value.trim().slice(0, 80), b = $('#hcPostB').value.trim().slice(0, 1000);
+  if (!t || !chat.owner) return;
+  const now = Date.now();
+  try { await lb.db.doc('news/n' + now).set({ title: t, body: b, at: now }); $('#hcPostT').value = ''; $('#hcPostB').value = ''; chatNote(''); }
+  catch { chatNote("That announcement didn't post. Try again."); }
+};
+$('#hcGateB').onclick = () => { chatOpen(false); openPage('settings', { sec: 'profile' }); };
+setInterval(() => { if (chat.open && chat.tab === 'chat' && !document.hidden) renderChat(); }, 60000);
+
 /* ================= Run history & Wordstistics ================= */
 const RUNS_KEY = 'wordfall-runs', WSTATS_KEY = 'wordfall-wordstats', RUNS_MAX = 100;
 function loadJSON(k, d) { try { const v = JSON.parse(store.get(k) || 'null'); return v && typeof v === 'object' ? v : d; } catch { return d; } }
+// Your best score in each game mode (Classic, Bounty, Rot & Thaw…), whichever way you played it.
+// (Called while the page is still starting, so it uses only hoisted functions.)
+function modeBests() {
+  const cs = v => { const n = Math.floor(+v); return n > 0 && n < 1e8 ? n : 0; };
+  const saved = loadJSON('wordfall-modebest', {}), m = {}, rs = loadJSON('wordfall-runs', []);
+  for (const [v, x] of Object.entries(saved)) if (MODES[v] && x && cs(x.s)) m[v] = { s: cs(x.s), p: PACES[x.p] ? x.p : 'normal', at: +x.at || 0 };
+  // Runs this device remembers count too (older runs, or ones brought back from your account).
+  for (const x of Array.isArray(rs) ? rs : []) {
+    if (!x || typeof x !== 'object') continue;
+    const v = MODES[x.variant] ? x.variant : 'classic', sc = cs(x.score);
+    if (sc && (!m[v] || sc > m[v].s)) m[v] = { s: sc, p: PACES[x.pace] ? x.pace : 'normal', at: +x.at || 0 };
+  }
+  return m;
+}
+function noteModeBest(e) {
+  const m = modeBests(), v = e.variant || 'classic', sc = cleanScore(e.score);
+  if (!sc || (m[v] && +m[v].s >= sc)) return;
+  m[v] = { s: sc, p: e.pace || 'normal', at: e.at || Date.now() };
+  store.set('wordfall-modebest', JSON.stringify(m));
+}
+function renderModeBest() {
+  const pc = $('#playCard'); if (!pc) return;
+  const v = pc.dataset.v || 'classic', b = modeBests()[v], el = $('#pcBest');
+  setText($('#pcBestMode'), (MODES[v] || MODES.classic).name);
+  el.classList.toggle('none', !b);
+  $('#pcBestV').innerHTML = b ? `${(+b.s || 0).toLocaleString()} ${paceTag(b.p)}` : 'No runs yet';
+}
 const getRuns = () => { const r = loadJSON(RUNS_KEY, []); return Array.isArray(r) ? r.filter(x => x && typeof x === 'object') : []; };
 // Save the run you just played (once), and add its words to your all-time word stats.
 function recordRun(B, extra = {}) {
@@ -5439,6 +5818,7 @@ function recordRun(B, extra = {}) {
   };
   game.recorded = entry;
   store.set(RUNS_KEY, JSON.stringify([entry, ...getRuns()].slice(0, RUNS_MAX)));
+  noteModeBest(entry);
   syncRun(entry);
   const ws = loadJSON(WSTATS_KEY, {});
   ws.runs = (+ws.runs || 0) + 1;
@@ -7698,6 +8078,6 @@ showMenu(false);
 requestAnimationFrame(frame);
 
 /* Test hook for automated checks (harmless in play). */
-window.__wordfall = { get game() { return game; }, endSting, tlSample, tlHit, playStep, get net() { return net; }, joinRoom, leaveRoom, get paused() { return paused; }, set paused(v) { paused = !!v; }, tutTick, startTutorialNow, musicTick, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store, prog, setLevel, showLevelPick, tutToRun, questsAfterRun, mergeKey, syncStart, get syncSt() { return syncSt; }, get QUESTS() { return QUESTS; }, get pace() { return pace; } };
+window.__wordfall = { get game() { return game; }, endSting, tlSample, tlHit, playStep, get net() { return net; }, joinRoom, leaveRoom, get paused() { return paused; }, set paused(v) { paused = !!v; }, tutTick, startTutorialNow, musicTick, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store, prog, setLevel, showLevelPick, tutToRun, questsAfterRun, mergeKey, syncStart, get syncSt() { return syncSt; }, get QUESTS() { return QUESTS; }, get pace() { return pace; }, chat, chatInit, renderChat, chatOpen };
 })();
 </script>
