@@ -1904,6 +1904,118 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
 }
 @media (prefers-reduced-motion:reduce){.h2t{transition:none}.h2t.new .h2-go{animation:none}}
 .calm .h2t{transition:none}
+/* ---------- The newer modes: Amnesia (lilac), Bounty (gold), Puzzle Box (teal), Chaos Carnage (pink) ---------- */
+.mode-panel{--mpc:var(--fg);align-self:stretch;width:0;min-width:100%;position:relative;display:flex;align-items:center;gap:8px;height:34px;box-sizing:border-box;padding:0 10px;background:var(--panel);border:2px solid color-mix(in srgb,var(--mpc) 35%,var(--line));border-radius:12px;overflow:hidden;white-space:nowrap;font:600 11.5px var(--f-ui);color:var(--muted)}
+.mode-panel[hidden]{display:none}
+.mode-panel i{font-style:normal}
+.mp-amnesia{--mpc:#b8a7ff}.mp-bounty{--mpc:#ffc94a}.mp-puzzle{--mpc:#6fe3c4}.mp-chaos{--mpc:#ff4f9a}
+.mp-k{flex:none;font:700 10px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mpc)}
+.mp-s{font-size:11px;color:var(--muted)}
+.mp-n{font:800 15px/1 var(--f-ui);color:var(--fg)}
+.mp-tiles{display:flex;gap:2px;min-width:0;overflow:hidden}
+.mp-tiles i{flex:none;width:16px;height:20px;display:grid;place-items:center;border-radius:4px;font:800 11px/1 var(--f-ui);text-transform:uppercase;background:var(--tile);color:var(--ink);box-shadow:inset 0 -2px 0 #bbb}
+.mp-tiles.gone i{background:#b8a7ff14;color:#b8a7ff;box-shadow:inset 0 0 0 1.5px #b8a7ff66;text-decoration:line-through;text-decoration-thickness:1.5px}
+.mp-next{margin-left:auto;flex:none;display:flex;align-items:center;gap:5px;font:600 11px var(--f-mono);color:var(--muted)}
+.mp-next i{width:16px;height:20px;display:grid;place-items:center;border-radius:4px;font:800 11px/1 var(--f-ui);text-transform:uppercase;background:#b8a7ff22;color:#e2dbff;box-shadow:inset 0 0 0 1.5px #b8a7ff}
+.mp-next.soon{color:#e2dbff}
+.mp-next.soon i{background:#b8a7ff;color:#1b1340;box-shadow:0 0 10px #b8a7ff}
+.mp-x{flex:none;padding:2px 8px;border-radius:999px;background:#ffc94a1f;color:#ffc94a;font:800 13px var(--f-ui);box-shadow:inset 0 0 0 1.5px #ffc94a88}
+.bties{display:flex;gap:5px;flex:1;min-width:0}
+.bty{position:relative;flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:center;gap:4px;height:24px;box-sizing:border-box;padding:0 6px 2px;border-radius:7px;background:#ffc94a14;box-shadow:inset 0 0 0 1.5px #ffc94a66;overflow:hidden}
+.bty-w{min-width:0;overflow:hidden;text-overflow:ellipsis;font:800 12px var(--f-ui);letter-spacing:.05em;text-transform:uppercase;color:var(--fg)}
+.bty b{flex:none;font:800 10.5px var(--f-mono);color:#ffc94a}
+.bty em{position:absolute;left:0;bottom:0;height:3px;width:calc(var(--f) * 100%);background:#ffc94a;border-radius:0 2px 2px 0}
+.bty.late{box-shadow:inset 0 0 0 1.5px var(--bad);background:#ff6b7d14}
+.bty.late em{background:var(--bad)}
+.ch-ic{flex:none;font-size:17px;line-height:1}
+.ch-tx{flex:1;display:grid;min-width:0;line-height:1.15}
+.ch-tx b{display:flex;justify-content:space-between;gap:8px;font:800 12.5px var(--f-ui);color:var(--fg)}
+.ch-tx b em{font:800 12px var(--f-mono);font-style:normal;color:#ff4f9a}
+.ch-tx small{font:500 10.5px var(--f-ui);color:var(--muted);overflow:hidden;text-overflow:ellipsis}
+.ch-t{margin-left:auto;flex:none;font:800 13px var(--f-mono);color:#ff4f9a}
+.ch-bar{position:absolute;left:0;bottom:0;height:3px;width:calc(var(--f) * 100%);background:#ff4f9a;box-shadow:0 0 8px #ff4f9a}
+.ch-next{min-width:0;overflow:hidden;text-overflow:ellipsis;font:700 12.5px var(--f-ui);color:var(--fg)}
+.ch-next.soon{color:#ff8fc0}
+.mp-chaos.live{border-color:#ff4f9a;box-shadow:0 0 18px -6px #ff4f9a}
+body.has-mp{--cell:clamp(22px, min(calc((100dvh - 334px) / 12.62), 8vw), 46px)}
+/* Board tiles */
+.c.tile.lit{background:linear-gradient(160deg,#e6fff8,#a6f2dd 60%,#6fe3c4);color:#063d31;box-shadow:inset 0 -4px 0 #23977a}
+.c.tile.lit.litx{box-shadow:inset 0 -4px 0 #23977a,0 0 0 2px #6fe3c4,0 0 14px -2px #6fe3c4;z-index:1}
+.c.mem{color:#4b34b8;box-shadow:inset 0 -4px 0 var(--pc,#bbb),0 0 0 2px #b8a7ff,0 0 12px -2px #b8a7ff}
+.c.tile.bank.mem{box-shadow:inset 0 -4px 0 var(--bankedge),0 0 0 2px #b8a7ff,0 0 12px -2px #b8a7ff}
+.c.tile.wild,.mini i.wild{background:linear-gradient(135deg,#ff4f9a,#ffc94a 50%,#6fe3c4);color:#fff;text-shadow:0 1px 2px #0009}
+.c.wildfx{animation:wildfx .9s ease-out;z-index:2}
+@keyframes wildfx{0%{filter:brightness(2.4) saturate(1.8);transform:scale(1.18)}100%{filter:none;transform:none}}
+.o-bomb{--oc:#ff5d3a}
+/* Chaos Carnage: the board tilts, and its frame takes the rule's colour */
+.well{transition:transform .45s cubic-bezier(.3,1.4,.5,1)}
+body[data-chaos="tilt-l"] .well{transform:rotate(-2.5deg)}
+body[data-chaos="tilt-r"] .well{transform:rotate(2.5deg)}
+body[data-chaos]:not([data-chaos=""]) .well{border-color:#ff4f9a;box-shadow:0 0 0 1px #ff4f9a55,0 0 40px -12px #ff4f9a,0 24px 60px -24px #000c}
+body[data-chaos="hyper"] .well{border-color:var(--o-speed);box-shadow:0 0 0 1px #9cff6b55,0 0 40px -12px var(--o-speed),0 24px 60px -24px #000c}
+body[data-chaos="jackpot"] .well{border-color:#ffc94a;box-shadow:0 0 0 1px #ffc94a55,0 0 44px -10px #ffc94a,0 24px 60px -24px #000c}
+/* Puzzle Box: no hazards and no attacks */
+body[data-v="puzzle"] .hz-panel,body[data-v="puzzle"] .atk{display:none}
+/* Warning chips and banners */
+.sw-chip.amn{background:#16122e;color:#e2dbff;border-color:#b8a7ff;box-shadow:0 0 16px -4px #b8a7ff}
+.sw-chip.chaos{background:#2a0b1c;color:#ffd1e6;border-color:#ff4f9a;box-shadow:0 0 16px -4px #ff4f9a}
+.sw-chip.clock{background:#2a0d12;color:#ffd0d6;border-color:var(--bad);box-shadow:0 0 16px -4px var(--bad)}
+.announce div.amn{border-color:#b8a7ff;box-shadow:0 0 50px -4px #b8a7ff}
+.announce div.amn b{color:#e2dbff;text-shadow:0 0 18px #b8a7ff}
+.announce div.amn em{color:#b8a7ff;font-size:22px;text-decoration:line-through;text-shadow:0 0 12px #b8a7ff}
+.announce div.bty{border-color:#ffc94a;box-shadow:0 0 50px -4px #ffc94a}
+.announce div.bty b{color:#ffc94a;text-shadow:0 0 18px #ffc94a}
+.announce div.chaos{border-color:#ff4f9a;box-shadow:0 0 50px -4px #ff4f9a}
+.announce div.chaos b{color:#ff8fc0;text-shadow:0 0 18px #ff4f9a}
+.announce div.mode{border-color:#6fe3c4;box-shadow:0 0 40px -6px #6fe3c4}
+.announce div.mode b{color:#a6f2dd;text-shadow:0 0 18px #6fe3c4;font-size:24px}
+/* Guide art */
+.rg-art i.gone{background:linear-gradient(135deg,transparent 44%,#b8a7ff 44% 56%,transparent 56%);color:#b8a7ff88;box-shadow:none;outline:1.5px dashed #b8a7ffaa;outline-offset:-1.5px}
+.rg-art i.next{background:#b8a7ff22;color:#e2dbff;box-shadow:inset 0 0 0 1.5px #b8a7ff;animation:rgnext 1s ease-in-out infinite alternate}
+@keyframes rgnext{to{background:#b8a7ff;color:#1b1340;box-shadow:0 0 12px #b8a7ff}}
+.rg-art i.mem{color:#4b34b8;box-shadow:inset 0 -3px 0 #bbb,0 0 0 2px #b8a7ff,0 0 10px #b8a7ff}
+.rg-art i.mem.bank{box-shadow:inset 0 -3px 0 var(--bankedge),0 0 0 2px #b8a7ff,0 0 10px #b8a7ff}
+.rg-art i.tg{background:#ffc94a1a;color:#ffc94a;box-shadow:inset 0 0 0 1.5px #ffc94a,0 0 8px #ffc94a55}
+.rg-art i.lit{background:linear-gradient(160deg,#e6fff8,#a6f2dd 60%,#6fe3c4);color:#063d31;box-shadow:inset 0 -3px 0 #23977a,0 0 8px #6fe3c4aa}
+.rg-art i.lit.x{box-shadow:inset 0 -3px 0 #23977a,0 0 0 2px #fff,0 0 12px #6fe3c4}
+.rg-art i.wild{background:linear-gradient(135deg,#ff4f9a,#ffc94a 50%,#6fe3c4);color:#fff;text-shadow:0 1px 2px #0009}
+.rg-art i.bomb{background:#ff5d3a;box-shadow:0 0 0 2px #fff,0 0 12px #ff5d3a;font-size:15px}
+.rg-art i.giant{box-shadow:inset 0 -3px 0 #ec6a6a}
+.rg-season.col{flex-direction:column;gap:3px}
+.rg-season.col span{min-width:132px;padding:7px 14px}
+.rg-season.col b{font-size:11px;font-weight:600}
+.rg-season .bt1{background:#ffc94a10;color:#ffe3a0;border:1px solid #ffc94a44}
+.rg-season .bt2{background:#ffc94a22;color:#ffd56e;border:1px solid #ffc94a88}
+.rg-season .bt3{background:#ffc94a38;color:#ffc94a;border:1px solid #ffc94a;box-shadow:0 0 16px -4px #ffc94a}
+.rg-season .calm{background:#ffffff0d;color:var(--fg);border:1px solid var(--line2)}
+.rg-season .chaos{background:#ff4f9a26;color:#ff9cc6;border:1px solid #ff4f9a88}
+/* The home tile lists every mode: two across, three down */
+.hm-grid.n6{grid-template-columns:repeat(2,minmax(0,142px));gap:6px}
+.hm-grid.n6 .mt{height:34px;padding:0 8px 3px 6px;gap:6px;font-size:11.5px}
+.hm-grid.n6 .mt .mi{width:22px;height:22px;font-size:12px;flex:none}
+.hm-grid.n6 .mt b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (min-width:1021px) and (max-height:820px){.hm-grid.n6{gap:5px}.hm-grid.n6 .mt{height:29px;font-size:10.5px;padding:0 6px 3px 5px;gap:5px}.hm-grid.n6 .mt .mi{width:19px;height:19px;font-size:10.5px}}
+/* A narrow tile shows the six modes as icons, three across; the line under them names the one picked. */
+#hbModes{container-type:inline-size}
+@container (max-width:240px){
+  .hm-grid.n6{grid-template-columns:repeat(3,minmax(0,1fr));width:100%;max-width:200px}
+  .hm-grid.n6 .mt{justify-content:center;padding:0 0 3px}
+  .hm-grid.n6 .mt b{display:none}
+}
+@media (max-width:819px){
+  body.has-mp{--cell:clamp(18px, min(calc((100dvh - 408px) / 12.6), calc((100vw - 56px) / 6)), 46px)}
+  body.versus.has-mp{--cell:clamp(18px, min(calc((100dvh - 460px) / 12.6), calc((100vw - 56px) / 6)), 46px)}
+  .mode-panel{height:28px;padding:0 8px;gap:6px;border-radius:10px}
+  .mp-tiles i,.mp-next i{width:14px;height:17px;font-size:10px}
+  .mp-k{font-size:9px}
+  .bty{height:20px}
+  .bty-w{font-size:11px}
+  .ch-tx small{display:none}
+  .hm-grid.n6 .mt{height:29px;font-size:10.5px;padding:0 6px;gap:5px}
+  .hm-grid.n6 .mt .mi{width:18px;height:18px;font-size:10px}
+}
+@media (prefers-reduced-motion:reduce){.rg-art i.next,.c.wildfx{animation:none}.well{transition:none}}
+.calm .rg-art i.next,.calm .c.wildfx{animation:none}
 </style>
 
 <div class="app" id="app">
@@ -1956,6 +2068,7 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
       <div class="wp-head"><span class="label" id="wotdLbl">Word of the day</span><span class="wotd-n" id="wotdNote">Spell it for ×2 final score</span></div>
       <div class="wotd" id="wotdTiles"></div>
     </section>
+    <section class="mode-panel" id="modePanel" hidden></section>
     <div class="wellbox">
       <div class="well" id="well" aria-label="Game board"></div>
       <div class="sweepbar" id="sweepbar"></div>
@@ -2232,21 +2345,79 @@ const WOTD_POOL = ('action active advice almost animal answer anchor appear arri
 const wotdList = () => { const l = WOTD_POOL.filter(w => w.length === 6 && DICT.has(w)); return l.length ? l : ['garden']; };
 const pickWotd = h => { const l = wotdList(); return l[(h >>> 0) % l.length]; };
 const newRun = () => ({ len: { 3: 0, 4: 0, 5: 0, 6: 0 }, list: [], chains: 0, maxChain: 0, vert: 0, full: 0, iceWords: 0, fireWords: 0,
-  iceThawed: 0, iceShattered: 0, iceMelted: 0, rotted: 0, rottedWords: 0, burned: 0, powers: {} });
+  iceThawed: 0, iceShattered: 0, iceMelted: 0, rotted: 0, rottedWords: 0, burned: 0, powers: {},
+  forgot: 0, memWords: 0, bounties: 0, bountyMax: 1, bountyMissed: 0, litWords: 0, crossings: 0, events: 0, blasted: 0, wilds: 0, tilts: 0 });
 const BURN_MS = 900;              // burning rot: flames, then it crumbles away
 const BURN_MIN = 0.05;            // how rotten a letter must be before it can burn
 const MELT_MS = 10000;            // and take 10s of summer to melt
-// Game modes. Today's drop picks one from this list by the date, so add new modes here.
-const VARIANTS = { classic: { name: 'Classic' }, rot: { name: 'Rot & Thaw', icon: '❄' } };
-// Every mode on the picker. The soon ones are placeholders: their card shows, but Play stays locked.
+// Game modes a board can run. (Ranked isn't a mode: it's a way to play, still to come.)
+const VARIANTS = { classic: { name: 'Classic' }, rot: { name: 'Rot & Thaw', icon: '❄' }, amnesia: { name: 'Amnesia', icon: '🧠' },
+  bounty: { name: 'Bounty', icon: '🎯' }, puzzle: { name: 'Puzzle Box', icon: '🧩' }, chaos: { name: 'Chaos Carnage', icon: '🌀' } };
+// Every mode on the picker. A mode marked soon: true shows its card, but Play stays locked.
 const MODES = {
-  classic: { name: 'Classic' }, rot: { name: 'Rot & Thaw' },
-  puzzle: { name: 'Puzzle Box', soon: true }, chaos: { name: 'Chaos Carnage', soon: true },
-  amnesia: { name: 'Amnesia', soon: true }, bounty: { name: 'Bounty', soon: true },
+  classic: { name: 'Classic' }, rot: { name: 'Rot & Thaw', icon: '❄' },
+  puzzle: { name: 'Puzzle Box', icon: '🧩' }, chaos: { name: 'Chaos Carnage', icon: '🌀' },
+  amnesia: { name: 'Amnesia', icon: '🧠' }, bounty: { name: 'Bounty', icon: '🎯' },
 };
 const MODE_KEYS = Object.keys(MODES), isSoon = k => !!MODES[k]?.soon;
-const DAILY_VARIANTS = ['classic', 'rot', 'classic'];
-const dailyVariant = day => DAILY_VARIANTS[hashStr('wordfall-mode:' + day) % DAILY_VARIANTS.length];
+// "❄ Rot & Thaw" for any mode but Classic (which needs no label).
+const modeTag = k => MODES[k] && k !== 'classic' ? `${MODES[k].icon} ${MODES[k].name}` : '';
+// Today's drop rolls a mode by the date. The newer modes join from 28 Nov 2026, so days before keep theirs.
+const DAILY_V1 = ['classic', 'rot', 'classic'], DAILY_V2 = ['classic', 'rot', 'amnesia', 'bounty', 'classic', 'puzzle', 'chaos'], DAILY_V2_FROM = '2026-11-28';
+const dailyVariant = day => { const L = String(day) < DAILY_V2_FROM ? DAILY_V1 : DAILY_V2; return L[hashStr('wordfall-mode:' + day) % L.length]; };
+// How common each letter is, for single letters (wildcards, fillers when a mode bans letters).
+const LETTER_W = { e: 12, t: 9, a: 8, o: 8, i: 7, n: 7, s: 6, h: 6, r: 6, d: 4, l: 4, u: 3, c: 3, m: 2.5, w: 2, f: 2, g: 2, y: 2, p: 2, b: 1.5, v: 1, k: 1, j: .2, x: .2, q: .1, z: .1 };
+/* ----- Amnesia: letters are forgotten one at a time ----- */
+const AMN_EVERY = 30000;                 // another letter is forgotten every 30s
+const AMN_START = ['j', 'q', 'x', 'z'];  // already forgotten when the game starts
+const MEM_MULT = 1.5;                    // a word using a forgotten letter that's still on the board
+// The order letters go in: uncommon first, then common ones. A and E are never forgotten.
+const AMN_TIERS = ['vkwyfbgpmcu', 'dhloi', 'nrst'];
+/* ----- Bounty: target words that build a multiplier ----- */
+const BOUNTY_MAX = 3;                    // bounties up at once
+const BOUNTY_STEP = 10000;               // at the start, a new one every 10s until there are 3
+const BOUNTY_GAP = 4000;                 // a replacement arrives 4s after one is claimed or lost
+const BOUNTY_LIFE = 45000;               // each lasts 45s (a bit longer on Slow, a bit shorter on Fast)
+const BOUNTY_BIAS = 0.3;                 // share of pieces dealt straight out of a bounty word
+const BOUNTY_X = { 3: 2, 4: 3, 5: 4 };   // the claiming word scores ×2, ×3 or ×4
+const BOUNTY_UP = { 3: 0.5, 4: 0.5, 5: 1 }, BOUNTY_DOWN = 0.5;  // the run's multiplier: up per claim, down per miss
+const BOUNTY_WORDS = ('cat dog sun sea tea ten net pin tin ant art arm ear eat oak oar ore owl rat red hat hen hot ice leg lid map mat men nap nut oil '
+  + 'one pan pen pet pie pot ram ran rod sat set sit sky son tan tap tar toe ton top toy war wet win yes age air and are ash ate bat bed bee big bus '
+  + 'can cap car cow cup cut den dot dry end eye fan far fin fit fly fog fun gas gem hit hop hug hut ink lap lay let lie lip log low man mud nod not '
+  + 'now oat old out own pad paw pay pea pit pop rib rid rip rob row rub run sad saw say see she sip tag the tie tip too two use van web wig yet zoo '
+  + 'star rain tree moon fire wind snow sand ship shoe shop sing song soap seat team tent test time tone town wave word work year area east nest note '
+  + 'open race read rest ring road rock rose rule salt seed send show side sign silk slow soft stem step stop tail tale tape that then this tide tile '
+  + 'trap trim tune twin vote wait walk wall want warm wash wear west wide wild wine wing wish wolf wood yard lane last late lead lean line lion list '
+  + 'lone long lost loud love mail main mane mark meal meat melt mild mint mist more most moth name near neat need nine nose note once only oven pain '
+  + 'pair park part past path peak pear pine pink plan play plot poem pond pool port post rate real rent rice rich ride rise root rope rush sail sale '
+  + 'seal shed shot sink site skin slip snap soil some soon sore spin spot stay suit swan tank task tear tend than toad torn tour tray true '
+  + 'stone heart smile earth water toast train trail paint plant point print sheet shirt shore short sight slate smart snake south space spare '
+  + 'spark spent spine sport stage stain stair stand start steam steel store storm story sweet table taste teeth tiger title tower trade treat '
+  + 'trend trust truth beach brain bread chair chest clean close cloud coast dream drink ocean other paper party peace pearl plane plate pride '
+  + 'reach ready river roast round salad scale scene seven shade shape share shine sleep slice smoke sound stare steal stick still sting straw '
+  + 'teach these thing think three tired twist water wheel white world worth write').split(' ').filter((w, i, a) => w.length >= 3 && w.length <= 5 && DICT.has(w) && a.indexOf(w) === i);
+/* ----- Puzzle Box: three minutes to pack the board with words ----- */
+const PUZZLE_MS = 180000;                // the clock (solo; a battle's round is the same 3 minutes)
+const PUZZLE_SLOW = 1.6;                 // tiles fall this much slower, and never speed up
+const CROSS_X = 0.5;                     // +50% for each lit word a new word crosses
+const puzzleVal = n => n <= 5 ? H_POINTS[Math.max(3, n)] : n === 6 ? 300 : n === 7 ? 450 : 600 + 150 * (n - 8);
+/* ----- Chaos Carnage: a new rule takes over every 35s ----- */
+const CHAOS_FIRST = 15000;               // the first one starts 15s in
+const CHAOS_LEN = 25000;                 // each lasts 25s
+const CHAOS_GAP = 10000;                 // then 10s of normal play
+const CHAOS_WARN = 5000;                 // a 5s warning before each
+const ROCK_EVERY = 6000;                 // Rockslide: 2 stones every 6s
+const CHAOS = {
+  tilt: { icon: '⇆', name: 'Tilt', what: 'Tiles slide to one side after every drop' },
+  bombs: { icon: '💣', name: 'Bombs', what: 'Every other piece blasts the tiles around it' },
+  backwards: { icon: '↩', name: 'Backwards', what: 'Words count backwards too: TAC is CAT' },
+  wild: { icon: '★', name: 'Wildcards', what: 'Every other piece has a ★: the best letter' },
+  giants: { icon: '🧱', name: 'Giants', what: 'Every piece has three or four letters' },
+  drought: { icon: '🏜', name: 'Vowel drought', what: 'No A, E, I, O or U fall' },
+  hyper: { icon: '⚡', name: 'Hyper', what: 'Drops fall twice as fast · words score ×2' },
+  jackpot: { icon: '⭐', name: 'Jackpot', what: 'Every word scores ×3' },
+  rockslide: { icon: '🪨', name: 'Rockslide', what: 'Two stones tumble in every 6 seconds' },
+};
 // Points multiplier: +0.2 per speed-up past Normal's starting speed, so x3 at top speed.
 const MULT_STEP = 0.2;
 // ...and from block 40 they come faster and hit harder.
@@ -2382,7 +2553,9 @@ function fitsOn(grid, b, px, py) {
   return true;
 }
 // Across: in each run of touching letters, take the longest word, then search either side.
-function wordsAcross(grid) {
+// rev (Chaos Carnage's Backwards): a run that spells a word right to left counts too.
+const revW = w => [...w].reverse().join('');
+function wordsAcross(grid, rev = false) {
   const out = [];
   for (let y = 0; y < ROWS; y++) {
     let x = 0;
@@ -2390,31 +2563,64 @@ function wordsAcross(grid) {
       if (!solid(grid[y][x])) { x++; continue; }
       const s = x;
       while (x < COLS && solid(grid[y][x])) x++;
-      scanRun(grid, y, s, x - 1, out);
+      scanRun(grid, y, s, x - 1, out, rev);
     }
   }
   return out;
 }
-function scanRun(grid, y, a, b, out) {
+function scanRun(grid, y, a, b, out, rev) {
   if (b - a + 1 < 3) return;
   const row = grid[y];
   for (let len = b - a + 1; len >= 3; len--) {
     for (let s = a; s + len - 1 <= b; s++) {
       let w = '';
       for (let i = 0; i < len; i++) w += row[s + i].ch;
-      if (DICT.has(w)) {
+      const fw = DICT.has(w), bw = !fw && rev && DICT.has(revW(w));
+      if (fw || bw) {
         const cells = [];
         for (let i = 0; i < len; i++) cells.push([s + i, y]);
-        out.push({ y, x: s, len, word: w, cells, key: cells.map(([cx, cy]) => grid[cy][cx].id).join('-') });
-        scanRun(grid, y, a, s - 1, out);
-        scanRun(grid, y, s + len, b, out);
+        out.push({ y, x: s, len, word: fw ? w : revW(w), ...(bw ? { rev: true } : {}), cells, key: cells.map(([cx, cy]) => grid[cy][cx].id).join('-') });
+        scanRun(grid, y, a, s - 1, out, rev);
+        scanRun(grid, y, s + len, b, out, rev);
+        return;
+      }
+    }
+  }
+}
+// Every word down (Puzzle Box): in each column, take the longest word in a run, then search above and below it.
+function wordsDownAll(grid) {
+  const out = [];
+  for (let x = 0; x < COLS; x++) {
+    let y = 0;
+    while (y < ROWS) {
+      if (!solid(grid[y][x])) { y++; continue; }
+      const s = y;
+      while (y < ROWS && solid(grid[y][x])) y++;
+      scanCol(grid, x, s, y - 1, out);
+    }
+  }
+  return out;
+}
+function scanCol(grid, x, a, b, out) {
+  if (b - a + 1 < 3) return;
+  for (let len = b - a + 1; len >= 3; len--) {
+    for (let s = a; s + len - 1 <= b; s++) {
+      let w = '';
+      for (let i = 0; i < len; i++) w += grid[s + i][x].ch;
+      if (DICT.has(w)) {
+        const cells = [];
+        for (let i = 0; i < len; i++) cells.push([x, s + i]);
+        out.push({ x, y: s, len, word: w, cells, key: cells.map(([cx, cy]) => grid[cy][cx].id).join('-') });
+        scanCol(grid, x, a, s - 1, out);
+        scanCol(grid, x, s + len, b, out);
         return;
       }
     }
   }
 }
 // Down: any 3+ letter word, top to bottom, that passes through at least one banked word.
-function wordDown(grid, banked) {
+// rev: bottom to top counts too.
+function wordDown(grid, banked, rev = false) {
   const owner = new Map();
   banked.forEach((h, i) => h.cells.forEach(([x, y]) => owner.set(x + ',' + y, i)));
   let best = null;
@@ -2429,11 +2635,13 @@ function wordDown(grid, banked) {
         let w = '';
         for (let b = a; b <= e; b++) {
           w += grid[b][x].ch;
-          if (w.length < 3 || !DICT.has(w)) continue;
+          if (w.length < 3) continue;
+          const fw = DICT.has(w), bw = !fw && rev && DICT.has(revW(w));
+          if (!fw && !bw) continue;
           const crossed = new Set();
           for (let k = a; k <= b; k++) { const o = owner.get(x + ',' + k); if (o !== undefined) crossed.add(o); }
           if (!crossed.size) continue;
-          const cand = { x, y0: a, len: w.length, word: w, crossed: [...crossed].map(i => banked[i]) };
+          const cand = { x, y0: a, len: w.length, word: fw ? w : revW(w), ...(bw ? { rev: true } : {}), crossed: [...crossed].map(i => banked[i]) };
           if (!best || cand.crossed.length > best.crossed.length || (cand.crossed.length === best.crossed.length && cand.len > best.len)) best = cand;
         }
       }
@@ -2443,19 +2651,19 @@ function wordDown(grid, banked) {
 }
 // Score what one placement would earn right away (used by the bot).
 let simId = -1;
-function evaluate(grid, banked, cells) {
+function evaluate(grid, banked, cells, rev = false) {
   const g = grid.map(r => r.slice());
   for (const c of cells) { if (c.y < 0) return null; g[c.y][c.x] = { ch: c.ch, id: simId--, ice: !!c.ice }; }
   const old = new Map(banked.map(b => [b.key, b]));
   let pts = 0, word = '';
   const nb = [];
-  for (const h of wordsAcross(g)) {
+  for (const h of wordsAcross(g, rev)) {
     if (old.has(h.key)) { h.val = old.get(h.key).val; nb.push(h); continue; }
     if (h.len === COLS) { pts += FULL_POINTS; if (h.len > word.length) word = h.word; continue; }
     h.val = H_POINTS[h.len] || H_POINTS[5]; pts += h.val; nb.push(h);
     if (h.len > word.length) word = h.word;
   }
-  const v = wordDown(g, nb);
+  const v = wordDown(g, nb, rev);
   if (v) { pts += (v.len * V_PER_LETTER + v.crossed.reduce((s, h) => s + h.val, 0)) * v.crossed.length; word = v.word + ' ↓'; }
   return { pts, word, g };
 }
@@ -2517,7 +2725,8 @@ function shapeCost(g) {
   }
   return holes * 28 + agg * 2 + bump * 4 + (maxH > 8 ? (maxH - 8) * 45 : 0);
 }
-function placements(grid, banked, b0, withSwap) {
+// Every place a piece could land, scored by score() (evaluate by default; Puzzle Box has its own).
+function placements(grid, banked, b0, withSwap, rev = false, score = evaluate) {
   const variants = [b0];
   if (withSwap) { const sw = b0.map(o => ({ ...o })); const ord = readOrder(sw); const chs = ord.map(o => o.ch); chs.unshift(chs.pop()); ord.forEach((o, i) => { o.ch = chs[i]; }); variants.push(sw); }
   const out = [], seen = new Set();
@@ -2532,7 +2741,7 @@ function placements(grid, banked, b0, withSwap) {
         if (!fitsOn(grid, b, px, py)) continue;
         while (fitsOn(grid, b, px, py + 1)) py++;
         const cells = b.map(o => ({ x: px + o.x, y: py + o.y, ch: o.ch, ice: o.ice }));
-        const ev = evaluate(grid, banked, cells);
+        const ev = score(grid, banked, cells, rev);
         if (!ev) continue;
         out.push({ b, px, py, pts: ev.pts, word: ev.word, value: ev.pts - shapeCost(ev.g) });
       }
@@ -2544,7 +2753,7 @@ function placements(grid, banked, b0, withSwap) {
 /* ================= One board (you, the bot, or anyone) ================= */
 const FLASH_MS = 560, POP_MS = 240;
 class Board {
-  constructor({ seed, orbKinds, hooks, hazards, variant, wotd, slow, seasonMs, script, pace, ramp }) {
+  constructor({ seed, orbKinds, hooks, hazards, variant, wotd, slow, seasonMs, script, pace, ramp, mseed, timeLimit }) {
     Object.assign(this, {
       rng: mulberry32(seed), grid: emptyGrid(), queue: [], cur: null, hold: null, canHold: true,
       banked: [], log: [], fx: null, pulse: null,
@@ -2553,7 +2762,7 @@ class Board {
       pieceCount: 0, placed: 0, riseQ: 0, uid: 1, power: null, scrFx: null, pending: { stones: 0 }, attackIdx: 0, rush: 0,
       hazards: hazards === 'versus' ? 'versus' : !!hazards, dropped: 0, hazardIdx: 0, hazardAt: (hazards === 'versus' ? HAZARD_TIERS_VS : HAZARD_TIERS)[0].every, hzLevel: 0, groundTotal: 0, lowY: -99, incoming: [], finale: false,
       orbKinds, hooks: hooks || {}, lastEvent: '',
-      variant: variant === 'rot' ? 'rot' : 'classic', season: 'summer', keepCur: false,
+      variant: VARIANTS[variant] ? variant : 'classic', season: 'summer', keepCur: false,
       wotd: typeof wotd === 'string' ? wotd : null, wotdX: 1, wotdHit: false, lastPowerAt: -1e9, run: newRun(),
       // Tutorials: slower drops, shorter seasons, and a fixed opening set of letter pairs.
       slow: +slow > 0 ? +slow : 1, sumMs: seasonMs ? seasonMs[0] : ROT_SUMMER_MS, winMs: seasonMs ? seasonMs[1] : ROT_WINTER_MS, script: Array.isArray(script) ? script.slice() : null,
@@ -2561,7 +2770,12 @@ class Board {
       // count the speed-ups count from. dropFrac carries part-points from drops at Slow and Fast.
       // The speed and the points both come from the rung (see PACES).
       pace: paceOf(pace), ramp: ramp !== false, rampAt: 0, dropFrac: 0,
+      // Puzzle Box's clock (0: no clock). timeUp says the clock ran out rather than the board filling up.
+      timeLimit: +timeLimit > 0 ? +timeLimit : 0, timeUp: false,
     });
+    // The modes' own events (letters forgotten, bounties, chaos) come from mseed, the match's seed, so
+    // everyone in a battle (bots too) and everyone on the same daily gets the same ones.
+    this.modeInit(mseed == null ? seed : mseed);
     this.queue = [this.nextPiece(), this.nextPiece()];
     this.spawn();
   }
@@ -2578,18 +2792,40 @@ class Board {
     return n < 6 ? 0.42 : v / n;
   }
   genLetters(n) {
+    // Bounty: now and then a piece comes straight out of one of the bounty words.
+    if (this.variant === 'bounty' && this.bounties.length && this.rng() < BOUNTY_BIAS) {
+      const w = this.bounties[Math.floor(this.rng() * this.bounties.length)].word;
+      if (w.length >= n) { const i = Math.floor(this.rng() * (w.length - n + 1)); return w.slice(i, i + n).split(''); }
+    }
     const src = n === 2 ? PAIRS : TRIPLES, share = this.vowelShare(), tbl = {};
     for (const k in src) {
+      if (![...k].every(ch => this.letterOk(ch))) continue;   // Amnesia's forgotten letters, Chaos's vowel drought
       const vc = vowelCount(k); let w = src[k];
       if (share < 0.34) w *= vc === 0 ? 0.15 : 1.3;
       if (share > 0.55) w *= vc === k.length ? 0.15 : vc === 1 ? 1.3 : 1;
       tbl[k] = w;
     }
+    if (!Object.keys(tbl).length) return n === 3 ? [...this.genLetters(2), ...this.someLetters(1)] : this.someLetters(n);
     return this.pickW(tbl).split('');
   }
+  // Single letters, as common as they are in English, from the letters still allowed to fall.
+  someLetters(n) {
+    const tbl = {};
+    for (const k in LETTER_W) if (this.letterOk(k)) tbl[k] = LETTER_W[k];
+    if (!Object.keys(tbl).length) tbl.e = 1;
+    return Array.from({ length: n }, () => this.pickW(tbl));
+  }
+  letterOk(ch) {
+    if (this.variant === 'amnesia' && this.banned.includes(ch)) return false;
+    if (this.variant === 'chaos' && this.chaosOn('drought') && isV(ch)) return false;
+    return true;
+  }
   hardLetters(n) {
-    const con = 'bcdfghjklmnpqrstvwxyz', out = [];
-    for (let i = 0; i < n; i++) out.push(this.rng() < 0.2 ? 'aeiou'[Math.floor(this.rng() * 5)] : con[Math.floor(this.rng() * con.length)]);
+    const con = [...'bcdfghjklmnpqrstvwxyz'].filter(c => this.letterOk(c)), vow = [...'aeiou'].filter(c => this.letterOk(c)), out = [];
+    for (let i = 0; i < n; i++) {
+      const pool = this.rng() < 0.2 && vow.length ? vow : con.length ? con : null;
+      out.push(pool ? pool[Math.floor(this.rng() * pool.length)] : this.someLetters(1)[0]);
+    }
     return out;
   }
   makePiece(type, letters) {
@@ -2607,13 +2843,15 @@ class Board {
       return p;
     }
     const type = this.rng() < L_CHANCE ? 'L' : 'D';
-    const p = this.makePiece(type, this.genLetters(SHAPES[type].length));
+    let p = this.makePiece(type, this.genLetters(SHAPES[type].length));
     if (this.pieceCount % ORB_EVERY === 0) {
       const pr = this.rng();
       let kind = this.variant === 'rot' ? 'ignite' : (pr < 0.5 ? 'clear' : 'scramble');
       if (this.orbKinds.includes('stones') && this.rng() >= CLEAR_CHANCE) { kind = ATTACKS[this.attackIdx % ATTACKS.length]; this.attackIdx++; }
       p.b[Math.floor(this.rng() * p.b.length)].orb = kind;
     }
+    p.n = this.pieceCount;
+    if (this.variant === 'chaos') { if (this.chaosOn('giants')) p = this.makeGiant(p); this.decorate(p); }
     if (this.variant === 'rot' && this.season === 'winter' && this.rng() < ICE_CHANCE) {
       const plain = p.b.filter(o => !o.orb);
       if (plain.length) plain[Math.floor(this.rng() * plain.length)].ice = true;
@@ -2629,8 +2867,40 @@ class Board {
     s.stretched = true;
     return s;
   }
+  // Chaos Carnage's Giants: a three-letter bar or a four-letter L, built from a real letter triple.
+  makeGiant(p) {
+    const big = this.rng() < 0.5 ? 'I3' : 'L4';
+    const g = this.makePiece(big, big === 'I3' ? this.genLetters(3) : [...this.genLetters(3), ...this.someLetters(1)]);
+    const orb = p.b.find(o => o.orb);
+    if (orb) readOrder(g.b)[0].orb = orb.orb;
+    g.stretched = true; g.giant = true; g.n = p.n;
+    return g;
+  }
+  // Chaos Carnage's Bombs and Wildcards ride on every other piece while they're on.
+  decorate(p) {
+    if (!p || this.variant !== 'chaos') return;
+    const plain = p.b.filter(o => !o.orb && !o.bomb && !o.wild);
+    if (!plain.length) return;
+    if (this.chaosOn('bombs') && p.n % 2 === 0 && !p.b.some(o => o.bomb)) plain[Math.floor(this.rng() * plain.length)].bomb = true;
+    if (this.chaosOn('wild') && p.n % 2 === 1 && !p.b.some(o => o.wild)) { const o = plain[Math.floor(this.rng() * plain.length)]; o.wild = true; o.ch = '?'; }
+  }
+  // New letters for a waiting piece whose letters can't fall any more (same shape and power letter).
+  relabel(p) {
+    const ord = readOrder(p.b), n = ord.length;
+    const L = n <= 3 ? this.genLetters(n) : [...this.genLetters(3), ...this.someLetters(n - 3)];
+    ord.forEach((o, i) => { if (!o.wild) o.ch = L[i]; });
+  }
+  // When a rule changes, the two pieces waiting in Next follow it straight away.
+  refreshQueue() {
+    this.queue = this.queue.map(p => {
+      if (this.chaosOn('giants') && !p.stretched) p = this.makeGiant(p);
+      if (p.b.some(o => !o.wild && !this.letterOk(o.ch))) this.relabel(p);
+      this.decorate(p);
+      return p;
+    });
+  }
   fits(b, px, py) { return fitsOn(this.grid, b, px, py); }
-  cellsOf(p, py = p.py) { return p.b.map(o => ({ x: p.px + o.x, y: py + o.y, ch: o.ch, orb: o.orb, ice: o.ice })); }
+  cellsOf(p, py = p.py) { return p.b.map(o => ({ x: p.px + o.x, y: py + o.y, ch: o.ch, orb: o.orb, ice: o.ice, wild: o.wild, bomb: o.bomb })); }
   grounded() { return !this.fits(this.cur.b, this.cur.px, this.cur.py + 1); }
   ensureIce(p) {
     if (!p || this.variant !== 'rot' || this.season !== 'winter' || p.b.some(o => o.ice)) return;
@@ -2668,9 +2938,9 @@ class Board {
     }
   }
   swapLetters() {
-    const ord = readOrder(this.cur.b), items = ord.map(o => ({ ch: o.ch, orb: o.orb }));
+    const ord = readOrder(this.cur.b), items = ord.map(o => ({ ch: o.ch, orb: o.orb, wild: o.wild, bomb: o.bomb }));
     items.unshift(items.pop());
-    ord.forEach((o, i) => { o.ch = items[i].ch; o.orb = items[i].orb; });
+    ord.forEach((o, i) => { o.ch = items[i].ch; o.orb = items[i].orb; o.wild = items[i].wild; o.bomb = items[i].bomb; });
   }
   hardDrop() { while (this.move(0, 1)) this.dropPts(2 * this.wotdX); this.lock(); }
   softDrop() { if (this.move(0, 1)) { this.dropPts(this.wotdX); this.dropAcc = 0; } }
@@ -2687,10 +2957,12 @@ class Board {
     let over = false;
     for (const c of this.cellsOf(p)) {
       if (c.y < 0) { over = true; continue; }
-      this.grid[c.y][c.x] = { ch: c.ch, k: p.type, id: this.uid++, orb: c.orb || null, ice: !!c.ice, ember: !!p.fire, fresh: this.variant === 'rot' && this.season === 'winter' };
+      this.grid[c.y][c.x] = { ch: c.ch, k: p.type, id: this.uid++, orb: c.orb || null, ice: !!c.ice, ember: !!p.fire, fresh: this.variant === 'rot' && this.season === 'winter',
+        ...(c.wild ? { wild: true } : {}), ...(c.bomb ? { bomb: true } : {}) };
     }
     this.cur = null; this.canHold = true;
     if (over) { this.end(); return; }
+    if (this.variant === 'chaos') this.chaosLanded();
     if (this.variant === 'rot') {
       // An ignited block burns any rot it lands against.
       if (p.fire) this.burnCheck();
@@ -2727,7 +2999,13 @@ class Board {
   // What the Speed and Points chips show: speed against Normal's start, and the points multiplier.
   speedX() { return this.speed(); }
   multX() { return rungMult(this.pace, this.rung()); }
-  pts(base) { return Math.round(base * this.multX() * this.wotdX); }
+  pts(base) { return Math.round(base * this.multX() * this.wotdX * this.modeX()); }
+  // The mode's own multiplier: Bounty's run multiplier, Chaos Carnage's Jackpot (×3) and Hyper (×2).
+  modeX() {
+    if (this.variant === 'bounty') return this.bountyX;
+    if (this.variant === 'chaos') return this.chaosOn('jackpot') ? 3 : this.chaosOn('hyper') ? 2 : 1;
+    return 1;
+  }
   // Blocks in the stretch you're on now, for the bar under the chips.
   stepLen() { const k = this.steps(); return paceStepAt(this.pace, k + 1) - paceStepAt(this.pace, k); }
   // Word of the day: scoring it doubles everything you've scored and everything you score after.
@@ -2746,11 +3024,12 @@ class Board {
     // Every floor scales with the game speed, and a floor never slows a drop that is already faster.
     const m = PACES[this.pace].ms, cap = (v, f, k) => Math.max(Math.min(v, f * m), v * k);
     let base = Math.max(90, 950 / this.speed()) * this.slow;
-    if (this.finale) base = cap(base, 80, 0.6);
+    if (this.finale && this.variant !== 'puzzle') base = cap(base, 80, 0.6);
     if (this.variant === 'rot') base = cap(base, 80, this.seasonPace());
+    if (this.variant === 'chaos' && this.chaosOn('hyper')) base *= 0.5;
     return Math.max(45, this.rush > 0 ? cap(base, 70, 0.4) : base);
   }
-  multTag() { const x = this.multX(); return Math.abs(x - 1) > 1e-9 ? `  (pts ${fmtX(x)})` : ''; }
+  multTag() { const x = this.multX() * this.modeX(); return Math.abs(x - 1) > 1e-9 ? `  (pts ${fmtX(x)})` : ''; }
   noteWord(w) { if (w.length > this.longest.length) this.longest = w; }
   addLog(kind, word, pts, mult) { const R = this.run; R.list.push([word, pts, kind]); R.len[Math.max(3, Math.min(6, word.length))]++; if (kind === 'v') R.vert++; if (kind === 'f') R.full++;
     this.log.push({ kind, word, pts, mult }); if (this.log.length > 60) this.log.shift(); this.lastEvent = (kind === 'v' ? '↓ ' : '') + word.toUpperCase() + ' +' + pts; }
@@ -2793,17 +3072,19 @@ class Board {
   settle() {
     if (this.phase === 'over') return;
     this.phase = 'resolve';
-    const across = wordsAcross(this.grid);
+    if (this.variant === 'puzzle') { this.settlePuzzle(); return; }
+    const rev = this.variant === 'chaos' && this.chaosOn('backwards');
+    const across = wordsAcross(this.grid, rev);
     const chainMult = this.chain + 1;
 
     // 1. A word filling the whole row clears straight away.
     const full = across.filter(h => h.len === COLS);
     if (full.length) {
-      const cells = full.flatMap(h => h.cells), bx = this.boost(cells), each = Math.round(FULL_POINTS * chainMult * bx.x);
+      const cells = full.flatMap(h => h.cells), bx = this.boost(cells, full.map(h => h.word)), each = Math.round(FULL_POINTS * chainMult * bx.x);
       this.noteBoost(bx, full.length);
       const got = this.pts(each), mx = this.multTag();
       this.score += got * full.length; this.words += full.length;
-      full.forEach(h => { this.noteWord(h.word); this.addLog('f', h.word, got, chainMult > 1 ? chainMult : 0); this.h('toast', `FULL ROW  ${h.word.toUpperCase()}  +${got}${bx.tag}${mx}`, 'f'); this.checkWotd(h.word); });
+      full.forEach(h => { this.noteWord(h.word); this.addLog('f', h.word, got, chainMult > 1 ? chainMult : 0); this.h('toast', `FULL ROW  ${h.rev ? '↩ ' : ''}${h.word.toUpperCase()}  +${got}${bx.tag}${mx}`, 'f'); this.checkWotd(h.word); });
       this.grant(cells, each);
       this.block(stonesFor(each) * full.length);
       this.h('bigplay', Math.min(4, 1 + full.length + (chainMult > 1 ? 1 : 0)));
@@ -2818,24 +3099,24 @@ class Board {
     const fresh = [];
     this.banked = across.map(h => {
       if (old.has(h.key)) { h.val = old.get(h.key).val; return h; }
-      const bx = this.boost(h.cells); this.noteBoost(bx, 1); h.val = Math.round((H_POINTS[h.len] || H_POINTS[5]) * bx.x); h.tag = bx.tag; fresh.push(h); return h;
+      const bx = this.boost(h.cells, [h.word]); this.noteBoost(bx, 1); h.val = Math.round((H_POINTS[h.len] || H_POINTS[5]) * bx.x); h.tag = bx.tag; fresh.push(h); return h;
     });
     for (const h of fresh) {
       const got = this.pts(h.val);
       this.score += got; this.words++; this.noteWord(h.word);
       this.addLog('h', h.word, got, 0);
       this.checkWotd(h.word);
-      this.h('toast', `+${got}  ${h.word.toUpperCase()}${h.tag}${this.multTag()}`, 'h');
+      this.h('toast', `+${got}  ${h.rev ? '↩ ' : ''}${h.word.toUpperCase()}${h.tag}${this.multTag()}`, 'h');
       this.grant(h.cells, h.val);
       this.block(stonesFor(h.val));
     }
     if (fresh.length) this.pulse = { keys: new Set(fresh.flatMap(h => h.cells.map(([x, y]) => x + ',' + y))), until: performance.now() + 520 };
 
     // 3. A word down through banked words cashes them all in.
-    const v = wordDown(this.grid, this.banked);
+    const v = wordDown(this.grid, this.banked, rev);
     if (v) {
       const stack = v.crossed.length;
-      const vb = this.boost(Array.from({ length: v.len }, (_, i) => [v.x, v.y0 + i]));
+      const vb = this.boost(Array.from({ length: v.len }, (_, i) => [v.x, v.y0 + i]), [v.word]);
       this.noteBoost(vb, 1);
       const pts = Math.round((v.len * V_PER_LETTER + v.crossed.reduce((s, h) => s + h.val, 0)) * stack * chainMult * vb.x);
       const got = this.pts(pts);
@@ -2843,7 +3124,7 @@ class Board {
       this.topStack = Math.max(this.topStack, stack);
       this.addLog('v', v.word, got, stack * chainMult);
       this.checkWotd(v.word);
-      this.h('toast', `↓ ${v.word.toUpperCase()}  ×${stack * chainMult}  +${got}${vb.tag}${this.multTag()}`, 'v');
+      this.h('toast', `↓ ${v.rev ? '↩ ' : ''}${v.word.toUpperCase()}  ×${stack * chainMult}  +${got}${vb.tag}${this.multTag()}`, 'v');
       const seen = new Set(), cells = [];
       const add = ([x, y]) => { const k = x + ',' + y; if (!seen.has(k)) { seen.add(k); cells.push([x, y]); } };
       for (let i = 0; i < v.len; i++) add([v.x, v.y0 + i]);
@@ -2876,9 +3157,230 @@ class Board {
   hasBonus(cells) { return cells.some(([x, y]) => this.grid[y] && this.grid[y][x] && this.grid[y][x].bonus); }
   // Rot & Thaw word bonuses: thawed ice x1.5, a word using an ignited letter x3. They stack.
   ignitedIn(cells) { return this.variant === 'rot' && cells.some(([x, y]) => { const c = this.grid[y] && this.grid[y][x]; return c && c.ember && !c.stone; }); }
-  boost(cells) {
+  // Word bonuses, all stacking. Rot & Thaw: thawed ice ×1.5, an ignited letter ×3. Amnesia: a forgotten
+  // letter ×1.5. Bounty: a word containing a bounty claims it (×2 to ×4, and the run's multiplier goes up).
+  boost(cells, words = []) {
     const ice = this.hasBonus(cells), fire = this.ignitedIn(cells);
-    return { ice, fire, x: (ice ? ICE_MULT : 1) * (fire ? FIRE_MULT : 1), tag: (ice ? `  ❄×${ICE_MULT}` : '') + (fire ? `  🔥×${FIRE_MULT}` : '') };
+    const mem = this.variant === 'amnesia' && cells.some(([x, y]) => { const c = this.grid[y] && this.grid[y][x]; return c && !c.stone && this.banned.includes(c.ch); });
+    const bty = this.variant === 'bounty' ? this.bountyHit(words) : 0;
+    if (mem) this.run.memWords++;
+    return { ice, fire, x: (ice ? ICE_MULT : 1) * (fire ? FIRE_MULT : 1) * (mem ? MEM_MULT : 1) * (bty || 1),
+      tag: (ice ? `  ❄×${ICE_MULT}` : '') + (fire ? `  🔥×${FIRE_MULT}` : '') + (mem ? `  🧠×${MEM_MULT}` : '') + (bty ? `  🎯×${bty}` : '') };
+  }
+  /* ----- The newer modes ----- */
+  modeInit(ms) {
+    this.mrng = mulberry32((ms >>> 0) ^ 0x6d0de5);
+    const mix = a => { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(this.mrng() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+    this.mix = mix;
+    if (this.variant === 'amnesia') {
+      const [A, B, C] = AMN_TIERS.map(t => mix([...t]));
+      this.banOrder = [...A.slice(0, 6), ...B.slice(0, 3), C[0], ...A.slice(6), ...B.slice(3), C[1]];
+      this.banned = [...AMN_START]; this.banIdx = 0; this.banAt = AMN_EVERY;
+    }
+    if (this.variant === 'bounty') { this.bounties = []; this.bountyX = 1; this.bountyAt = 0; this.bountyN = 0; this.bountyBag = []; }
+    if (this.variant === 'puzzle') this.litKeys = new Set();
+    if (this.variant === 'chaos') { this.chaos = null; this.chaosAt = CHAOS_FIRST; this.chaosBag = []; this.chaosLast = ''; this.chaosNext = this.chaosDraw(); }
+  }
+  modeTick() {
+    if (this.variant === 'amnesia') this.amnesiaTick();
+    else if (this.variant === 'bounty') this.bountyTick();
+    else if (this.variant === 'chaos') this.chaosTick();
+  }
+  /* Amnesia: every 30s another letter stops falling. */
+  amnesiaNext() { return this.banIdx < this.banOrder.length ? { ch: this.banOrder[this.banIdx], left: Math.max(0, this.banAt - this.elapsed) } : null; }
+  amnesiaTick() {
+    if (this.banIdx >= this.banOrder.length || this.elapsed < this.banAt || this.phase !== 'play') return;
+    const ch = this.banOrder[this.banIdx++];
+    this.banned.push(ch); this.banAt += AMN_EVERY; this.run.forgot++;
+    this.refreshQueue();
+    this.h('forgot', ch);
+    this.h('changed');
+  }
+  /* Bounty: up to three target words at a time. */
+  bountyDraw() {
+    for (let t = 0; t < 60; t++) {
+      if (!this.bountyBag.length) this.bountyBag = this.mix(BOUNTY_WORDS);
+      const w = this.bountyBag.shift();
+      if (this.bounties.some(b => b.word === w)) continue;
+      if (this.bountyN < 2 && w.length > 4) { this.bountyBag.push(w); continue; }   // the first two are short
+      return w;
+    }
+    return 'star';
+  }
+  addBounty() {
+    const word = this.bountyDraw(), life = Math.round(BOUNTY_LIFE * (this.pace === 'slow' ? 1.3 : this.pace === 'fast' ? 0.85 : 1));
+    this.bountyN++;
+    this.bounties.push({ id: this.bountyN, word, val: BOUNTY_X[word.length] || 4, until: this.elapsed + life, life });
+    this.h('bountyNew', word);
+    this.h('changed');
+  }
+  bountyTick() {
+    const now = this.elapsed;
+    for (const b of this.bounties.slice()) {
+      if (now < b.until) continue;
+      this.bounties = this.bounties.filter(x => x !== b);
+      this.bountyX = Math.max(1, +(this.bountyX - BOUNTY_DOWN).toFixed(2));
+      this.run.bountyMissed++;
+      this.bountyAt = Math.max(this.bountyAt, now + BOUNTY_GAP);
+      this.h('bountyLost', b.word, this.bountyX);
+      this.h('toast', `⌛ ${b.word.toUpperCase()} got away · bounty ${fmtX(this.bountyX)}`, 'bad');
+      this.h('changed');
+    }
+    if (this.bounties.length < BOUNTY_MAX && now >= this.bountyAt) { this.addBounty(); this.bountyAt = now + BOUNTY_STEP; }
+  }
+  // Words just scored: any that contains a bounty word claims it. Returns the claiming word's bonus (0: none).
+  bountyHit(words) {
+    const hits = this.bounties.filter(b => words.some(w => w && w.includes(b.word)));
+    if (!hits.length) return 0;
+    this.bounties = this.bounties.filter(b => !hits.includes(b));
+    for (const b of hits) this.bountyX = +(this.bountyX + (BOUNTY_UP[b.word.length] || 1)).toFixed(2);
+    this.run.bounties += hits.length;
+    this.run.bountyMax = Math.max(this.run.bountyMax || 1, this.bountyX);
+    this.bountyAt = Math.max(this.bountyAt, this.elapsed + BOUNTY_GAP);
+    this.h('bounty', hits.map(b => b.word), this.bountyX);
+    // In a battle, claiming a bounty sends stones at the leader.
+    this.h('bigplay', Math.min(4, hits.reduce((n, b) => n + (b.word.length >= 5 ? 2 : 1), 0)));
+    return Math.max(...hits.map(b => b.val));
+  }
+  /* Puzzle Box: nothing clears. Every new word across or down lights up, scores, and stays. */
+  settlePuzzle() {
+    const g = this.grid, found = [...wordsAcross(g).map(h => ({ ...h, dir: 'h' })), ...wordsDownAll(g).map(h => ({ ...h, dir: 'v' }))];
+    const fresh = found.filter(h => !this.litKeys.has(h.dir + h.key));
+    for (const h of fresh) {
+      this.litKeys.add(h.dir + h.key);
+      // Crossing a word that's already lit the other way earns +50% per crossing.
+      const cross = h.cells.filter(([x, y]) => g[y][x][h.dir === 'h' ? 'litV' : 'litH']).length;
+      const bx = this.boost(h.cells, [h.word]), cx = 1 + CROSS_X * cross;
+      this.noteBoost(bx, 1);
+      const base = Math.round(puzzleVal(h.len) * cx * bx.x), got = this.pts(base);
+      this.score += got; this.words++; this.noteWord(h.word);
+      this.run.litWords++; this.run.crossings += cross;
+      this.addLog(h.dir === 'v' ? 'v' : h.len >= COLS ? 'f' : 'h', h.word, got, cross ? +cx.toFixed(1) : 0);
+      this.checkWotd(h.word);
+      this.h('toast', `💡 ${h.dir === 'v' ? '↓ ' : ''}${h.word.toUpperCase()}  +${got}${cross ? `  ✚ ×${+cx.toFixed(1)}` : ''}${bx.tag}${this.multTag()}`, h.dir === 'v' ? 'v' : 'h');
+      for (const [x, y] of h.cells) { const c = g[y][x]; c.lit = true; c[h.dir === 'h' ? 'litH' : 'litV'] = true; }
+      this.grant(h.cells, base);
+    }
+    if (fresh.length) {
+      this.pulse = { keys: new Set(fresh.flatMap(h => h.cells.map(([x, y]) => x + ',' + y))), until: performance.now() + 520 };
+      if (fresh.length >= 3) this.h('toast', `✨ ${fresh.length} words from one drop`, 'f');
+    }
+    this.landStones();
+    if (this.phase === 'over') return;
+    this.phase = 'play';
+    this.spawn();
+  }
+  litCount() { let n = 0; for (const row of this.grid) for (const c of row) if (c && c.lit) n++; return n; }
+  /* Chaos Carnage: a new rule every 35s, in an order set by the seed. */
+  chaosOn(k) { return !!this.chaos && this.chaos.k === k; }
+  chaosDraw() {
+    if (!this.chaosBag.length) {
+      const b = this.mix(Object.keys(CHAOS));
+      if (b[0] === this.chaosLast) b.push(b.shift());
+      this.chaosBag = b;
+    }
+    return this.chaosBag.shift();
+  }
+  chaosTick() {
+    const t = this.elapsed;
+    if (this.phase !== 'play') return;
+    if (this.chaos && t >= this.chaos.until) this.chaosEnd();
+    if (!this.chaos && t >= this.chaosAt) this.chaosStart();
+    if (this.chaosOn('rockslide') && t >= this.chaos.rockAt) {
+      this.chaos.rockAt += ROCK_EVERY;
+      this.pending.stones = Math.min(8, this.pending.stones + 2);
+      this.h('toast', '🪨 Rockslide: 2 stones land after your next drop', 'bad');
+      this.h('changed');
+    }
+  }
+  chaosStart() {
+    const k = this.chaosNext || this.chaosDraw();
+    this.chaosLast = k; this.chaosNext = this.chaosDraw();
+    this.chaos = { k, at: this.elapsed, until: this.elapsed + CHAOS_LEN, dir: this.mrng() < 0.5 ? -1 : 1, rockAt: this.elapsed + 2000 };
+    this.run.events++;
+    this.refreshQueue();
+    this.h('chaos', k, this.chaos.dir);
+    this.h('changed');
+  }
+  chaosEnd() {
+    const k = this.chaos.k;
+    this.chaos = null; this.chaosAt = this.elapsed + CHAOS_GAP;
+    if (k === 'backwards') this.banked = this.banked.filter(h => !h.rev);   // words read backwards stop counting
+    this.h('chaosEnd', k);
+    this.h('changed');
+  }
+  // After a piece lands: wildcards pick their letter, bombs go off, and a tilted board slides.
+  chaosLanded() {
+    const g = this.grid, wild = [], bombs = [];
+    for (let y = 0; y < ROWS; y++) for (let x = 0; x < COLS; x++) { const c = g[y][x]; if (c && c.wild) wild.push([x, y]); if (c && c.bomb) bombs.push([x, y]); }
+    for (const [x, y] of wild) this.resolveWild(x, y);
+    if (wild.length) {
+      this.run.wilds += wild.length;
+      this.h('wild', wild);
+      this.h('toast', `★ became ${wild.map(([x, y]) => g[y][x].ch.toUpperCase()).join(' and ')}`, 'o');
+    }
+    if (bombs.length) this.blast(bombs);
+    if (this.chaosOn('tilt') && this.tiltBoard(this.chaos.dir)) { this.run.tilts++; this.h('tilted', this.chaos.dir); }
+  }
+  // A wildcard becomes the letter that makes the longest words through it (or a common letter if none do).
+  resolveWild(x, y) {
+    const g = this.grid, c = g[y][x], rev = this.chaosOn('backwards');
+    let a = y, b = y;
+    while (a > 0 && solid(g[a - 1][x])) a--;
+    while (b < ROWS - 1 && solid(g[b + 1][x])) b++;
+    let best = 'e', bv = -1;
+    for (const ch of 'abcdefghijklmnopqrstuvwxyz') {
+      c.ch = ch;
+      let v = (LETTER_W[ch] || 0) / 100;
+      for (const h of wordsAcross(g, rev)) if (h.y === y && x >= h.x && x < h.x + h.len) v += h.len * h.len;
+      for (let s = a; s <= y; s++) for (let e = Math.max(y, s + 2); e <= b; e++) {
+        let w = '';
+        for (let k = s; k <= e; k++) w += g[k][x].ch;
+        if (DICT.has(w) || (rev && DICT.has(revW(w)))) v += (e - s + 1) ** 2;
+      }
+      if (v > bv) { bv = v; best = ch; }
+    }
+    c.ch = best; c.wild = false; c.id = this.uid++; c.wildFx = performance.now() + 900;
+  }
+  // Bombs blast the 3×3 around where they land (themselves too). No points, just room.
+  blast(spots) {
+    const g = this.grid, hit = new Set();
+    for (const [x, y] of spots) for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+      const nx = x + dx, ny = y + dy;
+      if (nx >= 0 && nx < COLS && ny >= 0 && ny < ROWS && g[ny][nx]) hit.add(nx + ',' + ny);
+    }
+    const cells = [...hit].map(k => k.split(',').map(Number));
+    this.h('blast', cells);
+    for (const [x, y] of cells) g[y][x] = null;
+    this.fall();
+    this.run.blasted += cells.length;
+    this.h('toast', `💣 Boom! ${cells.length} tile${cells.length === 1 ? '' : 's'} blasted`, 'o');
+  }
+  // Everything drops to the floor of its column. True if anything moved.
+  fall() {
+    let moved = false;
+    for (let x = 0; x < COLS; x++) {
+      let w = ROWS - 1;
+      for (let y = ROWS - 1; y >= 0; y--) if (this.grid[y][x]) { const c = this.grid[y][x]; if (w !== y) { this.grid[y][x] = null; this.grid[w][x] = c; moved = true; } w--; }
+    }
+    return moved;
+  }
+  // Tilt: every row's tiles slide to one side (dir -1 left, 1 right), then fall, until nothing moves.
+  tiltBoard(dir) {
+    let moved = false;
+    for (let pass = 0; pass < 8; pass++) {
+      let any = false;
+      for (let y = 0; y < ROWS; y++) {
+        const row = this.grid[y], tiles = row.filter(Boolean);
+        if (!tiles.length || tiles.length === COLS) continue;
+        const pad = Array(COLS - tiles.length).fill(null), nr = dir < 0 ? [...tiles, ...pad] : [...pad, ...tiles];
+        if (nr.some((c, x) => c !== row[x])) { this.grid[y] = nr; any = true; }
+      }
+      if (this.fall()) any = true;
+      if (!any) break;
+      moved = true;
+    }
+    return moved;
   }
   /* ----- Rot & Thaw ----- */
   seasonAt() {
@@ -3058,7 +3560,7 @@ class Board {
   hazardNext() { return ATTACKS[this.hazardIdx % ATTACKS.length]; }
   hazardIn() { return Math.max(1, this.hazardAt - this.dropped); }
   hzTiers() { return this.hazards === 'versus' ? HAZARD_TIERS_VS : HAZARD_TIERS; }
-  hzScale() { return this.variant === 'rot' ? 2 : 1; }   // Rot & Thaw ramps hazards half as fast
+  hzScale() { return this.variant === 'rot' || this.variant === 'chaos' ? 2 : 1; }   // Rot & Thaw and Chaos Carnage ramp hazards half as fast
   hazardLevel() {
     if (this.hazards !== 'versus') return hazardTier(Math.floor(this.dropped / this.hzScale()));
     let t = 0; HAZARD_TIERS_VS.forEach((x, i) => { if (this.elapsed >= x.at * this.hzScale()) t = i; }); return t;
@@ -3150,7 +3652,7 @@ class Board {
   useScramble() {
     if (this.power !== 'scramble' || this.phase !== 'play' || this.powerCool() > 0) return false;
     const area = this.scrambleArea() || [];
-    const spots = area.map(([x, y]) => this.grid[y][x]).filter(c => c && !c.stone);
+    const spots = area.map(([x, y]) => this.grid[y][x]).filter(c => c && !c.stone && !c.lit);
     if (spots.length < 2) { this.h('toast', 'Not enough letters there yet. Move over some tiles first', ''); return false; }
     this.spendPower('scramble');
     const letters = spots.map(c => c.ch), orig = letters.join('');
@@ -3160,7 +3662,7 @@ class Board {
       const perm = shuffle(letters);
       if (perm.join('') === orig && new Set(letters).size > 1) continue;
       spots.forEach((c, i) => { c.ch = perm[i]; });
-      const sc = wordsAcross(this.grid).reduce((n, h) => n + h.len * h.len, 0) + Math.random();
+      const sc = wordsAcross(this.grid, this.variant === 'chaos' && this.chaosOn('backwards')).reduce((n, h) => n + h.len * h.len, 0) + Math.random();
       if (sc > bestScore) { bestScore = sc; best = perm; }
     }
     if (!best) best = letters;
@@ -3178,6 +3680,9 @@ class Board {
     if (this.phase === 'play' || this.phase === 'resolve') {
       this.elapsed += dt;
       if (this.variant === 'rot') this.seasonTick(dt);
+      else if (this.variant !== 'classic' && this.variant !== 'puzzle') this.modeTick();
+      // Puzzle Box: the clock runs out (between drops, so the last word still counts).
+      if (this.timeLimit && this.elapsed >= this.timeLimit && this.phase === 'play') { this.timeUp = true; this.end(); return; }
       if (this.rush > 0) { this.rush = Math.max(0, this.rush - dt); if (!this.rush) this.h('changed'); }
       if (this.riseQ && this.phase === 'play') { this.riseQ--; this.doRise(); if (this.phase === 'over') return; }
       if (this.incoming.length && !this.holdInc) {
@@ -3199,6 +3704,7 @@ class Board {
   encode() {
     const g = this.grid.map(r => r.map(c => !c ? '.' : c.stone ? '#' : c.ch));
     for (const h of this.banked) for (const [x, y] of h.cells) if (g[y][x] !== '.' && g[y][x] !== '#') g[y][x] = g[y][x].toUpperCase();
+    if (this.variant === 'puzzle') for (let y = 0; y < ROWS; y++) for (let x = 0; x < COLS; x++) if (this.grid[y][x] && this.grid[y][x].lit) g[y][x] = g[y][x].toUpperCase();
     if (this.cur) for (const c of this.cellsOf(this.cur)) if (c.y >= 0) g[c.y][c.x] = c.ch;
     return g.map(r => r.join('')).join('');
   }
@@ -3215,7 +3721,7 @@ const BOT_LEVELS = {
 let botLevel = store.get('wordfall-bot') || 'normal';
 if (!BOT_LEVELS[botLevel]) botLevel = 'normal';
 let botCount = store.get('wordfall-botcount') === '7' ? 7 : 1;
-let variant = store.get('wordfall-variant') === 'rot' ? 'rot' : 'classic';
+let variant = (v => VARIANTS[v] && MODES[v] && !MODES[v].soon ? v : 'classic')(store.get('wordfall-variant'));
 let pickMode = variant; // the mode the play card shows; a coming-soon pick is never saved
 const PLAY_MODES = ['daily', 'practice', 'bot', 'online'];
 let playTab = PLAY_MODES.includes(store.get('wordfall-playtab')) ? store.get('wordfall-playtab') : 'daily';
@@ -3249,6 +3755,14 @@ function myHooks() {
     hazardup: lv => { const t = game.me.hzTiers()[lv]; announce('HAZARDS UP', `Level ${lv + 1} · every ${t.every} blocks · ${t.stones} stone${t.stones > 1 ? 's' : ''}`, 'haz'); sfx('hazard'); },
     stoned: zapStones,
     hazard: () => { if (!versusMode()) tlHit(); },
+    forgot: ch => { const C = ch.toUpperCase(); announce('FORGOTTEN', `No more ${C}s will fall · ${C}s on your board score ×${MEM_MULT}`, 'amn', C); sfx('forget'); },
+    bounty: (ws, x) => { announce('BOUNTY CLAIMED', `${ws.map(w => w.toUpperCase()).join(' + ')} · multiplier ${fmtX(x)}`, 'bty'); sfx('bounty'); },
+    bountyNew: () => sfx('blip'),
+    chaos: (k, dir) => { const c = CHAOS[k]; announce(`${c.icon} ${c.name.toUpperCase()}${k === 'tilt' ? (dir < 0 ? ' ←' : ' →') : ''}`, c.what, 'chaos'); sfx('chaos'); },
+    chaosEnd: k => toast(`${CHAOS[k].icon} ${CHAOS[k].name} is over`, ''),
+    blast: cells => { cells.forEach(([x, y]) => { shatter(x, y, 'spark'); shatter(x, y); }); sfx('boom'); },
+    tilted: () => sfx('rumble'),
+    wild: cells => { cells.forEach(([x, y]) => shatter(x, y, 'spark')); sfx('power'); },
   };
 }
 function hitMessage(who, k, n) {
@@ -3295,13 +3809,31 @@ function sendAttack(k, n, big) {
   if (big) toast('💥 Big play!', 'f');
   deliver(t, k, n, ME);
 }
+// What each mode changes about a board. vs: a battle (bots or online). Puzzle Box has no hazards and, in a
+// battle, no attacks (same tiles, best box wins); its tiles fall slowly and never speed up.
+function modeOpts(v, vs) {
+  const puzzle = v === 'puzzle';
+  return {
+    hazards: puzzle ? false : vs ? 'versus' : true,
+    orbKinds: puzzle || !vs ? ['clear', 'scramble'] : ['clear', 'scramble', 'stones', 'stretch'],
+    ...(puzzle ? { slow: PUZZLE_SLOW, ramp: false, timeLimit: vs ? 0 : PUZZLE_MS } : {}),
+  };
+}
+// The first time you play a mode, its guide opens first.
+const guideSeen = k => k === 'rot' ? !!store.get('wordfall-rotguide') : !!loadJSON('wordfall-guides', {})[k];
+function markGuide(k) {
+  if (k === 'rot') { store.set('wordfall-rotguide', '1'); return; }
+  const g = loadJSON('wordfall-guides', {}); g[k] = 1; store.set('wordfall-guides', JSON.stringify(g));
+}
 const runLabel = (mode, count) => mode === 'daily' ? "Today's drop" : mode === 'practice' ? 'Practice' : mode === 'online' ? 'Online match' : count > 1 ? 'Battle of 8' : 'Duel';
 function startSolo(mode, boot = false, opt = {}) {
   if (boot) { startSoloNow(mode, true); return; }
   playTransition(runLabel(mode), () => startSoloNow(mode, false, opt));
 }
 function startBot(level, count = botCount) {
-  playTransition(runLabel('bot', count === 7 ? 7 : 1), () => startBotNow(level, count));
+  const go = () => playTransition(runLabel('bot', count === 7 ? 7 : 1), () => startBotNow(level, count));
+  if (MODE_GUIDES[variant] && !guideSeen(variant)) { markGuide(variant); showModeGuide(variant, () => { closeModal(); go(); }); return; }
+  go();
 }
 function startSoloNow(mode, boot = false, opt = {}) {
   bankLiveGame();
@@ -3310,21 +3842,22 @@ function startSoloNow(mode, boot = false, opt = {}) {
   const v = mode === 'daily' ? dailyVariant(day) : variant;
   hideEnd(); game = { mode, day, variant: v, me: null, bots: [], over: false, outAt: {}, seedWords: mode === 'daily' ? '' : seedWords, seed, pace: opt.onboard ? (prog().level === 'mid' ? 'normal' : 'slow') : paceOk(pace), onboard: !!opt.onboard };
   game.wotd = mode === 'daily' ? pickWotd(hashStr('wordfall-wotd:' + day)) : runWotd(seed);
-  game.me = new Board({ seed, orbKinds: ['clear', 'scramble'], hooks: myHooks(), hazards: true, variant: v, wotd: game.wotd, pace: game.pace });
+  game.me = new Board({ seed, ...modeOpts(v, false), hooks: myHooks(), variant: v, wotd: game.wotd, pace: game.pace, mseed: seed });
   game.best = +(store.get('wordfall-best') || 0);
   paused = false;
   setLayout();
   updatePanels();
   closeModal(); hideTitle();
-  if (!boot && v === 'rot' && !store.get('wordfall-rotguide')) {
-    store.set('wordfall-rotguide', '1');
+  if (!boot && MODE_GUIDES[v] && !guideSeen(v)) {
+    markGuide(v);
     paused = true;
-    showRotGuide(() => { closeModal(); paused = false; });
+    showModeGuide(v, () => { closeModal(); paused = false; });
   }
 }
 function makeBot(id, name, level, seed) {
   const b = { id, name, level: BOT_LEVELS[level] ? level : 'normal', board: null, ctl: { plan: null, piece: null, wait: 0 } };
-  b.board = new Board({ seed: seed >>> 0, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: botHooks(b), hazards: 'versus', variant: game && game.variant, wotd: game && game.wotd, pace: game && game.pace });
+  const v = game && game.variant;
+  b.board = new Board({ seed: seed >>> 0, ...modeOpts(v, true), hooks: botHooks(b), variant: v, wotd: game && game.wotd, pace: game && game.pace, mseed: game && game.seed != null ? game.seed : seed });
   return b;
 }
 function startBotNow(level, count = botCount) {
@@ -3334,7 +3867,7 @@ function startBotNow(level, count = botCount) {
   const seed = pickSeed();
   hideEnd(); game = { mode: 'bot', royale: botCount > 1, variant, me: null, bots: [], over: false, outAt: {}, finale: false, seedWords, seed, pace: paceOk(pace) };
   game.wotd = runWotd(seed);
-  game.me = new Board({ seed, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: myHooks(), hazards: 'versus', variant, wotd: game.wotd, pace: game.pace });
+  game.me = new Board({ seed, ...modeOpts(variant, true), hooks: myHooks(), variant, wotd: game.wotd, pace: game.pace, mseed: seed });
   const names = shuffled(BOT_NAMES);
   for (let i = 0; i < botCount; i++) game.bots.push(makeBot('bot-' + i, names[i], botLevel, seed ^ Math.imul(0x9e3779b9, i + 1)));
   game.best = +(store.get('wordfall-best') || 0);
@@ -3362,6 +3895,41 @@ function botHooks(b) {
     bigplay: n => fire('stones', n),
   };
 }
+// Puzzle Box for bots: points for every new word across or down a placement would light up.
+const puzzleScore = B => (grid, banked, cells) => {
+  const g = grid.map(r => r.slice());
+  for (const c of cells) { if (c.y < 0) return null; g[c.y][c.x] = { ch: c.ch, id: simId-- }; }
+  let pts = 0, word = '';
+  for (const [dir, list] of [['h', wordsAcross(g)], ['v', wordsDownAll(g)]]) for (const h of list) {
+    if (B.litKeys.has(dir + h.key) || !h.cells.some(([x, y]) => g[y][x].id < 0)) continue;
+    const cross = h.cells.filter(([x, y]) => grid[y][x] && grid[y][x][dir === 'h' ? 'litV' : 'litH']).length;
+    pts += puzzleVal(h.len) * (1 + CROSS_X * cross);
+    if (h.len > word.length) word = h.word;
+  }
+  return { pts: Math.round(pts * 1.6), word, g };
+};
+// Bounty for bots: claiming one is worth a lot, and lining up part of one a little.
+function botBountyValue(B, pl) {
+  if (!B.bounties.length) return 0;
+  const cells = pl.b.map(o => ({ x: pl.px + o.x, y: pl.py + o.y, ch: o.ch }));
+  if (cells.some(c => c.y < 0)) return 0;
+  const g = B.grid.map(r => r.slice());
+  for (const c of cells) g[c.y][c.x] = { ch: c.ch, id: -7 };
+  const had = new Set(B.banked.map(h => h.key)), hit = w => B.bounties.find(b => w.includes(b.word));
+  let v = 0;
+  for (const h of wordsAcross(g)) if (!had.has(h.key)) { const b = hit(h.word); if (b) v += 250 * b.val; }
+  const d = wordDown(g, B.banked);
+  if (d) { const b = hit(d.word); if (b) v += 250 * b.val; }
+  for (const c of cells) {
+    let a = c.x, z = c.x;
+    while (a > 0 && solid(g[c.y][a - 1])) a--;
+    while (z < COLS - 1 && solid(g[c.y][z + 1])) z++;
+    let run = '';
+    for (let x = a; x <= z; x++) run += g[c.y][x].ch;
+    if (run.length >= 2 && B.bounties.some(b => b.word.includes(run))) v += 12 * run.length;
+  }
+  return v;
+}
 const stackHeight = g => { for (let y = 0; y < ROWS; y++) if (g[y].some(Boolean)) return ROWS - y; return 0; };
 function botStep(b, dt) {
   const B = b.board, ctl = b.ctl, lvl = BOT_LEVELS[b.level];
@@ -3378,8 +3946,10 @@ function botStep(b, dt) {
     if (B.power === 'ignite' && ((B.season === 'winter' && B.grid.flat().filter(c => c && c.ice).length >= 2) || B.grid.flat().filter(c => c && (c.rubble || (!c.stone && c.rot > 0.3))).length >= 3) && Math.random() < lvl.clear + 0.3) {
       if (B.useIgnite()) B.lastEvent = '🔥 ignited a block';
     }
-    const list = placements(B.grid, B.banked, B.cur.b, true);
+    const rev = B.variant === 'chaos' && B.chaosOn('backwards');
+    const list = B.variant === 'puzzle' ? placements(B.grid, [], B.cur.b, true, false, puzzleScore(B)) : placements(B.grid, B.banked, B.cur.b, true, rev);
     if (B.variant === 'rot') for (const pl of list) pl.value += botRotValue(B, pl);
+    if (B.variant === 'bounty') for (const pl of list) pl.value += botBountyValue(B, pl);
     list.sort((a, c) => c.value - a.value);
     // Easier bots sometimes just drop the piece wherever.
     const pool = Math.random() < lvl.blunder ? list.length : Math.min(lvl.pick, list.length);
@@ -3481,7 +4051,7 @@ function tlPack(ranked) {
   };
 }
 function updateRise() {
-  if (!versusMode() || game.over || game.counting) return;
+  if (!versusMode() || game.over || game.counting || game.variant === 'puzzle') return;
   const all = battlers(), dead = all.filter(p => !p.alive).length, want = Math.floor(dead / RISE_EVERY);
   game.risen = game.risen || 0;
   if (want <= game.risen) return;
@@ -3494,7 +4064,7 @@ function updateRise() {
   if (game.me.phase !== 'over') announce('STONE RISES', `${dead} out · ${all.length - dead} left · floor +${game.risen}`, 'rise');
 }
 function updateFinale() {
-  if (!versusMode() || game.over || game.counting || game.finale) return;
+  if (!versusMode() || game.over || game.counting || game.finale || game.variant === 'puzzle') return;
   const all = battlers(), alive = all.filter(p => p.alive).length, left = game.roundEndAt - performance.now();
   if (left > FINALE_MS && !(all.length >= 4 && alive <= 2)) return;
   game.finale = true;
@@ -3810,6 +4380,11 @@ function sfxPlay(kind) {
   if (kind === 'rumble') { noiseHit(t, 1.1, 0.16, 180, 'lowpass'); tone('sine', 48, t, 1.1, 0.08); }
   if (kind === 'shatter') { for (let i = 0; i < 12; i++) noiseHit(t + i * 0.025 + Math.random() * 0.02, 0.12, 0.08, 4000 + Math.random() * 5000, 'highpass'); noiseHit(t, 0.5, 0.16, 500, 'lowpass'); tone('sine', 60, t, 0.5, 0.09); }
   if (kind === 'mult') { [0, 4, 7, 11, 14].forEach((n, i) => tone('triangle', mtof(84 + n), t + i * 0.05, 0.14, 0.06)); }
+  if (kind === 'forget') { [12, 7, 3, 0].forEach((n, i) => tone('sine', mtof(74 + n), t + i * 0.1, 0.32, 0.06)); noiseHit(t, 0.7, 0.04, 2500, 'bandpass'); }
+  if (kind === 'bounty') { [0, 4, 7, 12, 16, 19].forEach((n, i) => tone('square', mtof(76 + n), t + i * 0.045, 0.12, 0.045)); tone('triangle', mtof(100), t + 0.3, 0.45, 0.06); }
+  if (kind === 'blip') { tone('triangle', mtof(88), t, 0.08, 0.04); tone('triangle', mtof(95), t + 0.07, 0.1, 0.04); }
+  if (kind === 'chaos') { for (let i = 0; i < 6; i++) tone('sawtooth', mtof(60 + ((i * 7) % 12)), t + i * 0.06, 0.1, 0.05); noiseHit(t, 0.5, 0.1, 1500, 'bandpass'); }
+  if (kind === 'boom') { noiseHit(t, 0.7, 0.22, 250, 'lowpass'); tone('sine', 55, t, 0.6, 0.12); noiseHit(t + 0.04, 0.3, 0.1, 3000, 'highpass'); }
 }
 
 /* ================= Rendering ================= */
@@ -3850,6 +4425,7 @@ function render(now) {
     const ghost = new Map(), cur = new Map();
     // Letters that will rot fast beside a power letter (not ones kept warm by an ignited block).
     const glow = game.variant === 'rot' ? (() => { const g = B.orbCells(); for (const k of B.warmCells()) g.delete(k); return g; })() : null;
+    const mem = B.variant === 'amnesia' ? new Set(B.banned) : null;   // Amnesia: forgotten letters still on the board
     const zone = B.power === 'scramble' && B.cur && B.phase === 'play' ? new Set((B.scrambleArea() || []).map(([x, y]) => x + ',' + y)) : null;
     if (B.scrFx && now > B.scrFx.until) B.scrFx = null;
     const sfxKeys = B.scrFx ? B.scrFx.keys : null;
@@ -3857,16 +4433,16 @@ function render(now) {
     if (B.cur && (B.phase === 'play' || B.keepCur)) {
       let gy = B.cur.py;
       while (B.fits(B.cur.b, B.cur.px, gy + 1)) gy++;
-      if (settings.ghost) for (const c of B.cellsOf(B.cur, gy)) if (c.y >= 0) ghost.set(c.x + ',' + c.y, c.ch);
+      if (settings.ghost) for (const c of B.cellsOf(B.cur, gy)) if (c.y >= 0) ghost.set(c.x + ',' + c.y, c.wild ? '★' : c.ch);
       for (const c of B.cellsOf(B.cur)) if (c.y >= 0) cur.set(c.x + ',' + c.y, c);
     }
     for (let y = 0; y < ROWS; y++) for (let x = 0; x < COLS; x++) {
       const k = x + ',' + y, c = B.grid[y][x], el = cellEls[y * COLS + x];
       let cls = 'c', txt = '', o = '';
       if (cur.has(k)) {
-        const cc = cur.get(k); txt = cc.ch;
-        cls = `c tile cur k-${B.cur.type}` + (cc.orb ? ` orb o-${cc.orb}` : cc.ice ? ' ice' : skinCls(cc.ch));
-        if (cc.orb) o = ORB[cc.orb].icon;
+        const cc = cur.get(k); txt = cc.wild ? '★' : cc.ch;
+        cls = `c tile cur k-${B.cur.type}` + (cc.bomb ? ' orb o-bomb' : cc.wild ? ' wild' : cc.orb ? ` orb o-${cc.orb}` : cc.ice ? ' ice' : skinCls(cc.ch));
+        if (cc.bomb) o = '💣'; else if (cc.orb) o = ORB[cc.orb].icon;
       } else if (c) {
         txt = c.ch;
         if (c.burning) cls = 'c tile burn';
@@ -3877,6 +4453,7 @@ function render(now) {
         }
         else if (B.fx && B.fx.keys.has(k)) cls = `c tile ${B.fx.cls}`;
         else if (bankedKeys.has(k)) cls = 'c tile bank' + (B.pulse && B.pulse.keys.has(k) ? ' new' : '');
+        else if (c.lit) cls = 'c tile lit' + (c.litH && c.litV ? ' litx' : '') + (B.pulse && B.pulse.keys.has(k) ? ' new' : '');
         else if (c.ice) cls = 'c tile ice' + (c.cracked ? ' cracked' : '');
         else { cls = `c tile k-${c.k}` + (c.orb ? ` orb o-${c.orb}` : skinCls(c.ch)); if (c.orb) o = ORB[c.orb].icon; }
       } else if (ghost.has(k)) { cls = 'c ghost'; txt = ghost.get(k); }
@@ -3897,6 +4474,8 @@ function render(now) {
       if (c && c.ember && !c.stone && !c.burning && !cur.has(k)) cls += ' ember';
       if (glow && B.season !== 'winter' && glow.has(k) && c && !c.stone && !c.orb && !c.burning && !cur.has(k)) cls += ' scorch';
       if (cur.has(k) && B.cur.fire) cls += ' fire';
+      if (mem && c && !c.stone && !cur.has(k) && mem.has(c.ch)) cls += ' mem';
+      if (c && c.wildFx && now < c.wildFx && !cur.has(k)) cls += ' wildfx';
       if (el.className !== cls) el.className = cls;
       if (el.textContent !== txt) el.textContent = txt;
       if ((el.dataset.o || '') !== o) el.dataset.o = o;
@@ -3912,7 +4491,8 @@ function render(now) {
     const left = game.over ? 0 : game.counting ? ROUND_MS : game.roundEndAt - performance.now();
     t.textContent = fmtTime(left);
     t.classList.toggle('warn', left < FINALE_MS);
-  } else { t.textContent = fmtUp(B.elapsed); t.classList.remove('warn'); }
+  } else if (B.timeLimit) { const left = game.over ? 0 : Math.max(0, B.timeLimit - B.elapsed); t.textContent = fmtTime(left); t.classList.toggle('warn', left < 30000); }
+  else { t.textContent = fmtUp(B.elapsed); t.classList.remove('warn'); }
   $('#sScore').textContent = B.score.toLocaleString();
   const scd = $('#scoreCard');
   if (B.score - (scd._s ?? B.score) >= 20) { scd.classList.remove('pop'); void scd.offsetWidth; scd.classList.add('pop'); }
@@ -3920,7 +4500,7 @@ function render(now) {
   renderIncoming();
   renderMeter(B);
   setText($('#sSpeed'), '×' + B.speedX().toFixed(2));
-  setText($('#sMult'), '×' + B.multX().toFixed(2).replace(/0$/, ''));
+  setText($('#sMult'), '×' + (B.multX() * B.modeX()).toFixed(2).replace(/0$/, ''));
   setText($('#sPace'), B.pace === 'normal' ? 'Speed' : `${PACES[B.pace].name} speed`);
   const cdl = B.powerCool(), pwb = $('#pwSlot');
   pwb.classList.toggle('cool', cdl > 0);
@@ -3934,8 +4514,13 @@ function render(now) {
   wellBox.style.setProperty('--warn', warn.toFixed(3));
   wellBox.classList.toggle('warn-freeze', into === 'freeze');
   wellBox.classList.toggle('warn-melt', into === 'melt');
-  swChip.hidden = !into;
+  const mc = !into && !game.over && !spec && B.phase !== 'over' ? modeChip(B) : null;
+  swChip.hidden = !into && !mc;
   if (into) { setText(swChip, `${into === 'freeze' ? '❄ Blizzard' : '☀ Thaw'} in ${Math.max(1, Math.ceil(sea.left / 1000))}`); swChip.className = 'sw-chip ' + into; }
+  else if (mc) { setText(swChip, mc[0]); if (swChip.className !== 'sw-chip ' + mc[1]) swChip.className = 'sw-chip ' + mc[1]; }
+  renderModePanel(B);
+  const chs = game.variant === 'chaos' && B.chaos && B.phase !== 'over' && !game.over ? B.chaos.k + (B.chaos.k === 'tilt' ? (B.chaos.dir < 0 ? '-l' : '-r') : '') : '';
+  if ((document.body.dataset.chaos || '') !== chs) document.body.dataset.chaos = chs;
   // When the stack is high, toasts move down off the top rows, where the next piece arrives.
   wellBox.classList.toggle('tense', B.phase !== 'over' && stackHeight(B.grid) >= 7);
   document.body.classList.toggle('rot', game.variant === 'rot');
@@ -3951,12 +4536,56 @@ function render(now) {
   if (versus) renderOpps(spec ? spec.id : null);
 }
 
+// The warning chip on the board's frame: the next forgotten letter, the next chaos rule, Puzzle Box's last 10s.
+function modeChip(B) {
+  const s = ms => Math.max(1, Math.ceil(ms / 1000));
+  if (B.variant === 'amnesia') { const n = B.amnesiaNext(); if (n && n.left <= 5000) return [`🧠 Forgetting ${n.ch.toUpperCase()} in ${s(n.left)}`, 'amn']; }
+  if (B.variant === 'chaos' && !B.chaos) { const left = B.chaosAt - B.elapsed, k = CHAOS[B.chaosNext]; if (k && left <= CHAOS_WARN) return [`🌀 ${k.icon} ${k.name} in ${s(left)}`, 'chaos']; }
+  if (B.timeLimit) { const left = B.timeLimit - B.elapsed; if (left <= 10000) return [`⏱ ${s(left)}`, 'clock']; }
+  return null;
+}
+/* The mode's panel above the board: Amnesia's forgotten letters, Bounty's targets and multiplier,
+   Puzzle Box's lit words, Chaos Carnage's rule (or the next one). Redrawn only when it changes. */
+const mpEl = $('#modePanel');
+function renderModePanel(B) {
+  const v = game.variant, on = !game.tut && ['amnesia', 'bounty', 'puzzle', 'chaos'].includes(v);
+  if (mpEl.hidden === on) mpEl.hidden = !on;
+  if (!on) return;
+  const T = ch => `<i>${ch}</i>`, live = B.phase !== 'over' && !game.over;
+  let html = '';
+  if (v === 'amnesia') {
+    const gone = B.banned, left = [...'abcdefghijklmnopqrstuvwxyz'].filter(c => !gone.includes(c)), nx = live ? B.amnesiaNext() : null;
+    const showLeft = left.length < gone.length;
+    html = `<span class="mp-k">${showLeft ? '🧠 Still falling' : '🧠 Forgotten'}</span><span class="mp-tiles${showLeft ? '' : ' gone'}">${(showLeft ? left : gone).map(T).join('')}</span>`
+      + (nx ? `<span class="mp-next${nx.left <= 5000 ? ' soon' : ''}">Next <i>${nx.ch}</i> ${fmtTime(nx.left)}</span>` : '');
+  } else if (v === 'bounty') {
+    html = `<span class="mp-x" title="Bounty multiplier: up with every bounty you claim, down with every one that gets away">🎯 ${fmtX(B.bountyX)}</span><span class="bties">${B.bounties.map(b => {
+      const f = Math.max(0, (b.until - B.elapsed) / b.life);
+      return `<span class="bty${f < 0.25 ? ' late' : ''}"><span class="bty-w">${b.word.split('').map(T).join('')}</span><b>×${b.val}</b><em style="--f:${f.toFixed(2)}"></em></span>`;
+    }).join('') || '<span class="mp-s">Bounties on the way…</span>'}</span>`;
+  } else if (v === 'puzzle') {
+    const lit = B.litCount(), n = B.run.litWords, x = B.run.crossings;
+    html = `<span class="mp-k">💡 Lit</span><b class="mp-n">${n}</b><span class="mp-s">word${n === 1 ? '' : 's'}</span><b class="mp-n">${lit}</b><span class="mp-s">tile${lit === 1 ? '' : 's'}</span><span class="mp-s">✚ ${x} crossing${x === 1 ? '' : 's'}</span>`;
+  } else if (v === 'chaos') {
+    const c = live ? B.chaos : null;
+    if (c) {
+      const k = CHAOS[c.k], f = Math.max(0, (c.until - B.elapsed) / CHAOS_LEN);
+      html = `<span class="ch-ic">${k.icon}</span><span class="ch-tx"><b><span>${esc(k.name)}${c.k === 'tilt' ? (c.dir < 0 ? ' ←' : ' →') : ''}</span><em>${Math.max(0, Math.ceil((c.until - B.elapsed) / 1000))}s</em></b><small>${esc(k.what)}</small></span><em class="ch-bar" style="--f:${f.toFixed(2)}"></em>`;
+    } else {
+      const k = CHAOS[B.chaosNext], left = B.chaosAt - B.elapsed;
+      html = `<span class="mp-k">🌀 Next rule</span><span class="ch-next${left <= CHAOS_WARN ? ' soon' : ''}">${k ? `${k.icon} ${esc(k.name)}` : '?'}</span>${live ? `<span class="ch-t">${fmtTime(left)}</span>` : ''}`;
+    }
+  }
+  const cls = 'mode-panel mp-' + v + (v === 'chaos' && live && B.chaos ? ' live' : '');
+  if (mpEl.className !== cls) mpEl.className = cls;
+  if (mpEl._h !== html) { mpEl._h = html; mpEl.innerHTML = html; }
+}
 function setMini(el, p, used) {
   el.classList.toggle('used', !!used);
   if (!p) { el.innerHTML = ''; el.style.gridTemplateColumns = ''; return; }
   const w = Math.max(...p.b.map(o => o.x)) + 1;
   el.style.gridTemplateColumns = `repeat(${w}, max-content)`;
-  el.innerHTML = p.b.map(o => `<i class="k-${p.type}${o.orb ? ` orb o-${o.orb}` : o.ice ? ' ice' : skinCls(o.ch)}" style="grid-column:${o.x + 1};grid-row:${o.y + 1}">${o.ch}</i>`).join('');
+  el.innerHTML = p.b.map(o => `<i class="k-${p.type}${o.bomb ? ' orb o-bomb' : o.wild ? ' wild' : o.orb ? ` orb o-${o.orb}` : o.ice ? ' ice' : skinCls(o.ch)}" style="grid-column:${o.x + 1};grid-row:${o.y + 1}">${o.wild ? '★' : o.ch}</i>`).join('');
 }
 const ICON = { h: '—', v: '↓', f: '━' };
 function updatePanels() {
@@ -3988,6 +4617,7 @@ function updatePanels() {
   if (pk) { chip.className = 'powchip o-' + pk; chip.querySelector('.ic').textContent = ORB[pk].icon; }
   const nextAtk = ATTACKS[B.attackIdx % ATTACKS.length];
   document.querySelectorAll('#atkCycle span').forEach(s => s.classList.toggle('on', s.dataset.k === nextAtk));
+  if (!B.hazards && !game.tut) { const hl = $('#hzLine'); setText(hl, game.variant === 'puzzle' ? 'None in Puzzle Box' : 'Off'); hl.classList.remove('soon'); }
   if (!B.hazards && game.tut) { const hl = $('#hzLine'); setText(hl, B.incoming.length ? 'Sent by the lesson' : 'Off in the tutorial'); hl.classList.remove('soon'); }
   if (B.hazards) {
     const left = B.hazardIn(), hl = $('#hzLine');
@@ -4040,10 +4670,13 @@ function setLayout() {
   document.body.classList.toggle('versus', versus);
   document.body.classList.remove('finale', 'spectating', 'winter', 'summer', 'hot');
   document.body.classList.toggle('rot', game.variant === 'rot');
-  $('#sTimeLbl').textContent = versus ? 'Round' : 'Time';
+  document.body.dataset.v = game.variant;
+  document.body.dataset.chaos = '';
+  document.body.classList.toggle('has-mp', ['amnesia', 'bounty', 'puzzle', 'chaos'].includes(game.variant) && !game.tut);
+  $('#sTimeLbl').textContent = versus ? 'Round' : game.me && game.me.timeLimit ? 'Left' : 'Time';
   $('#modePill').textContent = game.mode === 'daily' ? 'Daily ' + game.day : game.mode === 'practice' ? 'Practice'
     : game.mode === 'bot' ? `${game.royale ? 'Battle of ' + (game.bots.length + 1) : 'Vs bot'} · ${BOT_LEVELS[botLevel].label}` : 'Online · ' + net.code.toUpperCase();
-  if (game.variant === 'rot') $('#modePill').textContent += ' · ❄ Rot & Thaw';
+  if (modeTag(game.variant)) $('#modePill').textContent += ' · ' + modeTag(game.variant);
   $('#btnPause').hidden = game.mode === 'online';
   $('#app').classList.toggle('online', game.mode === 'online');
   $('#scoreCard')._s = 0;
@@ -4197,7 +4830,7 @@ function shatter(x, y, kind) {
 }
 // Announcements drop in as a banner just above the board, so they never cover the stack;
 // the board's frame flashes the same colour so you catch it out of the corner of your eye.
-const ANN_COL = { winter: '#bfe9ff', thaw: '#ffb347', wotd: 'var(--bank)', haz: 'var(--bad)', rise: '#b06bff' };
+const ANN_COL = { winter: '#bfe9ff', thaw: '#ffb347', wotd: 'var(--bank)', haz: 'var(--bad)', rise: '#b06bff', amn: '#b8a7ff', bty: '#ffc94a', chaos: '#ff4f9a', mode: '#6fe3c4' };
 function announce(title, sub, kind, extra) {
   const box = $('#announce'), d = document.createElement('div');
   if (kind) d.className = kind;
@@ -4240,6 +4873,8 @@ function countdown() {
     setTimeout(() => { el.hidden = true; }, 500);
     g.counting = false;
     g.roundEndAt = performance.now() + ROUND_MS;
+    // Battles in the newer modes: a one-line reminder of the mode's rule as the round starts.
+    if (MODE_TIP[g.variant]) setTimeout(() => { if (game === g && !g.over) announce(MODES[g.variant].name.toUpperCase(), MODE_TIP[g.variant], 'mode'); }, 650);
   }, 800);
 }
 
@@ -4500,7 +5135,7 @@ function renderQuestTile() {
 function renderModesTile() {
   const el = $('#hbModes'); if (!el) return;
   const cur = playTab === 'daily' ? dailyVariant(todayStr()) : pickMode, way = { daily: "Today's drop", practice: 'Practice', bot: 'Vs bots', online: 'Online' }[playTab] || '';
-  el.innerHTML = `<span class="hm-grid">${MODE_KEYS.slice(0, 4).map(k => `<span class="mt${k === cur ? ' on' : ''}${isSoon(k) ? ' soon' : ''}"><i class="mi" data-i="${k}" aria-hidden="true"></i><b>${esc(MODES[k].name)}</b>${isSoon(k) ? '<span class="mt-soon">Soon</span>' : ''}</span>`).join('')}</span>`
+  el.innerHTML = `<span class="hm-grid n${MODE_KEYS.length}">${MODE_KEYS.map(k => `<span class="mt${k === cur ? ' on' : ''}${isSoon(k) ? ' soon' : ''}"><i class="mi" data-i="${k}" aria-hidden="true"></i><b>${esc(MODES[k].name)}</b>${isSoon(k) ? '<span class="mt-soon">Soon</span>' : ''}</span>`).join('')}</span>`
     + `<span class="ha-s">Now: ${esc(way)} · ${esc(MODES[cur].name)}</span>`;
 }
 function renderHome() {
@@ -4562,6 +5197,13 @@ const rgArt = rows => rows.map(r => r[0] === '>' ? `<div class="rg-cap">${r.slic
   const [ch, cl = ''] = t.split(':');
   return ch === '_' ? '<i class="e"></i>' : `<i class="${cl.replace(/\./g, ' ')}">${ch === '#' ? '' : ch}</i>`;
 }).join('')}</div>`).join('');
+// One line about each newer mode, shown as a battle in it starts.
+const MODE_TIP = {
+  amnesia: 'A letter is forgotten every 30s · forgotten letters on your board score ×1.5',
+  bounty: 'Spell the bounty words · each one claimed raises your multiplier and stones the leader',
+  puzzle: 'Nothing clears · every word lights up and scores · most points at 3:00 wins',
+  chaos: 'A new rule takes over every 35 seconds · watch the panel above your board',
+};
 const ROT_GUIDE = [
   { t: 'Two seasons', art: `<div class="rg-season"><span class="sum">☀ Summer<small>40s · speeds up</small></span><b>⇄</b><span class="win">❄ Blizzard<small>40s · slows down</small></span></div>`,
     p: `<p>The seasons swap every <b>40 seconds</b>. The <b>Season</b> row on the left shows which one you're in and how long is left.</p><p>Summer gets faster the longer it lasts. Blizzards slow everything down. Hazards build up half as fast as in Classic.</p>` },
@@ -4576,14 +5218,50 @@ const ROT_GUIDE = [
   { t: '🔥 Ignite', art: rgArt(['_ f:emb i:emb _ _', '#:burn r:burn.rotb #:burn e n', '>burns joined rot · words ×3']),
     p: `<p>Score a word with a <i class="rotchip"></i> <b>rot tile</b> (every fifth piece has one) to earn <b>Ignite</b>, the only power in this mode, then press <b>F</b>. Your falling block catches fire.</p><p>Where it lands it <b>burns away any rot it touches</b>, along with all the rot and rubble joined to it. It also melts nearby ice, keeps its neighbours free of snow and rot, and any word using its letters scores <b>×3</b>.</p>` },
 ];
-function showRotGuide(done) {
+const AMNESIA_GUIDE = [
+  { t: 'Letters fade away', art: rgArt(['j:gone q:gone x:gone z:gone', '>gone from the start', 'v:gone k:gone y:next _', '>one more every 30s']),
+    p: `<p><b>J, Q, X and Z</b> are forgotten from the start. Then every <b>30 seconds</b> another letter is forgotten, and no more of it will fall.</p><p>Uncommon letters go first and common ones later. <b>A</b> and <b>E</b> are never forgotten. The panel above your board shows what's gone and counts down to the next one.</p>` },
+  { t: 'Hold on to them', art: rgArt(['_ _ w:mem _ _', '>forgotten letters glow', 'w:mem.bank o:bank r:bank d:bank _', '>a word using one scores ×1.5']),
+    p: `<p>Letters already on your board stay put. A forgotten letter <b>glows purple</b>, and any word that uses it scores <b>×1.5</b>.</p><p>So don't rush to use your last S or T. A word built around it later is worth more.</p>` },
+  { t: 'Fewer letters, same game', art: rgArt(['c:bank a:bank t:bank _ _', '_ r:dn _ _ _', 'f:bank e:bank w:bank _ _', '>cash-ins · powers · hazards']),
+    p: `<p>Everything else is Classic: bank words across, cash them in down, use your powers and dodge the hazards.</p><p>The longer you last, the fewer letters you get, so short words matter more as the game goes on.</p>` },
+];
+const BOUNTY_GUIDE = [
+  { t: 'Bounty words', art: rgArt(['s:tg t:tg a:tg r:tg', '>STAR ×3 · 45s left', 'c:tg a:tg t:tg _', '>CAT ×2']),
+    p: `<p>Up to <b>three bounty words</b> show above your board, each with a timer. A new one arrives a few seconds after one goes.</p><p>Spell one to claim it: across, down, or inside a longer word (STARS claims STAR).</p>` },
+  { t: 'Build your multiplier', art: `<div class="rg-season col"><span class="bt1">🎯 ×1<small>to start</small></span><b>claim CAT · +0.5</b><span class="bt2">🎯 ×1.5</span><b>claim STARE · +1</b><span class="bt3">🎯 ×2.5</span></div>`,
+    p: `<p>The claiming word scores <b>×2</b> (3 letters), <b>×3</b> (4) or <b>×4</b> (5).</p><p>Every claim also raises your <b>bounty multiplier</b> by 0.5 (or 1 for five letters), and it counts on every point you score after. Let a bounty run out and it drops by 0.5. Keep claiming and it gets huge.</p>` },
+  { t: 'Lucky letters', art: rgArt(['s:tg t:tg a:tg r:tg', '>bounty: STAR', '_ s:fall t:fall _', '>next piece: S T']),
+    p: `<p>Pieces often come <b>straight out of a bounty word</b>, so watch Next for the letters you need.</p><p>In a battle everyone gets the same bounties, and claiming one sends <b>stones</b> to the leader.</p>` },
+];
+const PUZZLE_GUIDE = [
+  { t: 'Fill the box', art: rgArt(['s:lit k:lit y:lit _ _', 'c:lit a:lit t:lit _ _', 'w:lit o:lit r:lit d:lit _', '>words light up and stay']),
+    p: `<p>You have <b>3 minutes</b>. Tiles fall slowly and never speed up, and <b>nothing ever clears</b>: every word you make lights up, scores, and stays put.</p><p>The game ends when the clock runs out or no tile can be placed.</p>` },
+  { t: 'Across and down', art: rgArt(['_ c:lit _ _ _', 'h:lit a:lit.x t:lit _ _', '_ r:lit _ _ _', '>HAT and CAR cross · +50%']),
+    p: `<p>Words count <b>across and down</b>. A new word that crosses one already lit scores <b>+50% for each crossing</b>, so build it like a crossword.</p><p>Longer words score more: 30, 60 and 120 for 3 to 5 letters, 300 for six.</p>` },
+  { t: 'No hazards', art: rgArt(['_ _ _ _ _', 'r e s:pw.clr t _', '>⌫ Clear · 🔀 Scramble', 'm:pw.scr a p _ _']),
+    p: `<p>There are no hazards. Powers still work: <b>Clear</b> wipes the bottom row to make room, and <b>Scramble</b> shuffles loose letters (lit words stay put).</p><p>In a battle there are no attacks: everyone gets the same tiles, and the best box at 3:00 wins.</p>` },
+];
+const CHAOS_GUIDE = [
+  { t: 'The rules change', art: `<div class="rg-season"><span class="calm">Normal<small>10s</small></span><b>⇄</b><span class="chaos">🌀 Chaos<small>25s</small></span></div>`,
+    p: `<p>Every <b>35 seconds</b> a new rule takes over for <b>25 seconds</b>. The panel above your board names it and counts it down, and the board warns you 5 seconds before the next one.</p><p>Hazards build up half as fast as in Classic.</p>` },
+  { t: 'Board shakers', art: rgArt(['_ 💣:bomb _ _ _', '>💣 blasts the tiles around it', 't:bank a:bank c:bank _ _', '>↩ TAC counts as CAT']),
+    p: `<p><b>⇆ Tilt:</b> after every drop the tiles slide to one side, then fall.<br><b>💣 Bombs:</b> every other piece blasts the tiles around where it lands.<br><b>↩ Backwards:</b> words count read right to left (and bottom to top) too.<br><b>🪨 Rockslide:</b> two stones tumble in every 6 seconds.</p>` },
+  { t: 'Piece twisters', art: rgArt(['★:wild a t _ _', '>★ becomes the best letter', 'g:giant i:giant a:giant n:giant _', '>🧱 Giants: big pieces']),
+    p: `<p><b>★ Wildcards:</b> every other piece has a ★ that turns into whichever letter makes the best word where it lands.<br><b>🧱 Giants:</b> every piece has three or four letters.<br><b>🏜 Vowel drought:</b> no A, E, I, O or U fall.<br><b>⚡ Hyper:</b> drops fall twice as fast, words score ×2.<br><b>⭐ Jackpot:</b> every word scores ×3.</p>` },
+];
+// Every mode with a guide. The first time you play one, its guide opens first.
+const MODE_GUIDES = { rot: ROT_GUIDE, amnesia: AMNESIA_GUIDE, bounty: BOUNTY_GUIDE, puzzle: PUZZLE_GUIDE, chaos: CHAOS_GUIDE };
+const showRotGuide = done => showModeGuide('rot', done);
+function showModeGuide(mk, done) {
+  const G = MODE_GUIDES[mk] || ROT_GUIDE, M = MODES[mk] || MODES.rot;
   let i = 0;
-  const n = ROT_GUIDE.length;
+  const n = G.length;
   const draw = () => {
-    const g = ROT_GUIDE[i];
-    openModal(`<h2>❄ Rot &amp; Thaw <span class="rg-n">${i + 1} / ${n}</span></h2>
+    const g = G[i];
+    openModal(`<h2>${M.icon} ${esc(M.name)} <span class="rg-n">${i + 1} / ${n}</span></h2>
       <div class="rg-page"><div class="rg-art" aria-hidden="true">${g.art}</div><div class="rg-txt"><h3>${g.t}</h3>${g.p}</div></div>
-      <div class="rg-steps">${ROT_GUIDE.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('')}</div>
+      <div class="rg-steps">${G.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('')}</div>
       <div class="btnrow"><button class="btn ghostb" id="rgBack" type="button"${i ? '' : ' disabled'}>Back</button><button class="btn" id="rgNext" type="button">${i < n - 1 ? 'Next' : 'Got it'}</button></div>`, 'rguide');
     $('#rgBack').onclick = () => { i--; draw(); };
     $('#rgNext').onclick = () => { if (i < n - 1) { i++; draw(); } else (done || closeModal)(); };
@@ -4622,6 +5300,10 @@ const HOWTO_HTML = `
       <li><b>⭐ Word of the day:</b> every game shows a six-letter bonus word above the board (Today's drop shares one word for everyone; practice and battles roll a random one). Spell it across (it fills the whole row, so it clears too) or down and your <b>final score doubles</b>.</li>
       <li><b>History</b> on the menu keeps your last 50 games with their stats (Runs) and every word you've ever scored (Wordstistics).</li>
       <li><b>Unlock themes</b> by winning battles, keeping a daily streak and setting big scores.</li>
+      <li><b>🧠 Amnesia:</b> J, Q, X and Z never fall, and every 30 seconds another letter is forgotten (uncommon ones first; A and E never). Forgotten letters already on your board glow purple, and words using them score <b>×1.5</b>.</li>
+      <li><b>🎯 Bounty:</b> up to three bounty words show above the board, each with a 45s timer. Spell one (it can sit inside a longer word) to claim it: that word scores ×2 to ×4, and your <b>bounty multiplier</b> on every point goes up by 0.5 (1 for five letters). A bounty that gets away takes 0.5 off. In battles, claiming one sends stones to the leader.</li>
+      <li><b>🧩 Puzzle Box:</b> 3 minutes, slow tiles, no hazards and nothing clears. Every new word across or down lights up, scores and stays; crossing a lit word adds +50% per crossing. It ends when the clock runs out or the box is full. Battles have no attacks: same tiles, best box wins.</li>
+      <li><b>🌀 Chaos Carnage:</b> every 35 seconds a rule takes over for 25: Tilt, Bombs, Backwards, Wildcards, Giants, Vowel drought, Hyper, Jackpot or Rockslide. The panel above the board shows it, and a chip warns you 5 seconds ahead. Hazards build half as fast.</li>
       <li><b>❄ Rot &amp; Thaw mode</b> (pick it on the menu for Practice, Vs bots or Online; Today's drop sometimes rolls it): the seasons turn every 40s. <b>Blizzards</b> slow the drops, put a fragile <b>ice letter</b> in every piece (it holds one letter, a second shatters it) and snow over the letters already on the board. Ice counts at the <b>thaw</b>, where its words score <b>×1.5</b>. <b>Summer</b> speeds up and <b>rots</b> banked words into rubble, fastest next to the burning red <i class="rotchip"></i> <b>rot tiles</b>. Score a word with a rot tile to earn 🔥 <b>Ignite</b>, the only power: the ignited block burns away rot it touches, melts ice, and its words score <b>×3</b>. The <b>Tutorial</b> button on the menu walks you through it.</li>
       <li><b>Shop:</b> pick up letter skins (free for now) and choose a look for each letter in Inventory. Words you line up still turn gold and power-up letters still glow, so the board stays easy to read.</li>
       <li><b>Playing solo, a hazard joins the meter every 10 blocks</b>, cycling through the same three: a stretched piece, stones, then 12s of fast drops. <b>They ramp up:</b> from block 40 they come every 7 blocks with 3 stones, from 80 every 5, and from 120 every 4 with 4 stones. The Hazards panel counts down to the next one.</li>
@@ -5238,7 +5920,7 @@ function acctSignOut() { return acct.sb.auth.signOut().catch(() => {}); }
    Needs supabase/player-sync.sql; until it has run, everything stays on the device as before. */
 var syncSt = null;
 const SYNC_KEYS = ['wordfall-quests', 'wordfall-level', 'wordfall-best', 'wordfall-modebest', 'wordfall-stats', 'wordfall-wordstats', 'wordfall-skins-owned',
-  'wordfall-letter-skins', 'wordfall-icons-owned', 'wordfall-skin', 'wordfall-tut', 'wordfall-rotguide'];
+  'wordfall-letter-skins', 'wordfall-icons-owned', 'wordfall-skin', 'wordfall-tut', 'wordfall-rotguide', 'wordfall-guides'];
 const isObj = v => !!v && typeof v === 'object' && !Array.isArray(v);
 const jsonOr = (t, d) => { try { const v = JSON.parse(t); return v == null ? d : v; } catch { return d; } };
 const syncMissing = e => !!e && (['42P01', 'PGRST205', 'PGRST204', 'PGRST202'].includes(e.code) || /does not exist|could not find the table|schema cache/i.test(e.message || ''));
@@ -5844,6 +6526,15 @@ function renderModeBest() {
   $('#pcBestV').innerHTML = b ? `${(+b.s || 0).toLocaleString()} ${paceTag(b.p)}` : 'No runs yet';
 }
 const getRuns = () => { const r = loadJSON(RUNS_KEY, []); return Array.isArray(r) ? r.filter(x => x && typeof x === 'object') : []; };
+// A run's stats for its mode (saved with the run, shown in History).
+function modeStats(B, v) {
+  const r = B.run;
+  if (v === 'amnesia') return { forgot: r.forgot, memWords: r.memWords };
+  if (v === 'bounty') return { bounties: r.bounties, bountyMax: r.bountyMax, bountyMissed: r.bountyMissed };
+  if (v === 'puzzle') return { litWords: r.litWords, crossings: r.crossings, litTiles: B.litCount(), timeUp: !!B.timeUp };
+  if (v === 'chaos') return { events: r.events, blasted: r.blasted, wilds: r.wilds, tilts: r.tilts };
+  return {};
+}
 // Save the run you just played (once), and add its words to your all-time word stats.
 function recordRun(B, extra = {}) {
   if (!game || !B) return null;
@@ -5856,7 +6547,7 @@ function recordRun(B, extra = {}) {
     words: B.words, placed: B.placed, topStack: B.topStack, longest: B.longest, wotd: B.wotd, wotdHit: B.wotdHit,
     len: r.len, chains: r.chains, maxChain: r.maxChain, vert: r.vert, full: r.full, iceWords: r.iceWords, fireWords: r.fireWords,
     iceThawed: r.iceThawed, iceShattered: r.iceShattered, iceMelted: r.iceMelted, rotted: r.rotted, rottedWords: r.rottedWords,
-    burned: r.burned, powers: r.powers, list: r.list.slice(0, 400),
+    burned: r.burned, powers: r.powers, list: r.list.slice(0, 400), ...modeStats(B, game.variant),
     ...(game.seed != null ? { seed: game.seed >>> 0 } : {}), ...(game.seedWords ? { sw: game.seedWords } : {}), ...(game.mode === 'daily' ? { day: game.day } : {}), ...extra,
   };
   game.recorded = entry;
@@ -6137,7 +6828,7 @@ function runBody(r, opt = {}) {
   const fav = favWord(r.list), pw = r.powers || {}, used = POWERS.filter(k => +pw[k] > 0);
   const kind = k => k === 'v' ? 'v' : k === 'f' ? 'f' : 'h';
   const chart = tlHTML(r);
-  return `<div class="rb${chart ? ' has-tl' : ''}"><div class="rb-when"><p>${fmtWhen(r.at)}${r.variant === 'rot' ? ' · ❄ Rot &amp; Thaw' : ''}${PACES[r.pace] ? ` · ${PACES[r.pace].name} speed` : ''} · ${fmtUp(+r.time || 0)}${r.place ? ` · placed #${+r.place} of ${+r.players}` : ''}${r.quit ? ' · left early' : ''}</p>${opt.seed === false ? '' : seedBtn(r)}</div>
+  return `<div class="rb${chart ? ' has-tl' : ''}"><div class="rb-when"><p>${fmtWhen(r.at)}${modeTag(r.variant) ? ' · ' + esc(modeTag(r.variant)) : ''}${PACES[r.pace] ? ` · ${PACES[r.pace].name} speed` : ''} · ${fmtUp(+r.time || 0)}${r.place ? ` · placed #${+r.place} of ${+r.players}` : ''}${r.quit ? ' · left early' : ''}</p>${opt.seed === false ? '' : seedBtn(r)}</div>
     <div class="rb-top">${chart}
     <div class="rs-grid rb-tiles">
       ${rsTile('Words', +r.words || 0, `${+r.vert || 0} down · ${+r.full || 0} full row${+r.full === 1 ? '' : 's'}`)}
@@ -6156,7 +6847,15 @@ function runBody(r, opt = {}) {
     ${r.variant === 'rot' ? `<h3 class="rs-h">❄ Rot &amp; Thaw</h3><div class="rs-grid">
       ${rsTile('Ice words', +r.iceWords || 0, '×1.5 each')}${rsTile('Ignited words', +r.fireWords || 0, '×3 each')}
       ${rsTile('Ice thawed', +r.iceThawed || 0)}${rsTile('Ice melted', +r.iceMelted || 0, 'by 🔥')}${rsTile('Ice shattered', +r.iceShattered || 0)}
-      ${rsTile('Rotted', +r.rotted || 0, `tiles · ${+r.rottedWords || 0} word${+r.rottedWords === 1 ? '' : 's'}`)}${rsTile('Rot burned', +r.burned || 0, 'tiles')}</div>` : ''}</div>`;
+      ${rsTile('Rotted', +r.rotted || 0, `tiles · ${+r.rottedWords || 0} word${+r.rottedWords === 1 ? '' : 's'}`)}${rsTile('Rot burned', +r.burned || 0, 'tiles')}</div>` : ''}
+    ${r.variant === 'amnesia' ? `<h3 class="rs-h">🧠 Amnesia</h3><div class="rs-grid">
+      ${rsTile('Letters forgotten', 4 + (+r.forgot || 0), 'J Q X Z, then one every 30s')}${rsTile('Memory words', +r.memWords || 0, `×${MEM_MULT} each`)}</div>` : ''}
+    ${r.variant === 'bounty' ? `<h3 class="rs-h">🎯 Bounty</h3><div class="rs-grid">
+      ${rsTile('Bounties claimed', +r.bounties || 0)}${rsTile('Top multiplier', fmtX(+r.bountyMax || 1))}${rsTile('Got away', +r.bountyMissed || 0)}</div>` : ''}
+    ${r.variant === 'puzzle' ? `<h3 class="rs-h">🧩 Puzzle Box</h3><div class="rs-grid">
+      ${rsTile('Words lit', +r.litWords || 0)}${rsTile('Crossings', +r.crossings || 0, '+50% each')}${rsTile('Tiles lit', +r.litTiles || 0, 'at the end')}${rsTile('Finish', r.timeUp ? "Time's up" : 'Box full')}</div>` : ''}
+    ${r.variant === 'chaos' ? `<h3 class="rs-h">🌀 Chaos Carnage</h3><div class="rs-grid">
+      ${rsTile('Rules faced', +r.events || 0)}${rsTile('Tiles blasted', +r.blasted || 0, 'by 💣 bombs')}${rsTile('Wildcards', +r.wilds || 0)}${rsTile('Tilts', +r.tilts || 0)}</div>` : ''}</div>`;
 }
 // Copy-seed buttons, wherever they are.
 async function copyText(t) {
@@ -6586,7 +7285,7 @@ function renderHistPage() {
     histSel = Math.min(histSel, Math.max(0, runs.length - 1));
     pgBody.innerHTML = top + `<div class="pg-card hp-chart"><h3 class="rs-h">Recent scores</h3>${trendSVG(runs)}</div>` + (runs.length ? `<div class="pg-split hp-split">
       <div class="pg-card"><h3 class="rs-h">Runs, newest first</h3><div class="runlist">${runs.map((r, i) => `<button class="runrow${i === histSel ? ' on' : ''}" type="button" data-i="${i}" aria-pressed="${i === histSel}">
-        <span class="rr-m"><b>${esc(MODE_NAME(r) + tlVs(r))}${r.variant === 'rot' ? ' · ❄' : ''}${paceTag(r.pace)}</b><small>${fmtWhen(r.at)}${r.quit ? ' · left early' : ''}</small></span>
+        <span class="rr-m"><b>${esc(MODE_NAME(r) + tlVs(r))}${MODES[r.variant] && r.variant !== 'classic' ? ' · ' + MODES[r.variant].icon : ''}${paceTag(r.pace)}</b><small>${fmtWhen(r.at)}${r.quit ? ' · left early' : ''}</small></span>
         <span class="rr-w">${tlSpark(r)}${+r.words || 0} word${+r.words === 1 ? '' : 's'}${r.wotdHit ? ' · ⭐' : ''}${r.place ? ' ' + tlResult(r) : ''}</span>
         <b class="rr-s">${n0(r.score)}</b></button>`).join('')}</div></div>
       <div class="pg-card hp-detail" id="hpDetail"></div></div>` : `<div class="pg-card"><p>No runs yet. Play a game and it will show up here.</p></div>`);
@@ -6897,7 +7596,8 @@ function showSettings() { openPage('settings'); }
 
 /* ---------- Guide page ---------- */
 let guideCh = 'start';
-const GUIDE_CH = [['start', 'Getting started'], ['scoring', 'Scoring and keys'], ['rot', '❄ Rot & Thaw'], ['rules', 'Full rules']];
+const GUIDE_CH = [['start', 'Getting started'], ['scoring', 'Scoring and keys'], ['rot', '❄ Rot & Thaw'], ['amnesia', '🧠 Amnesia'], ['bounty', '🎯 Bounty'],
+  ['puzzle', '🧩 Puzzle Box'], ['chaos', '🌀 Chaos Carnage'], ['rules', 'Full rules']];
 const SCORING_HTML = `<dl class="rules">
   <dt><i></i><i></i><i></i></dt><dd>3 across, banked</dd><dd class="p">30</dd>
   <dt><i></i><i></i><i></i><i></i></dt><dd>4 across, banked</dd><dd class="p">60</dd>
@@ -6910,7 +7610,7 @@ function renderGuidePage() {
   setPgHead('Guide', 'Everything about Wordfall, one chapter at a time.');
   const steps = list => list.map((g, i) => `<article class="gd-step"><div class="rg-art" aria-hidden="true">${g.art}</div><div class="rg-txt"><span class="tc-k">${i + 1} of ${list.length}</span><h3>${g.t}</h3>${g.p}</div></article>`).join('');
   const keysFor = a => Object.keys(KEYMAP).filter(k => KEYMAP[k] === a).map(keyName).join(' / ');
-  const body = guideCh === 'start' ? steps(TUTORIAL) : guideCh === 'rot' ? steps(ROT_GUIDE)
+  const body = guideCh === 'start' ? steps(TUTORIAL) : MODE_GUIDES[guideCh] ? steps(MODE_GUIDES[guideCh])
     : guideCh === 'rules' ? `<div class="pg-card gd-rules">${HOWTO_HTML}</div>`
     : `<div class="gd-two"><div class="pg-card"><h3 class="rs-h">Scoring</h3>${SCORING_HTML}<p class="set-note">Word points go up ×0.2 every 10 blocks (up to ×3), and the ⭐ bonus word doubles your final score.</p></div>
        <div class="pg-card"><h3 class="rs-h">Your keys</h3><dl class="pz-keys">${KEY_ACTS.map(([a, n]) => `<dt>${n}</dt><dd>${keysFor(a)}</dd>`).join('')}<dt>Pause</dt><dd>P / Esc</dd><dt>Music</dt><dd>M</dd></dl>
@@ -6942,7 +7642,7 @@ function pauseGame() {
   openModal(`<h2>Paused</h2>
     <div class="pz-sum"><span><b>${B.score.toLocaleString()}</b> points</span><span><b>${B.words}</b> word${B.words === 1 ? '' : 's'}</span><span>Best <b>${Math.max(game.best || 0, B.score).toLocaleString()}</b></span><span>Top stack <b>${B.topStack ? '×' + B.topStack : '–'}</b></span></div>
     ${recent ? `<div class="pz-words"><h3 class="label">Live words</h3><div class="log">${recent}</div></div>` : ''}
-    <div class="btnrow"><button class="btn" id="mResume" type="button">Resume</button><button class="btn ghostb" id="mMenu" type="button">Menu</button><button class="btn ghostb" id="mRestart" type="button">Restart</button><button class="btn ghostb" id="mMusic" type="button">${music.on ? '♪ Music on' : '♪ Music off'}</button>${game.variant === 'rot' ? '<button class="btn ghostb" id="mGuide" type="button">❄ Guide</button>' : ''}</div>
+    <div class="btnrow"><button class="btn" id="mResume" type="button">Resume</button><button class="btn ghostb" id="mMenu" type="button">Menu</button><button class="btn ghostb" id="mRestart" type="button">Restart</button><button class="btn ghostb" id="mMusic" type="button">${music.on ? '♪ Music on' : '♪ Music off'}</button>${MODE_GUIDES[game.variant] ? `<button class="btn ghostb" id="mGuide" type="button">${MODES[game.variant].icon} Guide</button>` : ''}</div>
     <div class="pz-ref">
       <div><h3 class="label">Scoring</h3><dl class="rules">
         <dt><i></i><i></i><i></i></dt><dd>3 across, banked</dd><dd class="p">30</dd>
@@ -6955,7 +7655,7 @@ function pauseGame() {
     </div>`, 'wide');
   $('#mMusic').onclick = () => { toggleMusic(); setText($('#mMusic'), music.on ? '♪ Music on' : '♪ Music off'); };
   $('#mResume').onclick = resumeGame; $('#mResume').focus();
-  if ($('#mGuide')) $('#mGuide').onclick = () => showRotGuide(() => { paused = false; pauseGame(); });
+  if ($('#mGuide')) $('#mGuide').onclick = () => showModeGuide(game.variant, () => { paused = false; pauseGame(); });
   $('#mMenu').onclick = () => confirmQuit();
   $('#mRestart').onclick = () => game.mode === 'bot' ? startBot(botLevel, game.bots.length) : startSolo(game.mode);
 }
@@ -7000,9 +7700,9 @@ function copyBtn(btn, txt, pre) {
 function showSoloEnd(newBest, unlocked = []) {
   const B = game.me;
   showEnd({
-    kind: 'solo', mode: game.mode, rot: game.variant === 'rot', rec: game.recorded, score: B.score, words: B.words, time: B.elapsed,
+    kind: 'solo', mode: game.mode, rot: game.variant === 'rot', v: game.variant, rec: game.recorded, score: B.score, words: B.words, time: B.elapsed,
     best: game.best, newBest, unlocked, quests: questNews(), wotd: B.wotd, wotdHit: B.wotdHit, wotdLbl: wotdLabel(), share: soloShareText(),
-    head: newBest ? 'New best!' : B.placed ? 'Stacked out' : 'Game over',
+    head: newBest ? 'New best!' : game.variant === 'puzzle' ? (B.timeUp ? "Time's up" : 'Box full') : B.placed ? 'Stacked out' : 'Game over',
   });
 }
 function showBattleEnd(ranked, place, reason, unlocked) {
@@ -7012,7 +7712,7 @@ function showBattleEnd(ranked, place, reason, unlocked) {
   const why = reason === 'time' ? 'Time\'s up. Highest score wins.' : reason === 'skip' ? 'Ended early. Everyone is ranked by their score so far.'
     : reason === 'last' ? 'The last player still going passed everyone else\'s score.' : 'Everyone topped out. Highest score wins.';
   showEnd({
-    kind: 'battle', mode: game.mode, royale: !!game.royale, online, rot: game.variant === 'rot', rec: game.recorded, score: me.score, words: me.words,
+    kind: 'battle', mode: game.mode, royale: !!game.royale, online, rot: game.variant === 'rot', v: game.variant, rec: game.recorded, score: me.score, words: me.words,
     time: me.elapsed, best: game.best, newBest: false, unlocked, quests: questNews(), head, why, place, n, win: place === 1 && !draw,
     stand: ranked.map(r => ({ name: r.name, score: r.score, alive: r.alive, me: r.kind === 'me', bot: r.kind === 'bot' || r.kind === 'rbot' })),
     share: `Wordfall ${online ? 'online' : game.royale ? 'Battle of 8' : 'duel'} · #${place}/${n} · ${me.score.toLocaleString()} pts`,
@@ -7165,7 +7865,7 @@ function renderEnd() {
     : c.online ? '<button class="btn main" type="button" data-a="lobby">Back to room</button>'
     : '<button class="btn main" type="button" data-a="again">Rematch</button>';
   endEl.innerHTML = `<div class="es-in">
-    <header class="es-top"><span class="es-k">${endModeName(c)}${c.rot ? ' · ❄ Rot &amp; Thaw' : ''}</span>
+    <header class="es-top"><span class="es-k">${endModeName(c)}${modeTag(c.v) ? ' · ' + esc(modeTag(c.v)) : c.rot ? ' · ❄ Rot &amp; Thaw' : ''}</span>
       <nav class="seg es-tabs" aria-label="Results">${tabs.map(([id, nm]) => `<button type="button" data-t="${id}" aria-pressed="${id === endTab}">${nm}</button>`).join('')}</nav></header>
     <div class="es-main"><section class="es-hero">${endHero(c)}</section><section class="es-body" id="esBody"></section></div>
     <footer class="es-acts">${again}<button class="btn ghostb" type="button" data-a="copy">Copy result</button><button class="btn ghostb" type="button" data-a="menu">Menu</button></footer>
@@ -7196,7 +7896,7 @@ function renderEndBody() {
     const isThis = r => c.rec && r.at === c.rec.at;
     el.innerHTML = `<div class="pg-card hp-chart"><h3 class="rs-h">Recent scores</h3>${trendSVG(runs)}</div>
       <div class="pg-split hp-split"><div class="pg-card"><h3 class="rs-h">Runs, newest first</h3><div class="runlist">${runs.map((r, i) => `<button class="runrow${i === endHistSel ? ' on' : ''}" type="button" data-i="${i}" aria-pressed="${i === endHistSel}">
-        <span class="rr-m"><b>${isThis(r) ? 'This run · ' : ''}${esc(MODE_NAME(r) + tlVs(r))}${r.variant === 'rot' ? ' · ❄' : ''}${paceTag(r.pace)}</b><small>${fmtWhen(r.at)}${r.quit ? ' · left early' : ''}</small></span>
+        <span class="rr-m"><b>${isThis(r) ? 'This run · ' : ''}${esc(MODE_NAME(r) + tlVs(r))}${MODES[r.variant] && r.variant !== 'classic' ? ' · ' + MODES[r.variant].icon : ''}${paceTag(r.pace)}</b><small>${fmtWhen(r.at)}${r.quit ? ' · left early' : ''}</small></span>
         <span class="rr-w">${tlSpark(r)}${+r.words || 0} word${+r.words === 1 ? '' : 's'}${r.wotdHit ? ' · ⭐' : ''}${r.place ? ' ' + tlResult(r) : ''}</span>
         <b class="rr-s">${n0(r.score)}</b></button>`).join('')}</div></div>
       <div class="pg-card hp-detail" id="esDetail"></div></div>`;
@@ -7450,7 +8150,7 @@ function onNetStart(msg) {
   const nv = VARIANTS[d.variant] ? d.variant : 'classic';
   hideEnd(); game = { mode: 'online', variant: nv, me: null, bots: [], over: false, outAt: {}, finale: false, seedWords: normSeed(typeof d.sw === 'string' ? d.sw : ''), seed, pace: paceOf(d.pace) };
   game.wotd = pickWotd(hashStr('wordfall-wotd:' + seed));
-  game.me = new Board({ seed, orbKinds: ['clear', 'scramble', 'stones', 'stretch'], hooks: { ...myHooks(), changed: () => { updatePanels(); netPush(); } }, hazards: 'versus', variant: nv, wotd: game.wotd, pace: game.pace });
+  game.me = new Board({ seed, ...modeOpts(nv, true), hooks: { ...myHooks(), changed: () => { updatePanels(); netPush(); } }, variant: nv, wotd: game.wotd, pace: game.pace, mseed: seed });
   if (isHost()) game.bots = bots.map((b, i) => makeBot(b.id, b.name, b.level, seed ^ Math.imul(0x85ebca6b, i + 1)));
   game.best = +(store.get('wordfall-best') || 0);
   paused = false;
@@ -8121,6 +8821,6 @@ showMenu(false);
 requestAnimationFrame(frame);
 
 /* Test hook for automated checks (harmless in play). */
-window.__wordfall = { get game() { return game; }, endSting, tlSample, tlHit, playStep, get net() { return net; }, joinRoom, leaveRoom, get paused() { return paused; }, set paused(v) { paused = !!v; }, tutTick, startTutorialNow, musicTick, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store, prog, setLevel, showLevelPick, tutToRun, questsAfterRun, mergeKey, syncStart, get syncSt() { return syncSt; }, get QUESTS() { return QUESTS; }, get pace() { return pace; }, chat, chatInit, renderChat, chatOpen };
+window.__wordfall = { get game() { return game; }, endSting, tlSample, tlHit, playStep, get net() { return net; }, joinRoom, leaveRoom, get paused() { return paused; }, set paused(v) { paused = !!v; }, tutTick, startTutorialNow, musicTick, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store, prog, setLevel, showLevelPick, tutToRun, questsAfterRun, mergeKey, syncStart, get syncSt() { return syncSt; }, get QUESTS() { return QUESTS; }, get pace() { return pace; }, chat, chatInit, renderChat, chatOpen, onNetStart };
 })();
 </script>
