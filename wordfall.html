@@ -1645,6 +1645,166 @@ div.hub-t{cursor:default}
 .acct-f input{width:100%;box-sizing:border-box}
 @media (max-width:640px){.acct-f{grid-template-columns:minmax(0,1fr)}}
 .set-note.warn{color:var(--bank)}
+/* HOME-A: player bar, Season banner, play card, four tiles and a leaderboard column. */
+.title .t-wrap.home.ha{max-width:1320px;grid-template-columns:340px minmax(0,1fr) 290px;grid-template-areas:"bar bar bar" "top top top" "card hub lbr";gap:14px;align-items:stretch}
+.t-bar{grid-area:bar;display:flex;align-items:center;gap:10px;min-width:0;padding:8px 12px 8px 8px;border-radius:14px;background:color-mix(in srgb,var(--panel) 88%,transparent);border:1px solid var(--line2);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.hb-me{display:flex;align-items:center;gap:4px;min-width:0;margin-right:auto;padding:3px;border-radius:12px;background:var(--well);border:1px solid color-mix(in srgb,var(--o-clear) 45%,var(--line2))}
+.hb-me .t-me{border:0;background:none;height:40px;max-width:200px}
+.hb-me .t-me .pi{--ps:32px}
+.hb-lv{all:unset;box-sizing:border-box;display:grid;grid-template-columns:auto 110px;align-items:center;gap:3px 10px;padding:4px 12px 4px 4px;cursor:pointer;border-radius:9px}
+.hb-lv:hover,.hb-lv:focus-visible{background:#ffffff0d}
+.hb-lvk{grid-row:1/span 2;font:700 10.5px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--bank)}
+.hb-bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.hb-bar i{display:block;height:100%;background:var(--o-clear);border-radius:3px}
+.hb-q{font:600 10.5px var(--f-mono);color:var(--muted);white-space:nowrap}
+.hb-pill{display:flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-radius:999px;background:var(--well);border:1px solid var(--line2);font:700 14px var(--f-ui);white-space:nowrap}
+.hb-pill i{font-style:normal}
+.hb-pill .hb-x{color:var(--muted);font-weight:600}
+.hb-pill b{font-variant-numeric:tabular-nums}
+.ha .t-top{padding:10px 16px}
+.tt-season{font:400 22px/1.1 var(--f-display);color:#9fdcff;text-transform:uppercase;letter-spacing:.03em;text-shadow:0 0 14px #9fdcff55}
+.ha .t-top .tt-k{color:var(--accent)}
+.ha .tt-right .t-icb.sq{width:42px;height:42px;font-size:18px}
+.ha .t-icb.t-guide{height:42px}
+/* Play card: one column, the mode's art in the middle, no descriptions (they're in Change mode). */
+.ha .t-card.play-card{min-height:0;padding:18px;gap:12px}
+.title .ha #playCard:not(.rotframe){padding-bottom:18px}
+.ha .pc-stack{flex:1;grid-template-rows:minmax(0,1fr)}
+.ha .pc-stack>.pc-pane,.ha .pc-stack>.pc-pane[data-p="daily"]{grid-row:1}
+.ha .pc-pane.pd{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch;gap:12px}
+.ha .pc-pane.pd[data-p="daily"]{grid-template-rows:auto minmax(0,1fr)}
+.ha .pc-pane.pd[data-p="daily"] .pd-info{display:contents}
+.ha .pc-pane.pd[data-p="daily"] .pd-stats{order:3}
+.ha .pd-info{gap:12px}
+.ha .pd-art{min-width:0;min-height:190px}
+.ha .pd-art .ha-board:not(.big){transform:scale(1.25)}
+.ha .play-card .pm-vdesc,.ha .play-card .pm-desc:not(#tutDesc){display:none}
+.ha .pm-name{font-size:min(30px,calc(100cqi / var(--len,8) * 1.5));white-space:nowrap}
+.ha .pm-ic,.ha .pm-head .t-ic{width:48px;height:48px;font-size:24px}
+.ha .pd-wotd{gap:10px;padding:18px 12px}
+.ha .pd-wotd .tc-wotd{justify-items:center;text-align:center;gap:10px}
+.ha .pd-wotd .wotd{justify-content:center}
+.ha .pd-wotd .wotd i{width:38px;font-size:19px}
+.ha .pd-stats{gap:8px}.ha .pd-stats>div{padding:8px 10px}.ha .pd-stats b{font-size:19px}
+.pc-me{margin:0;text-align:center;font:600 13.5px var(--f-mono);color:var(--muted)}
+.pc-me:empty,.play-card[data-m="daily"] .pc-me,.play-card[data-m="tut"] .pc-me{display:none}
+.ha .pc-row{grid-template-columns:minmax(0,1fr)}
+.ha .pc-row>.pc-guide{display:none}
+.ha .pace-step{height:46px}
+.ha .ps-actions{grid-template-columns:minmax(0,1fr)}
+.ha .ps-actions .t-play{padding:20px 12px;font-size:25px}
+.ha .ps-actions .t-switch[hidden]{display:none}
+.play-card.rotframe .pc-me{color:#d9e8f5}
+/* Four tiles */
+.t-hub2{grid-area:hub;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(220px,1fr);gap:14px;min-width:0}
+.h2t{position:relative;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;border:1px solid var(--line2);background:var(--panel);box-shadow:0 18px 40px -22px #000;transition:transform .15s,border-color .15s,box-shadow .15s}
+.h2t:hover,.h2t:focus-within{transform:translateY(-3px);border-color:var(--mc);box-shadow:0 0 0 1px var(--mc),0 18px 40px -18px var(--mc)}
+.h2t .ht-art{min-height:0;gap:8px;padding:14px}
+.h2t .ht-cap{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 14px 12px}
+.h2-btn{all:unset;cursor:pointer;font:400 19px/1.1 var(--f-display);color:var(--fg);text-transform:uppercase;letter-spacing:.02em}
+.h2-btn::after{content:'';position:absolute;inset:0;z-index:1;border-radius:14px}
+.h2-btn:focus-visible::after{outline:2px solid var(--mc);outline-offset:-3px}
+.h2-btn b{font:inherit}
+.h2-go{font:800 22px/1 var(--f-ui);color:var(--mc)}
+.h2t .ha-k{color:var(--bank);font:400 16px var(--f-display);letter-spacing:.03em;text-transform:uppercase;text-shadow:0 0 12px #f1cf7466}
+.h2t .ha-big{font-size:42px}
+.h2t .ha-s{font-size:12.5px;max-width:34ch}
+.h2t .ha-s .ptag{vertical-align:1px}
+.h2-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;position:relative;z-index:2}
+.h2-chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 11px;border-radius:8px;border:1px solid var(--line2);background:#0d0b1fcc;color:var(--fg);font:700 12px var(--f-ui)}
+button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{border-color:var(--mc);outline:none}
+.m-modes{--mc:var(--full)}
+.m-quest{--mc:var(--o-clear)}
+.h2t.new .h2-go{animation:qpulse 1.4s ease-in-out infinite alternate}
+.h2t.new .hq-gems{color:#ffd34d;font-weight:700}
+.hq-ring{position:relative;width:92px;height:92px;display:grid;place-items:center}
+.hq-ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.hq-ring circle{fill:none;stroke:#ffffff22;stroke-width:10}
+.hq-ring circle.on{stroke:var(--mc);stroke-linecap:round}
+.hq-ring b{font:400 21px var(--f-display)}
+.hm-grid{display:grid;grid-template-columns:repeat(2,minmax(0,132px));gap:8px}
+.hm-grid .mt{height:40px;font-size:12.5px;pointer-events:none}
+.hm-grid .mt.on{border-color:var(--o-clear);box-shadow:0 0 14px -6px var(--o-clear)}
+.hs-row{display:flex;gap:10px;align-items:flex-end}
+.hs-th{display:grid;justify-items:center;gap:6px}
+.hs-th small{font:700 11.5px var(--f-ui);color:var(--fg)}
+.hs-sw{display:grid;place-items:center;width:62px;height:72px;border-radius:10px;background:linear-gradient(180deg,var(--sky2),var(--sky3));border:1.5px solid var(--accent);box-shadow:0 0 16px -6px var(--accent)}
+.hs-th.mid .hs-sw{width:72px;height:86px}
+.hs-sw i{display:grid;place-items:center;width:28px;height:28px;border-radius:6px;font:400 15px/1 var(--f-display);font-style:normal;background:var(--tile);color:var(--ink);box-shadow:inset 0 -3px 0 #0003}
+/* Leaderboard column */
+.t-lbr{grid-area:lbr;display:flex;flex-direction:column;gap:10px;min-width:0;padding:16px 14px;border-radius:14px;background:color-mix(in srgb,var(--panel) 88%,transparent);border:1px solid var(--line2)}
+.lbr-h{margin:0;text-align:center;font:400 17px/1.1 var(--f-display);text-transform:uppercase;letter-spacing:.03em}
+.lbr-k{text-align:center;font:700 11.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--bank)}
+.lbr-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.lbr-row{display:grid;grid-template-columns:28px 36px minmax(0,1fr);gap:10px;align-items:center;padding:9px 10px;border-radius:12px;background:#0d0b1fb3;border:1px solid var(--line)}
+.lbr-row .pi{--ps:36px}
+.lbr-row.r1{border-color:var(--bank);background:linear-gradient(90deg,color-mix(in srgb,var(--bank) 22%,transparent),#0d0b1fb3)}
+.lbr-row.me{border-color:var(--o-clear)}
+.lbr-rk{font:400 24px/1 var(--f-display);text-align:center}
+.r1 .lbr-rk{color:var(--bank)}.lbr-row.me .lbr-rk{color:var(--o-clear);font-size:19px}
+.lbr-who{display:grid;gap:3px;min-width:0}
+.lbr-nm{font:700 14px var(--f-ui);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lbr-sc{display:flex;align-items:center;gap:6px;font:600 14.5px var(--f-mono);font-variant-numeric:tabular-nums}
+.lbr-sc .ptag{margin:0}
+.lbr-gap{height:1px;background:var(--line);margin:2px 0}
+.lbr-row.none{border-style:dashed;background:none}
+.lbr-x{font:600 12px var(--f-ui);color:var(--muted)}
+.lbr-note{margin:0;font-size:12.5px;line-height:1.45;color:var(--muted);text-align:center}
+.lbr-note:empty{display:none}
+.lbr-all{margin-top:auto;height:44px;border-radius:10px;border:1px solid var(--line2);background:color-mix(in srgb,var(--bank) 14%,var(--well));color:var(--fg);font:700 13.5px var(--f-ui);cursor:pointer}
+.lbr-all:hover,.lbr-all:focus-visible{border-color:var(--bank);outline:none}
+/* Change mode sheet: game mode, description and seed under the ways to play */
+.pk-sec{margin:0 0 -4px;font:700 11.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:left;width:100%;max-width:1200px}
+.pk-mode{width:100%;max-width:1200px;box-sizing:border-box;display:grid;gap:12px;padding:16px;border-radius:14px;background:color-mix(in srgb,var(--panel) 70%,transparent);border:1px solid var(--line2);text-align:left}
+.pk-mode .pk-sec{margin:0}
+.pk-mode>.pc-mode.off{display:none}
+.pk-vdesc{margin:0;font-size:14px;line-height:1.5;color:#dcd8f6}
+.pk-done{min-width:180px;align-self:center;margin-inline:auto}
+.pk-mode #pcMode>.pm-col:first-child>.tc-k,.pk-mode #pcDaily>.pm-col:first-child>.tc-k{display:none}
+.pk-mode>.pc-mode{border-top:0;padding-top:0}
+@media (max-width:1180px){
+  .title .t-wrap.home.ha{grid-template-columns:330px minmax(0,1fr);grid-template-areas:"bar bar" "top top" "card hub" "lbr lbr"}
+  .t-lbr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center}
+  .t-lbr .lbr-list{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+  .t-lbr .lbr-gap{display:none}
+  .lbr-all{margin:0}
+}
+@media (max-width:760px){
+  .title .t-wrap.home.ha{grid-template-columns:minmax(0,1fr);grid-template-areas:"bar" "top" "card" "hub" "lbr";gap:10px}
+  .t-bar{flex-wrap:wrap;gap:8px}
+  .hb-me{flex:1 1 100%;margin:0}
+  .hb-me .t-me{max-width:none;flex:1;justify-content:flex-start}
+  .hb-lv{grid-template-columns:auto 70px}
+  .hb-pill{flex:1;justify-content:center;height:34px;padding:0 10px;font-size:13px}
+  .hb-pill .hb-x{display:none}
+  .tt-season{font-size:17px}
+  .ha .pd-art{display:grid;min-height:150px}
+  .ha .pd-wotd .wotd i{width:34px;font-size:17px}
+  .ha .pd-art .ha-board:not(.big){transform:none}
+  .t-hub2{gap:10px;grid-auto-rows:minmax(190px,auto)}
+  .h2t .ht-art{padding:10px 8px}
+  .h2t .ha-big{font-size:28px}
+  .h2-btn{font-size:15px}
+  .hm-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+  .hm-grid .mt{height:32px;padding:0 6px;font-size:10.5px;gap:5px}
+  .hm-grid .mt .mi{width:20px;height:20px;font-size:11px}
+  .hm-grid .mt-soon{display:none}
+  .hm-grid .mt b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .lbr-sc{flex-wrap:wrap;justify-content:center;gap:3px 6px}
+  .hs-sw{width:40px;height:48px}.hs-th.mid .hs-sw{width:46px;height:56px}.hs-sw i{width:20px;height:20px;font-size:11px}
+  .hs-row{gap:6px}.hs-th small{font-size:10px}
+  .hq-ring{width:68px;height:68px}.hq-ring b{font-size:16px}
+  .h2-chips{gap:5px}.h2-chip{height:26px;padding:0 7px;font-size:11px}
+  .t-lbr{display:flex}
+  .t-lbr .lbr-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .lbr-row{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center;padding:8px 4px;gap:4px}
+  .lbr-row .pi{--ps:30px}
+  .lbr-who{justify-items:center}
+  .lbr-row.me:not(.r1):not(.r2):not(.r3){grid-column:1/-1;grid-template-columns:auto auto minmax(0,1fr);justify-items:start;text-align:left;padding:8px 12px}
+  .pk-mode .pc-mode{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){.h2t{transition:none}.h2t.new .h2-go{animation:none}}
+.calm .h2t{transition:none}
 </style>
 
 <div class="app" id="app">
@@ -1750,13 +1910,25 @@ div.hub-t{cursor:default}
     <div class="t-horizon"></div>
     <div class="t-rain" id="tRain"></div>
   </div>
-  <div class="t-wrap home">
+  <div class="t-wrap home ha">
+  <div class="t-bar">
+    <div class="hb-me">
+      <button class="t-icb t-me" id="tMe" type="button" title="Your profile"></button>
+      <button class="hb-lv" id="hbLvBtn" type="button" title="Quests done"><span class="hb-lvk" id="hbLv">Pro</span><span class="hb-bar"><i id="hbBar"></i></span><span class="hb-q" id="hbQ">0 / 15 quests</span></button>
+    </div>
+    <span class="hb-pill" title="Gems"><i aria-hidden="true">💎</i><b id="hbGems">0</b></span>
+    <span class="hb-pill" title="Daily streak"><i aria-hidden="true">🔥</i><b id="hbStreak">0</b><span class="hb-x">day streak</span></span>
+    <span class="hb-pill" title="Next drop"><i aria-hidden="true">⏱</i><span class="hb-x">Next drop</span><b id="tCountdown">–</b></span>
+  </div>
   <header class="t-top">
-    <div class="tt-left"><span class="tt-k">Next drop in</span><b class="tt-cd" id="tCountdown">⏱ –</b></div>
+    <div class="tt-left"><span class="tt-k">Today's drop · <span id="hbDate"></span></span><b class="tt-season">Season 0</b></div>
     <div class="tt-mid"><h1 class="logo t-logo" aria-label="Wordfall"><span style="--i:0">W</span><span style="--i:1">O</span><span style="--i:2">R</span><span style="--i:3">D</span><span style="--i:4">F</span><span style="--i:5">A</span><span style="--i:6">L</span><span style="--i:7">L</span></h1><p class="t-tag">Spell across. Cash in down.</p></div>
     <div class="tt-right">
-      <button class="t-icb t-me" id="tMe" type="button" title="Your profile"></button>
+      <!-- ARTIFACT-ONLY -->
+      <button class="t-icb sq m-samp" id="tSamples" type="button" title="Test samples" aria-label="Test samples">🧪</button>
+      <!-- /ARTIFACT-ONLY -->
       <button class="t-icb t-guide" id="tTut" type="button" title="Learn how to play">📖 Guide<i class="t-new" id="tTutNew" hidden></i></button>
+      <button class="t-icb sq" id="tSettings" type="button" aria-haspopup="dialog" title="Settings" aria-label="Settings">⚙</button>
       <button class="t-icb sq" id="tHow" type="button" title="Full rules" aria-label="Full rules">?</button>
     </div>
   </header>
@@ -1765,15 +1937,14 @@ div.hub-t{cursor:default}
     <div class="pc-stack">
     <div class="pc-pane pd" data-p="daily">
       <div class="pd-info">
-        <div class="tc-head"><span class="t-ic" id="tDay"><i>0</i><i>1</i></span><div><span class="tc-k">Today's drop</span><b class="tc-date" id="tcDate"></b></div></div>
-        <div class="tc-wotd big"><span class="tc-k">⭐ Word of the day</span><span class="wotd" id="tcWotd"></span><small>Score it today for ×2 on your final score.</small></div>
+        <div class="pm-head"><span class="t-ic" id="tDay"><i>0</i><i>1</i></span><div><span class="tc-k">Today's drop · <span id="tcDate"></span></span><b class="pm-name" id="tcMode">Classic</b></div></div>
         <div class="pd-stats">
           <div><span class="tc-k">Your best</span><b id="tBest">0</b></div>
           <div><span class="tc-k">Streak</span><b id="tcStreak">0</b><span class="tc-dots" id="tcDots"></span></div>
           <div><span class="tc-k">Today's rank</span><b id="tcRank">–</b></div>
         </div>
       </div>
-      <div class="pd-art" aria-hidden="true"><span class="ha-board big" id="pdBoard"></span></div>
+      <div class="pd-art pd-wotd"><div class="tc-wotd big"><span class="tc-k">⭐ Word of the day</span><span class="wotd" id="tcWotd"></span><small>Score it today for ×2 on your final score.</small></div><span class="ha-board big" id="pdBoard" hidden></span></div>
     </div>
     <div class="pc-pane pd off" data-p="practice">
       <div class="pd-info">
@@ -1806,17 +1977,8 @@ div.hub-t{cursor:default}
       </div>
       <div class="pd-art" aria-hidden="true"><span class="ha-board big tut-art"><i class="e"></i><i class="e"></i><i class="f">c</i><i class="f">k</i><i class="e"></i><i class="e"></i><i>d</i><i>u</i><i class="tg vh">c</i><i class="tg">k</i><i class="e"></i><i class="e"></i><i class="b">b</i><i class="b">e</i><i class="b vh">a</i><i class="b">r</i><i class="e"></i><i class="e"></i><i class="b">c</i><i class="b">a</i><i class="b vh">t</i><i class="b">s</i><i class="e"></i><i class="e"></i></span></div>
     </div>
-    <div class="pc-mode" id="pcDaily">
-      <div class="pm-col"><span class="tc-k">Today's game mode</span><div class="mtiles dm" id="tDailyMode" role="img"></div></div>
-      <div class="pm-col"><span class="tc-k">Seed</span><div class="ps-lock" title="Same pieces, hazards and word for everyone today."><span class="ps-ic" aria-hidden="true">🔒</span>Same for everyone</div></div>
     </div>
-    <div class="pc-mode off" id="pcMode">
-      <div class="pm-col"><span class="tc-k">Game mode</span><div id="tVariant"></div></div>
-      <div class="pm-col"><span class="tc-k">Seed</span>
-      <div class="pc-seed" id="pcSeed"><span class="ps-ic" aria-hidden="true">🌱</span><input class="ps-in" id="tSeed" type="text" maxlength="40" placeholder="Random seed" aria-label="Seed words. Leave empty for a random seed." autocomplete="off" spellcheck="false" enterkeyhint="done"><button class="ps-x" type="button" aria-label="Clear seed">×</button></div>
-      </div>
-    </div>
-    </div>
+    <p class="pc-me" id="pcMe"></p>
     <div class="pc-row">
       <button class="btn sm ghostb pc-guide" id="tGuide" type="button">🎓 Tutorial</button>
       <div class="pace" id="tPace"></div>
@@ -1826,17 +1988,19 @@ div.hub-t{cursor:default}
       <button class="t-switch" id="tSwitch" type="button" aria-haspopup="dialog">▦ Change mode<span>4 ways to play</span></button>
     </div>
   </section>
-  <nav class="t-side" aria-label="More">
-    <button class="sr m-lb" id="tLb" type="button"><span class="sr-ic" aria-hidden="true">🏆</span><span class="sr-t"><b>Leaderboard</b><small id="srLb">Today's top scores</small></span><span class="sr-go" aria-hidden="true">›</span></button>
-    <button class="sr m-quest" id="tQuests" type="button"><span class="sr-ic" aria-hidden="true">🎯</span><span class="sr-t"><b>Quests</b><small id="srQuest">Challenges, gems and unlocks</small></span><span class="sr-go" aria-hidden="true">›</span></button>
-    <button class="sr m-hist" id="tHistory" type="button"><span class="sr-ic" aria-hidden="true">📜</span><span class="sr-t"><b>History</b><small id="srHist">No runs yet</small></span><span class="sr-go" aria-hidden="true">›</span></button>
-    <button class="sr m-shop" id="tShop" type="button"><span class="sr-ic" aria-hidden="true">🛍</span><span class="sr-t"><b>Shop</b><small id="srShop">Skins and themes</small></span><span class="sr-go" aria-hidden="true">›</span></button>
-    <button class="sr m-online" id="tOnlineRow" type="button"><span class="sr-ic" aria-hidden="true">👥</span><span class="sr-t"><b>Online</b><small>Race friends with a room code</small></span><span class="sr-go" aria-hidden="true">›</span></button>
-    <!-- ARTIFACT-ONLY -->
-    <button class="sr m-samp" id="tSamples" type="button"><span class="sr-ic" aria-hidden="true">🧪</span><span class="sr-t"><b>Test samples</b><small>Mock-ups and options to compare</small></span><span class="sr-go" aria-hidden="true">›</span></button>
-    <!-- /ARTIFACT-ONLY -->
-    <button class="sr m-set" id="tSettings" type="button" aria-haspopup="dialog"><span class="sr-ic" aria-hidden="true">⚙</span><span class="sr-t"><b>Settings</b><small>Sound, controls and more</small></span><span class="sr-go" aria-hidden="true">›</span></button>
-  </nav>
+  <div class="t-hub2">
+    <div class="h2t m-hist"><div class="ht-art" id="hbHist"></div><div class="ht-cap"><button class="h2-btn" id="tHistory" type="button"><b>History</b></button><span class="h2-go" aria-hidden="true">›</span></div></div>
+    <div class="h2t m-quest" id="tQuestsTile"><div class="ht-art" id="hbQuest"></div><div class="ht-cap"><button class="h2-btn" id="tQuests" type="button"><b>Quests</b></button><span class="h2-go" aria-hidden="true">›</span></div></div>
+    <div class="h2t m-modes"><div class="ht-art" id="hbModes"></div><div class="ht-cap"><button class="h2-btn" id="tModes" type="button" aria-haspopup="dialog"><b>Change mode</b></button><span class="h2-go" aria-hidden="true">›</span></div></div>
+    <div class="h2t m-shop"><div class="ht-art" id="hbShop"></div><div class="ht-cap"><button class="h2-btn" id="tShop" type="button"><b>Shop</b></button><span class="h2-go" aria-hidden="true">›</span></div></div>
+  </div>
+  <aside class="t-lbr m-lb" aria-labelledby="hbLbH">
+    <h2 class="lbr-h" id="hbLbH">Today's leaderboard</h2>
+    <span class="lbr-k" id="srLb">Top ranked</span>
+    <ol class="lbr-list" id="hbLb"></ol>
+    <p class="lbr-note" id="hbLbNote"></p>
+    <button class="lbr-all" id="tLb" type="button">Full leaderboard ›</button>
+  </aside>
   </div>
   <div class="t-ov lv-ov" id="levelPick" role="dialog" aria-modal="true" aria-labelledby="lvTitle" hidden>
     <div class="ov-in lv-in">
@@ -1851,7 +2015,8 @@ div.hub-t{cursor:default}
   </div>
   <div class="t-ov" id="picker" role="dialog" aria-modal="true" aria-labelledby="pkTitle" hidden>
     <div class="ov-in">
-      <h2 class="ov-title" id="pkTitle">Choose a mode</h2>
+      <h2 class="ov-title" id="pkTitle">Change mode</h2>
+      <h3 class="pk-sec">How to play</h3>
       <div class="pk-cards" id="pkCards">
         <button class="pk-card m-daily" data-m="daily" type="button" style="--i:0"><span class="pk-name">Today's drop</span><span class="pk-art"><span class="pk-cal"><b id="pkDay">01</b><small id="pkMon">Jan</small></span><span class="wotd gold" id="pkWotd"></span></span><span class="pk-desc">A new board once a day. Same pieces, hazards and bonus word for everyone, so scores compare fairly.</span><span class="pk-foot">Daily · leaderboard</span></button>
         <button class="pk-card m-practice" data-m="practice" type="button" style="--i:1"><span class="pk-name">Practice</span><span class="pk-art"><span class="ha-board" aria-hidden="true"><i class="e"></i><i class="e"></i><i class="f">t</i><i class="f">h</i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i>o</i><i class="e"></i><i class="e"></i><i>r</i><i class="e"></i><i class="b">c</i><i class="b">a</i><i class="b">t</i><i class="b">e</i><i class="b">n</i><i class="b">d</i></span></span><span class="pk-desc">Random pieces and no clock. Learn the board and try ideas at your own pace.</span><span class="pk-foot">Classic or Rot &amp; Thaw</span></button>
@@ -1860,7 +2025,21 @@ div.hub-t{cursor:default}
         <button class="pk-card m-ranked" data-m="ranked" type="button" aria-disabled="true" style="--i:4"><span class="pk-soon">Coming soon</span><span class="pk-name">Ranked</span><span class="pk-art"><span class="pk-tiers"><i class="t1"></i><i class="t3">II</i><i class="t2"></i></span></span><span class="pk-desc">Climb tiers each season in rated matches against players and ranked bots.</span><span class="pk-foot">Season 1</span></button>
       </div>
       <p class="ov-msg" id="pkMsg" aria-live="polite"></p>
-      <button class="ov-back" id="pkBack" type="button">‹ Back</button>
+      <section class="pk-mode" aria-labelledby="pkModeH">
+        <h3 class="pk-sec" id="pkModeH">Game mode</h3>
+        <div class="pc-mode" id="pcDaily">
+          <div class="pm-col"><span class="tc-k">Today's game mode</span><div class="mtiles dm" id="tDailyMode" role="img"></div></div>
+          <div class="pm-col"><span class="tc-k">Seed</span><div class="ps-lock" title="Same pieces, hazards and word for everyone today."><span class="ps-ic" aria-hidden="true">🔒</span>Same for everyone</div></div>
+        </div>
+        <div class="pc-mode off" id="pcMode">
+          <div class="pm-col"><span class="tc-k">Game mode</span><div id="tVariant"></div></div>
+          <div class="pm-col"><span class="tc-k">Seed</span>
+          <div class="pc-seed" id="pcSeed"><span class="ps-ic" aria-hidden="true">🌱</span><input class="ps-in" id="tSeed" type="text" maxlength="40" placeholder="Random seed" aria-label="Seed words. Leave empty for a random seed." autocomplete="off" spellcheck="false" enterkeyhint="done"><button class="ps-x" type="button" aria-label="Clear seed">×</button></div>
+          </div>
+        </div>
+        <p class="pm-desc pm-vdesc pk-vdesc" aria-live="polite"></p>
+      </section>
+      <button class="ov-back pk-done" id="pkBack" type="button">Done</button>
     </div>
   </div>
   <div class="t-ov t-page" id="pageView" role="dialog" aria-modal="true" aria-labelledby="pgTitle" hidden>
@@ -4167,24 +4346,56 @@ function buildRain() {
 function nextDropIn() {
   const now = new Date(), next = new Date(now); next.setHours(24, 0, 0, 0);
   const m = Math.max(0, Math.floor((next - now) / 60000));
-  return `⏱ ${Math.floor(m / 60)}h ${String(m % 60).padStart(2, '0')}m`;
+  return `${Math.floor(m / 60)}h ${String(m % 60).padStart(2, '0')}m`;
 }
-// Side rows: one useful line each.
+// Home tiles: History (last run, runs, Wordstistics) and Shop (the next themes to get).
 function renderHist() {
-  const last = getRuns()[0];
-  setText($('#srHist'), last ? `Last run ${n0(last.score)} · ${MODE_NAME(last)}` : 'No runs yet');
-  let shop = 'Skins and themes';
-  try { const x = fullStats(), nx = THEMES.find(t => !t.ok(x)); shop = nx ? `Next theme: ${nx.name}` : 'Every theme unlocked'; } catch (e) {}
-  setText($('#srShop'), shop);
+  const runs = getRuns(), last = runs[0];
+  if (last) {
+    const top = Math.max(...runs.map(r => +r.score || 0)), best = runs.length > 1 && +last.score > 0 && +last.score >= top;
+    $('#hbHist').innerHTML = `<span class="ha-k">${best ? '★ New best!' : 'Last run'}</span><b class="ha-big">${n0(last.score)}</b>`
+      + `<span class="ha-s">${esc(MODE_NAME(last))} · ${+last.words || 0} word${+last.words === 1 ? '' : 's'}${paceTag(last.pace)}</span>`
+      + `<span class="h2-chips"><span class="h2-chip">📜 ${runs.length} run${runs.length === 1 ? '' : 's'}</span><button class="h2-chip" id="hbWords" type="button">📊 Wordstistics</button></span>`;
+    $('#hbWords').onclick = () => { histPane = 'words'; openPage('hist'); };
+  } else $('#hbHist').innerHTML = '<span class="ha-k">No runs yet</span><span class="ha-s">Finish a game and it shows up here, with every word you scored.</span>';
+  let x = { best: 0 }; try { x = fullStats(); } catch (e) {}
+  const next = THEMES.filter(t => t.id !== 'classic' && !t.ok(x)).slice(0, 3), show = next.length ? next : THEMES.slice(-3);
+  $('#hbShop').innerHTML = `<span class="hs-row">${show.map((t, i) => `<span class="hs-th${i === 1 ? ' mid' : ''}"><span class="hs-sw" data-skin="${t.id}"><i>${esc(t.name[0])}</i></span><small>${esc(t.name)}${t.price ? ` · 💎${n0(t.price)}` : ''}</small></span>`).join('')}</span>`
+    + `<span class="ha-s" id="srShop">${next.length ? `Next theme: ${esc(next[0].name)}` : 'Every theme unlocked'}</span>`;
+}
+// Quests tile: how many are done, and the next one to go for.
+function renderQuestTile() {
+  const S = prog(), qd = QUESTS.filter(q => S.done[q.id]).length, nx = QUESTS.find(q => !S.done[q.id]);
+  const C = 2 * Math.PI * 42, f = qd / QUESTS.length;
+  $('#hbQuest').innerHTML = `<span class="hq-ring"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="42"/><circle class="on" cx="50" cy="50" r="42" stroke-dasharray="${(C * f).toFixed(1)} ${C.toFixed(1)}"/></svg><b>${qd}/${QUESTS.length}</b></span>`
+    + (nx ? `<span class="ha-s"><b>Next: ${nx.icon} ${esc(nx.name)}</b> · ${esc(nx.desc)}</span>` : '<span class="ha-s"><b>Every quest done</b></span>')
+    + `<span class="ha-s hq-gems" id="srQuest"></span>`;
+  setText($('#srQuest'), S.fresh.length ? `🎉 ${S.fresh.length} quest${S.fresh.length === 1 ? '' : 's'} done · see rewards` : `💎 ${n0(S.gems)} gems`);
+  $('#tQuestsTile').classList.toggle('new', S.fresh.length > 0);
+  // Top bar: level, quests done, gems.
+  const L = LEVELS.find(l => l[0] === S.level);
+  setText($('#hbLv'), L ? L[2] : 'Player');
+  $('#hbBar').style.width = (f * 100).toFixed(1) + '%';
+  setText($('#hbQ'), `${qd} / ${QUESTS.length} quests`);
+  setText($('#hbGems'), n0(S.gems));
+}
+// Change mode tile: the game modes, with the one you'd play lit, and how you're playing.
+function renderModesTile() {
+  const el = $('#hbModes'); if (!el) return;
+  const cur = playTab === 'daily' ? dailyVariant(todayStr()) : pickMode, way = { daily: "Today's drop", practice: 'Practice', bot: 'Vs bots', online: 'Online' }[playTab] || '';
+  el.innerHTML = `<span class="hm-grid">${MODE_KEYS.slice(0, 4).map(k => `<span class="mt${k === cur ? ' on' : ''}${isSoon(k) ? ' soon' : ''}"><i class="mi" data-i="${k}" aria-hidden="true"></i><b>${esc(MODES[k].name)}</b>${isSoon(k) ? '<span class="mt-soon">Soon</span>' : ''}</span>`).join('')}</span>`
+    + `<span class="ha-s">Now: ${esc(way)} · ${esc(MODES[cur].name)}</span>`;
 }
 function renderHome() {
   setText($('#tCountdown'), nextDropIn());
   setText($('#tcDate'), fmtDay());
+  setText($('#hbDate'), fmtDay());
   const x = getStats(), today = todayStr(), y = new Date(); y.setDate(y.getDate() - 1);
   const yest = `${y.getFullYear()}-${String(y.getMonth() + 1).padStart(2, '0')}-${String(y.getDate()).padStart(2, '0')}`;
   const streak = x.lastDaily === today || x.lastDaily === yest ? x.streak : 0;
   $('#tcDots').innerHTML = Array.from({ length: 7 }, (_, i) => `<i class="${i < streak ? 'on' : ''}"></i>`).join('');
-  setText($('#tcStreak'), streak ? `${streak} day${streak === 1 ? '' : 's'}` : 'none yet');
+  setText($('#tcStreak'), streak ? `${streak} day${streak === 1 ? '' : 's'}` : '0');
+  setText($('#hbStreak'), String(streak));
   const w = pickWotd(hashStr('wordfall-wotd:' + today));
   $('#tcWotd').innerHTML = w.split('').map(ch => `<i>${ch}</i>`).join('');
   $('#pkWotd').innerHTML = w.split('').map(ch => `<i>${ch}</i>`).join('');
@@ -4193,11 +4404,12 @@ function renderHome() {
   setText($('#pkMon'), now.toLocaleDateString(undefined, { month: 'short' }));
   const L = (ch, c = '') => `<i class="${c}">${ch}</i>`, E = '<i class="e"></i>';
   renderMe();
-  const S = prog(), qd = QUESTS.filter(q => S.done[q.id]).length;
-  setText($('#srQuest'), S.fresh.length ? `🎉 ${S.fresh.length} quest${S.fresh.length === 1 ? '' : 's'} done · see rewards` : `💎 ${n0(S.gems)} · ${qd} of ${QUESTS.length} done`);
-  $('#tQuests').classList.toggle('new', S.fresh.length > 0);
+  renderQuestTile();
+  const runs = getRuns(), best = cleanScore(store.get('wordfall-best'));
+  setText($('#pcMe'), best || runs.length ? `🏆 Best ${n0(best)} · ${runs.length} run${runs.length === 1 ? '' : 's'}` : '');
   $('#pdBoard').innerHTML = [E, E, L('t', 'f'), L('h', 'f'), E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, L('o'), E, E, E, E, L('r'), L('a'), E, L('e'), E, L('s'), ...w.split('').map(ch => L(ch, 'b w'))].join('');
   renderHist();
+  renderModesTile();
 }
 setInterval(() => { if (titleShown()) setText($('#tCountdown'), nextDropIn()); }, 20000);
 function showMenu(resumable, then) {
@@ -4360,7 +4572,11 @@ $('#tSwitch').onclick = () => {
   if (prog().level === 'mid') { const S = prog(); S.tut = true; saveProg(); setPlayTab(playTabOk()); const pc = $('#playCard'); pc.classList.remove('flash'); void pc.offsetWidth; pc.classList.add('flash'); return; }
   showLevelPick();
 };
-$('#pkBack').onclick = () => closeOv();
+$('#pkBack').onclick = () => {
+  closeOv(true);
+  const pc = $('#playCard'); pc.classList.remove('flash'); void pc.offsetWidth; pc.classList.add('flash');
+  $('#tPlay').focus({ preventScroll: true });
+};
 $('#pkCards').querySelectorAll('.pk-card').forEach(c => {
   c.onclick = () => {
     if (c.getAttribute('aria-disabled') === 'true') {
@@ -4374,11 +4590,18 @@ $('#pkCards').querySelectorAll('.pk-card').forEach(c => {
       return;
     }
     setPlayTab(c.dataset.m);
-    closeOv(true);
-    const pc = $('#playCard'); pc.classList.remove('flash'); void pc.offsetWidth; pc.classList.add('flash');
-    $('#tPlay').focus({ preventScroll: true });
+    pkMark();
+    setText($('#pkMsg'), '');
   };
 });
+function pkMark() {
+  $('#pkCards').querySelectorAll('.pk-card').forEach(c => { const on = c.dataset.m === playTab; c.classList.toggle('on', on); c.setAttribute('aria-pressed', String(on)); });
+}
+$('#tModes').onclick = () => {
+  // On the tutorial card, Change mode points at the card instead.
+  if (tutCard()) { const pc = $('#playCard'); pc.classList.remove('flash'); void pc.offsetWidth; pc.classList.add('flash'); $('#tPlay').focus({ preventScroll: true }); return; }
+  showPicker();
+};
 $('#tLb').onclick = () => openPage('lb');
 for (const id of ['#picker']) $(id).addEventListener('click', e => { if (e.target === e.currentTarget || e.target.classList.contains('ov-in')) closeOv(); });
 const VDESC = {
@@ -4484,8 +4707,12 @@ function syncVariant() {
   const pc = $('#playCard'), dv = dailyVariant(todayStr()), tc = tutCard(), shown = tc ? 'classic' : playTab === 'daily' ? dv : pickMode, soon = isSoon(shown);
   pc.dataset.v = shown;
   pc.querySelectorAll('.pm-var').forEach(el => { el.textContent = MODES[pickMode].name; el.style.setProperty('--len', MODES[pickMode].name.length); });
-  const vd = Object.entries(VDESC).map(([k, t]) => `<span${k === pickMode ? '' : ' class="off"'}>${t}</span>`).join('');
-  pc.querySelectorAll('.pm-vdesc').forEach(el => { el.innerHTML = vd; });
+  setText($('#tcMode'), MODES[dv].name); $('#tcMode').style.setProperty('--len', MODES[dv].name.length);
+  // The mode's description shows in the Change mode sheet: today's mode for the daily, else the picked one.
+  const dk = playTab === 'daily' ? dv : pickMode;
+  const vd = Object.entries(VDESC).map(([k, t]) => `<span${k === dk ? '' : ' class="off"'}>${t}</span>`).join('');
+  document.querySelectorAll('.pm-vdesc').forEach(el => { el.innerHTML = vd; });
+  renderModesTile();
   const ic = pc.querySelector('[data-p="practice"] .pm-ic');
   if (isSoon(pickMode)) { ic.dataset.i = pickMode; ic.textContent = ''; } else if (ic.dataset.i) { delete ic.dataset.i; ic.textContent = '🎯'; }
   pc.classList.toggle('rotframe', shown === 'rot');
@@ -4495,12 +4722,15 @@ function syncVariant() {
   const play = $('#tPlay'), lk = tc ? '' : playLock(), mid = prog().level === 'mid';
   play.disabled = soon && !tc;
   play.classList.toggle('locked', !!lk);
-  play.textContent = tc === 'run' ? '▶ Play first run' : tc ? (mid ? '🎓 Start refresher' : '🎓 Start tutorial') : soon ? '🔒 Coming soon' : lk ? '🔒 Unlock in Quests' : 'Play';
+  const WAY = { daily: 'Play Daily', practice: 'Practice', bot: 'Vs Bots', online: 'Invite / Host' };
+  play.textContent = tc === 'run' ? '▶ Play first run' : tc ? (mid ? '🎓 Start refresher' : '🎓 Start tutorial') : soon ? '🔒 Coming soon' : lk ? '🔒 Unlock in Quests' : WAY[playTab] || 'Play';
   if (soon && !tc) play.title = `${MODES[shown].name} is coming soon`; else if (lk) play.title = lockMsg(lk); else play.removeAttribute('title');
   setOff($('#tGuide'), soon || !!tc);
   setOff($('#tPace'), !!tc);
   $('#tGuide').textContent = `🎓 Tutorial: ${TUTS[tutFor()].name}`;
   $('#tSwitch').innerHTML = tc ? (mid ? 'Skip refresher<span>Go straight to playing</span>' : 'Played before?<span>Change your level</span>') : '▦ Change mode<span>4 ways to play</span>';
+  // Change mode is a tile now; the card keeps this button only for the tutorial's skip / level choice.
+  $('#tSwitch').hidden = !tc;
   if (tc) drawTutCard(tc);
   // Today's drop: the day's mode as a big tile, with tomorrow's beside it.
   const tm = new Date(); tm.setDate(tm.getDate() + 1);
@@ -4731,14 +4961,14 @@ syncVariant();
 if (window.ResizeObserver) new ResizeObserver(() => rotDeco()).observe($('#playCard'));
 document.fonts?.ready.then(rotDeco);
 $('#tLevels').querySelectorAll('button').forEach(b => { b.onclick = () => { botLevel = b.dataset.l; store.set('wordfall-bot', botLevel); syncBotSel(); }; });
-$('#tOnlineRow').onclick = () => { if (has('online') && !tutCard()) setPlayTab('online'); showOnline(); };
 $('#tQuests').onclick = () => openPage('quests');
+$('#hbLvBtn').onclick = () => openPage('quests');
 $('#tHow').onclick = () => showHowTo();
 $('#tTut').onclick = () => showTutorial();
 $('#tTutNew').hidden = !!store.get('wordfall-tut');
 $('#tGuide').onclick = () => startTutorial(tutFor());
 let histPane = 'runs';
-$('#tHistory').onclick = () => openPage('hist');
+$('#tHistory').onclick = () => { histPane = 'runs'; openPage('hist'); };
 
 $('#tSettings').onclick = () => showSettings();
 buildRain();
@@ -5132,6 +5362,7 @@ async function renderBoard() {
     : lb.failed ? 'Scores can\'t load right now. Reopen the page to try again.'
     : !lb.loaded && !lb.docs.length ? (lb.slow ? 'Can\'t reach the scores yet. They\'ll appear once the connection is back.' : 'Loading scores…') : '';
   if (wait) {
+    setText($('#hbLbNote'), wait); $('#hbLb').innerHTML = '';
     if (list) { list.innerHTML = lb.ready && lb.db && !lb.failed ? ghosts(5) : ''; pod.innerHTML = ''; note.textContent = wait; renderLbMe(null, -1, null, -1); }
     return;
   }
@@ -5139,6 +5370,7 @@ async function renderBoard() {
   const ti = lb.uid ? tRows.findIndex(d => d.id === lb.uid) : -1;
   setText($('#tcRank'), ti >= 0 ? `#${ti + 1} of ${tRows.length}` : '–');
   setText($('#srLb'), ti >= 0 ? `You're #${ti + 1} today` : tRows.length ? `${tRows.length} on today's board` : 'Be first on today\'s board');
+  renderHomeLb(tRows, ti);
   if (!list) return;
   const rows = lb.docs
     .map(d => ({ id: d.id, name: d.name, icon: d.icon, score: all ? d.best : (d.day === today ? d.daily : 0), sp: all ? d.bp : d.dp }))
@@ -5858,6 +6090,14 @@ function renderLbPage() {
     </div>`;
   $('#tbSeg').querySelectorAll('button').forEach(b => { b.onclick = () => { lb.view = b.dataset.v; store.set('wordfall-lb', lb.view); renderBoard(); }; });
   renderBoard();
+}
+function renderHomeLb(tRows, ti) {
+  const ol = $('#hbLb'); if (!ol) return;
+  const row = (d, i, me) => `<li class="lbr-row r${i + 1}${me ? ' me' : ''}"><span class="lbr-rk">${i + 1}</span>${iconHTML(me ? myIcon : d.icon || 'tile', 'sm')}`
+    + `<span class="lbr-who"><span class="lbr-nm">${me ? 'You' : esc(d.name || 'Player')}</span><span class="lbr-sc">${n0(d.daily)}${paceTag(d.dp)}</span></span></li>`;
+  ol.innerHTML = tRows.slice(0, 3).map((d, i) => row(d, i, d.id === lb.uid)).join('') + (ti >= 3 ? `<li class="lbr-gap" aria-hidden="true"></li>${row(tRows[ti], ti, true)}` : '')
+    + (ti < 0 && tRows.length ? `<li class="lbr-gap" aria-hidden="true"></li><li class="lbr-row me none"><span class="lbr-rk">–</span>${iconHTML(myIcon, 'sm')}<span class="lbr-who"><span class="lbr-nm">You</span><span class="lbr-sc lbr-x">Not on today's board yet</span></span></li>` : '');
+  setText($('#hbLbNote'), tRows.length ? '' : "No scores yet today. Play Today's drop to set the first one.");
 }
 function lbWho(r, p, me) {
   const name = me ? (net.nick || p.name || 'You') : (r.name || p.name || 'Player');
