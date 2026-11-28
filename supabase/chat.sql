@@ -5,6 +5,7 @@
 -- To post an announcement: Table Editor → announcements → Insert row (title, body),
 -- or run:  insert into public.announcements (title, body) values ('Season 1 is here', 'New tiles in the shop.');
 -- To remove a chat message: Table Editor → chat_messages → delete the row.
+-- Or, after supabase/admins.sql, sign in to the game as an operator and post or remove them from the chat panel.
 
 -- Chat messages: anyone can read, signed-in players with a username can post their own.
 create table if not exists public.chat_messages (
@@ -15,7 +16,7 @@ create table if not exists public.chat_messages (
 );
 create index if not exists chat_messages_user_time on public.chat_messages (user_id, created_at desc);
 
--- Announcements: read by everyone, written only from the dashboard.
+-- Announcements: read by everyone; written from the dashboard, or in the game by operators (supabase/admins.sql).
 create table if not exists public.announcements (
   id bigint generated always as identity primary key,
   title text not null check (char_length(title) between 1 and 80),

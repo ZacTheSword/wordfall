@@ -700,7 +700,7 @@ div.hub-t{cursor:default}
 .ht-cap small{font:600 11px var(--f-ui);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 .ht-cap b{font:400 18px/1.1 var(--f-display);color:var(--fg);text-transform:uppercase;letter-spacing:.02em}
 .m-runs,.m-hist{--mc:var(--o-speed)}.m-words{--mc:var(--bank)}.m-shop{--mc:var(--o-scramble)}
-.play-card[data-m="daily"]{--mc:var(--bank)}.play-card[data-m="practice"]{--mc:var(--o-clear)}.play-card[data-m="bot"]{--mc:var(--vert)}.play-card[data-m="online"]{--mc:var(--o-stretch)}.play-card[data-m="ranked"]{--mc:#9d8bff}
+.play-card[data-m="daily"]{--mc:var(--bank)}.play-card[data-m="practice"]{--mc:var(--o-clear)}.play-card[data-m="bot"]{--mc:var(--o-clear)}.play-card[data-m="online"]{--mc:var(--o-clear)}.play-card[data-m="ranked"]{--mc:#9d8bff}
 .m-lb{--mc:var(--bank)}.m-ranked{--mc:#ff7a7a}
 /* Play box: every mode's pane shares one grid cell so the box never changes size */
 .pc-stack{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;gap:14px}
@@ -915,6 +915,15 @@ div.hub-t{cursor:default}
 .pm-head>div{min-width:0;flex:1 1 0;container-type:inline-size}
 .pm-var{font-size:min(28px,calc(100cqi / var(--len,8) * 1.45));white-space:nowrap}
 .pm-k{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dif{--dc:#62d68a;display:inline-flex;align-items:center;gap:6px;height:20px;box-sizing:border-box;padding:0 8px 0 6px;border-radius:999px;border:1px solid color-mix(in srgb,var(--dc) 55%,transparent);background:color-mix(in srgb,var(--dc) 13%,#0d0b1f);color:var(--dc);font:800 9.5px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.dif[data-d="mid"]{--dc:#ffb547}.dif[data-d="hard"]{--dc:#ff5f6d}
+.dif-b{display:inline-flex;align-items:flex-end;gap:2px;height:10px}
+.dif-b i{display:block;width:3px;border-radius:1px;background:currentColor;opacity:.28}
+.dif-b i:nth-child(1){height:4px}.dif-b i:nth-child(2){height:7px}.dif-b i:nth-child(3){height:10px}
+.dif-b i.on{opacity:1;box-shadow:0 0 6px -1px currentColor}
+.pm-dif{flex:none;align-self:flex-start;margin-top:2px}
+.pm-dif:empty{display:none}
+.gm-dif{display:grid;place-items:center;height:20px}
 /* SEED: type words to pin the pieces and bonus word; empty means a random seed each game. */
 .pc-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:10px;align-items:center}
 .pc-row>.pc-guide{justify-self:start}
@@ -1130,10 +1139,9 @@ div.hub-t{cursor:default}
 .m-online .ht-art{background:linear-gradient(108deg,color-mix(in srgb,var(--o-stretch) 42%,var(--well)) 0 49.4%,#ffffff40 49.4% 50.6%,color-mix(in srgb,var(--vert) 40%,var(--well)) 50.6%)}
 .m-online .ht-art::before{background:radial-gradient(circle at 50% 46%,#ffffff26,transparent 32%),repeating-linear-gradient(108deg,transparent 0 22px,#ffffff08 22px 24px)}
 .m-shop .ht-art{background:radial-gradient(ellipse at 50% 0%,color-mix(in srgb,var(--mc) 55%,transparent),transparent 65%),linear-gradient(170deg,color-mix(in srgb,var(--mc) 22%,var(--well)),var(--well))}
-.m-shop .ht-art::before{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='%23fff' fill-opacity='.07'%3E%3Crect x='8' y='10' width='30' height='30' rx='6' transform='rotate(-12 23 25)'/%3E%3Crect x='70' y='22' width='26' height='26' rx='5' transform='rotate(14 83 35)'/%3E%3Crect x='30' y='72' width='28' height='28' rx='6' transform='rotate(8 44 86)'/%3E%3Crect x='86' y='84' width='22' height='22' rx='5' transform='rotate(-18 97 95)'/%3E%3C/g%3E%3Cg fill='%23fff' fill-opacity='.12' font-family='Arial' font-weight='800' font-size='15' text-anchor='middle'%3E%3Ctext x='23' y='31' transform='rotate(-12 23 25)'%3EA%3C/text%3E%3Ctext x='83' y='41' transform='rotate(14 83 35)'%3EZ%3C/text%3E%3Ctext x='44' y='92' transform='rotate(8 44 86)'%3EQ%3C/text%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px,repeating-linear-gradient(90deg,transparent 0 60%,transparent 100%)}
-.m-shop:hover .ht-art::before{animation:shopdrift 6s linear infinite}
-@keyframes shopdrift{to{background-position:120px 120px,0 0}}
-@media (prefers-reduced-motion:reduce){.t-new,.m-shop:hover .ht-art::before{animation:none}}
+.m-shop .ht-art{container-type:inline-size}
+.m-shop .ht-art::before{background:radial-gradient(ellipse 46% 20% at 50% 84%,color-mix(in srgb,var(--mc) 34%,transparent),transparent 70%)}
+@media (prefers-reduced-motion:reduce){.t-new{animation:none}}
 .pc-tabs{display:grid;grid-template-columns:repeat(3,1fr);width:100%}
 .pc-tabs button{padding:7px 4px;font-size:12px;white-space:nowrap}
 .pc-tabs button[aria-selected="true"]{background:var(--mc);color:var(--ink)}
@@ -1197,6 +1205,7 @@ div.hub-t{cursor:default}
 .q-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr));gap:12px}
 .qc{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px 14px;padding:14px;border-radius:14px;border:1px solid var(--line2);background:color-mix(in srgb,var(--panel) 84%,transparent);scroll-margin:80px}
 .qc-ic{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;font-size:26px;background:color-mix(in srgb,#ff9f43 22%,var(--well));box-shadow:inset 0 -3px 0 #0004}
+.qc-ic .mi{width:40px;height:40px;border-radius:10px;font-size:21px}
 .qc-main{display:grid;gap:6px;min-width:0;align-content:start}
 .qc-main h4{margin:0;font:400 19px/1.1 var(--f-display);letter-spacing:.03em;text-transform:uppercase}
 .qc-main p{margin:0;font-size:13.5px}
@@ -1503,7 +1512,8 @@ div.hub-t{cursor:default}
 .lb-me{position:sticky;top:0}
 .lbm-head{display:flex;align-items:center;gap:12px}
 .lbm-head b{display:block;font:400 20px/1.1 var(--f-display);overflow-wrap:anywhere}
-.lbm-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.lbm-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.lbm-acc{display:inline-flex;align-items:center;gap:6px}.lbm-acc .acc-ic{width:18px;height:18px}
 .lbm-stats>div{display:flex;flex-direction:column;gap:3px;padding:9px;border-radius:10px;background:var(--well);border:1px solid var(--line)}
 .lbm-stats b{font:800 17px var(--f-ui)}
 .lbm-stats small{font-size:11px;color:var(--muted)}
@@ -1555,6 +1565,36 @@ div.hub-t{cursor:default}
 .hx-s b{font:400 20px/1 var(--f-display)}
 .hx-s small{grid-column:1/-1;font-size:11px;color:var(--muted)}
 .hx-s.none{opacity:.55}
+/* Player profiles */
+.pp-page{display:grid;gap:14px}
+.pg-card.pp-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;justify-items:stretch;text-align:left;gap:8px 18px}
+.pp-id{display:grid;gap:5px;min-width:0;justify-items:start}
+.pp-id h3{margin:0;max-width:100%;font:400 30px/1.05 var(--f-display);text-transform:uppercase;letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pp-rel{font:800 10px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--o-clear);border:1px solid currentColor;border-radius:999px;padding:4px 8px}
+.pp-rel.in{color:var(--bank)}.pp-rel.out{color:var(--muted)}
+.pp-rel:empty{display:none}
+.pp-acts{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.pp-note{grid-column:2/-1;margin:0;text-align:right}
+.pp-note:empty{display:none}
+.btn.ghostb.bad{color:var(--bad);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--bad) 55%,transparent)}
+.btn:disabled{opacity:.5;cursor:default}
+.rs-grid.pp-tiles{grid-template-columns:repeat(6,minmax(0,1fr))}
+.pp-tiles .acc-ic{width:20px;height:20px;margin-left:6px;vertical-align:-3px}
+.pp-modes .hx-s:disabled{cursor:default}
+.hx-s[aria-pressed="true"]{border-color:var(--rc);box-shadow:0 0 0 1px var(--rc)}
+.pp-link,.lbr-row[data-id]{cursor:pointer}
+.tb-row.pp-link:hover,.lb-col.pp-link:hover .tb-nm,.lbr-row[data-id]:hover{filter:brightness(1.12)}
+.pp-link:focus-visible,.lbr-row[data-id]:focus-visible{outline:2px solid var(--o-clear);outline-offset:2px}
+@media (max-width:1100px){.rs-grid.pp-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){
+  .pg-card.pp-top{grid-template-columns:auto minmax(0,1fr)}
+  .pp-top .pi.xxl{--ps:64px}
+  .pp-acts{grid-column:1/-1;justify-content:stretch}
+  .pp-acts .btn{flex:1 1 auto}
+  .pp-note{grid-column:1/-1;text-align:left}
+  .rs-grid.pp-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pp-id h3{font-size:24px}
+}
 .hx-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .hp-chart[style] .hp-trend{--tc:var(--rc)}
 .hp-trend .dot{fill:none;stroke:var(--tc,var(--accent));stroke-width:6;stroke-linecap:round;vector-effect:non-scaling-stroke}
@@ -1826,12 +1866,16 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
 .hm-grid{display:grid;grid-template-columns:repeat(2,minmax(0,132px));gap:8px}
 .hm-grid .mt{height:40px;font-size:12.5px;pointer-events:none}
 .hm-grid .mt.on{border-color:var(--o-clear);box-shadow:0 0 14px -6px var(--o-clear)}
-.hs-row{display:flex;gap:10px;align-items:flex-end}
-.hs-th{display:grid;justify-items:center;gap:6px}
-.hs-th small{font:700 11.5px var(--f-ui);color:var(--fg)}
-.hs-sw{display:grid;place-items:center;width:62px;height:72px;border-radius:10px;background:linear-gradient(180deg,var(--sky2),var(--sky3));border:1.5px solid var(--accent);box-shadow:0 0 16px -6px var(--accent)}
-.hs-th.mid .hs-sw{width:72px;height:86px}
-.hs-sw i{display:grid;place-items:center;width:28px;height:28px;border-radius:6px;font:400 15px/1 var(--f-display);font-style:normal;background:var(--tile);color:var(--ink);box-shadow:inset 0 -3px 0 #0003}
+.sp-pile{--u:min(calc(82cqi / 260),1.3px);position:relative;flex:none;width:calc(260 * var(--u));height:calc(160 * var(--u))}
+.sp-at{position:absolute;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));transform:rotate(var(--r));filter:drop-shadow(0 calc(4 * var(--u)) calc(5 * var(--u)) #000a)}
+.sp-th{display:grid;grid-template-rows:1fr auto;width:calc(72 * var(--u));height:calc(92 * var(--u));box-sizing:border-box;overflow:hidden;border-radius:calc(8 * var(--u));border:calc(1.5 * var(--u)) solid var(--line2);background:var(--well)}
+.sp-th .s{background:radial-gradient(circle at 50% 118%,var(--sun1) 0 20%,var(--sun2) 21% 29%,transparent 30%),linear-gradient(180deg,var(--sky1),var(--sky2) 55%,var(--sky3))}
+.sp-th .g{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(3 * var(--u));padding:calc(5 * var(--u))}
+.sp-th .g b{aspect-ratio:1;border-radius:calc(3 * var(--u));background:var(--tile);box-shadow:inset 0 calc(-2 * var(--u)) 0 #0003}
+.sp-th .g .b{background:var(--bank)}.sp-th .g .v{background:var(--vert)}.sp-th .g .f{background:var(--full)}
+.sp-ic .pi{--ps:calc(46 * var(--u))}.sp-ic.big .pi{--ps:calc(54 * var(--u))}
+.sp-pile .pi::after{display:none}
+.sp-pile .lt.sp-lt{width:calc(34 * var(--u));height:calc(34 * var(--u));font-size:calc(17 * var(--u));border-radius:calc(5 * var(--u));box-shadow:inset 0 calc(-4 * var(--u)) 0 var(--sk-edge),var(--sk-glow,0 0 #0000)}
 /* Chat bar under the tiles: opens into a panel that grows up over them. */
 .hchat{grid-column:1/-1;min-width:0}
 .hc-bar{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:10px;width:100%;height:52px;padding:0 14px;border-radius:14px;cursor:pointer;background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line2);box-shadow:0 18px 40px -22px #000;transition:border-color .15s}
@@ -1850,12 +1894,14 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
 @media (prefers-reduced-motion:reduce){.hc-panel{transition:none}}
 .hc-head{display:flex;align-items:flex-end;gap:8px;padding:8px 8px 0 10px;border-bottom:1px solid var(--line)}
 .hc-tabs{display:flex;gap:2px;flex:1;min-width:0}
-.hc-tab{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:7px;height:42px;padding:0 14px;border-radius:10px 10px 0 0;border-bottom:2px solid transparent;margin-bottom:-1px;font:700 13.5px var(--f-ui);color:var(--muted);white-space:nowrap}
+.hc-tab{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;gap:7px;min-width:54px;height:42px;padding:0 14px;border-radius:10px 10px 0 0;border-bottom:2px solid transparent;margin-bottom:-1px;font:700 13.5px var(--f-ui);color:var(--muted);white-space:nowrap}
 .hc-tab:hover{color:var(--fg)}
 .hc-tab[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent);background:#ffffff08}
 .hc-tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
-.hc-dot{min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:9px;background:var(--accent);color:var(--ink);font:800 10.5px/18px var(--f-ui);font-style:normal;text-align:center}
+.hc-ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.hc-dot{position:absolute;top:4px;left:calc(50% + 4px);min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:9px;background:#ff3b5c;color:#fff;font:800 10.5px/18px var(--f-ui);font-style:normal;text-align:center;box-shadow:0 0 0 2px var(--panel);pointer-events:none}
 .hc-dot:empty{display:none}
+.hc-pn .hc-ic{width:16px;height:16px;margin-right:6px;vertical-align:-3px}
 .hc-x{all:unset;box-sizing:border-box;cursor:pointer;display:grid;place-items:center;width:38px;height:38px;margin-bottom:3px;border-radius:9px;font:700 20px/1 var(--f-ui);color:var(--muted)}
 .hc-x:hover,.hc-x:focus-visible{background:#ffffff12;color:var(--fg)}
 .hc-list{list-style:none;margin:0;padding:10px 10px 6px;flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:1px}
@@ -1876,6 +1922,9 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
 .hc-del{all:unset;cursor:pointer;grid-column:3;grid-row:1;padding:2px 6px;border-radius:6px;font-size:12px;color:var(--muted);opacity:0}
 .hc-m:hover .hc-del,.hc-del:focus-visible,.hc-n:hover .hc-del{opacity:1}
 .hc-del:hover{color:var(--bad)}
+.hc-del .hc-ic{width:15px;height:15px;display:block;stroke-width:2}
+.hc-del.arm{opacity:1;color:#fff;background:var(--bad)}
+@media (hover:none){.hc-del{opacity:.75}}
 .hc-day{align-self:center;margin:8px 0 4px;font:700 10.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .hc-n{position:relative;display:grid;gap:5px;padding:12px 14px;margin-bottom:8px;border-radius:12px;background:#0d0b1fb3;border:1px solid var(--line)}
 .hc-n.new{border-color:var(--accent);box-shadow:0 0 18px -10px var(--accent)}
@@ -1890,20 +1939,14 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
 .hc-form input:focus{outline:none;border-color:var(--accent)}
 .hc-post input:first-child{flex:.8}
 .hc-form .btn{height:42px;padding:0 18px}
+@media (max-width:560px){.hc-post{flex-wrap:wrap}.hc-post input:first-child{flex:1 1 100%}}
 .hc-gate{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;padding:12px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);text-align:center}
 .hc-note{margin:0;padding:0 12px 10px;font-size:12.5px;color:var(--vert)}
 .hc-note:empty{display:none}
-.hc-tab .s{display:none}
-/* Friends: names in Global chat open a menu; the Friends and Inbox tabs; a conversation. */
+/* Friends: names and pictures open profiles; the Friends and Inbox tabs; a conversation. */
 .hc-who{cursor:pointer;border-radius:4px}
 .hc-who:hover,.hc-who:focus-visible{text-decoration:underline;outline:none}
 .hc-m:not(.me) .hc-av{cursor:pointer}
-.fr-menu{position:absolute;z-index:20;width:200px;padding:5px;border-radius:11px;background:var(--panel);border:1px solid var(--line2);box-shadow:0 16px 36px -10px #000;display:grid;gap:2px}
-.fr-menu b{padding:6px 9px 4px;font:800 12px var(--f-ui);color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.fr-menu button{all:unset;box-sizing:border-box;cursor:pointer;padding:8px 10px;border-radius:7px;font:700 13px var(--f-ui);color:var(--fg)}
-.fr-menu button:hover:not(:disabled),.fr-menu button:focus-visible{background:#ffffff12}
-.fr-menu button.bad{color:var(--bad)}
-.fr-menu button:disabled{color:var(--muted);cursor:default;font-weight:600;white-space:normal}
 .fr-sec{margin:10px 6px 4px;font:700 10.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .fr-sec:first-child{margin-top:2px}
 .fr-row{display:grid;grid-template-columns:28px minmax(0,1fr) auto;align-items:center;gap:10px;padding:8px;border-radius:10px}
@@ -1922,6 +1965,7 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
 .fr-b:disabled{opacity:.55;cursor:default}
 .hc-empty .fr-b{margin-top:10px}
 .fr-th{display:flex;align-items:center;gap:9px;padding:2px 2px 10px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.fr-b.arm,.btn.bad.arm{background:var(--bad);border-color:var(--bad);color:#fff}
 .fr-th>b{flex:1;min-width:0;font:700 15px var(--f-ui);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .fr-back{all:unset;cursor:pointer;padding:5px 8px;border-radius:8px;font:800 13px var(--f-ui);color:var(--muted)}
 .fr-back:hover,.fr-back:focus-visible{background:#ffffff10;color:var(--fg)}
@@ -1950,7 +1994,28 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
 .lbr-x{font:600 12px var(--f-ui);color:var(--muted)}
 .lbr-note{margin:0;font-size:12.5px;line-height:1.45;color:var(--muted);text-align:center}
 .lbr-note:empty{display:none}
-.lbr-all{margin-top:auto;height:44px;border-radius:10px;border:1px solid var(--line2);background:color-mix(in srgb,var(--bank) 14%,var(--well));color:var(--fg);font:700 13.5px var(--f-ui);cursor:pointer}
+.lbr-views{display:grid;grid-template-rows:minmax(0,auto)}
+.lbr-v{grid-area:1/1;display:flex;flex-direction:column;gap:8px;min-width:0}
+.lbr-v.off{visibility:hidden}
+.lbr-note b{color:var(--fg)}
+.lbr-tabs{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:auto;padding:3px;border-radius:11px;background:#0d0b1fb3;border:1px solid var(--line)}
+.lbr-tabs button{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:30px;padding:0 10px;border:0;border-radius:8px;background:none;color:var(--muted);font:700 12.5px var(--f-ui);cursor:pointer;white-space:nowrap}
+.lbr-tabs button:hover{color:var(--fg)}
+.lbr-tabs button[aria-selected="true"]{background:color-mix(in srgb,var(--bank) 20%,var(--well));color:var(--fg);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--bank) 55%,transparent)}
+.lbr-tabs button:focus-visible{outline:2px solid var(--bank);outline-offset:1px}
+.lbr-tabs .acc-ic{width:16px;height:16px}
+.acc-ic{flex:none;width:1.1em;height:1.1em;vertical-align:-.18em;overflow:visible}
+.lbr-row.pay{grid-template-columns:minmax(0,1fr) auto;padding:7px 12px;min-height:42px;box-sizing:border-box}
+.lbr-pl{display:flex;align-items:center;gap:8px;min-width:0;white-space:nowrap;font:400 17px/1 var(--f-display);text-transform:uppercase;letter-spacing:.02em}
+.lbr-row.pay.r1 .lbr-pl{color:var(--bank)}
+.lbr-amt{display:inline-flex;align-items:center;gap:6px;font:800 16px var(--f-mono);font-variant-numeric:tabular-nums}
+.lbr-amt .acc-ic{width:19px;height:19px}
+.lbr-row.pay.you{border-color:var(--o-clear);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--o-clear) 45%,transparent)}
+.lbr-you{font:800 9px/1 var(--f-mono);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:var(--o-clear);border:1px solid currentColor;border-radius:999px;padding:2px 6px}
+.tb-sc .acc-ic,.lb-sc .acc-ic{margin-left:5px}
+.acc-av{display:grid;place-items:center}.acc-av .acc-ic{width:26px;height:26px}
+@media (pointer:coarse){.lbr-tabs button{height:38px}}
+.lbr-all{flex:none;height:44px;border-radius:10px;border:1px solid var(--line2);background:color-mix(in srgb,var(--bank) 14%,var(--well));color:var(--fg);font:700 13.5px var(--f-ui);cursor:pointer}
 .lbr-all:hover,.lbr-all:focus-visible{border-color:var(--bank);outline:none}
 /* Wide screens: the whole home page fits the window. Every box keeps its size whichever
    mode or way to play is picked; the card's art scales to the room that's left (fitArt). */
@@ -1965,7 +2030,8 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
   .h2t{min-height:0}
   .h2t .ht-art{flex:1;min-height:0;overflow:hidden}
   .t-lbr{overflow:hidden}
-  .t-lbr .lbr-list{min-height:0;overflow-y:auto}
+  .t-lbr .lbr-views{min-height:0;grid-template-rows:minmax(0,1fr)}
+  .t-lbr .lbr-v{min-height:0;overflow-y:auto}
 }
 @media (min-width:1021px) and (min-height:600px) and (max-height:820px){
   .ha .t-top{padding:6px 16px}
@@ -1994,8 +2060,11 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
 }
 @media (max-width:1020px){
   .title .t-wrap.home.ha{grid-template-columns:350px minmax(0,1fr);grid-template-areas:"bar bar" "top top" "card hub" "lbr lbr"}
-  .t-lbr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center}
-  .t-lbr .lbr-list{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+  .t-lbr{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center}
+  .t-lbr .lbr-views{grid-row:2;grid-column:1/-1}
+  .t-lbr .lbr-tabs{grid-row:1;grid-column:3;margin:0;min-width:210px}
+  .t-lbr .lbr-all{grid-row:1;grid-column:4}
+  .t-lbr .lbr-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
   .t-lbr .lbr-gap{display:none}
   .lbr-all{margin:0}
 }
@@ -2014,8 +2083,7 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
   .h2t .ht-art{flex:1;min-height:0;overflow:hidden}
   .hc-txt b{display:none}
   .hc-panel{min-height:440px}
-  .hc-tab{padding:0 9px;font-size:12.5px;gap:5px}
-  .hc-tab .l{display:none}.hc-tab .s{display:inline}
+  .hc-tab{padding:0 10px;min-width:48px}
   .fr-th .fr-b{padding:5px 9px;font-size:11.5px}
   .h2t .ht-art{padding:10px 8px}
   .h2t .ha-big{font-size:28px}
@@ -2026,8 +2094,6 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
   .hm-grid .mt-soon{display:none}
   .hm-grid .mt b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .lbr-sc{flex-wrap:wrap;justify-content:center;gap:3px 6px}
-  .hs-sw{width:40px;height:48px}.hs-th.mid .hs-sw{width:46px;height:56px}.hs-sw i{width:20px;height:20px;font-size:11px}
-  .hs-row{gap:6px}.hs-th small{font-size:10px}
   .hq-ring{width:68px;height:68px}.hq-ring b{font-size:16px}
   .h2-chips{gap:5px}.h2-chip{height:26px;padding:0 7px;font-size:11px}
   .t-lbr{display:flex}
@@ -2036,6 +2102,10 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
   .lbr-row .pi{--ps:30px}
   .lbr-who{justify-items:center}
   .lbr-row.me:not(.r1):not(.r2):not(.r3){grid-column:1/-1;grid-template-columns:auto auto minmax(0,1fr);justify-items:start;text-align:left;padding:8px 12px}
+  .lbr-row.pay{position:relative;grid-template-columns:minmax(0,1fr);justify-items:center;gap:3px;padding:9px 4px 7px;min-height:0}
+  .lbr-pl{font-size:14px}
+  .lbr-amt{font-size:14px;gap:4px}.lbr-amt .acc-ic{width:16px;height:16px}
+  .lbr-row.pay .lbr-you{position:absolute;top:-7px;left:50%;transform:translateX(-50%);background:var(--panel);padding:1px 5px;font-size:8px}
   .pk-mode .pc-mode{grid-template-columns:minmax(0,1fr)}
 }
 @media (prefers-reduced-motion:reduce){.h2t{transition:none}.h2t.new .h2-go{animation:none}}
@@ -2207,7 +2277,82 @@ body[data-v="puzzle"] .hz-panel,body[data-v="puzzle"] .atk{display:none}
 .gm-card.on .gm-lbl{border-top-color:#ffd34d99}
 .gm-card.nope{animation:nope .3s}
 .gm-card.qlock .gm-art,.gm-card.soon:not(.on) .gm-art{filter:grayscale(.55) brightness(.8)}
-.gm-art{flex:1;min-height:0;display:grid;place-items:center;padding:18px 12px 28px;overflow:hidden}
+.gm-art{flex:1;min-height:0;display:flex;padding:14px 12px 38px;overflow:hidden}
+/* A card's well: lanes, tiles, the emblem over them, and the preview's pop-ups on top. */
+.gmw{--c:20px;--g:2px;--p:6px;--px:6px;position:relative;display:block;flex:1;min-width:0;border-radius:10px;background:#0d0b1fd9;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--rc) 24%,transparent),0 10px 26px -12px #000;overflow:hidden}
+.gmw-l{position:absolute;left:var(--px);right:var(--px);top:0;bottom:var(--p);background:repeating-linear-gradient(90deg,#ffffff09 0 var(--c),transparent 0 calc(var(--c) + var(--g)));-webkit-mask:linear-gradient(transparent,#000 22%);mask:linear-gradient(transparent,#000 22%)}
+.gmw-l::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:color-mix(in srgb,var(--rc) 45%,transparent)}
+.gmw-t,.gmw-sp,.gmw-fx{position:absolute;inset:0}
+.gmw-t{z-index:1}
+.gmw-t.fade{transition:opacity .45s;opacity:0}
+.gmw-t i{position:absolute;left:calc(var(--px) + var(--x) * (var(--c) + var(--g)));bottom:calc(var(--p) + var(--y) * (var(--c) + var(--g)));width:var(--c);height:var(--c);box-sizing:border-box;border-radius:calc(var(--c) * .2);display:grid;place-items:center;font:800 calc(var(--c) * .52)/1 var(--f-ui);font-style:normal;text-transform:uppercase;background:var(--tile);color:var(--ink);box-shadow:inset 0 -2px 0 #0003;transition:background .25s,color .25s,box-shadow .25s,opacity .25s}
+.gmw-t i.b{background:var(--bank)}
+.gmw-t i.w{box-shadow:inset 0 -2px 0 #0003,0 0 12px var(--bank)}
+.gmw-t i.hit{box-shadow:0 0 0 2px #fff,0 0 16px #fffc;filter:brightness(1.18)}
+.gmw-t i.gone{transform:scale(.2)!important;opacity:0;transition:transform .26s,opacity .26s}
+.gmw-t i.stn{background:repeating-linear-gradient(135deg,#5d5974 0 3px,#3a374f 3px 6px);box-shadow:inset 0 -2px 0 #0006}
+.gmw-t i.lit{background:linear-gradient(160deg,#d9fff4,#6fe3c4 60%,#38b893);color:#063d31;box-shadow:inset 0 -2px 0 #23977a,0 0 8px #6fe3c4aa}
+.gmw-t i.tg{background:#ffc94a1a;color:#ffc94a;box-shadow:inset 0 0 0 1.5px #ffc94a,0 0 10px #ffc94a77}
+.gmw-t i.gd{background:linear-gradient(160deg,#fff3c4,#ffc94a 55%,#d99a1a);color:#3a2600;box-shadow:inset 0 -2px 0 #b07a10,0 0 10px #ffc94aaa}
+.gmw-t i.ice{background:linear-gradient(160deg,#fff 0%,#b8ecff 40%,#5cc8f5 100%);color:#063a57;box-shadow:inset 0 -2px 0 #2f8fc0,0 0 8px #5fd4ff88}
+.gmw-t i.rot{background:radial-gradient(circle at 78% 74%,#5e211e 0 15%,transparent 19%),linear-gradient(#a8504a,#83342f);color:#ffeae4;box-shadow:inset 0 -2px 0 #5c2320,0 0 8px #ff8d3a66}
+.gmw-t i.ban{background:transparent;color:#b8a7ff88;box-shadow:none;outline:1.5px dashed #b8a7ffaa;outline-offset:-1.5px}
+.gmw-t i.bomb{background:radial-gradient(circle at 50% 58%,#1b1930 0 36%,transparent 38%),repeating-linear-gradient(135deg,#ff4f9a 0 3px,#3a0d26 3px 6px);box-shadow:0 0 10px #ff4f9a}
+.gmw-sp{z-index:3;display:grid;place-items:center;pointer-events:none}
+.gmw-sp>*{zoom:var(--z,1)}
+.gmw-fx{z-index:4;pointer-events:none}
+.gmw-pop{position:absolute;left:calc(var(--px) + var(--cx) * (var(--c) + var(--g)));bottom:calc(var(--p) + var(--cy) * (var(--c) + var(--g)) + 2px);display:grid;justify-items:center;white-space:nowrap;animation:gmwpop 1.25s ease-out forwards}
+.gmw-pop b{font:400 max(15px,calc(var(--c) * .82))/1 var(--f-display);color:var(--bank);text-shadow:0 2px 0 #000b,0 0 12px color-mix(in srgb,var(--bank) 55%,transparent)}
+.gmw-pop.lit b{color:#a6f2dd;text-shadow:0 2px 0 #000b,0 0 12px #6fe3c4}
+.gmw-pop.gold b{color:#ffd76a;text-shadow:0 2px 0 #000b,0 0 14px #ffc94a}
+.gmw-pop small{font:800 max(8.5px,calc(var(--c) * .4))/1.25 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#fff;text-shadow:0 1px 2px #000,0 0 6px #000}
+@keyframes gmwpop{0%{opacity:0;transform:translate(-50%,8px) scale(.8)}15%{opacity:1;transform:translate(-50%,0) scale(1.06)}70%{opacity:1;transform:translate(-50%,-8px)}100%{opacity:0;transform:translate(-50%,-20px)}}
+.gmw-ban{position:absolute;left:7%;right:7%;top:9%;display:grid;justify-items:center;gap:2px;padding:7px 4px 6px;border-radius:10px;background:#0d0b1feb;border:1.5px solid var(--bc,var(--rc));box-shadow:0 0 22px -4px var(--bc,var(--rc));animation:gmwban 1.6s ease forwards}
+.gmw-ban b{font:400 max(15px,calc(var(--c) * .78))/1.05 var(--f-display);color:var(--bc,var(--rc));text-align:center;letter-spacing:.03em;text-transform:uppercase}
+.gmw-ban small{font:800 max(8.5px,calc(var(--c) * .36))/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:#dcd8f6;text-align:center}
+.gmw-ban.haz{--bc:#ff6b6b}.gmw-ban.frz{--bc:#bfe9ff}.gmw-ban.thaw{--bc:#ffb347}.gmw-ban.chs{--bc:#ff4f9a}.gmw-ban.bty{--bc:#ffc94a}.gmw-ban.amn{--bc:#b8a7ff}.gmw-ban.pz{--bc:#6fe3c4}.gmw-ban.rk{--bc:#d7defa}
+.gmw-ban.amn b{text-decoration:line-through;text-decoration-thickness:3px}
+@keyframes gmwban{0%{opacity:0;transform:scale(.86)}12%{opacity:1;transform:scale(1.04)}22%{transform:none}80%{opacity:1}100%{opacity:0;transform:translateY(-6px)}}
+.gmw-boom{position:absolute;left:calc(var(--px) + var(--cx) * (var(--c) + var(--g)));bottom:calc(var(--p) + var(--cy) * (var(--c) + var(--g)));width:calc(var(--c) * 3.4);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#fff 0 14%,#ffd34d 30%,#ff4f9a 52%,transparent 70%);transform:translate(-50%,50%);animation:gmwboom .6s ease-out forwards}
+@keyframes gmwboom{0%{transform:translate(-50%,50%) scale(.2);opacity:1}100%{transform:translate(-50%,50%) scale(1.25);opacity:0}}
+/* Emblems: each mode's own, in the middle of its well; tiles fall behind them. */
+.sp-cw{display:grid;grid-template-columns:repeat(4,15px);grid-template-rows:repeat(4,15px);gap:2px;padding:8px;border-radius:12px;background:#15122ef0;box-shadow:0 0 0 1.5px color-mix(in srgb,var(--rc) 65%,transparent),0 0 24px -4px var(--rc),0 10px 20px -8px #000}
+.sp-cw i{grid-row:calc(var(--r) + 1);grid-column:var(--q);display:grid;place-items:center;border-radius:3px;background:var(--tile);color:var(--ink);font:800 9px/1 var(--f-ui);font-style:normal;text-transform:uppercase;box-shadow:inset 0 -2px 0 #0003}
+.sp-cw i.g{background:var(--bank)}
+.sp-pz{position:relative;display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle,#15122e 0 60%,transparent 61%),conic-gradient(#6fe3c4 0 78%,#6fe3c42e 0);box-shadow:0 0 0 3px #0d0b1f,0 0 24px -4px #6fe3c4,0 10px 20px -8px #000}
+.sp-pz b{font:400 16px/1 var(--f-display);color:#d9fff4;letter-spacing:.02em}
+.sp-pz .k{position:absolute;top:-9px;left:50%;width:12px;height:7px;margin-left:-6px;border-radius:3px 3px 0 0;background:#6fe3c4}
+.sp-pz .hd{position:absolute;left:50%;top:50%;width:2px;height:22px;margin-left:-1px;border-radius:2px;background:#6fe3c4aa;transform-origin:50% 0;transform:rotate(180deg)}
+.gmw-sp.go .sp-pz .hd{animation:gmhand 1s steps(6) 2}
+@keyframes gmhand{to{transform:rotate(540deg)}}
+.sp-bt{position:relative;display:grid;justify-items:center;gap:3px;width:70px;padding:9px 6px 8px;border-radius:3px;background:linear-gradient(#f6e7bf,#e4c98a);color:#4a2c0c;transform:rotate(-4deg);box-shadow:inset 0 0 0 2px #c9a55a,0 10px 20px -6px #000c}
+.sp-bt::before{content:'';position:absolute;top:-4px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#c0392b;box-shadow:0 1px 2px #0009}
+.sp-bt b{font:400 12px/1 var(--f-display);letter-spacing:.06em;text-transform:uppercase}
+.sp-bt span{font:800 13px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;padding:3px 4px;border-top:1px solid #4a2c0c55;border-bottom:1px solid #4a2c0c55}
+.sp-bt em{position:absolute;right:-12px;bottom:-9px;padding:2px 5px;border-radius:6px;background:#ffc94a;color:#2b1d00;font:900 11px/1.2 var(--f-ui);font-style:normal;transform:rotate(8deg);box-shadow:0 0 12px #ffc94a}
+.gmw-sp.go .sp-bt em{animation:gmstamp .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes gmstamp{0%{transform:rotate(8deg) scale(2.2);opacity:0}100%{transform:rotate(8deg) scale(1);opacity:1}}
+.sp-rt svg,.sp-ch svg{display:block;width:66px;height:66px;filter:drop-shadow(0 10px 14px #000a)}
+.gmw-sp.go .sp-rt svg{animation:gmflip .7s ease-in-out}
+@keyframes gmflip{50%{transform:rotateY(90deg) scale(1.08)}}
+.sp-ch .wh{transform-origin:32px 32px}
+.gm-card.on .sp-ch .wh{animation:gmspin 6s linear infinite}
+.gmw-sp.go .sp-ch .wh{animation:gmspin .9s cubic-bezier(.2,.7,.3,1)}
+@keyframes gmspin{to{transform:rotate(360deg)}}
+.sp-am{position:relative;width:58px;height:58px}
+.sp-am::before{content:'';position:absolute;inset:-5px;border:1.5px dashed #b8a7ffaa;border-radius:13px}
+.sp-am i{position:absolute;inset:0;display:grid;place-items:center;border-radius:10px;background:var(--tile);color:var(--ink);font:400 32px/1 var(--f-display);font-style:normal;text-transform:uppercase;box-shadow:inset 0 -4px 0 #0003,0 0 22px -4px #b8a7ff;-webkit-mask:linear-gradient(225deg,transparent 16%,#0008 34%,#000 56%);mask:linear-gradient(225deg,transparent 16%,#0008 34%,#000 56%)}
+.sp-am s{position:absolute;width:7px;height:7px;border-radius:2px;background:#f0e6d2;top:calc(4px - var(--a) * 6px);right:calc(-2px - var(--a) * 7px);opacity:calc(.9 - var(--a) * .2)}
+.gm-card.on .sp-am s{animation:gmdrift 2.4s ease-in-out infinite alternate;animation-delay:calc(var(--a) * -.6s)}
+@keyframes gmdrift{to{transform:translate(5px,-7px) rotate(25deg);opacity:.15}}
+.gmw-sp.go .sp-am i{animation:gmfade 1.2s ease-in-out}
+@keyframes gmfade{50%{opacity:.35;filter:blur(1px)}}
+.gmw-sp.go .pk-cal{animation:gmbump .5s cubic-bezier(.3,1.6,.5,1)}
+.gmw-sp.go .pk-tiers .t3{animation:gmglow 1.1s ease-in-out}
+.gmw-sp.go .sp-cw{animation:gmbump .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes gmbump{40%{transform:scale(1.12)}}
+@keyframes gmglow{50%{filter:brightness(1.35) drop-shadow(0 0 12px #fff)}}
+@media (prefers-reduced-motion:reduce){.sp-ch .wh,.sp-am s,.gmw-sp.go *{animation:none!important}}
 .gm-art .ha-board{grid-template-rows:20px auto;background:#0d0b1fd9;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--rc) 22%,transparent),0 10px 26px -12px #000}
 .gm-art .ha-board i.gm-sp{grid-column:1/-1;height:0;border-radius:0;background:repeating-linear-gradient(90deg,#ffffff07 0 20px,transparent 20px 22px);box-shadow:none;animation:none}
 .gm-sp .pk-tiers{zoom:.72}
@@ -2295,7 +2440,7 @@ body[data-v="puzzle"] .hz-panel,body[data-v="puzzle"] .atk{display:none}
 /* Change mode tile: Today's drop picks its own seed and is always solo, so those go; the tile wears the picked mode. */
 #hbModes.daily .pc-seed,#hbModes.daily .qs-way{display:none}
 #hbModes.daily .qs-grid{max-width:320px}
-.m-modes[data-m="daily"]{--mc:var(--bank)}.m-modes[data-m="practice"]{--mc:var(--o-clear)}.m-modes[data-m="bot"]{--mc:var(--vert)}.m-modes[data-m="online"]{--mc:var(--o-stretch)}.m-modes[data-m="ranked"]{--mc:#9d8bff}.m-modes[data-m="tut"]{--mc:var(--full)}
+.m-modes[data-m="daily"]{--mc:var(--bank)}.m-modes[data-m="practice"]{--mc:var(--o-clear)}.m-modes[data-m="bot"]{--mc:var(--o-clear)}.m-modes[data-m="online"]{--mc:var(--o-clear)}.m-modes[data-m="ranked"]{--mc:#9d8bff}.m-modes[data-m="tut"]{--mc:var(--full)}
 .m-modes[data-v="puzzle"]{--mc:#6fe3c4}.m-modes[data-v="chaos"]{--mc:#ff4f9a}.m-modes[data-v="amnesia"]{--mc:#b8a7ff}.m-modes[data-v="bounty"]{--mc:#ffc94a}.m-modes[data-v="rot"]{--mc:#9fdcff}
 .m-modes[data-v="puzzle"] .ht-art{background:radial-gradient(ellipse at 85% 0%,color-mix(in srgb,var(--mc) 30%,transparent),transparent 60%),linear-gradient(#6fe3c40e 1px,transparent 1px) 0 0/22px 22px,linear-gradient(90deg,#6fe3c40e 1px,transparent 1px) 0 0/22px 22px,linear-gradient(160deg,color-mix(in srgb,var(--mc) 16%,var(--well)),var(--well))}
 .m-modes[data-v="chaos"] .ht-art{background:radial-gradient(ellipse at 85% 0%,color-mix(in srgb,var(--mc) 30%,transparent),transparent 60%),repeating-linear-gradient(135deg,#ff4f9a0e 0 14px,transparent 14px 28px),linear-gradient(160deg,color-mix(in srgb,var(--mc) 16%,var(--well)),var(--well))}
@@ -2633,7 +2778,7 @@ body[data-v="puzzle"] .hz-panel,body[data-v="puzzle"] .atk{display:none}
     <div class="pc-stack">
     <div class="pc-pane pd" data-p="daily">
       <div class="pd-info">
-        <div class="pm-head"><span class="t-ic" id="tDay"><i>0</i><i>1</i></span><div><span class="tc-k">Today's drop · <span id="tcDate"></span></span><b class="pm-name" id="tcMode">Classic</b></div></div>
+        <div class="pm-head"><span class="t-ic" id="tDay"><i>0</i><i>1</i></span><div><span class="tc-k">Today's drop · <span id="tcDate"></span></span><b class="pm-name" id="tcMode">Classic</b></div><span class="pm-dif" id="tcDif"></span></div>
         <p class="pm-desc pm-vdesc"></p>
         <div class="pd-stats">
           <div><span class="tc-k">Today's best</span><b id="tBest">0</b></div>
@@ -2645,14 +2790,14 @@ body[data-v="puzzle"] .hz-panel,body[data-v="puzzle"] .atk{display:none}
     </div>
     <div class="pc-pane pd off" data-p="practice">
       <div class="pd-info">
-        <div class="pm-head"><span class="pm-ic" aria-hidden="true" data-i="classic"></span><div><span class="tc-k pm-k" data-play="Practice">Practice · random seed</span><b class="pm-name pm-var">Classic</b></div></div>
+        <div class="pm-head"><span class="pm-ic" aria-hidden="true" data-i="classic"></span><div><span class="tc-k pm-k" data-play="Practice">Practice · random seed</span><b class="pm-name pm-var">Classic</b></div><span class="pm-dif"></span></div>
         <p class="pm-desc pm-vdesc"></p>
       </div>
       <div class="pd-art" aria-hidden="true"><span class="ha-board" aria-hidden="true"><i class="e"></i><i class="e"></i><i class="f">t</i><i class="f">h</i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e"></i><i>o</i><i class="e"></i><i class="e"></i><i>r</i><i class="e"></i><i class="b">c</i><i class="b">a</i><i class="b">t</i><i class="b">e</i><i class="b">n</i><i class="b">d</i></span></div>
     </div>
     <div class="pc-pane pd off" data-p="bot">
       <div class="pd-info">
-        <div class="pm-head"><span class="pm-ic" aria-hidden="true" data-i="classic"></span><div><span class="tc-k pm-k" data-play="Versus">Versus · random seed</span><b class="pm-name pm-var">Classic</b></div></div>
+        <div class="pm-head"><span class="pm-ic" aria-hidden="true" data-i="classic"></span><div><span class="tc-k pm-k" data-play="Versus">Versus · random seed</span><b class="pm-name pm-var">Classic</b></div><span class="pm-dif"></span></div>
         <div class="pc-field vs-n"><span class="tc-k">Bots <b id="tBotsN">1 bot · Duel</b></span>
           <div class="vs-range"><span aria-hidden="true">1</span><input type="range" id="tBots" min="1" max="16" step="1" value="1" aria-label="Number of bots"><span aria-hidden="true">16</span></div></div>
         <div class="pc-field"><span class="tc-k">Bot skill</span><div class="t-lv" id="tLevels"><button type="button" data-l="easy">Easy</button><button type="button" data-l="normal">Normal</button><button type="button" data-l="hard">Hard</button></div></div>
@@ -2661,7 +2806,7 @@ body[data-v="puzzle"] .hz-panel,body[data-v="puzzle"] .atk{display:none}
     </div>
     <div class="pc-pane pd off" data-p="online">
       <div class="pd-info">
-        <div class="pm-head"><span class="pm-ic" aria-hidden="true" data-i="classic"></span><div><span class="tc-k pm-k" data-play="Online">Online · random seed</span><b class="pm-name pm-var">Classic</b></div></div>
+        <div class="pm-head"><span class="pm-ic" aria-hidden="true" data-i="classic"></span><div><span class="tc-k pm-k" data-play="Online">Online · random seed</span><b class="pm-name pm-var">Classic</b></div><span class="pm-dif"></span></div>
         <p class="pm-desc pm-vdesc"></p>
       </div>
       <div class="pd-art" aria-hidden="true"><svg class="ha-art" viewBox="0 0 220 150" aria-hidden="true" focusable="false"><rect class="av-well" x="10" y="34" width="80" height="108" rx="9"/><rect class="av-well" x="130" y="34" width="80" height="108" rx="9"/><g class="av-t"><rect x="15" y="120" width="17" height="17" rx="4"/><text x="23.5" y="132.6">L</text></g><g class="av-t"><rect x="34" y="120" width="17" height="17" rx="4"/><text x="42.5" y="132.6">I</text></g><g class="av-t"><rect x="53" y="120" width="17" height="17" rx="4"/><text x="61.5" y="132.6">V</text></g><g class="av-t"><rect x="72" y="120" width="17" height="17" rx="4"/><text x="80.5" y="132.6">E</text></g><g class="av-t"><rect x="15" y="101" width="17" height="17" rx="4"/><text x="23.5" y="113.6">R</text></g><g class="av-t"><rect x="34" y="101" width="17" height="17" rx="4"/><text x="42.5" y="113.6">A</text></g><g class="av-t"><rect x="53" y="101" width="17" height="17" rx="4"/><text x="61.5" y="113.6">C</text></g><g class="av-t"><rect x="72" y="101" width="17" height="17" rx="4"/><text x="80.5" y="113.6">E</text></g><g class="av-b"><rect x="135" y="120" width="17" height="17" rx="4"/><text x="143.5" y="132.6">P</text></g><g class="av-b"><rect x="154" y="120" width="17" height="17" rx="4"/><text x="162.5" y="132.6">L</text></g><g class="av-b"><rect x="173" y="120" width="17" height="17" rx="4"/><text x="181.5" y="132.6">A</text></g><g class="av-b"><rect x="192" y="120" width="17" height="17" rx="4"/><text x="200.5" y="132.6">Y</text></g><g class="av-b"><rect x="135" y="101" width="17" height="17" rx="4"/><text x="143.5" y="113.6">O</text></g><g class="av-b"><rect x="173" y="101" width="17" height="17" rx="4"/><text x="181.5" y="113.6">N</text></g><g class="av-b"><rect x="173" y="82" width="17" height="17" rx="4"/><text x="181.5" y="94.6">E</text></g><rect class="av-p1" x="35" y="2" width="30" height="30" rx="8"/><circle class="av-pp" cx="50" cy="14" r="5"/><path class="av-pp" d="M41 28c1.5-6 5-8.5 9-8.5s7.5 2.5 9 8.5z"/><rect class="av-p2" x="155" y="2" width="30" height="30" rx="8"/><circle class="av-pp" cx="170" cy="14" r="5"/><path class="av-pp" d="M161 28c1.5-6 5-8.5 9-8.5s7.5 2.5 9 8.5z"/><path class="av-link" d="M66 17C82 17 88 44 110 44S138 17 154 17"/><circle class="av-globe" cx="110" cy="85" r="18"/><path class="av-mer" d="M92 85h36M110 67c-9 9-9 27 0 36M110 67c9 9 9 27 0 36M95 76h30M95 94h30"/><circle class="av-ping" cx="110" cy="85" r="18"/></svg></div>
@@ -2702,12 +2847,12 @@ body[data-v="puzzle"] .hz-panel,body[data-v="puzzle"] .atk{display:none}
       <div class="hc-panel" id="hcPanel" hidden>
         <div class="hc-head">
           <div class="hc-tabs" role="tablist" aria-label="Chat">
-            <button class="hc-tab" id="hcTab-news" type="button" role="tab" data-t="news" aria-selected="false" aria-controls="hcList"><span class="l">Announcements</span><span class="s">News</span><i class="hc-dot" id="hcNewsN"></i></button>
-            <button class="hc-tab" id="hcTab-chat" type="button" role="tab" data-t="chat" aria-selected="true" aria-controls="hcList"><span class="l">Global chat</span><span class="s">Chat</span><i class="hc-dot" id="hcChatN"></i></button>
-            <button class="hc-tab" id="hcTab-friends" type="button" role="tab" data-t="friends" aria-selected="false" aria-controls="hcList">Friends<i class="hc-dot" id="hcFrN"></i></button>
-            <button class="hc-tab" id="hcTab-inbox" type="button" role="tab" data-t="inbox" aria-selected="false" aria-controls="hcList">Inbox<i class="hc-dot" id="hcInN"></i></button>
+            <button class="hc-tab" id="hcTab-news" type="button" role="tab" data-t="news" aria-selected="false" aria-controls="hcList" aria-label="Announcements" title="Announcements"><svg class="hc-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9.5h3.4L12 5.6v12.8l-4.6-3.9H4z"/><path d="M15.4 9.2a4 4 0 0 1 0 5.6"/><path d="M18.1 6.6a7.6 7.6 0 0 1 0 10.8"/></svg><i class="hc-dot" id="hcNewsN" aria-hidden="true"></i></button>
+            <button class="hc-tab" id="hcTab-chat" type="button" role="tab" data-t="chat" aria-selected="true" aria-controls="hcList" aria-label="Global chat" title="Global chat"><svg class="hc-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2"/><path d="M12 3.4c2.5 2.3 3.7 5.2 3.7 8.6s-1.2 6.3-3.7 8.6c-2.5-2.3-3.7-5.2-3.7-8.6S9.5 5.7 12 3.4z"/></svg><i class="hc-dot" id="hcChatN" aria-hidden="true"></i></button>
+            <button class="hc-tab" id="hcTab-friends" type="button" role="tab" data-t="friends" aria-selected="false" aria-controls="hcList" aria-label="Friends" title="Friends"><svg class="hc-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8.6" r="3.2"/><path d="M3.4 19.4c.6-3.4 2.8-5.3 5.6-5.3s5 1.9 5.6 5.3"/><path d="M15.1 5.7a3 3 0 1 1 1.6 5.6"/><path d="M17.4 14.3c1.8.5 3 2.1 3.3 4.7"/></svg><i class="hc-dot" id="hcFrN" aria-hidden="true"></i></button>
+            <button class="hc-tab" id="hcTab-inbox" type="button" role="tab" data-t="inbox" aria-selected="false" aria-controls="hcList" aria-label="Inbox" title="Inbox"><svg class="hc-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 18V10.5a4 4 0 0 1 4-4h9a4 4 0 0 1 4 4V18z"/><path d="M7.5 6.5a4 4 0 0 1 4 4V18"/><path d="M15.5 12.5V3.6h3.6v2.7h-3.6"/><path d="M14 18v3.4"/></svg><i class="hc-dot" id="hcInN" aria-hidden="true"></i></button>
           </div>
-          <button class="hc-x" id="hcClose" type="button" aria-label="Close chat">⌄</button>
+          <button class="hc-x" id="hcClose" type="button" aria-label="Close chat" title="Close chat"><svg class="hc-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 9.5l5.5 5.5 5.5-5.5"/></svg></button>
         </div>
         <ol class="hc-list" id="hcList" role="log" aria-live="polite" tabindex="0"></ol>
         <form class="hc-form" id="hcForm" autocomplete="off"><input id="hcIn" type="text" maxlength="200" placeholder="Say something to everyone…" aria-label="Message"><button class="btn" type="submit">Send</button></form>
@@ -2720,8 +2865,14 @@ body[data-v="puzzle"] .hz-panel,body[data-v="puzzle"] .atk{display:none}
   <aside class="t-lbr m-lb" aria-labelledby="hbLbH">
     <h2 class="lbr-h" id="hbLbH">Today's leaderboard</h2>
     <span class="lbr-k" id="srLb">Top ranked</span>
-    <ol class="lbr-list" id="hbLb"></ol>
-    <p class="lbr-note" id="hbLbNote"></p>
+    <div class="lbr-views">
+      <div class="lbr-v" id="hbLbV" role="tabpanel" aria-labelledby="hbTabTop"><ol class="lbr-list" id="hbLb"></ol><p class="lbr-note" id="hbLbNote"></p></div>
+      <div class="lbr-v off" id="hbPayV" role="tabpanel" aria-labelledby="hbTabPay"><ol class="lbr-list lbr-paylist" id="hbPay" aria-label="Accolades for each place"></ol><p class="lbr-note" id="hbPayNote"></p></div>
+    </div>
+    <div class="lbr-tabs" role="tablist" aria-label="Today's leaderboard">
+      <button type="button" role="tab" id="hbTabTop" data-v="top" aria-selected="true" aria-controls="hbLbV">Standings</button>
+      <button type="button" role="tab" id="hbTabPay" data-v="pay" aria-selected="false" aria-controls="hbPayV" tabindex="-1">Rewards</button>
+    </div>
     <button class="lbr-all" id="tLb" type="button">Full leaderboard ›</button>
   </aside>
   </div>
@@ -2856,10 +3007,28 @@ const VARIANTS = { classic: { name: 'Classic' }, rot: { name: 'Rot & Thaw', icon
   bounty: { name: 'Bounty', icon: '🎯' }, puzzle: { name: 'Puzzle Box', icon: '🧩' }, chaos: { name: 'Chaos Carnage', icon: '🌀' } };
 // Every mode on the picker. A mode marked soon: true shows its card, but Play stays locked.
 const MODES = {
-  classic: { name: 'Classic' }, rot: { name: 'Rot & Thaw', icon: '❄' },
-  puzzle: { name: 'Puzzle Box', icon: '🧩' }, chaos: { name: 'Chaos Carnage', icon: '🌀' },
-  amnesia: { name: 'Amnesia', icon: '🧠' }, bounty: { name: 'Bounty', icon: '🎯' },
+  classic: { name: 'Classic', diff: 'easy' }, puzzle: { name: 'Puzzle Box', icon: '🧩', diff: 'easy' },
+  bounty: { name: 'Bounty', icon: '🎯', diff: 'easy' }, rot: { name: 'Rot & Thaw', icon: '❄', diff: 'mid' },
+  chaos: { name: 'Chaos Carnage', icon: '🌀', diff: 'mid' }, amnesia: { name: 'Amnesia', icon: '🧠', diff: 'hard' },
 };
+// How hard each mode is: shown on its card in Change mode and as a tag on the play card.
+// Accolades: earned by your place on a day's Today's drop (1st 10, 2nd 7, 3rd 5, 4th to 10th 2, everyone else 1).
+// A day's drop is over everywhere at 12:00 UTC the next day (the last time zone's midnight); then its reward
+// waits in your Inbox until you claim it. The all-time board ranks players by the accolades they've claimed.
+const ACC_PAY = [[1, 10], [2, 7], [3, 5], [10, 2], [Infinity, 1]];
+const accPay = place => ACC_PAY.find(([p]) => place <= p)[1];
+const ACC_DAYS = 14;                       // rewards wait two weeks to be claimed
+const accReadyAt = day => Date.parse(day + 'T00:00:00Z') + 36 * 3600e3;
+const ordinal = n => n + (n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] || 'th');
+// The accolade: a gold medal with a star, on two ribbons.
+const ACC_SVG = '<path d="M7.7 12.4 5.2 20.3l3.2-.8 1.9 2.8 2.2-7.5z" fill="#ff5f8f"/><path d="M16.3 12.4l2.5 7.9-3.2-.8-1.9 2.8-2.2-7.5z" fill="#d9437a"/>'
+  + '<circle cx="12" cy="9" r="7" fill="#b07a12"/><circle cx="12" cy="9" r="5.8" fill="#ffd34d"/>'
+  + '<path d="M12 5.4l.85 2.43 2.57.06-2.04 1.56.74 2.46L12 10.45l-2.12 1.46.74-2.46-2.04-1.56 2.57-.06z" fill="#a8700c"/>';
+const accIcon = (cls = '') => `<svg class="acc-ic${cls ? ' ' + cls : ''}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${ACC_SVG}</svg>`;
+const acc = { pend: [], loaded: false, off: false, uid: undefined, at: 0, told: new Set() };
+const DIFF = { easy: { name: 'Easy', n: 1 }, mid: { name: 'Intermediate', n: 2 }, hard: { name: 'Hard', n: 3 } };
+const diffTag = (k, cls = '') => { const d = MODES[k] && DIFF[MODES[k].diff]; if (!d) return '';
+  return `<span class="dif ${cls}" data-d="${MODES[k].diff}" title="Difficulty: ${d.name}"><span class="dif-b" aria-hidden="true">${[1, 2, 3].map(i => `<i${i <= d.n ? ' class="on"' : ''}></i>`).join('')}</span>${d.name}</span>`; };
 const MODE_KEYS = Object.keys(MODES), isSoon = k => !!MODES[k]?.soon;
 // "❄ Rot & Thaw" for any mode but Classic (which needs no label).
 const modeTag = k => MODES[k] && k !== 'classic' ? MODES[k].name : '';
@@ -5616,7 +5785,22 @@ function nextDropIn() {
   const m = Math.max(0, Math.floor((next - now) / 60000));
   return `${Math.floor(m / 60)}h ${String(m % 60).padStart(2, '0')}m`;
 }
-// Home tiles: History (last run, runs, Wordstistics) and Shop (the next themes to get).
+// The Shop tile: a still pile of things from the shop. Board themes at the back, profile icons on them, letter tiles
+// in front and one tumbled on top. [id, x, y, turn] on a 260 x 160 plan that scales with the tile.
+const SHOP_PILE = {
+  themes: [['vapor', 22, 2, -20], ['neon', 95, -6, 3], ['ember', 166, 0, 17]],
+  icons: [['flame', 12, 92, -16], ['crown', 52, 68, -9], ['nova', 120, 54, 7, 1], ['gem', 184, 78, 14]],
+  tiles: [['ink', 'x', 50, 118, 10], ['gilt', 'q', 88, 108, -8], ['frost', 'z', 124, 117, 6], ['poster', 'w', 160, 109, -14], ['quill', 'k', 198, 120, 12], ['mint', 'a', 224, 98, -20], ['coral', 'j', 96, 82, 22]],
+};
+function shopPile() {
+  const at = (x, y, r) => `style="--x:${x};--y:${y};--r:${r}deg"`;
+  return '<span class="sp-pile" aria-hidden="true">'
+    + SHOP_PILE.themes.map(([id, x, y, r]) => `<span class="sp-th sp-at" data-skin="${id}" ${at(x, y, r)}><i class="s"></i><i class="g"><b></b><b class="b"></b><b class="v"></b><b class="f"></b><b></b><b class="b"></b></i></span>`).join('')
+    + SHOP_PILE.icons.map(([id, x, y, r, big]) => `<span class="sp-ic sp-at${big ? ' big' : ''}" ${at(x, y, r)}>${iconHTML(id)}</span>`).join('')
+    + SHOP_PILE.tiles.map(([id, ch, x, y, r]) => `<span class="lt ls ls-${id} sp-lt sp-at" ${at(x, y, r)}>${ch}</span>`).join('')
+    + '</span>';
+}
+// Home tiles: History (last run, runs, Wordstistics) and Shop (the pile, drawn once).
 function renderHist() {
   const runs = getRuns(), last = runs[0];
   if (last) {
@@ -5626,10 +5810,7 @@ function renderHist() {
       + `<span class="h2-chips"><span class="h2-chip">📜 ${runs.length} run${runs.length === 1 ? '' : 's'}</span><button class="h2-chip" id="hbWords" type="button">📊 Wordstistics</button></span>`;
     $('#hbWords').onclick = () => { histPane = 'words'; openPage('hist'); };
   } else $('#hbHist').innerHTML = '<span class="ha-k">No runs yet</span><span class="ha-s">Finish a game and it shows up here, with every word you scored.</span>';
-  let x = { best: 0 }; try { x = fullStats(); } catch (e) {}
-  const next = THEMES.filter(t => t.id !== 'classic' && !t.ok(x)).slice(0, 3), show = next.length ? next : THEMES.slice(-3);
-  $('#hbShop').innerHTML = `<span class="hs-row">${show.map((t, i) => `<span class="hs-th${i === 1 ? ' mid' : ''}"><span class="hs-sw" data-skin="${t.id}"><i>${esc(t.name[0])}</i></span><small>${esc(t.name)}${t.price ? ` · 💎${n0(t.price)}` : ''}</small></span>`).join('')}</span>`
-    + `<span class="ha-s" id="srShop">${next.length ? `Next theme: ${esc(next[0].name)}` : 'Every theme unlocked'}</span>`;
+  if (!$('#hbShop').firstChild) $('#hbShop').innerHTML = shopPile();
 }
 // Quests tile: how many are done, and the next one to go for.
 function renderQuestTile() {
@@ -5649,7 +5830,8 @@ function renderQuestTile() {
 }
 // Change mode tile: switch in place. Today's drop, the six modes and Ranked; a seed for your own games; Solo or VS.
 // Picking a mode while on Today's drop or Ranked plays it the way you last picked (Solo or VS).
-const QS = ['daily', ...MODE_KEYS, 'ranked'];
+const QS = ['daily', ...MODE_KEYS.slice(0, 3), 'ranked', ...MODE_KEYS.slice(3)];
+const GM_ORDER = ['daily', 'ranked', ...MODE_KEYS];
 const QS_NAME = { daily: "Today's drop", ranked: 'Ranked' };
 const QS_SHORT = { daily: 'Daily', classic: 'Classic', rot: 'Rot & Thaw', puzzle: 'Puzzle', chaos: 'Chaos', amnesia: 'Amnesia', bounty: 'Bounty', ranked: 'Ranked' };
 function quickPick(k) {
@@ -6018,19 +6200,193 @@ const GM_BOARD = {
   rot: 'e e f.s f.n e e  e e e e e e  ice.f ice.r ice.o ice.s ice.t e  rot.w rot.a p.r p.m rot.t p.h',
 };
 const gmCol = k => k === 'daily' ? DAILY_COL : k === 'ranked' ? '#9d8bff' : modeCol(k);
+// Each card: an empty well with the mode's emblem in the middle. The picked card plays a short preview (gmpPlay).
+const gmWheel = () => { const C = ['#ff4f9a', '#ffc94a', '#6fe3c4', '#9d8bff', '#ff8a3d', '#5cc8f5'], P = a => [32 + 27 * Math.sin(a), 32 - 27 * Math.cos(a)].map(v => v.toFixed(2)).join(' ');
+  return `<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g class="wh">${C.map((c, i) => `<path d="M32 32L${P(i * Math.PI / 3)}A27 27 0 0 1 ${P((i + 1) * Math.PI / 3)}Z" fill="${c}"/>`).join('')}<circle cx="32" cy="32" r="27" fill="none" stroke="#0d0b1f" stroke-width="2"/>${C.map((_, i) => `<path d="M32 32L${P(i * Math.PI / 3)}" stroke="#0d0b1f" stroke-width="2"/>`).join('')}</g><circle cx="32" cy="32" r="8" fill="#15122e" stroke="#fff" stroke-width="2"/><path d="M26 1h12l-6 10z" fill="#fff" stroke="#0d0b1f" stroke-width="1.5" stroke-linejoin="round"/></svg>`; };
+function gmSprite(k) {
+  const d = new Date();
+  if (k === 'daily') return `<span class="pk-cal"><b>${String(d.getDate()).padStart(2, '0')}</b><small>${esc(d.toLocaleDateString(undefined, { month: 'short' }))}</small></span>`;
+  if (k === 'ranked') return '<span class="pk-tiers"><i class="t1"></i><i class="t3">II</i><i class="t2"></i></span>';
+  if (k === 'classic') return `<span class="sp-cw">${[['d', 0, 2, 1], ['w', 1, 1], ['o', 1, 2, 1], ['r', 1, 3], ['d', 1, 4], ['n', 2, 2, 1], ['e', 3, 2, 1]].map(([ch, rr, q, g]) => `<i${g ? ' class="g"' : ''} style="--r:${rr};--q:${q}">${ch}</i>`).join('')}</span>`;
+  if (k === 'puzzle') return '<span class="sp-pz"><i class="k"></i><i class="hd"></i><b>3:00</b></span>';
+  if (k === 'bounty') return '<span class="sp-bt"><b>Wanted</b><span>star</span><em>×3</em></span>';
+  if (k === 'rot') return `<span class="sp-rt"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><linearGradient id="gmRtI" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#9fdcff"/><stop offset="1" stop-color="#3fa9e0"/></linearGradient><linearGradient id="gmRtR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c8655d"/><stop offset="1" stop-color="#5e211e"/></linearGradient><clipPath id="gmRtC"><circle cx="32" cy="32" r="28"/></clipPath></defs>
+    <g clip-path="url(#gmRtC)"><path d="M0 0H64L0 64Z" fill="url(#gmRtI)"/><path d="M64 0V64H0Z" fill="url(#gmRtR)"/><path d="M64 0L0 64" stroke="#0d0b1f" stroke-width="2.5"/></g>
+    <g stroke="#0d3a57" stroke-width="2.4" stroke-linecap="round"><path d="M22 10v20M13.3 15l17.4 10M13.3 25l17.4-10M19 11.5l3 3 3-3M19 28.5l3-3 3 3"/></g>
+    <g transform="translate(43 43)"><circle r="6.5" fill="#ffb347" stroke="#3a1206" stroke-width="1.5"/><g stroke="#ffb347" stroke-width="2.2" stroke-linecap="round"><path d="M0-10.5v-3M0 10.5v3M-10.5 0h-3M10.5 0h3M7.4-7.4l2 -2M-7.4 7.4l-2 2M7.4 7.4l2 2M-7.4-7.4l-2-2"/></g></g>
+    <circle cx="32" cy="32" r="28" fill="none" stroke="#0d0b1f" stroke-width="3"/><circle cx="32" cy="32" r="30" fill="none" stroke="#ffffff40" stroke-width="1"/></svg></span>`;
+  if (k === 'chaos') return `<span class="sp-ch">${gmWheel()}</span>`;
+  if (k === 'amnesia') return '<span class="sp-am"><i>a</i><s style="--a:0"></s><s style="--a:1"></s><s style="--a:2"></s><s style="--a:3"></s></span>';
+  return '';
+}
 function gmArt(k) {
-  let cells = GM_BOARD[k] || MODE_BOARDS[k] || GM_BOARD.classic, inWell = '';
-  if (k === 'daily') {
-    // Today's word of the day banked along the bottom, the date up in the well.
-    const d = new Date(), w = pickWotd(hashStr('wordfall-wotd:' + todayStr())).slice(0, 6).padEnd(6, ' ');
-    cells = `e e f.t f.h e e  e p.o e e e e  p.r p.a e p.e e p.s  ${[...w].map(ch => ch === ' ' ? 'e' : 'b+w.' + ch).join(' ')}`;
-    inWell = `<span class="pk-cal"><b>${String(d.getDate()).padStart(2, '0')}</b><small>${esc(d.toLocaleDateString(undefined, { month: 'short' }))}</small></span>`;
-  } else if (k === 'ranked') {
-    cells = 'e e f.t f.o f.p e  p.c p.l p.i p.m p.b e';
-    inWell = '<span class="pk-tiers"><i class="t1"></i><i class="t3">II</i><i class="t2"></i></span>';
+  return `<span class="gmw" data-k="${k}"><span class="gmw-l"></span><span class="gmw-t"></span><span class="gmw-sp">${gmSprite(k)}</span><span class="gmw-fx"></span></span>`;
+}
+/* The preview player. A script is a list of [ms from the start, op, ...args]; pieces land on whatever is under them,
+   so several can be in the air at once. Ops: d drop a piece, w score a word, s stones rise, c change tiles' look,
+   b a banner, t tilt the rows, x a bomb, f forget a letter, g the emblem reacts. Then it fades and starts over. */
+const GMP = { run: 0, k: null, w: null, timers: [] };
+const gmpCalm = () => document.documentElement.classList.contains('calm') || document.body.classList.contains('calm') || matchMedia('(prefers-reduced-motion: reduce)').matches;
+function gmpLater(S, ms, fn) { if (S.calm) { fn(); return; } const run = S.run; GMP.timers.push(setTimeout(() => { if (run === GMP.run) fn(); }, ms)); }
+function gmpTile(S, id, x, y, ch, cls) {
+  const el = document.createElement('i');
+  el.className = cls || ''; el.textContent = ch; el._x = x; el._y = y;
+  el.style.setProperty('--x', x); el.style.setProperty('--y', y);
+  S.t.appendChild(el); S.ids[id] = el;
+  return el;
+}
+function gmpMove(S, e, x, y, ms) {
+  const dx = (e._x - x) * S.step, dy = (y - e._y) * S.step;
+  e._x = x; e._y = y; e.style.setProperty('--x', x); e.style.setProperty('--y', y);
+  if (!S.calm && (dx || dy)) e.animate([{ transform: `translate(${dx}px,${dy}px)` }, { transform: 'none' }], { duration: ms || 170 + 45 * Math.max(Math.abs(dx), Math.abs(dy)) / S.step, easing: dy < 0 ? 'cubic-bezier(.5,0,.9,.6)' : 'cubic-bezier(.2,.7,.3,1)' });
+}
+const gmpTiles = S => Object.values(S.ids).filter(e => e.isConnected && !e.classList.contains('gone'));
+function gmpGravity(S) {
+  for (let x = 0; x < 6; x++) {
+    const col = gmpTiles(S).filter(e => e._x === x).sort((p, q) => p._y - q._y);
+    col.forEach((e, i) => { if (e._y !== i) gmpMove(S, e, x, i); });
+    S.h[x] = col.length;
   }
-  const t = cells.trim().split(/\s+/);
-  return modeBoard(k, [...t.slice(0, 6), 'gm-sp', ...t.slice(6)].join(' ')).replace('<i class="gm-sp"></i>', `<i class="gm-sp">${inWell}</i>`);
+}
+function gmpRemove(S, els) {
+  els.forEach(e => { e.classList.add('gone'); setTimeout(() => e.remove(), 280); });
+  gmpLater(S, 260, () => gmpGravity(S));
+}
+function gmpPop(S, els, big, small, cls = '') {
+  if (S.calm || !els.length) return;
+  const xs = els.map(e => e._x), ys = els.map(e => e._y), p = document.createElement('span');
+  p.className = 'gmw-pop ' + cls;
+  p.style.setProperty('--cx', (Math.min(...xs) + Math.max(...xs) + 1) / 2); p.style.setProperty('--cy', Math.max(...ys) + 1);
+  p.innerHTML = `<b>${esc(big)}</b>${small ? `<small>${esc(small)}</small>` : ''}`;
+  S.fx.appendChild(p); setTimeout(() => p.remove(), 1300);
+}
+const GMP_OPS = {
+  // A piece: letters across from column x (or down, top letter first, with {v:1}).
+  d(S, id, x, str, o = {}) {
+    const L = [...str], cells = [];
+    if (o.v) { const y0 = S.h[x]; L.forEach((ch, j) => cells.push([x, y0 + L.length - 1 - j, ch])); S.h[x] += L.length; }
+    else { const y0 = Math.max(...L.map((_, i) => S.h[x + i])); L.forEach((ch, i) => { cells.push([x + i, y0, ch]); S.h[x + i] = y0 + 1; }); }
+    const top = Math.max(...cells.map(c => c[1])), dist = (S.rows + 1 - top) * S.step, dur = o.ms || 260 + 26 * (S.rows - top);
+    cells.forEach(([cx, cy, ch], j) => {
+      const el = gmpTile(S, id + j, cx, cy, ch, o.cls || '');
+      if (S.calm) return;
+      el.animate([{ transform: `translateY(${-dist}px)` }, { transform: 'none' }], { duration: dur, easing: 'cubic-bezier(.45,0,.9,.55)', fill: 'backwards' });
+      el.animate([{ transform: 'scale(1.08,.84)' }, { transform: 'none' }], { duration: 170, delay: dur, easing: 'ease-out' });
+    });
+  },
+  // A word scores: it flashes, its points float up, then it banks (a look) or clears.
+  w(S, ids, look, pts, label) {
+    const els = ids.map(i => S.ids[i]).filter(e => e && e.isConnected);
+    els.forEach(e => e.classList.add('hit'));
+    gmpPop(S, els, '+' + pts, label, look === 'gd' ? 'gold' : look === 'lit' ? 'lit' : '');
+    gmpLater(S, 380, () => {
+      els.forEach(e => e.classList.remove('hit'));
+      if (look === 'clear') gmpRemove(S, els);
+      else els.forEach(e => { e.classList.remove('ice', 'rot', 'ban', 'tg'); look.split(' ').forEach(c => c && e.classList.add(c)); });
+    });
+  },
+  // A row of stone pushes in from the bottom.
+  s(S, n = 1) {
+    gmpTiles(S).forEach(e => gmpMove(S, e, e._x, e._y + n, 320));
+    for (let y = 0; y < n; y++) for (let x = 0; x < 6; x++) {
+      const el = gmpTile(S, `st${++S.sn}`, x, y, '', 'stn');
+      if (!S.calm) el.animate([{ transform: `translateY(${n * S.step}px)` }, { transform: 'none' }], { duration: 320, easing: 'cubic-bezier(.2,.7,.3,1)' });
+    }
+    S.h = S.h.map(v => v + n);
+  },
+  c(S, ids, add, rem = '') { ids.forEach(i => { const e = S.ids[i]; if (!e) return; rem.split(' ').forEach(c => c && e.classList.remove(c)); add.split(' ').forEach(c => c && e.classList.add(c)); }); },
+  b(S, big, cls = '', small = '') {
+    if (S.calm) return;
+    const el = document.createElement('span'); el.className = 'gmw-ban ' + cls;
+    el.innerHTML = `<b>${esc(big)}</b>${small ? `<small>${esc(small)}</small>` : ''}`;
+    S.fx.appendChild(el); setTimeout(() => el.remove(), 1600);
+  },
+  // Chaos: every row slides to one side, then the tiles settle.
+  t(S, dir = -1) {
+    const rows = {}; gmpTiles(S).forEach(e => (rows[e._y] = rows[e._y] || []).push(e));
+    Object.values(rows).forEach(rw => { rw.sort((p, q) => p._x - q._x); if (dir > 0) rw.reverse(); rw.forEach((e, i) => { const nx = dir < 0 ? i : 5 - i; if (e._x !== nx) gmpMove(S, e, nx, e._y, 260); }); });
+    gmpLater(S, 300, () => gmpGravity(S));
+  },
+  // Chaos: a bomb clears the tiles around it.
+  x(S, id) {
+    const bm = S.ids[id]; if (!bm) return;
+    const near = gmpTiles(S).filter(e => Math.abs(e._x - bm._x) <= 1 && Math.abs(e._y - bm._y) <= 1);
+    if (!S.calm) { const f = document.createElement('span'); f.className = 'gmw-boom'; f.style.setProperty('--cx', bm._x + 0.5); f.style.setProperty('--cy', bm._y + 0.5); S.fx.appendChild(f); setTimeout(() => f.remove(), 700);
+      S.w.animate([{ transform: 'translate(2px,-1px)' }, { transform: 'translate(-2px,1px)' }, { transform: 'none' }], { duration: 240 }); }
+    gmpRemove(S, near);
+  },
+  // Amnesia: a letter is forgotten; it stays on the board as a ghost.
+  f(S, ch) {
+    gmpTiles(S).filter(e => e.textContent === ch).forEach(e => e.classList.add('ban'));
+    GMP_OPS.b(S, ch.toUpperCase(), 'amn', 'Forgotten');
+  },
+  g(S) { const sp = S.w.querySelector('.gmw-sp'); if (!sp || S.calm) return; sp.classList.remove('go'); void sp.offsetWidth; sp.classList.add('go'); },
+};
+const GMP_SCRIPT = {
+  daily: () => { const w = pickWotd(hashStr('wordfall-wotd:' + todayStr())).slice(0, 6), n = w.length;
+    return [[0, 'd', 'a', 0, w.slice(0, 2)], [170, 'd', 'b', 2, w.slice(2, 4)], [340, 'd', 'c', 4, w.slice(4, 6)], [500, 'g'],
+      [1100, 'w', ['a0', 'a1', 'b0', 'b1', 'c0', 'c1'].slice(0, n), 'b w', 240, 'Word of the day ×2'],
+      [1800, 'd', 'e', 0, 'so'], [1950, 'd', 'f', 3, 'n', { v: 1 }], [2100, 'd', 'g', 2, 'w'], [2250, 'd', 'h', 4, 'it'],
+      [2800, 'w', ['e0', 'e1', 'g0'], 'b', 30, 'Banked'], [3300, 's', 1], [3350, 'b', 'Hazard', 'haz', 'Stones rise'],
+      [3900, 'd', 'i', 0, 'ha'], [4050, 'd', 'j', 2, 'te'], [4200, 'd', 'k', 5, 'd'], [4800, 'w', ['i0', 'i1', 'j0', 'j1', 'k0'], 'b', 60, 'Banked']]; },
+  ranked: () => [[0, 'd', 'a', 0, 'cl'], [170, 'd', 'b', 2, 'imb'], [900, 'w', ['a0', 'a1', 'b0', 'b1', 'b2'], 'b', 150, 'Climb'],
+    [1500, 'd', 'c', 1, 'to'], [1650, 'd', 'd', 4, 'p', { v: 1 }], [1800, 'd', 'e', 3, 'p'], [2400, 'w', ['c0', 'c1', 'e0'], 'b', 30, 'Top'],
+    [2900, 'g'], [2950, 'b', 'Tier up', 'rk', 'Silver II'], [3700, 'd', 'f', 0, 'wi'], [3850, 'd', 'g', 2, 'ns'], [4500, 'w', ['f0', 'f1', 'g0', 'g1'], 'b', 40, 'Wins']],
+  classic: () => [[0, 'd', 'a', 0, 'ca'], [170, 'd', 'b', 3, 'end'], [480, 'd', 'c', 2, 't'],
+    [1050, 'w', ['a0', 'a1', 'c0'], 'b', 30, 'Banked'], [1300, 'w', ['b0', 'b1', 'b2'], 'b', 30, 'Banked'],
+    [1650, 'd', 'e', 1, 'se', { v: 1 }], [1800, 'd', 'f', 4, 'or'], [2400, 'w', ['e0', 'e1', 'a1'], 'clear', 90, 'Cash in ×3'],
+    [3200, 's', 1], [3250, 'b', 'Hazard', 'haz', 'Stones rise'],
+    [3800, 'd', 'g', 0, 'ha'], [3950, 'd', 'h', 2, 't'], [4600, 'w', ['g0', 'g1', 'h0'], 'b', 30, 'Banked']],
+  puzzle: () => [[0, 'd', 'a', 0, 'wo'], [150, 'd', 'b', 2, 'rd'], [300, 'd', 'c', 4, 'in'], [450, 'g'],
+    [900, 'w', ['a0', 'a1', 'b0', 'b1'], 'lit', 120, 'Word'], [1200, 'd', 'd', 0, 'ca'], [1350, 'd', 'e', 2, 't'],
+    [1900, 'w', ['d0', 'd1', 'e0'], 'lit', 90, 'Cat'], [2200, 'd', 'f', 5, 'ow', { v: 1 }], [2350, 'd', 'g', 0, 'sk'], [2500, 'd', 'h', 2, 'y'],
+    [3000, 'w', ['f0', 'f1', 'c1'], 'lit', 135, 'Crosses +50%'], [3350, 'w', ['g0', 'g1', 'h0'], 'lit', 90, 'Sky'],
+    [3900, 'g'], [3950, 'b', '2:41', 'pz', 'Fill the box'], [4400, 'd', 'i', 3, 'ten', { v: 1 }]],
+  bounty: () => [[0, 'b', 'Wanted', 'bty', 'Star · ×3 bounty'], [300, 'd', 'a', 0, 'co'], [450, 'd', 'b', 2, 'in'],
+    [1050, 'w', ['a0', 'a1', 'b0', 'b1'], 'b', 40, 'Banked'], [1300, 'd', 'c', 1, 'st'], [1450, 'd', 'd', 3, 'ar'],
+    [2000, 'c', ['c0', 'c1', 'd0', 'd1'], 'tg'], [2400, 'w', ['c0', 'c1', 'd0', 'd1'], 'gd', 360, 'Bounty ×3'], [2450, 'g'],
+    [3200, 'd', 'e', 0, 'ga'], [3350, 'd', 'f', 4, 'te'], [3500, 'd', 'g', 2, 'l'], [4100, 'b', 'Wanted', 'bty', 'Gold · ×4 bounty']],
+  rot: () => [[0, 'b', 'Winter', 'frz', 'Frost creeps in'], [300, 'd', 'a', 0, 'fr'], [450, 'd', 'b', 2, 'ost'],
+    [1000, 'c', ['a0', 'b2'], 'ice'], [1250, 'd', 'c', 1, 'wa'], [1400, 'd', 'd', 3, 'rm'], [1700, 'c', ['a1', 'b1', 'c0'], 'ice'],
+    [2300, 'w', ['a0', 'a1', 'b0', 'b1', 'b2'], 'clear', 150, 'Ice shatters'], [3000, 'g'], [3050, 'b', 'Thaw', 'thaw', 'Summer burns'],
+    [3300, 'c', ['c1', 'd0'], 'rot'], [3700, 'd', 'e', 0, 'he'], [3850, 'd', 'f', 4, 'at'], [4500, 'w', ['c0', 'c1', 'd0', 'd1'], 'clear', 120, 'Rot burns away']],
+  chaos: () => [[0, 'g'], [50, 'b', 'Tilt', 'chs', 'New rule'], [300, 'd', 'a', 1, 'ch'], [450, 'd', 'b', 4, 'os'], [600, 'd', 'c', 3, 'a'],
+    [1200, 't', -1], [1700, 'w', ['a0', 'a1', 'c0', 'b0', 'b1'], 'clear', 150, 'Chaos'],
+    [2300, 'g'], [2350, 'b', 'Bombs', 'chs', 'New rule'], [2600, 'd', 'e', 0, 'bo'], [2750, 'd', 'f', 2, 'mb'], [3000, 'd', 'x', 2, ' ', { cls: 'bomb' }],
+    [3600, 'x', 'x0'], [4200, 'g'], [4250, 'b', 'Jackpot', 'chs', 'Every word ×3'], [4500, 'd', 'g', 2, 'win'], [5100, 'w', ['g0', 'g1', 'g2'], 'gd', 90, 'Jackpot ×3']],
+  amnesia: () => [[0, 'd', 'a', 0, 'le'], [150, 'd', 'b', 2, 'mon'], [300, 'd', 'c', 5, 's'],
+    [950, 'w', ['a0', 'a1', 'b0', 'b1', 'b2', 'c0'], 'clear', 90, 'Lemons'], [1500, 'd', 'd', 0, 'me'], [1650, 'd', 'e', 2, 'lt'], [1800, 'd', 'f', 4, 'ed'],
+    [2300, 'g'], [2350, 'f', 'e'], [3000, 'w', ['d0', 'd1', 'e0', 'e1', 'f0', 'f1'], 'clear', 180, 'Memory ×1.5'],
+    [3700, 'd', 'g', 1, 'to'], [3850, 'd', 'h', 3, 'ast'], [4400, 'g'], [4450, 'f', 't']],
+};
+function gmpStop() {
+  GMP.run++; GMP.timers.forEach(clearTimeout); GMP.timers = [];
+  if (GMP.w) { const t = GMP.w.querySelector('.gmw-t'), fx = GMP.w.querySelector('.gmw-fx'), sp = GMP.w.querySelector('.gmw-sp');
+    t.classList.remove('fade'); t.textContent = ''; fx.textContent = ''; if (sp) sp.classList.remove('go'); }
+  GMP.k = null; GMP.w = null;
+}
+function gmpPlay(card) {
+  gmpStop();
+  const w = card && card.querySelector('.gmw');
+  if (!w || !+w.dataset.rows || $('#modesPage').hidden || !GMP_SCRIPT[card.dataset.q]) return;
+  const S = { w, t: w.querySelector('.gmw-t'), fx: w.querySelector('.gmw-fx'), rows: +w.dataset.rows, step: (+w.dataset.c || 20) + (+w.dataset.g || 2),
+    h: [0, 0, 0, 0, 0, 0], ids: {}, sn: 0, run: GMP.run, calm: gmpCalm() };
+  GMP.k = card.dataset.q; GMP.w = w;
+  const steps = GMP_SCRIPT[GMP.k](), end = Math.max(...steps.map(st => st[0]));
+  // Without motion: just the preview's last frame.
+  if (S.calm) { steps.forEach(([, op, ...args]) => GMP_OPS[op](S, ...args)); return; }
+  for (const [at, op, ...args] of steps) GMP.timers.push(setTimeout(() => { if (S.run === GMP.run) GMP_OPS[op](S, ...args); }, at));
+  GMP.timers.push(setTimeout(() => {
+    if (S.run !== GMP.run) return;
+    S.t.classList.add('fade');
+    GMP.timers.push(setTimeout(() => { if (S.run === GMP.run) gmpPlay(card); }, 480));
+  }, end + 1900));
+}
+// The picked card plays; nothing plays while the page is closed.
+function gmpSync() {
+  const on = $('#gmCards .gm-card.on');
+  if ($('#modesPage').hidden || !on) { if (GMP.w) gmpStop(); return; }
+  if (GMP.k !== on.dataset.q || !GMP.w || !GMP.w.isConnected) gmpPlay(on);
 }
 const gmCur = () => playTab === 'daily' || playTab === 'ranked' ? playTab : pickMode;
 const fixedNow = () => playTab === 'daily' || playTab === 'ranked';
@@ -6042,16 +6398,16 @@ function showModesPage() {
 function renderModesPage(full) {
   const el = $('#modesPage'); if (!el || el.hidden) return;
   const cur = gmCur(), bests = modeBests(), cards = $('#gmCards'), vs = playTab === 'bot' || playTab === 'online', fixed = fixedNow();
-  if (full || cards.children.length !== QS.length) {
-    cards.innerHTML = QS.map((k, i) => `<button class="gm-card" type="button" role="option" data-q="${k}" style="--rc:${gmCol(k)};--mc:${gmCol(k)};${k === 'rot' ? '--rs:linear-gradient(90deg,#8fdcff 50%,#e0736a 50%);' : ''}--i:${i}">
+  if (full || cards.children.length !== GM_ORDER.length) {
+    cards.innerHTML = GM_ORDER.map((k, i) => `<button class="gm-card" type="button" role="option" data-q="${k}" style="--rc:${gmCol(k)};--mc:${gmCol(k)};${k === 'rot' ? '--rs:linear-gradient(90deg,#8fdcff 50%,#e0736a 50%);' : ''}--i:${i}">
       <span class="gm-art" aria-hidden="true">${gmArt(k)}</span>
-      <span class="gm-lbl"><i class="mi" data-i="${k}" aria-hidden="true"></i><em class="gm-lock" hidden><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 7.2V5.4a3 3 0 0 1 6 0v1.8" fill="none" stroke="currentColor" stroke-width="1.9"/><rect x="3" y="7" width="10" height="7.6" rx="2" fill="currentColor"/></svg></em><b>${esc(QS_NAME[k] || MODES[k].name)}</b><small>${esc(GM_TAG[k])}</small><span class="gm-best"></span></span></button>`).join('');
+      <span class="gm-lbl"><i class="mi" data-i="${k}" aria-hidden="true"></i><em class="gm-lock" hidden><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 7.2V5.4a3 3 0 0 1 6 0v1.8" fill="none" stroke="currentColor" stroke-width="1.9"/><rect x="3" y="7" width="10" height="7.6" rx="2" fill="currentColor"/></svg></em><b>${esc(QS_NAME[k] || MODES[k].name)}</b><small>${esc(GM_TAG[k])}</small><span class="gm-dif">${diffTag(k === 'daily' ? dailyVariant(todayStr()) : k)}</span><span class="gm-best"></span></span></button>`).join('');
     cards.querySelectorAll('.gm-card').forEach(b => { b.onclick = () => { quickPick(b.dataset.q); b.focus({ preventScroll: true }); }; });
     cards.onkeydown = e => {
       const d = e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : 0;
       if (!d) return;
       e.preventDefault();
-      const k = QS[(QS.indexOf(gmCur()) + d + QS.length) % QS.length];
+      const k = GM_ORDER[(GM_ORDER.indexOf(gmCur()) + d + GM_ORDER.length) % GM_ORDER.length];
       quickPick(k);
       const b = cards.querySelector(`[data-q="${k}"]`); if (b) { b.focus({ preventScroll: true }); b.scrollIntoView({ block: 'nearest', inline: 'nearest' }); }
     };
@@ -6106,23 +6462,22 @@ function renderModesPage(full) {
   const tp = $('#tPlay'), gp = $('#gmPlay');
   gp.textContent = tp.textContent; gp.disabled = tp.disabled; gp.classList.toggle('locked', tp.classList.contains('locked'));
   if (tp.title) gp.title = tp.title; else gp.removeAttribute('title');
+  requestAnimationFrame(gmpSync);
 }
-// Scale each card's art to fill its card (the cards never change size).
+// Size each card's well: six lanes as wide as it allows and as many rows as fit (the cards never change size).
 function gmFit() {
-  for (const a of document.querySelectorAll('#gmCards .gm-art')) {
-    const k = a.firstElementChild; if (!k) continue;
-    const sp = k.querySelector('.gm-sp'); if (sp) sp.style.height = '0px';
-    k.style.zoom = '1';
-    const kw = k.offsetWidth, kh = k.offsetHeight, cs = getComputedStyle(a);
-    const aw = a.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight), ah = a.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
-    if (!kw || !kh || aw <= 0 || ah <= 0) continue;
-    // A well fills the card: as wide as it fits, then open well down to the stack. Badges just scale to fit.
-    const z = sp ? Math.max(0.5, Math.min(1.3, aw / kw, ah / kh)) : Math.max(0.5, Math.min(1.9, aw / kw, ah / kh));
-    k.style.zoom = z.toFixed(3);
-    if (sp) { const h = Math.max(0, Math.floor(ah / z - kh)); sp.style.height = `${h}px`; sp.classList.toggle('tight', h < 84); }
+  for (const w of document.querySelectorAll('#gmCards .gmw')) {
+    const W = w.clientWidth, H = w.clientHeight; if (!W || !H) continue;
+    const p = Math.max(4, Math.round(W * 0.045)), g = Math.max(2, Math.round(W * 0.016));
+    const c = Math.max(8, Math.floor((W - 2 * p - 5 * g) / 6)), rows = Math.max(6, Math.floor((H - 2 * p + g) / (c + g)));
+    const px = Math.round((W - 6 * c - 5 * g) / 2);
+    w.style.setProperty('--c', c + 'px'); w.style.setProperty('--g', g + 'px'); w.style.setProperty('--p', p + 'px'); w.style.setProperty('--px', px + 'px');
+    w.style.setProperty('--z', Math.max(0.62, Math.min(1.45, W / 140)).toFixed(3));
+    Object.assign(w.dataset, { rows, c, g });
   }
 }
 addEventListener('resize', () => { if (!$('#modesPage').hidden) gmFit(); });
+new MutationObserver(() => { if ($('#modesPage').hidden && GMP.w) gmpStop(); }).observe($('#modesPage'), { attributes: true, attributeFilter: ['hidden'] });
 $('#gmBack').onclick = () => { closeOv(true); const pc = $('#playCard'); pc.classList.remove('flash'); void pc.offsetWidth; pc.classList.add('flash'); $('#tPlay').focus({ preventScroll: true }); };
 function showPicker() {
   showModesPage(); return;
@@ -6323,6 +6678,7 @@ function syncVariant() {
   pc.dataset.v = shown;
   pc.querySelectorAll('.pm-var').forEach(el => { el.textContent = MODES[pickMode].name; el.style.setProperty('--len', MODES[pickMode].name.length); });
   setText($('#tcMode'), MODES[dv].name); $('#tcMode').style.setProperty('--len', MODES[dv].name.length);
+  pc.querySelectorAll('.pm-dif').forEach(el => { const k = el.id === 'tcDif' ? dv : pickMode; if (el.dataset.k !== k) { el.dataset.k = k; el.innerHTML = diffTag(k); } });
   // The mode's description shows in the Change mode sheet: today's mode for the daily, else the picked one.
   const dk = playTab === 'daily' ? dv : pickMode;
   const vd = Object.entries(VDESC).map(([k, t]) => `<span${k === dk ? '' : ' class="off"'}>${t}</span>`).join('');
@@ -6385,6 +6741,9 @@ function prog() {
     // Gems: earned from finished quests, minus everything bought.
     get gems() { return Math.max(0, questEarned(this.done) - Object.values(this.buy).reduce((a, b) => a + (+b || 0), 0)); },
     set gems(v) { this.buy.adj = (+this.buy.adj || 0) + (this.gems - Math.floor(+v || 0)); } };
+  // Puzzle Box, Bounty, Chaos Carnage and Amnesia became quest unlocks later: a mode you've already played stays open.
+  const played = new Set([...(Array.isArray(rd('wordfall-runs')) ? rd('wordfall-runs') : []).map(x => x && x.variant), ...Object.keys(rd('wordfall-modebest') || {})]);
+  for (const k of ['puzzle', 'bounty', 'chaos', 'amnesia']) if (played.has(k)) progS.unl[k] = 1;
   return progS;
 }
 function saveProg() { const S = prog(); store.set('wordfall-quests', JSON.stringify({ tut: S.tut, done: S.done, unl: S.unl, own: S.own, st: S.st, fresh: S.fresh, buy: S.buy, gems: S.gems })); }
@@ -6397,11 +6756,11 @@ function questBuy(q) {
   return b;
 }
 // What each level starts with; experienced players (and anyone not asked yet) have everything.
-const LOCKABLE = ['normal', 'fast', 'practice', 'daily', 'bot', 'online', 'rot'];
+const LOCKABLE = ['normal', 'fast', 'practice', 'daily', 'bot', 'online', 'rot', 'puzzle', 'bounty', 'chaos', 'amnesia'];
 const LV_START = { new: [], mid: ['normal', 'practice', 'daily', 'online'] };
 function has(k) { const S = prog(); return !LOCKABLE.includes(k) || !LV_START[S.level] || LV_START[S.level].includes(k) || !!S.unl[k]; }
-const LOCK_Q = { practice: 'first', normal: 'first', daily: 'daily', fast: 'fast', bot: 'bots', online: 'online', rot: 'rot' };
-const UNLOCK_NAME = { practice: '🎯 Practice', normal: 'Normal speed', daily: "📅 Today's drop", fast: 'Fast speed', bot: '🤖 Vs bots', online: '👥 Online', rot: '❄ Rot & Thaw' };
+const LOCK_Q = { practice: 'first', normal: 'first', daily: 'daily', fast: 'fast', bot: 'bots', online: 'online', rot: 'rot', puzzle: 'puzzle', bounty: 'bounty', chaos: 'chaos', amnesia: 'amnesia' };
+const UNLOCK_NAME = { practice: '🎯 Practice', normal: 'Normal speed', daily: "📅 Today's drop", fast: 'Fast speed', bot: '🤖 Vs bots', online: '👥 Online', rot: '❄ Rot & Thaw', puzzle: '🧩 Puzzle Box', bounty: '🎯 Bounty', chaos: '🌀 Chaos Carnage', amnesia: '🧠 Amnesia' };
 const questById = id => QUESTS.find(q => q.id === id);
 function lockMsg(k) { const q = questById(LOCK_Q[k]); return q ? `${q.icon} Quest: ${q.name}. ${q.desc}` : ''; }
 // The Tutorial card: new players see it until their first run is done (lessons first, then the run);
@@ -6436,8 +6795,16 @@ const QUESTS = [
     parts: r => [['Words of 5+ letters', n5(r), 3], ['Points', r.score, 4000]] },
   { id: 'online', path: true, icon: '👥', name: 'Ready for rivals', desc: 'Win a Duel against a Normal or Hard bot.', gems: 100, unlock: ['online'], needs: 'bot',
     parts: r => [['Duel win', r.mode === 'bot' && !r.royale && r.place === 1 && ['normal', 'hard'].includes(r.botLv) ? 1 : 0, 1]] },
-  { id: 'rot', path: true, icon: '❄', name: 'Rot & Thaw', desc: 'Spell ROT and THAW and score 10,000, all in one run.', gems: 250, unlock: ['rot'], theme: 'frost', tile: 'frost',
+  { id: 'puzzle', path: true, icon: '🧩', mode: 'puzzle', name: 'Puzzle Box', desc: 'Spell FIT and TIME and score 5,000, all in one run.', gems: 150, unlock: ['puzzle'],
+    parts: r => [['FIT', said(r, 'fit') ? 1 : 0, 1], ['TIME', said(r, 'time') ? 1 : 0, 1], ['Points', r.score, 5000]] },
+  { id: 'bounty', path: true, icon: '🎯', mode: 'bounty', name: 'Bounty', desc: 'Spell HUNT and LOOT and score 6,000, all in one run.', gems: 150, unlock: ['bounty'],
+    parts: r => [['HUNT', said(r, 'hunt') ? 1 : 0, 1], ['LOOT', said(r, 'loot') ? 1 : 0, 1], ['Points', r.score, 6000]] },
+  { id: 'rot', path: true, icon: '❄', mode: 'rot', name: 'Rot & Thaw', desc: 'Spell ROT and THAW and score 10,000, all in one run.', gems: 250, unlock: ['rot'], theme: 'frost', tile: 'frost',
     parts: r => [['ROT', said(r, 'rot') ? 1 : 0, 1], ['THAW', said(r, 'thaw') ? 1 : 0, 1], ['Points', r.score, 10000]] },
+  { id: 'chaos', path: true, icon: '🌀', mode: 'chaos', name: 'Chaos Carnage', desc: 'Spell RIOT and MESS and score 10,000, all in one run.', gems: 250, unlock: ['chaos'],
+    parts: r => [['RIOT', said(r, 'riot') ? 1 : 0, 1], ['MESS', said(r, 'mess') ? 1 : 0, 1], ['Points', r.score, 10000]] },
+  { id: 'amnesia', path: true, icon: '🧠', mode: 'amnesia', name: 'Amnesia', desc: 'Spell LOST and MIND and score 14,000, all in one run.', gems: 300, unlock: ['amnesia'],
+    parts: r => [['LOST', said(r, 'lost') ? 1 : 0, 1], ['MIND', said(r, 'mind') ? 1 : 0, 1], ['Points', r.score, 14000]] },
   { id: 'stack', icon: '🔗', name: 'Triple stack', desc: 'Cash in a word down through 3 gold words at once.', gems: 100,
     parts: r => [['Gold words crossed', +r.topStack || 0, 3]] },
   { id: 'long', icon: '📏', name: 'Wordsmith', desc: 'Spell a word of six letters.', gems: 75, tile: 'quill',
@@ -6567,7 +6934,7 @@ function nope(el) { el.classList.remove('nope'); void el.offsetWidth; el.classLi
 document.addEventListener('click', e => {
   const b = e.target.closest && e.target.closest('.pace-step [data-pace-step]'); if (!b) return;
   const d = +b.dataset.paceStep, box = b.closest('.pace-step'), k = PACE_KEYS[PACE_KEYS.indexOf(paceOk(pace)) + d];
-  if (!k) { nope(box); return; }
+  if (!k) return;
   if (paceLock(k)) { nope(box); toast(`🔒 ${PACES[k].name} speed: ${lockMsg(k) || paceLock(k)}`); return; }
   // Keep focus on the same side after the redraw, so − and + can be pressed again.
   const inLobby = !!b.closest('.pc-field'), side = d;
@@ -6674,6 +7041,7 @@ function acctApply() {
   lb.synced = false;
   if (lb.loaded) syncLocalBest();
   try { if (fr.started) frStart(); } catch (e) {}
+  chatAdmin();
   renderChat();
   renderMe(); renderBoard();
   // Signing out takes you out of any room you're waiting in (a match in progress can finish).
@@ -6871,9 +7239,12 @@ function supaDb(sb) {
       const q = { orderBy: () => q, limit: () => q, onSnapshot(cb, onErr) {
         let live = true;
         const load = async () => {
-          const cols = 'id,best,daily,day,name,icon';
-          let { data, error } = await sb.from('leaderboard').select(lb.noPace ? cols : cols + ',best_pace,daily_pace').order('best', { ascending: false }).limit(500);
-          if (error && !lb.noPace && paceMissing(error)) { lb.noPace = true; ({ data, error } = await sb.from('leaderboard').select(cols).order('best', { ascending: false }).limit(500)); }
+          const cols = () => 'id,best,daily,day,name,icon' + (lb.noPace ? '' : ',best_pace,daily_pace') + (lb.noAcc ? '' : ',acc');
+          let { data, error } = await sb.from('leaderboard').select(cols()).order('best', { ascending: false }).limit(500);
+          for (let t = 0; t < 2 && error; t++) {
+            if (!lb.noAcc && accMissing(error)) lb.noAcc = true; else if (!lb.noPace && paceMissing(error)) lb.noPace = true; else break;
+            ({ data, error } = await sb.from('leaderboard').select(cols()).order('best', { ascending: false }).limit(500));
+          }
           if (!live) return;
           if (error) { if (onErr) onErr(error); return; }
           cb({ docs: (data || []).map(r => ({ id: r.id, exists: true, data: () => ({ ...r, bp: r.best_pace, dp: r.daily_pace }) })), metadata: { fromCache: false } });
@@ -6921,6 +7292,8 @@ function supaDb(sb) {
 
 // The daily_tl column comes from supabase/daily-timeline.sql; until that has run, scores post without it.
 const dtlMissing = e => /daily_tl/.test(`${e && e.message}`) || (/42703|PGRST204/.test(`${e && e.code}`) && !/_pace/.test(`${e && e.message}`));
+// The acc column comes from supabase/accolades.sql; until that has run, the all-time board is empty.
+const accMissing = e => /\bacc\b/.test(`${e && e.message}`);
 // best_pace and daily_pace come from supabase/score-speed.sql; until that has run, scores show no speed tag.
 const paceMissing = e => /_pace/.test(`${e && e.message}`) || (/42703|PGRST204/.test(`${e && e.code}`) && !/daily_tl/.test(`${e && e.message}`));
 
@@ -6939,6 +7312,7 @@ const cleanScore = v => { const n = Math.floor(+v); return n > 0 && n < 1e8 ? n 
   if (lb.user) { lb.uid = await lb.user.id(); lb.canWrite = await lb.user.can('data.write'); }
   lb.ready = true;
   if (lb.db) subscribeBoard();
+  if (lb.db && !lb.self) setTimeout(profPublish, 4000);
   renderBoard();
   if (lb.self) acctInit();
   chatInit();
@@ -6946,7 +7320,7 @@ const cleanScore = v => { const n = Math.floor(+v); return n > 0 && n < 1e8 ? n 
 function subscribeBoard() {
   const t = setTimeout(() => { lb.slow = true; renderBoard(); }, 10000);
   lb.db.collection('scores').orderBy('best', 'desc').limit(500).onSnapshot(snap => {
-    lb.docs = snap.docs.filter(d => d.exists).map(d => { const x = d.data() || {}; return { id: d.id, best: cleanScore(x.best), daily: cleanScore(x.daily), day: DAY_RE.test(x.day) ? x.day : '', name: cleanNick(x.name), icon: ICON_BY[x.icon] ? x.icon : '', dtl: x.dtl ? cleanTl(x.dtl) : null, bp: PACES[x.bp] ? x.bp : '', dp: PACES[x.dp] ? x.dp : '' }; });
+    lb.docs = snap.docs.filter(d => d.exists).map(d => { const x = d.data() || {}; return { id: d.id, best: cleanScore(x.best), daily: cleanScore(x.daily), day: DAY_RE.test(x.day) ? x.day : '', name: cleanNick(x.name), icon: ICON_BY[x.icon] ? x.icon : '', dtl: x.dtl ? cleanTl(x.dtl) : null, bp: PACES[x.bp] ? x.bp : '', dp: PACES[x.dp] ? x.dp : '', acc: cleanAcc(x.acc), hist: x.hist && typeof x.hist === 'object' ? x.hist : null, accd: x.accd && typeof x.accd === 'object' ? x.accd : null }; });
     if (!snap.metadata.fromCache) { clearTimeout(t); lb.loaded = true; lb.slow = false; lb.failed = false; syncLocalBest(); }
     renderBoard();
   }, () => { clearTimeout(t); lb.failed = true; renderBoard(); });
@@ -6976,6 +7350,7 @@ function submitScore(score, isDaily, dtl, sp) {
       bp: score > prevBest && PACES[sp] ? sp : PACES[cur.bp] ? cur.bp : null,
       dp: isDaily && score > prevDaily && PACES[sp] ? sp : cur.day === today && PACES[cur.dp] ? cur.dp : null };
     if (next.best === prevBest && next.daily === prevDaily && cur.name === next.name && cur.icon === next.icon) return;
+    Object.assign(next, accKeep(cur, next));
     await ref.set(next);
   }).catch(e => { if (e && e.code === 'invalid_argument') { lb.canWrite = false; renderBoard(); } });
 }
@@ -6996,7 +7371,7 @@ const fmtDay = () => new Date().toLocaleDateString(undefined, { day: 'numeric', 
 async function renderBoard() {
   const list = $('#tbList'), note = $('#tbNote'), pod = $('#tbPod'), all = lb.view === 'all', today = todayStr();
   if (list) {
-    setText($('#tbSub'), all ? 'Best single game · any mode' : `Today's drop · ${fmtDay()}`);
+    setText($('#tbSub'), all ? "Accolades · earned by your place on Today's drop" : `Today's drop · ${fmtDay()}`);
     $('#tbSeg').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === lb.view)));
   }
   const ghosts = n => Array.from({ length: n }, () => '<li class="tb-ghost"></li>').join('');
@@ -7007,6 +7382,7 @@ async function renderBoard() {
   if (wait) {
     setText($('#hbLbNote'), wait); $('#hbLb').innerHTML = '';
     if (list) { list.innerHTML = lb.ready && lb.db && !lb.failed ? ghosts(5) : ''; pod.innerHTML = ''; note.textContent = wait; renderLbMe(null, -1, null, -1); }
+    renderPayTab(-1);
     return;
   }
   const tRows = lb.docs.filter(d => d.day === today && d.daily > 0).sort((p, q) => q.daily - p.daily);
@@ -7015,9 +7391,11 @@ async function renderBoard() {
   if (ti >= 0) noteDailyRank(today, ti + 1, tRows.length, tRows[ti].daily);
   setText($('#srLb'), ti >= 0 ? `You're #${ti + 1} today` : tRows.length ? `${tRows.length} on today's board` : 'Be first on today\'s board');
   renderHomeLb(tRows, ti);
+  renderPayTab(ti);
+  accOnBoard();
   if (!list) return;
   const rows = lb.docs
-    .map(d => ({ id: d.id, name: d.name, icon: d.icon, score: all ? d.best : (d.day === today ? d.daily : 0), sp: all ? d.bp : d.dp }))
+    .map(d => ({ id: d.id, name: d.name, icon: d.icon, score: all ? d.acc || 0 : (d.day === today ? d.daily : 0), sp: all ? '' : d.dp }))
     .filter(r => r.score > 0)
     .sort((a, b) => b.score - a.score);
   const myIdx = lb.uid ? rows.findIndex(r => r.id === lb.uid) : -1;
@@ -7033,9 +7411,9 @@ async function renderBoard() {
   pod.classList.toggle('none', !top3.length);
   for (const rk of [2, 1, 3]) {
     const r = top3.find(q => q.rank === rk); if (!r) continue;
-    const col = document.createElement('div'); col.className = `lb-col p${rk}` + (r.id === lb.uid ? ' me' : '');
+    const col = document.createElement('div'); col.className = `lb-col p${rk}` + (r.id === lb.uid ? ' me' : ''); pfLink(col, r, ps[r.id]);
     const who = lbWho(r, ps[r.id] || {}, r.id === lb.uid); who.classList.add('big');
-    const sc = document.createElement('b'); sc.className = 'lb-sc'; sc.textContent = r.score.toLocaleString();
+    const sc = document.createElement('b'); sc.className = 'lb-sc'; sc.textContent = r.score.toLocaleString(); if (all) sc.insertAdjacentHTML('beforeend', accIcon());
     const step = document.createElement('span'); step.className = 'lb-step'; step.textContent = rk;
     col.append(who, sc); if (r.sp) col.insertAdjacentHTML('beforeend', paceTag(r.sp)); col.append(step); pod.appendChild(col);
   }
@@ -7045,16 +7423,16 @@ async function renderBoard() {
     if (r.gap) { const g = document.createElement('li'); g.className = 'tb-gap'; g.textContent = '···'; list.appendChild(g); }
     const me = r.id === lb.uid;
     const li = document.createElement('li');
-    li.className = `tb-row r${r.rank}` + (me ? ' me' : '');
+    li.className = `tb-row r${r.rank}` + (me ? ' me' : ''); pfLink(li, r, ps[r.id]);
     const rk = document.createElement('span'); rk.className = 'tb-rk'; rk.textContent = r.rank;
-    const sc = document.createElement('span'); sc.className = 'tb-sc'; sc.textContent = r.score.toLocaleString();
+    const sc = document.createElement('span'); sc.className = 'tb-sc'; sc.textContent = r.score.toLocaleString(); if (all) sc.insertAdjacentHTML('beforeend', accIcon());
     if (r.sp) sc.insertAdjacentHTML('afterbegin', paceTag(r.sp));
     li.append(rk, lbWho(r, ps[r.id] || {}, me), sc);
     list.appendChild(li);
   }
   let msg = '';
-  if (!rows.length) msg = all ? 'No scores yet. Finish a game to put the first one up.' : 'No scores yet today. Play Today\'s drop to set the first one.';
-  else if (myIdx < 0) msg = all ? 'Finish a game to get on the board.' : 'Play Today\'s drop to get on today\'s board.';
+  if (!rows.length) msg = all ? (lb.self && lb.noAcc ? 'Accolades aren\'t switched on for this site yet.' : 'No accolades yet. Place on Today\'s drop, then claim the reward from your Inbox the next day.') : 'No scores yet today. Play Today\'s drop to set the first one.';
+  else if (myIdx < 0) msg = all ? 'Claim accolades from Today\'s drop to get on this board.' : 'Play Today\'s drop to get on today\'s board.';
   if (!lb.uid) msg = (msg ? msg + ' ' : '') + (lb.self ? 'Sign in to post your own scores.' : 'Sign in to claude.ai to post your own scores.');
   else if (lb.canWrite === false) msg = (msg ? msg + ' ' : '') + (lb.self ? 'Pick a username in Settings to post your scores.' : 'Your access can see the board but not post to it. Ask the owner for Contributor access.');
   if (lb.slow && !lb.loaded) msg = 'These scores may be out of date. ' + msg;
@@ -7062,15 +7440,169 @@ async function renderBoard() {
   renderLbMe(rows, myIdx, tRows, ti);
 }
 
+/* ================= Accolades =================
+   Website: supabase/accolades.sql keeps every day's board (daily_scores) and pays out (accolade_claim(), which
+   works out the place itself). claude.ai: each player's scores doc keeps hist (their daily bests from the last
+   two weeks, so a day's board survives `daily` moving on), acc (their total) and accd (the days they've claimed). */
+const cleanAcc = v => { const n = Math.floor(+v); return n > 0 && n < 1e7 ? n : 0; };
+const dayAgo = n => { const d = new Date(); d.setDate(d.getDate() - n); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+const accdClean = v => { const o = {}, cut = dayAgo(ACC_DAYS + 2); if (v && typeof v === 'object') for (const d of Object.keys(v)) if (DAY_RE.test(d) && d >= cut && cleanAcc(v[d])) o[d] = cleanAcc(v[d]); return o; };
+function accKeep(cur, next) {
+  const cut = dayAgo(ACC_DAYS), h = cur.hist && typeof cur.hist === 'object' ? cur.hist : {}, hist = {};
+  for (const d of Object.keys(h)) if (DAY_RE.test(d) && d >= cut && cleanScore(h[d])) hist[d] = cleanScore(h[d]);
+  if (DAY_RE.test(cur.day) && cur.day >= cut && cleanScore(cur.daily)) hist[cur.day] = Math.max(hist[cur.day] || 0, cleanScore(cur.daily));
+  if (next.daily) hist[next.day] = Math.max(hist[next.day] || 0, next.daily);
+  return { hist, acc: cleanAcc(cur.acc), accd: accdClean(cur.accd) };
+}
+// A player's best Today's drop on `day`, and where a score places on that day's board (ties share the better place).
+const dayScore = (d, day) => Math.max(d.hist ? cleanScore(d.hist[day]) : 0, d.day === day ? d.daily : 0);
+function accPlace(day, mine) {
+  let place = 1, of = 0;
+  for (const d of lb.docs) { const v = dayScore(d, day); if (v > 0) { of++; if (v > mine) place++; } }
+  return { place, of: Math.max(1, of) };
+}
+function accPendLocal() {
+  const me = lb.uid ? lb.docs.find(d => d.id === lb.uid) : null;
+  if (!me) return [];
+  const cut = dayAgo(ACC_DAYS), got = me.accd || {}, days = new Set(Object.keys(me.hist || {}));
+  if (me.day && me.daily) days.add(me.day);
+  return [...days].filter(d => DAY_RE.test(d) && d >= cut && !got[d]).map(d => {
+    const score = dayScore(me, d), p = accPlace(d, score);
+    return { day: d, score, place: p.place, of: p.of, amt: accPay(p.place), at: accReadyAt(d) };
+  }).filter(x => x.score > 0).sort((a, b) => a.day < b.day ? 1 : -1);
+}
+const accN = () => acc.pend.filter(x => Date.now() >= x.at).length;
+// Called whenever the board changes: claude.ai works the rewards out from the board; the website asks the server
+// (at most every few minutes, and straight away when you sign in or out).
+function accOnBoard() {
+  if (!lb.self) { acc.pend = lb.db && lb.uid ? accPendLocal() : []; acc.loaded = true; accRender(); return; }
+  const uid = lb.uid || null;
+  if (uid !== acc.uid) { acc.uid = uid; acc.pend = []; acc.at = 0; accRender(); }
+  if (uid && Date.now() - acc.at > 180000) { acc.at = Date.now(); accLoad(); }
+}
+async function accLoad() {
+  const sb = await supaClient().catch(() => null);
+  if (!sb || !lb.uid) return;
+  const uid = lb.uid, { data, error } = await sb.rpc('accolade_pending');
+  if (uid !== lb.uid) return;
+  acc.loaded = true;
+  if (error) { acc.off = /PGRST202|42883/.test(`${error.code}`) || /accolade_pending/.test(`${error.message}`); accRender(); return; }
+  acc.off = false;
+  acc.pend = (data || []).map(x => ({ day: String(x.day), place: +x.place, of: +x.players, amt: +x.amount, at: Date.parse(x.ready_at) || accReadyAt(String(x.day)) }))
+    .filter(x => DAY_RE.test(x.day) && x.place > 0 && x.amt > 0);
+  accRender();
+}
+async function accClaim(day) {
+  const it = acc.pend.find(x => x.day === day);
+  if (!it || Date.now() < it.at) return "That day's rewards aren't out yet.";
+  let n = 0;
+  if (lb.self) {
+    const sb = await supaClient().catch(() => null);
+    if (!sb) return "Can't reach the server right now. Try again soon.";
+    const { data, error } = await sb.rpc('accolade_claim', { p_day: day });
+    if (error) return (error.message && error.code === 'P0001' ? error.message : "Couldn't claim that. Try again soon.");
+    n = +data || 0;
+    if (lbReload) lbReload();
+    acc.at = 0;
+  } else {
+    // claude.ai: the place is worked out from the board now, and added to your own scores doc.
+    const job = lb.chain.then(async () => {
+      const ref = lb.db.doc('scores/' + lb.uid), snap = await ref.get(), cur = snap.exists ? snap.data() || {} : {};
+      const accd = accdClean(cur.accd);
+      if (accd[day]) return;
+      n = accPay(accPlace(day, it.score).place);
+      accd[day] = n;
+      await ref.set({ ...cur, acc: cleanAcc(cur.acc) + n, accd });
+    });
+    lb.chain = job.catch(() => {});
+    try { await job; } catch (e) { return "Couldn't claim that. Try again soon."; }
+  }
+  acc.pend = acc.pend.filter(x => x.day !== day);
+  if (n) toast(`+${n} accolade${n === 1 ? '' : 's'} for ${fmtDayS(day)}'s drop`, 'o');
+  accRender();
+  return '';
+}
+const accLeft = at => { const m = Math.max(1, Math.ceil((at - Date.now()) / 60000)); return m >= 60 ? `${Math.floor(m / 60)}h ${String(m % 60).padStart(2, '0')}m` : `${m}m`; };
+// The Inbox's Rewards: each finished day's drop to claim, and one still finishing in other time zones.
+function accRows(list) {
+  const today = todayStr(), now = Date.now(), items = acc.pend.filter(x => x.day < today);
+  if (!items.length) return 0;
+  list.appendChild(frEl('li', 'fr-sec', 'Rewards'));
+  for (const x of items) {
+    const ready = now >= x.at, li = frEl('li', 'fr-row acc-row' + (ready ? ' unread' : ''));
+    const av = frEl('span', 'hc-av acc-av'); av.innerHTML = accIcon();
+    const t = frEl('span', 'fr-t');
+    t.append(frEl('b', '', `Today's drop · ${fmtDayS(x.day)}`),
+      frEl('small', '', ready ? `${ordinal(x.place)} of ${x.of} · ${x.amt} accolade${x.amt === 1 ? '' : 's'}` : `${ordinal(x.place)} of ${x.of} so far · paid out in ${accLeft(x.at)}`));
+    const a = frEl('span', 'fr-acts');
+    if (ready) a.appendChild(frBtn(`Claim +${x.amt}`, () => accClaim(x.day), true));
+    li.append(av, t, a);
+    list.appendChild(li);
+  }
+  return items.length;
+}
+// One toast when rewards are ready to claim (on the home page, not mid-game).
+function accTell() {
+  if (!titleShown()) return;
+  const fresh = acc.pend.filter(x => Date.now() >= x.at && !acc.told.has(x.day));
+  if (!fresh.length) return;
+  fresh.forEach(x => acc.told.add(x.day));
+  const n = fresh.reduce((t, x) => t + x.amt, 0);
+  toast(`${n} accolade${n === 1 ? '' : 's'} from Today's drop to claim · Chat › Inbox`, 'o');
+}
+function accRender() {
+  accTell();
+  renderPayNote();
+  renderChat();
+}
+setInterval(() => { if (acc.pend.length) accRender(); }, 60000);
+
+// The leaderboard card's Rewards tab: what each place pays, with your place today marked.
+const PAY_ROWS = [[1, 1, '1st'], [2, 2, '2nd'], [3, 3, '3rd'], [4, 10, '4th–10th'], [11, Infinity, '11th+']];
+function renderPayTab(ti) {
+  const ol = $('#hbPay'); if (!ol) return;
+  const place = ti >= 0 ? ti + 1 : 0;
+  ol.innerHTML = PAY_ROWS.map(([a, b, name], i) => { const you = place >= a && place <= b;
+    return `<li class="lbr-row pay r${i + 1}${you ? ' you' : ''}"><span class="lbr-pl">${name}${you ? '<i class="lbr-you">You</i>' : ''}</span><span class="lbr-amt">${accPay(a)}${accIcon()}</span></li>`; }).join('');
+  renderPayNote();
+}
+function renderPayNote() {
+  const el = $('#hbPayNote'); if (!el) return;
+  const mine = lb.uid ? lb.docs.find(d => d.id === lb.uid) : null, n = mine ? mine.acc || 0 : 0;
+  el.innerHTML = (lb.uid ? `You have <b>${n0(n)}</b> accolade${n === 1 ? '' : 's'}. ` : "Sign in and play Today's drop to earn them. ")
+    + "Paid to your Inbox once the day's over in every time zone.";
+}
+// The leaderboard card's tabs. Both views share one spot, so switching never resizes the card.
+$('#hbTabPay').insertAdjacentHTML('afterbegin', accIcon());
+{
+  const tabs = [...document.querySelectorAll('.lbr-tabs [role="tab"]')];
+  const pick = b => { const pay = b.dataset.v === 'pay';
+    tabs.forEach(t => { const on = t === b; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+    $('#hbLbV').classList.toggle('off', pay); $('#hbPayV').classList.toggle('off', !pay); };
+  tabs.forEach((b, i) => { b.onclick = () => pick(b);
+    b.onkeydown = e => { if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return; e.preventDefault(); const nb = tabs[(i + 1) % tabs.length]; pick(nb); nb.focus(); }; });
+}
+renderPayTab(-1);
+
 /* ================= Chat & announcements (home page) =================
    On claude.ai: shared db docs chat/<viewer id> (that player's last 20 messages) and
    news/<id> (announcements the artifact's owner posts). On the website: the Supabase tables
    from supabase/chat.sql (chat_messages, read through the chat_feed view, and announcements);
-   until that has run, the panel says chat isn't switched on yet. */
+   until that has run, the panel says chat isn't switched on yet. Operators (supabase/admins.sql
+   on the website, the artifact's owner on claude.ai) post and remove announcements and remove
+   chat messages from the panel. */
 const CHAT_LEN = 200, CHAT_GAP = 3000;
 const chat = { tab: 'chat', open: false, started: false, ready: false, newsReady: false, off: false, err: '', note: '', owner: false, sb: null,
   msgs: [], news: [], names: {}, last: 0, reload: null,
   seenChat: +store.get('wordfall-chat-seen') || 0, seenNews: +store.get('wordfall-news-seen') || 0 };
+// The chat tabs' red counts (up to 99+); each tab's name says its count too.
+const HC_TABS = { news: ['hcNewsN', 'Announcements'], chat: ['hcChatN', 'Global chat'], friends: ['hcFrN', 'Friends'], inbox: ['hcInN', 'Inbox'] };
+const cap99 = n => n > 99 ? '99+' : String(n);
+function hcCount(t, n) {
+  const [dot, name] = HC_TABS[t], tab = $('#hcTab-' + t);
+  setText($('#' + dot), n > 0 ? cap99(n) : '');
+  if (tab) tab.setAttribute('aria-label', n > 0 ? `${name}, ${cap99(n)} new` : name);
+}
 const cleanMsg = v => String(v || '').replace(/[\u0000-\u001f\u007f\u200b-\u200f\u202a-\u202e\u2066-\u2069]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, CHAT_LEN);
 const chatMe = () => lb.self ? (acct.user ? acct.user.id : null) : lb.uid;
 function chatAgo(t) {
@@ -7099,11 +7631,11 @@ async function chatInit() {
       if (!error) chat.news = (data || []).map(x => ({ id: 's' + x.id, title: String(x.title || '').slice(0, 80), body: String(x.body || '').slice(0, 1000), t: Date.parse(x.created_at) || 0 })).filter(n => n.title);
       renderChat();
     };
-    chat.reload = loadChat;
-    loadChat(); loadNews();
+    chat.reload = loadChat; chat.reloadNews = loadNews;
+    loadChat(); loadNews(); chatAdmin();
     let tm = null;
     sb.channel('wordfall-chat')
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages' }, () => { clearTimeout(tm); tm = setTimeout(loadChat, 200); })
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'chat_messages' }, () => { clearTimeout(tm); tm = setTimeout(loadChat, 200); })
       .on('postgres_changes', { event: '*', schema: 'public', table: 'announcements' }, () => loadNews())
       .subscribe();
     setInterval(() => { if (!document.hidden) { loadChat(); loadNews(); } }, 90000);
@@ -7168,9 +7700,47 @@ async function chatSend(text) {
     return false;
   }
 }
-// The owner can take down a message or an announcement (claude.ai only; on the website, use the Supabase dashboard).
+// On the website, operators are the players listed in supabase/admins.sql; the server checks again on every post or removal.
+async function chatAdmin() {
+  if (!lb.self || !chat.sb) return;
+  const uid = acct.user ? acct.user.id : null;
+  if (chat.adminOf === uid) return;
+  chat.adminOf = uid; chat.owner = false;
+  if (uid) {
+    const { data, error } = await chat.sb.rpc('is_admin').then(x => x, e => ({ error: e }));
+    if (chat.adminOf !== uid) return;
+    chat.owner = !error && data === true;
+  }
+  renderChat();
+}
+// Operators take down a message or an announcement.
+async function chatGone(table, id) {
+  const { data, error } = await chat.sb.from(table).delete().eq('id', +String(id).slice(1)).select('id');
+  if (error || !data || !data.length) throw error || new Error('Not removed');
+}
+async function newsRemove(n) {
+  try {
+    if (lb.self) { await chatGone('announcements', n.id); chat.news = chat.news.filter(q => q.id !== n.id); renderChat(); if (chat.reloadNews) chat.reloadNews(); }
+    else await lb.db.doc('news/' + n.id).delete();
+  } catch { chatNote("Couldn't remove that announcement."); }
+}
+const TRASH_SVG = '<svg class="hc-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 6.8h15"/><path d="M9.4 6.8V4.6h5.2v2.2"/><path d="M6.6 6.8l.8 12.3a1.7 1.7 0 0 0 1.7 1.6h5.8a1.7 1.7 0 0 0 1.7-1.6l.8-12.3"/><path d="M10.2 10.6v6.2"/><path d="M13.8 10.6v6.2"/></svg>';
+// The first click turns it red; a second click within a few seconds removes it.
+function chatDelBtn(what, go) {
+  const x = document.createElement('button'), label = t => { x.title = t; x.setAttribute('aria-label', t); };
+  x.type = 'button'; x.className = 'hc-del'; x.innerHTML = TRASH_SVG; label(`Remove this ${what}`);
+  let tm = 0;
+  x.onclick = e => {
+    e.stopPropagation();
+    if (!x.classList.contains('arm')) { x.classList.add('arm'); label(`Click again to remove this ${what}`); tm = setTimeout(() => { x.classList.remove('arm'); label(`Remove this ${what}`); }, 3000); return; }
+    clearTimeout(tm); x.disabled = true;
+    Promise.resolve(go()).finally(() => { x.disabled = false; x.classList.remove('arm'); label(`Remove this ${what}`); });
+  };
+  return x;
+}
 async function chatRemove(m) {
   try {
+    if (lb.self) { await chatGone('chat_messages', m.id); chat.msgs = chat.msgs.filter(q => q.id !== m.id); renderChat(); if (chat.reload) chat.reload(); return; }
     const ref = lb.db.doc('chat/' + m.uid), snap = await ref.get();
     if (!snap.exists) return;
     const x = snap.data() || {};
@@ -7205,15 +7775,18 @@ function renderChat() {
   let frN = 0, frTop = '';
   try { if (fr.ready && !fr.off) { frN = frInboxN(); const iv = frInvites()[0], rq = frIncoming()[0], um = frFriends().find(id => frUnread(id) > 0);
     frTop = iv ? `${frName(iv.id)} invited you to a ${MODES[iv.v].name} match` : rq ? `${frName(rq)} sent you a friend request` : um ? `${frName(um)}: ${fr.msgs[um][fr.msgs[um].length - 1].b}` : ''; } } catch (e) {}
+  const an = accN();
+  if (an) { frN += an; if (!frTop) frTop = `${an === 1 ? 'A reward' : an + ' rewards'} from Today's drop to claim`; }
+  hcCount('inbox', frN);
   prev.textContent = '';
   if (frTop) { const em = document.createElement('em'); em.textContent = 'Inbox: '; prev.append(em, frTop); }
-  else if (newsN) { const em = document.createElement('em'); em.textContent = '📢 '; prev.append(em, chat.news[0].title); }
+  else if (newsN) { const em = document.createElement('em'); em.className = 'hc-pn'; em.innerHTML = '<svg class="hc-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9.5h3.4L12 5.6v12.8l-4.6-3.9H4z"/><path d="M15.4 9.2a4 4 0 0 1 0 5.6"/><path d="M18.1 6.6a7.6 7.6 0 0 1 0 10.8"/></svg>'; prev.append(em, chat.news[0].title); }
   else if (lastM) { const em = document.createElement('em'); em.textContent = chatNameFor(lastM) + ': '; prev.append(em, lastM.b); }
   else prev.textContent = chat.off ? 'Announcements and chat with other players' : chat.ready ? 'No messages yet. Say hi to everyone playing!' : 'Announcements and chat with other players';
-  const badge = $('#hcNew'), bn = frN ? `${frN > 9 ? '9+' : frN} in inbox` : newsN ? `${newsN} announcement${newsN > 1 ? 's' : ''}` : chatN ? `${chatN > 9 ? '9+' : chatN} new` : '';
+  const badge = $('#hcNew'), bn = frN ? `${cap99(frN)} in inbox` : newsN ? `${cap99(newsN)} announcement${newsN > 1 ? 's' : ''}` : chatN ? `${cap99(chatN)} new` : '';
   badge.hidden = !bn || chat.open; setText(badge, bn);
-  setText($('#hcNewsN'), newsN ? String(newsN) : '');
-  setText($('#hcChatN'), chatN && chat.tab !== 'chat' ? (chatN > 9 ? '9+' : String(chatN)) : '');
+  hcCount('news', newsN);
+  hcCount('chat', chat.tab !== 'chat' ? chatN : 0);
   for (const b of document.querySelectorAll('.hc-tab')) b.setAttribute('aria-selected', String(b.dataset.t === chat.tab));
   if (!chat.open) return;
   // The panel.
@@ -7247,17 +7820,18 @@ function renderChat() {
       const mh = document.createElement('span'); mh.className = 'hc-mh';
       const nm = document.createElement('b'); nm.textContent = chatNameFor(m);
       if (m.uid !== me) {
-        const opts = e => frMenu(e, m.uid, m.name || chat.names[m.uid] || '', m.icon);
-        nm.className = 'hc-who'; nm.tabIndex = 0; nm.title = 'Friend options'; nm.setAttribute('role', 'button');
-        nm.onclick = nm.oncontextmenu = av.onclick = av.oncontextmenu = opts;
-        nm.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') opts(e); };
+        const open = e => { e.preventDefault(); e.stopPropagation(); pfOpen(m.uid, m.name || chat.names[m.uid] || '', m.icon); };
+        nm.className = 'hc-who'; nm.tabIndex = 0; nm.title = `See ${chatNameFor(m)}'s profile`; nm.setAttribute('role', 'button');
+        av.classList.add('hc-who'); av.title = nm.title;
+        nm.onclick = av.onclick = open;
+        nm.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') open(e); };
       }
       const tm = document.createElement('time'); tm.dateTime = new Date(m.t).toISOString(); tm.textContent = chatAgo(m.t); tm.title = new Date(m.t).toLocaleString();
       mh.append(nm, tm);
       const p = document.createElement('p'); p.textContent = m.b;
       mb.append(mh, p);
       li.append(av, mb);
-      if (chat.owner && !lb.self) { const x = document.createElement('button'); x.type = 'button'; x.className = 'hc-del'; x.textContent = '🗑'; x.title = 'Remove this message'; x.setAttribute('aria-label', 'Remove this message'); x.onclick = () => chatRemove(m); li.appendChild(x); }
+      if (chat.owner) li.appendChild(chatDelBtn('message', () => chatRemove(m)));
       list.appendChild(li);
       prevM = m;
     }
@@ -7271,7 +7845,7 @@ function renderChat() {
       const b = document.createElement('b'); b.textContent = n.title;
       li.append(k, b);
       if (n.body) { const p = document.createElement('p'); p.textContent = n.body; li.appendChild(p); }
-      if (chat.owner && !lb.self) { const x = document.createElement('button'); x.type = 'button'; x.className = 'hc-del'; x.textContent = '🗑'; x.title = 'Remove this announcement'; x.setAttribute('aria-label', 'Remove this announcement'); x.onclick = () => lb.db.doc('news/' + n.id).delete().catch(() => chatNote("Couldn't remove that.")); li.appendChild(x); }
+      if (chat.owner) li.appendChild(chatDelBtn('announcement', () => newsRemove(n)));
       list.appendChild(li);
     }
     if (was !== 'news') list.scrollTop = 0;
@@ -7286,7 +7860,7 @@ function chatOpen(on) {
   $('#hChat').classList.toggle('open', on);
   if (on) {
     if (chat.news.some(n => n.t > chat.seenNews)) chat.tab = 'news';
-    else { try { if (fr.ready && !fr.off && frInboxN() && chat.tab === 'chat') chat.tab = 'inbox'; } catch (e) {} }
+    else { try { if (((fr.ready && !fr.off && frInboxN()) || accN()) && chat.tab === 'chat') chat.tab = 'inbox'; } catch (e) {} }
     p.hidden = false;
     void p.offsetWidth;
     p.classList.add('in');
@@ -7319,19 +7893,29 @@ $('#hcForm').onsubmit = async e => {
   if (chat.tab === 'friends' && fr.thread) { const err = await frAct('send', fr.thread, cleanMsg(v)); chatNote(err); if (err && !inp.value) inp.value = v; return; }
   if (!(await chatSend(v)) && !inp.value) inp.value = v;
 };
+let chatPosting = false;
 $('#hcPost').onsubmit = async e => {
   e.preventDefault();
   const t = $('#hcPostT').value.trim().slice(0, 80), b = $('#hcPostB').value.trim().slice(0, 1000);
-  if (!t || !chat.owner) return;
+  if (!t || !chat.owner || chatPosting) return;
+  chatPosting = true;
   const now = Date.now();
-  try { await lb.db.doc('news/n' + now).set({ title: t, body: b, at: now }); $('#hcPostT').value = ''; $('#hcPostB').value = ''; chatNote(''); }
-  catch { chatNote("That announcement didn't post. Try again."); }
+  try {
+    if (lb.self) {
+      const { error } = await chat.sb.from('announcements').insert({ title: t, body: b });
+      if (error) throw error;
+      if (chat.reloadNews) chat.reloadNews();
+    } else await lb.db.doc('news/n' + now).set({ title: t, body: b, at: now });
+    $('#hcPostT').value = ''; $('#hcPostB').value = ''; chatNote('');
+  } catch (err) {
+    chatNote(lb.self && err && (err.code === '42501' || /row-level security|permission/i.test(`${err.message}`)) ? "Your account can't post announcements." : "That announcement didn't post. Try again.");
+  } finally { chatPosting = false; }
 };
 $('#hcGateB').onclick = () => { chatOpen(false); openPage('settings', { sec: 'profile' }); };
 setInterval(() => { if (chat.open && chat.tab === 'chat' && !document.hidden) renderChat(); }, 60000);
 
 /* ================= Friends: requests, a friends list, private messages and match invites =================
-   Click (or right-click) a player's name in Global chat for a friend request. Requests, match invites and new
+   Click a player's name or picture (in Global chat, on a leaderboard) for their profile, where you can add them. Requests, match invites and new
    messages arrive in the chat panel's Inbox; Friends lists your friends, where you message them, invite them to a
    match or unfriend them. The Versus card lists them too, with an Invite button each.
    On claude.ai: shared db docs social/<viewer id> (your requests, friends, refusals and invites) and dms/<viewer id>
@@ -7554,35 +8138,6 @@ async function frJoin(v) {
 }
 
 /* ----- drawing ----- */
-// A name in Global chat: click or right-click for friend options.
-function frMenu(e, id, name, icon) {
-  e.preventDefault(); e.stopPropagation();
-  if (!id || id === fr.me || id === chatMe()) return;
-  frPerson(id, name, icon);
-  const box = $('#hChat'), old = $('#frMenu'); if (old) old.remove();
-  const m = document.createElement('div'); m.className = 'fr-menu'; m.id = 'frMenu'; m.setAttribute('role', 'menu');
-  const head = document.createElement('b'); head.textContent = frName(id); m.appendChild(head);
-  const item = (txt, fn, cls = '', off = false) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.textContent = txt; if (cls) b.className = cls; b.disabled = off;
-    b.onclick = async ev => { ev.stopPropagation(); m.remove(); const err = await fn(); chatNote(err || ''); }; m.appendChild(b); };
-  const can = frCan(), r = fr.rel[id];
-  if (!can.ok) item(can.why, async () => '', '', true);
-  else if (r === 'friend') {
-    item('Message', async () => { chat.tab = 'friends'; fr.thread = id; renderChat(); return ''; });
-    item('Invite to a match', async () => { setPlayTab('bot'); if (!(await roomOpen())) return vrMsg || "Couldn't open a room."; const err = await friendInvite(id); return err || `Invite sent to ${frName(id)}. Your room is on the Versus card.`; });
-    item('Unfriend', async () => confirm(`Unfriend ${frName(id)}?`) ? frAct('unfriend', id) : '', 'bad');
-  } else if (r === 'out') { item('Friend request sent', async () => '', '', true); item('Cancel request', async () => frAct('cancel', id)); }
-  else if (r === 'in') { item('Accept friend request', async () => frAct('accept', id)); item('Decline', async () => frAct('decline', id), 'bad'); }
-  else item('Add friend', async () => { const err = await frAct('ask', id); return err || `Friend request sent to ${frName(id)}.`; });
-  box.appendChild(m);
-  const br = box.getBoundingClientRect(), mw = 200, er = e.currentTarget && e.currentTarget.getBoundingClientRect ? e.currentTarget.getBoundingClientRect() : null;
-  const px = e.clientX || (er ? er.left : br.left), py = e.clientY || (er ? er.bottom : br.top);
-  m.style.left = Math.max(6, Math.min(br.width - mw - 6, px - br.left)) + 'px';
-  m.style.top = Math.max(6, Math.min(br.height - m.offsetHeight - 6, py - br.top + 6)) + 'px';
-  (m.querySelector('button:not(:disabled)') || m).focus({ preventScroll: true });
-  const close = ev => { if (!m.contains(ev.target)) { m.remove(); document.removeEventListener('pointerdown', close, true); } };
-  setTimeout(() => document.addEventListener('pointerdown', close, true), 0);
-  m.addEventListener('keydown', ev => { if (ev.key === 'Escape') { ev.stopPropagation(); m.remove(); } });
-}
 // Toasts for new invites and requests, once each.
 function frTell() {
   if (!fr.ready || fr.off) return;
@@ -7591,22 +8146,43 @@ function frTell() {
   fr.loadedOnce = true;
 }
 function frRender() {
-  setText($('#hcFrN'), (n => n ? (n > 9 ? '9+' : String(n)) : '')(frFriends().filter(id => frUnread(id) > 0).length));
-  setText($('#hcInN'), (n => n ? (n > 9 ? '9+' : String(n)) : '')(frInboxN()));
+  hcCount('friends', frFriends().reduce((t, id) => t + frUnread(id), 0));
+  hcCount('inbox', frInboxN() + accN());
   frTell();
+  if (curPage === 'player') pfActs();
   if (typeof renderVsRoom === 'function' && titleShown()) renderVsRoom();
   renderChat();
 }
 const frEl = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+// Unfriend: the first click turns the button red, a second click within a few seconds unfriends.
+function frArmBtn(id) {
+  const armed = fr.arm === id, b = frBtn(armed ? 'Click again to unfriend' : 'Unfriend', async () => {
+    clearTimeout(fr.armT);
+    if (fr.arm === id) { fr.arm = null; return frAct('unfriend', id); }
+    fr.arm = id; fr.armT = setTimeout(() => { if (fr.arm === id) { fr.arm = null; renderChat(); } }, 3000);
+    renderChat(); return '';
+  });
+  if (armed) b.classList.add('arm');
+  return b;
+}
 function frBtn(txt, fn, main) { const b = frEl('button', 'fr-b' + (main ? ' main' : ''), txt); b.type = 'button'; b.onclick = async e => { e.stopPropagation(); b.disabled = true; const err = await fn(); chatNote(err || ''); b.disabled = false; }; return b; }
 function frRow(id, sub, acts, onOpen, cls = '') {
   const li = frEl('li', 'fr-row' + (cls ? ' ' + cls : ''));
-  const av = frEl('span', 'hc-av'); av.innerHTML = iconHTML(frIcon(id));
-  const t = frEl('span', 'fr-t'); t.append(frEl('b', '', frName(id)), frEl('small', '', sub));
+  const av = frEl('span', 'hc-av hc-who'); av.innerHTML = iconHTML(frIcon(id));
+  const nm = frEl('b', 'hc-who', frName(id));
+  frSee(id, av, nm);
+  const t = frEl('span', 'fr-t'); t.append(nm, frEl('small', '', sub));
   const a = frEl('span', 'fr-acts'); acts.forEach(b => a.appendChild(b));
   li.append(av, t, a);
   if (onOpen) { li.tabIndex = 0; li.classList.add('open'); li.onclick = onOpen; li.onkeydown = e => { if (e.key === 'Enter') onOpen(); }; }
   return li;
+}
+// A friend's picture and name open their profile.
+function frSee(id, ...els) {
+  const go = e => { e.preventDefault(); e.stopPropagation(); pfOpen(id); };
+  for (const el of els) { el.title = `See ${frName(id)}'s profile`; el.onclick = go; }
+  const nm = els[els.length - 1]; nm.tabIndex = 0; nm.setAttribute('role', 'button');
+  nm.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') go(e); };
 }
 // The Friends and Inbox tabs of the chat panel.
 function frPanel(list) {
@@ -7614,8 +8190,10 @@ function frPanel(list) {
   list.textContent = '';
   const empty = (t, act) => { const li = frEl('li', 'hc-empty', t); if (act) { li.appendChild(document.createElement('br')); const b = frEl('button', 'fr-b main', act); b.type = 'button'; b.onclick = () => { chatOpen(false); openPage('settings', { sec: 'profile' }); }; li.appendChild(b); } list.appendChild(li); };
   form.hidden = true;
-  if (!fr.ready) { empty('Loading friends…'); return; }
-  if (!can.ok) { empty(can.why, can.act); return; }
+  // Rewards come first in the Inbox, whether or not friends are switched on.
+  const rw = chat.tab === 'inbox' ? accRows(list) : 0;
+  if (!fr.ready) { if (!rw) empty('Loading friends…'); return; }
+  if (!can.ok) { if (!rw) empty(can.why, can.act); return; }
   const sec = t => list.appendChild(frEl('li', 'fr-sec', t));
   if (chat.tab === 'inbox') {
     const ins = frIncoming(), invs = frInvites(), unread = frFriends().filter(id => frUnread(id) > 0), outs = Object.keys(fr.rel).filter(id => fr.rel[id] === 'out');
@@ -7623,7 +8201,7 @@ function frPanel(list) {
     if (ins.length) { sec('Friend requests'); for (const id of ins) list.appendChild(frRow(id, 'Wants to be your friend', [frBtn('Accept', () => frAct('accept', id), true), frBtn('Decline', () => frAct('decline', id))])); }
     if (unread.length) { sec('New messages'); for (const id of unread) { const m = fr.msgs[id][fr.msgs[id].length - 1]; list.appendChild(frRow(id, m.b, [], () => { chat.tab = 'friends'; fr.thread = id; renderChat(); }, 'unread')); } }
     if (outs.length) { sec('Requests you sent'); for (const id of outs) list.appendChild(frRow(id, 'Waiting for them to accept', [frBtn('Cancel', () => frAct('cancel', id))])); }
-    if (!invs.length && !ins.length && !unread.length && !outs.length) empty('Nothing new. Friend requests, match invites and messages from friends show up here.');
+    if (!rw && !invs.length && !ins.length && !unread.length && !outs.length) empty('Nothing new. Accolades from Today\'s drop, friend requests, match invites and messages from friends show up here.');
     return;
   }
   // Friends: a conversation, or the list.
@@ -7631,7 +8209,7 @@ function frPanel(list) {
   if (!id) {
     fr.thread = null;
     const F = frFriends();
-    if (!F.length) { empty("No friends yet. Click a player's name in Global chat to send a friend request."); return; }
+    if (!F.length) { empty("No friends yet. Click a player's name in Global chat or on the leaderboard to see their profile and add them."); return; }
     for (const f of F) {
       const m = (fr.msgs[f] || []).slice(-1)[0], u = frUnread(f);
       list.appendChild(frRow(f, m ? (m.me ? 'You: ' : '') + m.b : 'Say hi', [frBtn('Invite', async () => { setPlayTab('bot'); if (!(await roomOpen())) return vrMsg || "Couldn't open a room."; const err = await friendInvite(f); return err || `Invite sent to ${frName(f)}. Your room is on the Versus card.`; })],
@@ -7641,10 +8219,12 @@ function frPanel(list) {
   }
   const head = frEl('li', 'fr-th');
   const back = frEl('button', 'fr-back', '‹ Friends'); back.type = 'button'; back.onclick = () => { fr.thread = null; renderChat(); };
-  const av = frEl('span', 'hc-av'); av.innerHTML = iconHTML(frIcon(id));
-  head.append(back, av, frEl('b', '', frName(id)),
+  const av = frEl('span', 'hc-av hc-who'); av.innerHTML = iconHTML(frIcon(id));
+  const tn = frEl('b', 'hc-who', frName(id));
+  frSee(id, av, tn);
+  head.append(back, av, tn,
     frBtn('Invite to a match', async () => { setPlayTab('bot'); if (!(await roomOpen())) return vrMsg || "Couldn't open a room."; const err = await friendInvite(id); return err || 'Invite sent. Your room is on the Versus card.'; }, true),
-    frBtn('Unfriend', async () => confirm(`Unfriend ${frName(id)}?`) ? frAct('unfriend', id) : ''));
+    frArmBtn(id));
   list.appendChild(head);
   if (!lb.self) list.appendChild(frEl('li', 'fr-priv', 'Messages on this page can be read by anyone with access to it.'));
   const ms = fr.msgs[id] || [], box = frEl('li', 'fr-dm');
@@ -7719,6 +8299,7 @@ function recordRun(B, extra = {}) {
   store.set(RUNS_KEY, JSON.stringify([entry, ...getRuns()].slice(0, RUNS_MAX)));
   noteModeBest(entry);
   syncRun(entry);
+  profPublish();
   const ws = loadJSON(WSTATS_KEY, {});
   ws.runs = (+ws.runs || 0) + 1;
   ws.w = ws.w && typeof ws.w === 'object' ? ws.w : {};
@@ -8212,13 +8793,14 @@ $('#tShop').onclick = () => openPage('shop');
 // A tab strip hops between them; Esc or ‹ Menu goes back.
 const PAGE_LIST = [['lb', '🏆', 'Leaderboard'], ['quests', '🎯', 'Quests'], ['hist', '📜', 'History'], ['shop', '🛍', 'Shop'], ['online', '👥', 'Online'], ['settings', '⚙', 'Settings'], ['guide', '📖', 'Guide']];
 /* ARTIFACT-ONLY */ PAGE_LIST.splice(PAGE_LIST.length - 2, 0, ['samples', '🧪', 'Samples']); /* /ARTIFACT-ONLY */
+const PAGE_HIDDEN = ['player'];   // pages opened from elsewhere (a player's profile), with no tab
 let curPage = null, pageOpt = {};
 const pgEl = $('#pageView'), pgBody = $('#pgBody');
 $('#pgTabs').innerHTML = PAGE_LIST.map(([id, ic, n]) => `<button type="button" data-pg="${id}"><i aria-hidden="true">${ic}</i><span>${n}</span></button>`).join('');
 $('#pgTabs').querySelectorAll('button').forEach(b => { b.onclick = () => openPage(b.dataset.pg); });
 $('#pgBack').onclick = () => closeOv();
 function openPage(id, opt = {}) {
-  if (!PAGE_LIST.some(p => p[0] === id)) return;
+  if (!PAGE_LIST.some(p => p[0] === id) && !PAGE_HIDDEN.includes(id)) return;
   if (!titleShown()) { showMenu(false, () => openPage(id, opt)); return; }
   closeModal();
   keyCap = null;
@@ -8243,7 +8825,7 @@ function renderQuestsPage() {
     const parts = base.map(([lb, , g], i) => { const v = +vals[i] || 0;
       return `<span class="qp${v >= g ? ' ok' : ''}">${esc(lb)} <b>${g === 1 ? (v >= 1 ? '✓' : '–') : `${n0(Math.min(v, g))} / ${n0(g)}`}</b></span>`; }).join('');
     return `<article class="qc${ok ? ' done' : ''}${fresh.has(q.id) ? ' fresh' : ''}" id="q-${q.id}">
-      <span class="qc-ic" aria-hidden="true">${q.icon}</span>
+      <span class="qc-ic" aria-hidden="true">${q.mode ? `<i class="mi" data-i="${q.mode}"></i>` : q.icon}</span>
       <div class="qc-main"><h4>${esc(q.name)}</h4><p>${esc(q.desc)}</p>
         <div class="qc-bar" role="progressbar" aria-label="${esc(q.name)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><i style="width:${pct}%"></i></div>
         <div class="qc-parts">${parts}</div></div>
@@ -8264,7 +8846,7 @@ function setPgHead(title, sub, act = '') {
   setText($('#pgSub'), sub);
   $('#pgAct').innerHTML = act;
 }
-const PAGE_FNS = { lb: renderLbPage, quests: renderQuestsPage, hist: renderHistPage, shop: renderShopPage, online: renderOnlinePage, settings: renderSettingsPage, guide: renderGuidePage };
+const PAGE_FNS = { lb: renderLbPage, quests: renderQuestsPage, hist: renderHistPage, shop: renderShopPage, online: renderOnlinePage, settings: renderSettingsPage, guide: renderGuidePage, player: renderPlayerPage };
 function renderPage() {
   if (!curPage) return;
   PAGE_FNS[curPage]();
@@ -8410,7 +8992,7 @@ $('#tMe').onclick = () => openPage('settings', { sec: 'profile' });
 
 /* ---------- Leaderboard page ---------- */
 function renderLbPage() {
-  setPgHead('Leaderboard', 'Today\'s drop is the same board for everyone, so it\'s the fair fight. All time is your best single game.',
+  setPgHead('Leaderboard', 'Today\'s drop is the same board for everyone, so it\'s the fair fight. All time ranks everyone by accolades, earned by placing on Today\'s drop.',
     `<div class="seg tb-seg" id="tbSeg"><button type="button" data-v="today">Today</button><button type="button" data-v="all">All time</button></div>`);
   pgBody.innerHTML = `<div class="pg-split lb-page">
       <div class="pg-card lb-main"><p class="tb-sub" id="tbSub"></p><div class="lb-pod" id="tbPod"></div><ol class="tb-list" id="tbList"></ol><p class="tb-note" id="tbNote" aria-live="polite"></p></div>
@@ -8421,7 +9003,7 @@ function renderLbPage() {
 }
 function renderHomeLb(tRows, ti) {
   const ol = $('#hbLb'); if (!ol) return;
-  const row = (d, i, me) => `<li class="lbr-row r${i + 1}${me ? ' me' : ''}"><span class="lbr-rk">${i + 1}</span>${iconHTML(me ? myIcon : d.icon || 'tile', 'sm')}`
+  const row = (d, i, me) => `<li class="lbr-row r${i + 1}${me ? ' me' : ''}" data-id="${esc(d.id)}" tabindex="0" title="See ${me ? 'your' : 'their'} profile"><span class="lbr-rk">${i + 1}</span>${iconHTML(me ? myIcon : d.icon || 'tile', 'sm')}`
     + `<span class="lbr-who"><span class="lbr-nm">${me ? 'You' : esc(d.name || 'Player')}</span><span class="lbr-sc">${n0(d.daily)}${paceTag(d.dp)}</span></span></li>`;
   ol.innerHTML = tRows.slice(0, 3).map((d, i) => row(d, i, d.id === lb.uid)).join('') + (ti >= 3 ? `<li class="lbr-gap" aria-hidden="true"></li>${row(tRows[ti], ti, true)}` : '')
     + (ti < 0 && tRows.length ? `<li class="lbr-gap" aria-hidden="true"></li><li class="lbr-row me none"><span class="lbr-rk">–</span>${iconHTML(myIcon, 'sm')}<span class="lbr-who"><span class="lbr-nm">You</span><span class="lbr-sc lbr-x">Not on today's board yet</span></span></li>` : '');
@@ -8448,6 +9030,7 @@ function renderLbMe(rows, myIdx, tRows, ti) {
       <div><span class="tc-k">Today's rank</span><b>${ti >= 0 ? '#' + (ti + 1) : '–'}</b><small>${tRows ? `of ${tRows.length}` : ''}</small></div>
       <div><span class="tc-k">Today's best</span><b>${dBest ? dBest.toLocaleString() : '–'}</b></div>
       <div><span class="tc-k">Best ever</span><b>${best ? best.toLocaleString() : '–'}</b></div>
+      <div><span class="tc-k">Accolades</span><b class="lbm-acc">${n0(mine ? mine.acc || 0 : 0)}${accIcon()}</b></div>
     </div>
     <p class="set-note">${net.nick ? 'Your username and icon show next to your scores.' : 'Pick a username so people know whose score it is.'}</p>
     <button class="btn sm ghostb" id="lbEdit" type="button">${lb.self && acct.ready && !acct.user ? 'Sign in to post scores' : net.nick ? 'Edit profile' : 'Set a username'}</button>
@@ -8455,6 +9038,198 @@ function renderLbMe(rows, myIdx, tRows, ti) {
   $('#lbEdit').onclick = () => openPage('settings', { sec: 'profile' });
   $('#lbPlay').onclick = () => { if (!has('daily')) { openPage('quests', { q: LOCK_Q.daily }); return; } closeOv(true); setPlayTab('daily'); startSolo('daily'); };
 }
+
+/* ---------- Player profiles ---------- */
+// Click a player's name or picture (in chat, on a leaderboard, in Friends) to see their profile: scores, accolades
+// and recent runs, with buttons to add or remove them as a friend, message them and invite them to a game.
+// Their runs come from the runs table on the website (supabase/profiles.sql lets everyone read it) and from
+// prof/<id> on claude.ai, where each player's game publishes their last runs after every run.
+const PF_KEEP = 10, PF_SHOW = 30;
+const pf = { id: '', runs: null, err: '', tok: 0, m: 'all', at: 0, msg: null, arm: null, armT: 0 };
+const pfMine = id => !!id && id === chatMe();
+function pfOpen(id, name, icon) {
+  if (!id) return;
+  if (name || icon) frPerson(id, cleanNick(name), icon);
+  if (chat.open) chatOpen(false);
+  const from = curPage === 'player' ? pageOpt.from : curPage;
+  Object.assign(pf, { m: 'all', at: 0 });
+  openPage('player', { id, from });
+  pfLoad(id);
+}
+function pfWho(id) {
+  const d = lb.docs.find(x => x.id === id), me = pfMine(id);
+  return { d, me, name: me ? (net.nick || 'You') : (d && d.name) || frName(id), icon: me ? myIcon : (d && d.icon) || frIcon(id) };
+}
+// A leaderboard row or podium spot that opens that player's profile.
+function pfLink(el, r, p) {
+  el.classList.add('pp-link'); el.tabIndex = 0; el.title = 'See their profile';
+  const go = () => pfOpen(r.id, r.name || (p && p.name) || '', r.icon);
+  el.onclick = go;
+  el.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } };
+}
+// Someone else's run, kept to what the run views draw (numbers as numbers, words as letters, no score lines).
+function pfClean(r) {
+  const num = v => { const n = +v; return Number.isFinite(n) && n > 0 ? Math.min(n, 1e9) : 0; };
+  const word = v => String(v || '').replace(/[^a-z]/gi, '').slice(0, 24);
+  const nums = (o, keys) => { const x = {}; if (o && typeof o === 'object') for (const k of keys) if (o[k] != null) x[k] = num(o[k]); return x; };
+  const o = { at: Number.isFinite(+r.at) && +r.at > 0 ? Math.floor(+r.at) : 0, mode: ['daily', 'practice', 'bot', 'online', 'ranked'].includes(r.mode) ? r.mode : 'practice', variant: MODES[r.variant] ? r.variant : 'classic',
+    pace: PACES[r.pace] ? r.pace : 'normal', royale: !!r.royale, ranked: !!r.ranked, quit: !!r.quit, score: cleanScore(r.score), time: num(r.time),
+    words: num(r.words), placed: num(r.placed), topStack: num(r.topStack), longest: word(r.longest), wotd: word(r.wotd), wotdHit: !!r.wotdHit,
+    chains: num(r.chains), maxChain: num(r.maxChain), vert: num(r.vert), full: num(r.full), len: nums(r.len, [3, 4, 5, 6]), powers: nums(r.powers, POWERS),
+    list: (Array.isArray(r.list) ? r.list : []).slice(0, 400).filter(e => Array.isArray(e) && word(e[0])).map(e => [word(e[0]).toLowerCase(), num(e[1]), e[2] === 'v' || e[2] === 'f' ? e[2] : 'h']),
+    place: num(r.place), players: num(r.players), timeUp: !!r.timeUp };
+  for (const k of ['iceWords', 'fireWords', 'iceThawed', 'iceMelted', 'iceShattered', 'rotted', 'rottedWords', 'burned', 'forgot', 'memWords', 'bounties', 'bountyMax',
+    'bountyMissed', 'litWords', 'crossings', 'litTiles', 'events', 'blasted', 'wilds', 'tilts']) if (r[k] != null) o[k] = num(r[k]);
+  if (DAY_RE.test(r.day)) o.day = r.day;
+  if (r.seed != null && Number.isFinite(+r.seed)) o.seed = (+r.seed) >>> 0;
+  return o;
+}
+async function pfLoad(id) {
+  const tok = ++pf.tok;
+  Object.assign(pf, { id, runs: null, err: '' });
+  let runs = [];
+  try {
+    if (pfMine(id)) runs = getRuns().filter(x => !x.onboard);
+    else if (lb.self) {
+      const sb = await supaClient().catch(() => null);
+      if (!sb) throw new Error('offline');
+      const [rr, pr] = await Promise.all([
+        sb.from('runs').select('at,data').eq('user_id', id).order('at', { ascending: false }).limit(PF_SHOW),
+        sb.from('profiles').select('username,icon').eq('id', id).maybeSingle()]);
+      if (rr.error) throw rr.error;
+      if (pr && pr.data) frPerson(id, cleanNick(pr.data.username), pr.data.icon);
+      runs = (rr.data || []).map(x => pfClean({ ...(x.data && typeof x.data === 'object' ? x.data : {}), at: x.at }));
+    } else if (lb.db) {
+      const snap = await lb.db.doc('prof/' + id).get(), x = snap.exists ? snap.data() || {} : {};
+      if (x.name) frPerson(id, cleanNick(x.name), x.icon);
+      runs = (Array.isArray(x.runs) ? x.runs : []).filter(q => q && typeof q === 'object').map(pfClean);
+    }
+  } catch (e) { pf.err = "Their runs couldn't load right now. Try again in a bit."; }
+  if (tok !== pf.tok) return;
+  pf.runs = runs.filter(q => +q.at > 0).sort((a, b) => b.at - a.at).slice(0, PF_SHOW);
+  if (curPage === 'player' && pageOpt.id === id) renderPlayerPage();
+}
+// claude.ai: publish your last runs to prof/<your id> for your profile (after each game, and when the page opens
+// if they've changed since). The website reads the runs table instead.
+function profPublish() {
+  if (lb.self || !lb.db || !lb.uid || lb.canWrite === false) return;
+  const runs = getRuns().filter(x => !x.onboard).slice(0, PF_KEEP).map(x => { const o = { ...x }; delete o.tl; delete o.sw; o.list = (x.list || []).slice(0, 60); return o; });
+  if (!runs.length) return;
+  const sig = `${lb.uid}|${net.nick}|${myIcon}|${runs.length ? runs[0].at : 0}`;
+  if (sig === store.get('wordfall-prof-sig')) return;
+  lb.db.doc('prof/' + lb.uid).set({ name: net.nick || '', icon: myIcon, at: Date.now(), runs }).then(() => store.set('wordfall-prof-sig', sig), () => {});
+}
+function renderPlayerPage() {
+  const id = pageOpt.id, w = pfWho(id), d = w.d, today = todayStr();
+  const back = pageOpt.from ? PAGE_LIST.find(p => p[0] === pageOpt.from) : null;
+  setPgHead(w.me ? 'Your profile' : w.name, w.me ? 'What other players see when they click your name.' : 'Their scores, accolades and recent runs.',
+    back ? `<button class="btn sm ghostb" id="pfBack" type="button">‹ ${esc(back[2])}</button>` : '');
+  if (back) $('#pfBack').onclick = () => openPage(back[0]);
+  const tRows = lb.docs.filter(x => x.day === today && x.daily > 0).sort((a, b) => b.daily - a.daily), ti = tRows.findIndex(x => x.id === id);
+  const aRows = lb.docs.filter(x => x.acc > 0).sort((a, b) => b.acc - a.acc), ai = aRows.findIndex(x => x.id === id);
+  const runs = pf.id === id && pf.runs ? pf.runs : null, all = runs || [], loading = !runs && !pf.err;
+  const by = {};
+  for (const x of all) (by[runVar(x)] = by[runVar(x)] || []).push(x);
+  const fav = MODE_KEYS.filter(k => by[k]).sort((a, b) => by[b].length - by[a].length)[0];
+  const longest = all.reduce((b, x) => String(x.longest || '').length > b.length ? String(x.longest) : b, '');
+  const best = Math.max(d ? d.best : 0, w.me ? cleanScore(store.get('wordfall-best')) : 0, ...all.map(x => +x.score || 0));
+  const their = w.me ? 'your' : 'their';
+  const tiles = [
+    rsTile('Best game', best ? n0(best) + (d && d.bp ? paceTag(d.bp) : '') : '–', 'any mode'),
+    rsTile("Today's drop", ti >= 0 ? n0(tRows[ti].daily) : '–', ti >= 0 ? `#${ti + 1} of ${tRows.length} today` : 'Not played today'),
+    rsTile('Accolades', `${n0(d ? d.acc || 0 : 0)}${accIcon()}`, ai >= 0 ? `#${ai + 1} all time` : 'None yet'),
+    rsTile('Favourite mode', fav ? esc(MODES[fav].name) : '–', fav ? `${by[fav].length} of ${their} last ${all.length} runs` : ''),
+    rsTile('Longest word', longest ? UP(longest) : '–', longest ? `${longest.length} letters` : ''),
+    rsTile('Words scored', runs ? n0(all.reduce((t, x) => t + (+x.words || 0), 0)) : '–', runs ? `in ${their} last ${all.length} run${all.length === 1 ? '' : 's'}` : ''),
+  ].join('');
+  const list = pf.m === 'all' ? all : all.filter(x => runVar(x) === pf.m);
+  let sel = Math.max(0, list.findIndex(x => x.at === pf.at));
+  pf.at = list[sel] ? list[sel].at : 0;
+  const modes = MODE_KEYS.map(k => { const rs = by[k] || [];
+    return `<button type="button" class="hx-s${rs.length ? '' : ' none'}" data-m="${k}" style="${rcStyle(k)}" aria-pressed="${pf.m === k}"${rs.length ? '' : ' disabled'}><i class="mi" data-i="${k}" aria-hidden="true"></i>`
+      + `<span class="hx-n">${esc(MODES[k].name)}</span><b>${rs.length ? n0(Math.max(...rs.map(x => +x.score || 0))) : '–'}</b><small>${rs.length ? `${rs.length} run${rs.length === 1 ? '' : 's'}` : 'Not played'}</small></button>`; }).join('');
+  const runsHTML = loading ? '<div class="pg-card"><p class="set-note">Loading runs…</p></div>'
+    : pf.err ? `<div class="pg-card"><p class="set-note">${esc(pf.err)}</p></div>`
+    : !list.length ? `<div class="pg-card"><p class="set-note">${all.length ? 'No runs in this mode.' : w.me ? 'Finish a game and it shows up here.' : 'No runs to show yet.'}</p></div>`
+    : `<div class="pg-split hp-split"><div class="pg-card"><h3 class="rs-h">Recent runs${pf.m !== 'all' ? ' · ' + esc(MODES[pf.m].name) : ''}</h3><div class="runlist">${list.map((x, i) => runRowHTML(x, i, i === sel, {}, false)).join('')}</div></div>`
+      + '<div class="pg-card hp-detail" id="pfDetail"></div></div>';
+  pgBody.innerHTML = `<div class="pp-page">
+    <div class="pg-card pp-top"><span class="pp-av">${iconHTML(w.icon, 'xxl')}</span>
+      <div class="pp-id"><span class="tc-k">${w.me ? 'You' : 'Player'}</span><h3>${esc(w.name)}</h3><span class="pp-rel" id="pfRel"></span></div>
+      <div class="pp-acts" id="pfActs"></div><p class="set-note pp-note" id="pfNote" aria-live="polite"></p></div>
+    <div class="rs-grid pp-tiles">${tiles}</div>
+    <div class="pg-card"><div class="hx-h"><h3 class="rs-h">Best in each mode</h3>${pf.m !== 'all' ? '<button class="btn sm ghostb" id="pfAll" type="button">All modes</button>' : `<span class="hx-st">From ${their} recent runs. Pick one to see only those.</span>`}</div><div class="hx-sum pp-modes">${modes}</div></div>
+    ${runsHTML}</div>`;
+  pfActs();
+  pqa('.pp-modes .hx-s').forEach(b => { b.onclick = () => { pf.m = pf.m === b.dataset.m ? 'all' : b.dataset.m; pf.at = 0; renderPlayerPage(); }; });
+  if (pq('#pfAll')) pq('#pfAll').onclick = () => { pf.m = 'all'; pf.at = 0; renderPlayerPage(); };
+  const draw = () => { const x = list[sel], dd = pq('#pfDetail'); if (!x || !dd) return;
+    dd.style.cssText = rcStyle(runVar(x));
+    dd.innerHTML = `<div class="hp-dh"><span class="tc-k">Run ${sel + 1} of ${list.length}</span><h3>${esc(MODE_NAME(x) + tlVs(x))}</h3><b>${n0(x.score)}</b></div>${runBody(x)}`; };
+  pqa('.runrow').forEach(b => { b.onclick = () => {
+    sel = +b.dataset.i; pf.at = list[sel].at;
+    pqa('.runrow').forEach(o => { const on = o === b; o.classList.toggle('on', on); o.setAttribute('aria-pressed', String(on)); });
+    draw();
+    if (matchMedia('(max-width:820px)').matches) pq('#pfDetail').scrollIntoView({ behavior: fxCalm() ? 'auto' : 'smooth', block: 'start' });
+  }; });
+  draw();
+}
+// The profile's buttons: add or remove them as a friend, message them, invite them to a game.
+function pfActs(msg = '') {
+  const box = $('#pfActs'), note = $('#pfNote'), rel = $('#pfRel');
+  if (!box || curPage !== 'player') return;
+  // What the last button did stays up for a few seconds, through redraws as the change comes back.
+  const relNow = fr.ready ? fr.rel[pageOpt.id] || '' : '';
+  if (msg) pf.msg = { t: Date.now(), id: pageOpt.id, r: relNow, text: msg };
+  else if (pf.msg && pf.msg.id === pageOpt.id && pf.msg.r === relNow && Date.now() - pf.msg.t < 6000) msg = pf.msg.text;
+  const id = pageOpt.id, nm = pfWho(id).name;
+  box.textContent = '';
+  let hint = '';
+  const btn = (txt, fn, cls = '') => { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn sm' + (cls ? ' ' + cls : ''); b.textContent = txt;
+    b.onclick = async () => { b.disabled = true; const m = await fn(); pfActs(m || ''); }; box.appendChild(b); return b; };
+  rel.textContent = ''; rel.className = 'pp-rel';
+  if (pfMine(id)) btn('Edit profile', async () => { openPage('settings', { sec: 'profile' }); return ''; }, 'ghostb');
+  else {
+    const can = frCan(), r = fr.ready ? fr.rel[id] : undefined;
+    if (!can.ok) { hint = can.why; if (can.act) btn(can.act, async () => { openPage('settings', { sec: 'profile' }); return ''; }); }
+    else if (!fr.ready) hint = 'Loading friends…';
+    else {
+      rel.textContent = r === 'friend' ? 'Friends' : r === 'out' ? 'Request sent' : r === 'in' ? 'Wants to be friends' : '';
+      if (r) rel.classList.add(r);
+      if (r === 'friend') {
+        btn('Invite to a game', pfInvite);
+        btn('Message', async () => { closeOv(); chatOpen(true); chat.tab = 'friends'; fr.thread = id; renderChat(); return ''; }, 'ghostb');
+        const armed = pf.arm === id;
+        btn(armed ? 'Click again to remove' : 'Remove friend', async () => {
+          clearTimeout(pf.armT);
+          if (pf.arm === id) { pf.arm = null; return frAct('unfriend', id); }
+          pf.arm = id; pf.armT = setTimeout(() => { if (pf.arm === id) { pf.arm = null; if (curPage === 'player') pfActs(); } }, 3000);
+          return '';
+        }, 'ghostb bad' + (armed ? ' arm' : ''));
+      } else {
+        if (r === 'in') { btn('Accept friend request', () => frAct('accept', id)); btn('Decline', () => frAct('decline', id), 'ghostb'); }
+        else if (r === 'out') btn('Cancel friend request', () => frAct('cancel', id), 'ghostb');
+        else btn('Add friend', async () => { const e = await frAct('ask', id); return e || `Friend request sent to ${nm}.`; });
+        const b = btn('Invite to a game', async () => '', 'ghostb'); b.disabled = true;
+        hint = 'Friends can invite each other to games.';
+      }
+    }
+  }
+  setText(note, msg || hint);
+}
+async function pfInvite() {
+  const id = pageOpt.id;
+  setPlayTab('bot');
+  if (!(await roomOpen())) return vrMsg || "Couldn't open a room.";
+  const err = await friendInvite(id);
+  if (err) return err;
+  closeOv();
+  toast(`Invite sent to ${frName(id)}. Your room is on the Versus card.`, 'o');
+  return '';
+}
+// The home leaderboard card's rows open profiles too.
+$('#hbLb').addEventListener('click', e => { const li = e.target.closest('[data-id]'); if (li) pfOpen(li.dataset.id); });
+$('#hbLb').addEventListener('keydown', e => { if (e.key !== 'Enter' && e.key !== ' ') return; const li = e.target.closest('[data-id]'); if (li) { e.preventDefault(); pfOpen(li.dataset.id); } });
 
 /* ---------- History page ---------- */
 // What History shows: a mode ('all', or the mode of your latest game when it first opens), how you played it, the picked run.
@@ -9822,6 +10597,8 @@ function playStep(s, t, spb) {
     return;
   }
   playCues(s, t, spb, 45);
+  const ms = { puzzle: playPuzzle, bounty: playBounty, chaos: playChaos, amnesia: playAmnesia }[music.mode];
+  if (ms) { ms(s, t, spb); return; }
   const st = s % 16, ch = CHORDS[Math.floor((s % 64) / 16)], k = music.key;
   if (music.danger && (st === 0 || st === 3)) thump(t, st === 0 ? 0.7 : 0.45);
   if (st === 0 || st === 8 || st === 10) kick(t);
@@ -9897,6 +10674,96 @@ function playSummer(s, t, spb) {
   }
   // The blizzard's coming: wind rising under the last stretch.
   if (f > 0.85 && st === 0) wind(t, spb * 16, 0.05, 600, 2400);
+}
+// The newer modes each have a song of their own on the main theme (A minor: Am, F, C, G), and each builds with what
+// the mode is doing (music.mi runs 0 → 1). Puzzle Box is a clockwork music box that speeds up as the three minutes
+// run out. Bounty is a spaghetti western: a gallop, twangy guitar and a whistled tune, with a whip crack for every
+// bounty caught. Chaos Carnage is a funfair organ that changes costume with every rule (a siren warns of the next).
+// Amnesia is a fading dream: soft piano and a music box that forgets a note of its tune for every letter forgotten.
+const MODE_SONGS = {
+  bounty: { chords: [{ r: 45, t: 3 }, { r: 43, t: 4 }, { r: 41, t: 4 }, { r: 40, t: 4 }],
+    whistle: [76, 0, 0, 79, 81, 0, 79, 76, 74, 0, 0, 72, 74, 0, 0, 0, 76, 0, 0, 79, 81, 0, 84, 83, 80, 0, 0, 0, 76, 0, 0, 0] },
+  amnesia: { chords: [{ r: 45, v: [0, 3, 7, 10] }, { r: 41, v: [0, 4, 7, 11] }, { r: 48, v: [0, 4, 7, 11] }, { r: 43, v: [0, 4, 7, 9] }] },
+};
+// The same few tune notes go first every time, so the music box forgets the way the board does.
+const AMN_DROP = MELODY.map((n, i) => [n ? hashStr('amn-note:' + i) % 1000 / 1000 : 2, i]).sort((a, b) => a[0] - b[0]).map(x => x[1]);
+function playPuzzle(s, t, spb) {
+  const st = s % 16, ch = CHORDS[Math.floor((s % 64) / 16)], k = music.key, f = music.mi || 0, late = f > 0.83, r = ch.r + k;
+  if (music.danger && (st === 0 || st === 3)) thump(t, st === 0 ? 0.6 : 0.4);
+  // Clock: tick-tock on the eighths, on every sixteenth in the last half minute.
+  if (st % 2 === 0 || late) { const tick = st % 4 === 0; tone('sine', tick ? 1760 : 1320, t, 0.03, late ? 0.065 : 0.05); noiseHit(t, 0.012, 0.04, tick ? 4200 : 3000, 'bandpass'); }
+  // Pizzicato bass over a soft kick that firms up as time goes.
+  if (st === 0 || st === 8 || (f > 0.4 && st === 10)) tone('triangle', mtof(r - 12 + (st === 10 ? 7 : 0)), t, spb * 1.6, 0.24);
+  if (st === 0 || (f > 0.25 && st === 8)) thump(t, 0.3 + 0.3 * f);
+  if (f > 0.55 && (st === 4 || st === 12)) noiseHit(t, 0.08, 0.08 + 0.06 * f, 2400, 'bandpass');
+  // Marimba: the chord climbing in sixteenths (a woody fundamental and a bright knock).
+  const ar = [0, 7, 12, ch.t + 12, 19, 12, ch.t + 12, 7][st % 8], fq = mtof(r + 12 + ar);
+  tone('sine', fq, t, spb * 1.3, 0.09); tone('sine', fq * 4, t, spb * 0.25, 0.01 + 0.008 * f);
+  // The tune on a music box: every other time round at first, then all the way from about a minute in.
+  if ((f > 0.3 || s >= 64) && st % 2 === 0) { const n = MELODY[Math.floor((s % 64) / 2)]; if (n) { const q = mtof(n + k + 12); tone('sine', q, t, spb * 4, 0.07); tone('sine', q * 2.76, t, spb, 0.012); } }
+  // The last half minute: a rising roll under it all.
+  if (late && st % 4 === 0) noiseHit(t, 0.05, 0.03 + 0.08 * (f - 0.83) / 0.17, 1800, 'bandpass');
+}
+function playBounty(s, t, spb) {
+  const B = MODE_SONGS.bounty, st = s % 16, bar = Math.floor((s % 64) / 16), ch = B.chords[bar], k = music.key, f = music.mi || 0, r = ch.r + k;
+  if (music.danger && (st === 0 || st === 3)) thump(t, st === 0 ? 0.6 : 0.4);
+  // Gallop: da-da-DUM on every beat.
+  if (st % 4 === 0) thump(t, 0.6); else if (st % 4 === 2 || st % 4 === 3) noiseHit(t, 0.04, 0.05 + 0.04 * f, 900, 'bandpass');
+  if (f > 0.35 && (st === 4 || st === 12)) { noiseHit(t, 0.1, 0.12, 2000, 'bandpass'); noiseHit(t, 0.03, 0.05, 6000, 'highpass'); }
+  // Twangy guitar: root, fifth, octave picked in eighths, ringing out.
+  if (st % 2 === 0) stab('sawtooth', mtof(r + [0, 7, 12, 7][(st / 2) % 4]), t, spb * 1.8, 0.075, 1500 + 900 * f);
+  if (st === 0) tone('triangle', mtof(r - 12), t, spb * 8, 0.2);
+  // Whistled tune with a canyon echo, once a bounty is up.
+  if (f > 0.05 && st % 2 === 0) { const n = B.whistle[Math.floor((s % 64) / 2)]; if (n) { const q = mtof(n + k); tone('sine', q, t, spb * 2.2, 0.075); tone('sine', q, t + spb * 3, spb * 1.6, 0.022); } }
+  // High noon: an anvil ting at the end of each bar when the run multiplier is up.
+  if (f > 0.6 && st === 14) { tone('sine', 2093, t, 0.4, 0.03); tone('sine', 2093 * 2.6, t, 0.15, 0.009); }
+  if (music.whip) { music.whip = 0; noiseHit(t, 0.06, 0.16, 5000, 'highpass'); const c = music.ctx, o = c.createOscillator(), g = c.createGain(); o.frequency.setValueAtTime(2600, t); o.frequency.exponentialRampToValueAtTime(300, t + 0.12); g.gain.setValueAtTime(0.07, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.14); o.connect(g); g.connect(music.out); o.start(t); o.stop(t + 0.16); }
+}
+function playChaos(s, t, spb) {
+  const st = s % 16, ch = CHORDS[Math.floor((s % 64) / 16)], k = music.key, rule = music.rule || '', r = ch.r + k;
+  if (music.danger && (st === 0 || st === 3)) thump(t, st === 0 ? 0.6 : 0.4);
+  if (music.ruleNew) { music.ruleNew = 0; crash(t, 0.08); thump(t, 0.4); }
+  // The siren: the next rule is coming.
+  if (music.warn && (st === 0 || st === 8)) tone('square', st === 0 ? 880 : 660, t, spb * 3.5, 0.03);
+  if (music.warn && !music.warned && music.warnLeft > 0.4) { music.warned = true; riser(t, music.warnLeft, 0.022, 600, 3000); }
+  const sparse = rule === 'drought', heavy = rule === 'giants' || rule === 'rockslide';
+  // Oom-pah: bass on the beat, organ chord on the offbeat, a kick on 1 and 3 (every beat, with a clap, under a rule).
+  if (st % 4 === 0) tone('triangle', mtof(r - 12 + (st === 8 ? 7 : 0) - (heavy ? 12 : 0)), t, spb * 1.5, 0.24);
+  if (!sparse && st % 4 === 2) [12, 12 + ch.t, 19].forEach(n => stab('square', mtof(r + n), t, spb * 1.2, 0.028, 2200));
+  if (st % 8 === 0 || (rule && st % 4 === 0)) kick(t);
+  if (rule && (st === 4 || st === 12)) noiseHit(t, 0.1, 0.1, 1800, 'bandpass');
+  if (rule === 'bombs' && (st === 0 || st === 6 || st === 12)) tom(t, st === 12 ? 90 : 120, 0.2);
+  if (rule === 'rockslide' && Math.random() < 0.5) noiseHit(t, 0.08, 0.04, 200 + Math.random() * 300, 'lowpass');
+  if (rule === 'hyper' || rule === 'jackpot' || st % 2 === 0) noiseHit(t, 0.02, 0.04, 8500, 'highpass');
+  // The calliope tune (played backwards under the Backwards rule), wobbling under Tilt, sparkling under Wildcards.
+  if (st % 2 === 0) {
+    const i = Math.floor((s % 64) / 2), n = MELODY[rule === 'backwards' ? 31 - i : i];
+    if (n && !sparse) { const det = rule === 'tilt' ? (st % 4 ? 30 : -30) : 0, q = mtof(n + k + det / 100); stab('square', q, t, spb * 1.5, 0.05, 3000); tone('triangle', q * 2, t, spb * 0.8, 0.018); }
+  }
+  if (rule === 'wild' && st % 2 === 1) stab('square', mtof(r + 36 + [0, 7, 12, 16][(st >> 1) % 4]), t, spb * 0.6, 0.018, 5000);
+  if (rule === 'jackpot' && (st === 0 || st === 6)) [0, ch.t, 7].forEach(n => stab('sawtooth', mtof(r + 24 + n), t, spb * 2.4, 0.03, 2600));
+}
+function playAmnesia(s, t, spb) {
+  const A = MODE_SONGS.amnesia, st = s % 16, bar = Math.floor((s % 64) / 16), ch = A.chords[bar], k = music.key, f = music.mi || 0, r = ch.r + k;
+  if (music.danger && (st === 0 || st === 3)) thump(t, st === 0 ? 0.55 : 0.35);
+  // A slow heartbeat and a hazy pad.
+  if (st === 0 || st === 10) thump(t, st === 0 ? 0.42 : 0.25);
+  if (st === 0) pad(ch.v.slice(0, 3).map(n => mtof(r + 12 + n)), t, spb * 16, 0.045 + 0.015 * f, 900 + 600 * f);
+  if (f > 0.3 && (st === 4 || st === 12)) noiseHit(t, 0.12, 0.04, 1600, 'bandpass');
+  // Soft piano: the chord rising and falling in eighths.
+  if (st % 2 === 0) { const n = ch.v[[0, 1, 2, 3, 2, 1, 2, 1][(st / 2) % 8]], q = mtof(r + 24 + n); tone('sine', q, t, spb * 3, 0.05); tone('triangle', q * 2, t, spb * 0.5, 0.007); }
+  // The music box: one more note of the tune gone for every letter forgotten, leaving a faint echo where it was.
+  if (st % 2 === 0) {
+    const i = Math.floor((s % 64) / 2), n = MELODY[i];
+    if (n) {
+      const lost = AMN_DROP.indexOf(i) < (music.amnN || 0), q = mtof(n + k + 12);
+      if (!lost) { tone('sine', q, t, spb * 5, 0.065); tone('sine', q * 2.76, t, spb * 1.2, 0.012); }
+      else tone('sine', q, t + spb, spb * 3, 0.009);
+    }
+  }
+  // A swell before each letter goes, and a slipping chirp when it does.
+  if (!music.swelled && music.swellLeft > 0.4 && music.swellLeft < 3.2) { music.swelled = true; riser(t, music.swellLeft, 0.026, 400, 2400); }
+  if (music.forget) { music.forget = 0; const c = music.ctx, o = c.createOscillator(), g = c.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(1200, t); o.frequency.exponentialRampToValueAtTime(260, t + 0.6); g.gain.setValueAtTime(0.05, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.7); o.connect(g); g.connect(music.out); o.start(t); o.stop(t + 0.75); }
 }
 // Results: a laid-back chill-hop groove for the end screen. Same chords as the main theme
 // (A minor, F, C, G) in softer, jazzier voicings, swung hats, a warm sub bass, electric-piano
@@ -10011,6 +10878,26 @@ function musicTick() {
       Object.assign(music, { fW: sa.frac, leftW: left, lateW: L(n), fS: head ? 1 : 0, leftS: 0, lateS: head ? L(n) : true });
     }
   }
+  // The newer modes: how far in (Puzzle Box's clock, Amnesia's letters), what's up (Bounty's bounties, Chaos's rule).
+  const live2 = !titleShown() && !!B && !game.over && B.phase !== 'over';
+  music.mode = live2 && ['puzzle', 'bounty', 'chaos', 'amnesia'].includes(game.variant) ? game.variant : null;
+  if (music.mode === 'puzzle') music.mi = Math.min(1, B.elapsed / PUZZLE_MS);
+  else if (music.mode === 'bounty') {
+    music.mi = Math.min(1, (B.bountyX - 1) / 3 + B.bounties.length * 0.15);
+    if ((B.run.bounties || 0) > (music.bN || 0)) music.whip = 1;
+    music.bN = B.run.bounties || 0;
+  } else if (music.mode === 'chaos') {
+    const rule = B.chaos ? B.chaos.k : '';
+    if (rule && rule !== music.rule) { music.ruleNew = 1; music.warned = false; }
+    music.rule = rule; music.warnLeft = rule ? 99 : (B.chaosAt - B.elapsed) / 1000;
+    music.warn = music.warnLeft < CHAOS_WARN / 1000; music.mi = rule ? 1 : 0.4;
+  } else if (music.mode === 'amnesia') {
+    const n = B.banned.length - AMN_START.length;
+    if (n > (music.amnN ?? n)) { music.forget = 1; music.swelled = false; }
+    const nx = B.phase === 'play' ? B.amnesiaNext() : null;
+    music.amnN = n; music.mi = Math.min(1, n / 18); music.swellLeft = nx ? nx.left / 1000 : 99;
+  }
+  if (!music.mode) { music.bN = 0; music.rule = ''; music.amnN = undefined; music.warned = music.swelled = false; }
   // What the board is doing, for the cues.
   const busy = !titleShown() && !!B && !game.over && B.phase !== 'over';
   music.burn = busy && (B.burnLeft > 0 || !!(B.cur && B.cur.fire) || B.grid.some(r => r.some(c => c && c.burning)));
@@ -10019,7 +10906,8 @@ function musicTick() {
   if (music.playing) {
     const TS = 2 + 22 * (music.fS || 0) + (music.lateS ? 6 : 0), TW = -2 + 10 * (music.fW || 0) + (music.lateW ? 6 : 0);
     const rot = !music.season ? 0 : Math.round(TS * (1 - music.mixW) + TW * music.mixW);
-    const want = music.results ? 84 : titleShown() ? 104 : 116 + Math.max(-6, Math.min(32, Math.round((game.me.speedX() - 1) * 8))) + (game.me.rush > 0 ? 14 : 0) + (fin ? 18 : 0) + rot;
+    const mi = music.mi || 0, base = { puzzle: 102 + Math.round(30 * mi * mi), bounty: 112 + Math.round(10 * mi), chaos: 118 + (music.rule ? 12 : 0) + (music.rule === 'hyper' ? 16 : 0), amnesia: 90 + Math.round(10 * mi) }[music.mode] || 116;
+    const want = music.results ? 84 : titleShown() ? 104 : base + Math.max(-6, Math.min(32, Math.round((game.me.speedX() - 1) * 8))) + (game.me.rush > 0 ? 14 : 0) + (fin ? 18 : 0) + rot;
     // Glide to the new tempo over about half a second instead of jumping.
     music.bpm += (want - music.bpm) * (Math.abs(want - music.bpm) < 0.5 ? 1 : 0.12);
   }
@@ -10106,6 +10994,6 @@ showMenu(false);
 requestAnimationFrame(frame);
 
 /* Test hook for automated checks (harmless in play). */
-window.__wordfall = { get game() { return game; }, endSting, tlSample, tlHit, playStep, get net() { return net; }, joinRoom, leaveRoom, get paused() { return paused; }, set paused(v) { paused = !!v; }, tutTick, startTutorialNow, musicTick, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store, prog, setLevel, showLevelPick, tutToRun, questsAfterRun, mergeKey, syncStart, get syncSt() { return syncSt; }, get QUESTS() { return QUESTS; }, get pace() { return pace; }, chat, chatInit, renderChat, chatOpen, onNetStart, setPlayTab, setVariant, get playTab() { return playTab; }, get fr() { return fr; } };
+window.__wordfall = { get game() { return game; }, endSting, tlSample, tlHit, playStep, get net() { return net; }, joinRoom, leaveRoom, get paused() { return paused; }, set paused(v) { paused = !!v; }, tutTick, startTutorialNow, musicTick, get music() { return music; }, Board, wordsAcross, wordDown, placements, startBot, startSolo, usePower, showMenu, renderBoard, get lb() { return lb; }, battlers, finishBattle, showThemes, applySkin, getStats, showShop, acct, openPage, get curPage() { return curPage; }, checkIconUnlocks, setMyName, setMyIcon, get letterSkins() { return letterSkins; }, botRotValue, DICT, store, prog, setLevel, showLevelPick, tutToRun, questsAfterRun, mergeKey, syncStart, get syncSt() { return syncSt; }, get QUESTS() { return QUESTS; }, get pace() { return pace; }, chat, chatInit, chatAdmin, renderChat, chatOpen, onNetStart, setPlayTab, setVariant, get playTab() { return playTab; }, get fr() { return fr; } };
 })();
 </script>
