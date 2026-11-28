@@ -287,7 +287,7 @@ body.versus .log{max-height:120px}
 .vsres em{font:600 12px var(--f-mono);color:var(--muted);font-style:normal}
 .seglbl{color:var(--muted);font-size:12.5px}
 
-@media (max-width:819px),(pointer:coarse) and (max-width:1024px){
+@media (max-width:819px),(pointer:coarse){
   .pad{display:flex}
 }
 
@@ -923,6 +923,7 @@ div.hub-t{cursor:default}
 .pc-seed:focus-within,.pc-seed.set{border-style:solid;border-color:var(--mc)}
 .pc-seed.set{box-shadow:0 0 14px -6px var(--mc)}
 .ps-ic{flex:none;width:14px;height:14px;fill:#8fe07a;color:#8fe07a;pointer-events:none}
+.ps-ic.lk{color:inherit;fill:currentColor;opacity:.85}
 .ps-in{flex:1;min-width:0;height:100%;padding:0;background:none;border:0;outline:0;color:var(--fg);font:600 12.5px var(--f-mono)}
 .ps-in:focus,.ps-in:focus-visible{outline:none}
 .ps-in::placeholder{color:var(--muted);opacity:1}
@@ -1066,7 +1067,7 @@ div.hub-t{cursor:default}
 .co-btns{display:flex;gap:8px;align-items:center;justify-content:flex-end}
 .co-wait{margin-right:auto;font:600 12px var(--f-mono);color:var(--muted)}
 @keyframes coachin{from{opacity:.2}}
-@media (max-width:819px){body.tutoring .right,body.solo.tutoring .right{display:flex}.coach{padding:8px 10px!important;gap:5px}.coach h3{font-size:15px}.coach p{font-size:12px;line-height:1.4}.co-dots{display:none}body.tutoring{--cell:clamp(18px, min(calc((100dvh - 392px - var(--coachH, 110px)) / 12.6), calc((100vw - 56px) / 6)), 46px)}}
+@media (max-width:599px),(max-width:819px) and (pointer:fine),(pointer:coarse) and (max-height:500px){body.tutoring .right,body.solo.tutoring .right{display:flex}.coach{padding:8px 10px!important;gap:5px}.coach h3{font-size:15px}.coach p{font-size:12px;line-height:1.4}.co-dots{display:none}body.tutoring{--cell:clamp(18px, min(calc((100dvh - 392px - var(--coachH, 110px)) / 12.6), calc((100vw - 56px) / 6)), 46px)}}
 .c.tgt{outline:2px dashed var(--bank);outline-offset:-3px;background:color-mix(in srgb,var(--bank) 16%,var(--empty));animation:tgtpulse 1s ease-in-out infinite alternate}
 @keyframes tgtpulse{to{background:color-mix(in srgb,var(--bank) 32%,var(--empty))}}
 .pk-cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;width:100%;align-items:stretch}
@@ -1372,16 +1373,13 @@ div.hub-t{cursor:default}
 .pz-sum span{font:600 11.5px var(--f-mono);padding:4px 9px;border-radius:999px;background:var(--well);border:1px solid var(--line2);color:var(--muted)}
 .pz-sum b{color:var(--fg)}
 .pz-words{display:none}
-@media (min-width:820px){#mMusic{display:none}}
-@media (pointer:coarse) and (min-width:820px) and (max-width:1024px){
-  .app{grid-template-areas:"top top top" "left well right" "pad pad pad"}
-}
+@media (min-width:820px) and (pointer:fine){#mMusic{display:none}}
 .pad{display:none;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-areas:"left rot cycle right power" "hold soft hard hard hard";gap:6px;width:100%;max-width:440px;justify-self:center}
-@media (max-width:819px),(pointer:coarse) and (max-width:1024px){.pad{display:grid}}
+@media (max-width:819px),(pointer:coarse){.pad{display:grid}}
 .pad button{width:auto;height:48px}
 .pad [data-act=left]{grid-area:left}.pad [data-act=rot]{grid-area:rot}.pad [data-act=cycle]{grid-area:cycle}.pad [data-act=right]{grid-area:right}
 .pad [data-act=power]{grid-area:power}.pad [data-act=hold]{grid-area:hold}.pad [data-act=soft]{grid-area:soft}.pad [data-act=hard]{grid-area:hard}
-@media (max-width:819px){
+@media (max-width:599px),(max-width:819px) and (pointer:fine),(pointer:coarse) and (max-height:500px){
   :root{--cell:clamp(20px, min(calc((100dvh - 372px) / 12.6), calc((100vw - 56px) / 6)), 46px)}
   body.versus{--cell:clamp(20px, min(calc((100dvh - 424px) / 12.6), calc((100vw - 56px) / 6)), 46px)}
   .app{grid-template-columns:minmax(0,1fr);grid-template-areas:"top" "left" "right" "well" "pad";gap:6px;align-content:start;padding-block:8px}
@@ -2275,7 +2273,7 @@ body[data-v="puzzle"] .hz-panel,body[data-v="puzzle"] .atk{display:none}
   .hm-grid.n6 .mt{justify-content:center;padding:0 0 3px}
   .hm-grid.n6 .mt b{display:none}
 }
-@media (max-width:819px){
+@media (max-width:599px),(max-width:819px) and (pointer:fine),(pointer:coarse) and (max-height:500px){
   body.has-mp{--cell:clamp(18px, min(calc((100dvh - 408px) / 12.6), calc((100vw - 56px) / 6)), 46px)}
   body.versus.has-mp{--cell:clamp(18px, min(calc((100dvh - 460px) / 12.6), calc((100vw - 56px) / 6)), 46px)}
   .mode-panel{height:28px;padding:0 8px;gap:6px;border-radius:10px}
@@ -2289,6 +2287,214 @@ body[data-v="puzzle"] .hz-panel,body[data-v="puzzle"] .atk{display:none}
 }
 @media (prefers-reduced-motion:reduce){.rg-art i.next,.c.wildfx{animation:none}.well{transition:none}}
 .calm .rg-art i.next,.calm .c.wildfx{animation:none}
+
+/* ===== Phones and tablets ===== */
+.pad-l,.pad-r{display:contents}
+.inc-s{display:none}
+:root{--nfb:0px;--lift:0px}
+/* Change mode tile: Today's drop picks its own seed and is always solo, so those go; the tile wears the picked mode. */
+#hbModes.daily .pc-seed,#hbModes.daily .qs-way{display:none}
+#hbModes.daily .qs-grid{max-width:320px}
+.m-modes[data-m="daily"]{--mc:var(--bank)}.m-modes[data-m="practice"]{--mc:var(--o-clear)}.m-modes[data-m="bot"]{--mc:var(--vert)}.m-modes[data-m="online"]{--mc:var(--o-stretch)}.m-modes[data-m="ranked"]{--mc:#9d8bff}.m-modes[data-m="tut"]{--mc:var(--full)}
+.m-modes[data-v="puzzle"]{--mc:#6fe3c4}.m-modes[data-v="chaos"]{--mc:#ff4f9a}.m-modes[data-v="amnesia"]{--mc:#b8a7ff}.m-modes[data-v="bounty"]{--mc:#ffc94a}.m-modes[data-v="rot"]{--mc:#9fdcff}
+.m-modes[data-v="puzzle"] .ht-art{background:radial-gradient(ellipse at 85% 0%,color-mix(in srgb,var(--mc) 30%,transparent),transparent 60%),linear-gradient(#6fe3c40e 1px,transparent 1px) 0 0/22px 22px,linear-gradient(90deg,#6fe3c40e 1px,transparent 1px) 0 0/22px 22px,linear-gradient(160deg,color-mix(in srgb,var(--mc) 16%,var(--well)),var(--well))}
+.m-modes[data-v="chaos"] .ht-art{background:radial-gradient(ellipse at 85% 0%,color-mix(in srgb,var(--mc) 30%,transparent),transparent 60%),repeating-linear-gradient(135deg,#ff4f9a0e 0 14px,transparent 14px 28px),linear-gradient(160deg,color-mix(in srgb,var(--mc) 16%,var(--well)),var(--well))}
+.m-modes[data-v="amnesia"] .ht-art{background:radial-gradient(ellipse at 85% 0%,color-mix(in srgb,var(--mc) 30%,transparent),transparent 60%),radial-gradient(ellipse at 10% 100%,#b8a7ff2a,transparent 55%),linear-gradient(160deg,color-mix(in srgb,var(--mc) 16%,var(--well)),var(--well))}
+.m-modes[data-v="bounty"] .ht-art{background:radial-gradient(ellipse at 85% 0%,color-mix(in srgb,var(--mc) 30%,transparent),transparent 60%),radial-gradient(circle at 8% 92%,#ffc94a22,transparent 40%),linear-gradient(160deg,color-mix(in srgb,var(--mc) 16%,var(--well)),var(--well))}
+.m-modes[data-v="rot"] .ht-art{background:radial-gradient(ellipse at 90% 0%,#9fdcff3a,transparent 55%),radial-gradient(ellipse at 0% 100%,#a8504a4d,transparent 60%),linear-gradient(#141b3d 0%,#16142f 55%,#2a1411 100%)}
+.m-modes .ht-cap{background:color-mix(in srgb,var(--mc) 10%,transparent)}
+.qs[aria-pressed="true"]{border-color:var(--mc);background:color-mix(in srgb,var(--mc) 16%,transparent);box-shadow:0 0 14px -6px var(--mc)}
+@media (pointer:coarse){
+  /* Netlify's badge (or the iPhone home bar) at the bottom: everything that sits on the bottom edge moves up. */
+  :root{--lift:max(var(--nfb),env(safe-area-inset-bottom,0px))}
+  button,a,input,select{touch-action:manipulation}
+  .title{padding-bottom:calc(28px + var(--lift))}
+  .t-ov:not(.gm-ov){padding-bottom:calc(28px + var(--lift))}
+  .gm-in{padding-bottom:calc(20px + var(--lift))}
+  .t-page{padding-bottom:calc(32px + var(--lift))}
+  .modal{padding-bottom:calc(16px + var(--lift))}
+  .es-acts{padding-bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + var(--nfb))}
+  /* Finger-sized targets */
+  .btn{min-height:42px}
+  .btn.sm{min-height:40px}
+  .seg button,.t-lv button,.pg-tabs button,.es-tabs button,.hc-tab{min-height:40px}
+  .ov-back{min-height:44px}
+  .pg-nav button,.pg-back,.hb-lv{min-height:40px}
+  .pst-b{min-width:40px}
+  /* In a game the page never scrolls or rubber-bands under your thumbs. */
+  html.ingame,html.ingame body{overflow:hidden;overscroll-behavior:none}
+  .app{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  .pad,.pad button,.wellbox{touch-action:none}
+  .label kbd,.pw kbd{display:none}
+  .es-chip{min-height:38px}
+  .es-acts{background:linear-gradient(transparent,var(--bg) 18px)}
+}
+@media (pointer:coarse),(max-width:819px){
+  :root{--lift:max(var(--nfb),env(safe-area-inset-bottom,0px))}
+  .powchip{display:none!important}
+  body:has(#pwSlot.ready) #pad .powbtn{border-color:var(--o-scramble);box-shadow:0 0 0 1px var(--o-scramble),0 0 18px -4px var(--o-scramble);animation:padpow .9s ease-in-out infinite alternate}
+}
+@keyframes padpow{to{box-shadow:0 0 0 1px var(--o-scramble),0 0 26px 0 var(--o-scramble)}}
+@media (prefers-reduced-motion:reduce){#pad .powbtn{animation:none!important}}
+.calm #pad .powbtn{animation:none!important}
+/* Results on a sideways phone: a smaller headline so the run's details sit above the buttons. */
+@media (pointer:coarse) and (max-height:500px){
+  .es-in{gap:10px;padding-top:10px}
+  .es-hero{gap:4px;padding:0}
+  .es-head{font-size:24px}
+  .es-score{font-size:60px}
+}
+/* Phones (and narrow windows): nothing above or beside the board changes size mid-game. */
+@media (max-width:599px),(max-width:819px) and (pointer:fine),(pointer:coarse) and (max-height:500px){
+  .app{padding-bottom:calc(8px + var(--lift))}
+  .left{height:58px;flex:none}
+  .left .panel{overflow:hidden}
+  #incoming{display:none}
+  .inc-s{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin:2px 0 0;font:700 9.5px/1.25 var(--f-mono);color:var(--bad)}
+  .inc-s:empty{display:none}
+  .hz-panel:has(.inc-s:not(:empty)) .hz-l{display:none}
+  .top{min-height:40px}
+  #btnPause{min-width:46px;min-height:40px;font-size:14px}
+  .app.online .tb-l #btnMenu{min-height:40px}
+}
+/* Upright phones (and narrow windows): hold, next, power and hazards in a column beside the board, score and bonus
+   word over it, the pad along the bottom. The board is sized from the smallest viewport height, so the address bar
+   sliding in or out never resizes it, and the page itself never scrolls. */
+@media (max-width:599px) and (orientation:portrait),(max-width:819px) and (pointer:fine){
+  :root{--side:clamp(76px,22vw,100px);--cw:calc((100vw - var(--side) - 95px) / 6);
+    --cell:clamp(16px, min(calc((100svh - 306px - var(--lift)) / 12), var(--cw)), 46px)}
+  body.versus{--cell:clamp(16px, min(calc((100svh - 360px - var(--lift)) / 12), var(--cw)), 46px)}
+  body.has-mp{--cell:clamp(16px, min(calc((100svh - 339px - var(--lift)) / 12), var(--cw)), 46px)}
+  body.versus.has-mp{--cell:clamp(16px, min(calc((100svh - 393px - var(--lift)) / 12), var(--cw)), 46px)}
+  body.tutoring{--cell:clamp(16px, min(calc((100svh - 312px - var(--coachH,110px) - var(--lift)) / 12), var(--cw)), 46px)}
+  html.ingame .app{height:100svh}
+  .app{box-sizing:border-box;min-height:0;grid-template-columns:var(--side) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto;
+    grid-template-areas:"top top" "right right" "left well" "pad pad";align-content:stretch;align-items:start;gap:6px 8px;
+    padding:8px max(8px,env(safe-area-inset-right,0px)) calc(8px + var(--lift)) max(8px,env(safe-area-inset-left,0px))}
+  body.solo:not(.tutoring) .app{grid-template-rows:auto minmax(0,1fr) auto;grid-template-areas:"top top" "left well" "pad pad"}
+  .left{grid-area:left;align-self:stretch;height:auto;flex-direction:column;gap:6px;contain:size;overflow:hidden}
+  .left .panel{flex:none;padding:6px 7px}
+  .nexts,.next-panel .nexts{flex-direction:column;align-items:stretch;gap:6px}
+  .mini{min-height:34px}
+  .mini i{width:15px;height:15px;font-size:8.5px;line-height:15px}
+  .pw{padding:6px;font-size:14px}
+  .hz-l{font-size:10px;line-height:1.3}
+  .inc-s{-webkit-line-clamp:4}
+  .wellwrap{grid-area:well;align-self:start;gap:5px;min-width:0}
+  .scorecard{position:relative;height:46px;box-sizing:border-box;padding:3px 9px 8px;align-content:center;overflow:hidden}
+  .sc-main{min-width:0;flex-wrap:nowrap;white-space:nowrap;overflow:hidden}
+  .sc-v{flex:none}
+  .sc-best{min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .sc-chips{flex-direction:column;align-items:stretch;gap:2px}
+  .chip{padding:1px 7px;font-size:10.5px;line-height:13px;gap:8px;white-space:nowrap}
+  .chip i{font-size:8px}
+  .sc-spd{position:absolute;left:9px;right:9px;bottom:3px}
+  .sc-spd .spdbar{height:3px}
+  .wotd-panel{display:flex;align-items:center;gap:8px;height:30px;box-sizing:border-box;padding:0 8px;overflow:hidden}
+  .wp-head{margin:0;flex:none;padding:0}
+  .wp-head .label{margin:0}
+  .wotd-n{display:none}
+  .wotd{flex:1;min-width:0;justify-content:flex-end;gap:3px}
+  .wotd i{flex:0 1 18px;min-width:12px;max-width:18px;font-size:10.5px;border-radius:4px}
+  .right{grid-area:right}
+  .pad{grid-area:pad;max-width:none}
+  .pad button{height:46px}
+}
+/* Short phones (an iPhone SE with Safari's bars showing): everything a little tighter so the pad never meets the board. */
+@media (max-width:599px) and (orientation:portrait) and (max-height:620px),(max-width:819px) and (pointer:fine) and (max-height:620px){
+  :root{--cell:clamp(14px, min(calc((100svh - 268px - var(--lift)) / 12), var(--cw)), 46px)}
+  body.versus{--cell:clamp(14px, min(calc((100svh - 304px - var(--lift)) / 12), var(--cw)), 46px)}
+  body.has-mp{--cell:clamp(14px, min(calc((100svh - 300px - var(--lift)) / 12), var(--cw)), 46px)}
+  body.versus.has-mp{--cell:clamp(14px, min(calc((100svh - 336px - var(--lift)) / 12), var(--cw)), 46px)}
+  body.tutoring{--cell:clamp(14px, min(calc((100svh - 272px - var(--coachH,110px) - var(--lift)) / 12), var(--cw)), 46px)}
+  .app{gap:4px 8px;padding-top:6px}
+  .top{min-height:34px}
+  #btnPause{min-height:34px}
+  .scorecard{height:40px}
+  .chip{line-height:12px}
+  .wotd-panel{height:26px}
+  .wellwrap{gap:4px}
+  .opp-panel .label{display:none}
+  .pad{gap:4px}
+  .pad button{height:40px}
+}
+/* Tablets held upright: the desktop's three columns, with the pad split into the bottom corners under your thumbs. */
+@media (pointer:coarse) and (orientation:portrait) and (min-width:600px){
+  :root{--side:clamp(176px,24vw,240px);--cw:calc((100vw - 2 * var(--side) - 107px) / 6);
+    --cell:clamp(24px, min(calc((100svh - 300px) / 12), var(--cw)), 64px)}
+  body.has-mp{--cell:clamp(24px, min(calc((100svh - 342px) / 12), var(--cw)), 64px)}
+  html.ingame .app{height:100svh}
+  .app{box-sizing:border-box;min-height:0;grid-template-columns:var(--side) auto var(--side);grid-template-rows:auto minmax(0,1fr) auto;
+    grid-template-areas:"top top top" "left well right" "padl well padr";justify-content:center;align-content:stretch;align-items:start;gap:12px 16px;
+    padding:16px max(20px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
+  .wellwrap{grid-area:well;align-self:center}
+  .left,.right{align-self:stretch;min-height:0;overflow:hidden}
+  .pad{display:contents}
+  .pad-l,.pad-r{display:grid;gap:10px;align-self:end;touch-action:none}
+  .pad-l{grid-area:padl;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"rot soft" "left right"}
+  .pad-r{grid-area:padr;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:"hold cycle power" "hard hard hard";margin-bottom:var(--nfb)}
+  .pad button{width:auto;height:64px;font-size:22px;border-radius:14px}
+  .pad button small{font-size:10px}
+  #btnPause{min-width:56px;min-height:46px}
+}
+/* Sideways (phones and tablets): the board fills the height in the middle, everything else on the two sides, and
+   the pad split under your thumbs: move and rotate on the left, drop, hold, swap and power on the right. */
+@media (pointer:coarse) and (orientation:landscape){
+  html.ingame .app{height:100svh}
+  .app{min-height:0;box-sizing:border-box;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto;
+    grid-template-areas:"top well wotd" "sc well mp" "left well right" "padl well padr";justify-content:stretch;align-content:stretch;align-items:start;gap:8px 18px;
+    padding:10px max(16px,env(safe-area-inset-right,0px)) max(10px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+  :root,body.versus,body.has-mp,body.versus.has-mp,body.tutoring{--cell:clamp(16px, min(calc((100svh - 73px - env(safe-area-inset-bottom,0px)) / 12), calc((100vw - 540px) / 6)), 64px)}
+  .wellwrap{display:contents}
+  .top{grid-area:top}
+  .scorecard{grid-area:sc;align-self:start}
+  .wotd-panel{grid-area:wotd;align-self:start}
+  .mode-panel{grid-area:mp;align-self:start}
+  .wellbox{grid-area:well;align-self:center}
+  .left{grid-area:left;min-height:0}
+  .right{grid-area:right;min-height:0;overflow:hidden}
+  .left .hz-panel{flex:1.6 1 0}
+  .pad{display:contents}
+  .pad-l,.pad-r{display:grid;gap:8px;align-self:end;touch-action:none}
+  .pad-l{grid-area:padl;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"rot soft" "left right"}
+  .pad-r{grid-area:padr;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:"hold cycle power" "hard hard hard";margin-bottom:var(--nfb)}
+  .pad button{width:auto;height:54px}
+}
+/* Sideways tablets have room for the full side panels; keep them clear of the clusters. */
+@media (pointer:coarse) and (orientation:landscape) and (min-height:501px){
+  .left{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:10px}
+  .pad button{height:66px;font-size:22px;border-radius:14px}
+  .pad button small{font-size:10px}
+  .pad-l,.pad-r{gap:10px}
+}
+/* Phones: Play stays on screen while you look over the card. */
+@media (pointer:coarse) and (max-width:760px){
+  #playCard .ps-actions{position:sticky;bottom:calc(10px + var(--lift));z-index:4}
+  #playCard .ps-actions .t-play{box-shadow:0 10px 26px -6px #000c,0 0 0 1px #0006}
+  .gm-play{position:sticky;bottom:calc(10px + var(--lift));z-index:4;box-shadow:0 10px 26px -6px #000c,0 0 0 1px #0006}
+  /* The mode cards take whatever height the options leave, so Play fits on screen without scrolling. */
+  .gm-in{min-height:100svh}
+  .gm-cards{flex:1 1 auto;height:auto;min-height:240px;max-height:340px}
+  /* Options that don't apply to the picked mode (greyed on bigger screens) step aside on a phone. */
+  .gm-o.off{display:none}
+}
+/* Sideways tablets: the home page fits above the badge too. */
+@media (pointer:coarse) and (min-width:1021px) and (min-height:600px){
+  .title:has(.t-wrap.home.ha:not([hidden])){padding-bottom:calc(14px + var(--lift))}
+  .title .t-wrap.home.ha{height:min(calc(100svh - 28px - var(--lift)),980px)}
+}
+/* Change mode page on upright tablets: two rows of four cards that fill the screen. */
+@media (pointer:coarse) and (orientation:portrait) and (min-width:600px){
+  .gm-ov{overflow:hidden}
+  .gm-in{height:100svh;min-height:0;padding:22px 28px calc(20px + var(--lift));gap:14px}
+  .gm-cards{flex:1;height:auto;min-height:0;overflow:visible;grid-auto-flow:row;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));grid-auto-columns:auto;scroll-snap-type:none;gap:14px;padding:8px 2px}
+  .gm-card.on{transform:translateY(-4px)}
+  .gm-now{display:inline}
+  .gm-desc{height:4.4em;-webkit-line-clamp:3;font-size:14px}
+  .gm-opts{grid-template-columns:minmax(0,1fr) auto}
+  .gm-o{flex:0 1 auto}
+  .gm-play{width:auto;min-width:200px}
+}
 </style>
 
 <div class="app" id="app">
@@ -2325,6 +2531,7 @@ body[data-v="puzzle"] .hz-panel,body[data-v="puzzle"] .atk{display:none}
       <p class="hz-l" id="hzLine">Hazard in <b>10</b> blocks</p>
       <div class="cycle" id="hzCycle"><span data-k="stretch" class="o-stretch">⇲ Stretch</span><span data-k="stones" class="o-stones">▦ Stones</span><span data-k="speed" class="o-speed">⚡ Speed</span></div>
       <p class="incoming" id="incoming"></p>
+      <p class="inc-s" id="incS" aria-hidden="true"></p>
     </section>
   </aside>
 
@@ -2376,14 +2583,18 @@ body[data-v="puzzle"] .hz-panel,body[data-v="puzzle"] .atk{display:none}
   </aside>
 
   <nav class="pad" id="pad" aria-label="Touch controls">
-    <button type="button" data-act="hold">⇆<small>HOLD</small></button>
-    <button type="button" data-act="left">◀<small>LEFT</small></button>
-    <button type="button" data-act="rot">⟳<small>ROTATE</small></button>
-    <button type="button" data-act="cycle">AB<small>SWAP</small></button>
-    <button type="button" data-act="right">▶<small>RIGHT</small></button>
-    <button type="button" data-act="soft">▼<small>SOFT</small></button>
-    <button type="button" data-act="power" class="powbtn">★<small>POWER</small></button>
-    <button type="button" data-act="hard" class="drop">⤓<small>DROP</small></button>
+    <div class="pad-l">
+      <button type="button" data-act="left">◀<small>LEFT</small></button>
+      <button type="button" data-act="rot">⟳<small>ROTATE</small></button>
+      <button type="button" data-act="right">▶<small>RIGHT</small></button>
+      <button type="button" data-act="soft">▼<small>SOFT</small></button>
+    </div>
+    <div class="pad-r">
+      <button type="button" data-act="hold">⇆<small>HOLD</small></button>
+      <button type="button" data-act="cycle">AB<small>SWAP</small></button>
+      <button type="button" data-act="power" class="powbtn">★<small>POWER</small></button>
+      <button type="button" data-act="hard" class="drop">⤓<small>DROP</small></button>
+    </div>
   </nav>
 </div>
 
@@ -2541,7 +2752,7 @@ body[data-v="puzzle"] .hz-panel,body[data-v="puzzle"] .atk{display:none}
         <h3 class="pk-sec" id="pkModeH">Game mode</h3>
         <div class="pc-mode" id="pcDaily">
           <div class="pm-col"><span class="tc-k">Today's game mode</span><div class="mtiles dm" id="tDailyMode" role="img"></div></div>
-          <div class="pm-col"><span class="tc-k">Seed</span><div class="ps-lock" title="Same pieces, hazards and word for everyone today."><span class="ps-ic" aria-hidden="true">🔒</span>Same for everyone</div></div>
+          <div class="pm-col"><span class="tc-k">Seed</span><div class="ps-lock" title="Same pieces, hazards and word for everyone today."><svg class="ps-ic lk" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 7.2V5.4a3 3 0 0 1 6 0v1.8" fill="none" stroke="currentColor" stroke-width="1.9"/><rect x="3" y="7" width="10" height="7.6" rx="2" fill="currentColor"/></svg>Same for everyone</div></div>
         </div>
         <div class="pc-mode off" id="pcMode">
           <div class="pm-col"><span class="tc-k">Game mode</span><div id="tVariant"></div></div>
@@ -4939,6 +5150,16 @@ function renderIncoming() {
   else if (B.incoming.length || B.pending.stones) inc.push('score a word to block');
   const t = inc.join(' · '), el = $('#incoming');
   if (el.textContent !== t) el.textContent = t;
+  // Phones: the same warning, short enough for the hazard panel.
+  const sh = [];
+  if (B.phase !== 'over') {
+    for (const it of B.incoming) sh.push(`${ORB[it.kind].icon} ${it.kind === 'stones' ? it.n + ' ' : ''}in ${Math.max(1, Math.ceil(it.t / 1000))}s`);
+    if (B.pending.stones) sh.push(`▦ ${B.pending.stones} next drop`);
+    if (B.queue.some(p => p.stretched)) sh.push('⇲ stretched next');
+    if (B.rush > 0) sh.push(`⚡ ${Math.ceil(B.rush / 1000)}s`);
+  }
+  const ts = sh.join(' · '), es = $('#incS');
+  if (es && es.textContent !== ts) es.textContent = ts;
 }
 const meterEl = $('#meter');
 function renderMeter(B) {
@@ -5458,6 +5679,9 @@ function renderModesTile() {
   f.classList.toggle('dis', fixed); inp.disabled = fixed; f.querySelector('.ps-x').disabled = fixed;
   inp.placeholder = playTab === 'daily' ? 'Same seed for everyone today' : playTab === 'ranked' ? 'Ranked picks the seed' : 'Random seed';
   el.querySelectorAll('.qs-way button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.w === 'vs' ? playTab === 'bot' || playTab === 'online' : playTab === 'practice')));
+  el.classList.toggle('daily', playTab === 'daily' && !tc);
+  const tile = el.closest('.m-modes'), pc = $('#playCard');
+  if (tile && pc) { tile.dataset.v = pc.dataset.v || 'classic'; tile.dataset.m = pc.dataset.m || 'daily'; }
 }
 function renderHome() {
   setText($('#tCountdown'), nextDropIn());
@@ -5505,6 +5729,7 @@ function showMenuNow(resumable, noIntro = false) {
   renderBoard();
   titleEl.hidden = false;
   $('#app').inert = true;
+  document.documentElement.classList.remove('ingame');
   titleEl.scrollTop = 0;
   $('#tPlay').focus({ preventScroll: true });
   if (fromGame && !noIntro) requestAnimationFrame(() => playIntro(booted ? 'return' : 'boot'));
@@ -5512,7 +5737,7 @@ function showMenuNow(resumable, noIntro = false) {
   if (!prog().level) setTimeout(askLevel, booted ? 200 : 1400);
   booted = true;
 }
-function hideTitle() { closeOv(true); titleEl.hidden = true; $('#app').inert = false; }
+function hideTitle() { closeOv(true); titleEl.hidden = true; $('#app').inert = false; document.documentElement.classList.add('ingame'); scrollTo(0, 0); }
 /* Rot & Thaw guide: a few illustrated pages. Art rows: tokens "letter:class.class", _ = empty, # = no letter, > = caption. */
 const rgArt = rows => rows.map(r => r[0] === '>' ? `<div class="rg-cap">${r.slice(1)}</div>` : `<div class="rg-row">${r.split(' ').map(t => {
   const [ch, cl = ''] = t.split(':');
@@ -5772,6 +5997,19 @@ function closeOv(silent) {
   if (wasPage) { curPage = null; keyCap = null; pgBody.innerHTML = ''; renderHome(); if (!prog().level) setTimeout(askLevel, 200); }
   if (!silent && ovReturn && document.contains(ovReturn)) ovReturn.focus({ preventScroll: true });
 }
+/* ---------- Netlify badge ---------- */
+(() => {
+  const root = document.documentElement;
+  const check = () => {
+    const f = document.getElementById('nl-badge-frame') || document.getElementById('nl-hud-frame');
+    const on = !!f || !!document.querySelector('script[data-nf-variant="public"]');
+    root.classList.toggle('nfb', on);
+    root.style.setProperty('--nfb', on ? '64px' : '0px');
+  };
+  check();
+  addEventListener('DOMContentLoaded', check);
+  new MutationObserver(check).observe(document.body, { childList: true });
+})();
 /* ---------- Change mode page ---------- */
 const GM_TAG = { daily: 'One board for everyone', classic: 'Spell across, cash in down', rot: 'Winter and summer at war', puzzle: 'Three minutes, one box',
   chaos: 'New rules every 35 seconds', amnesia: 'Your letters slip away', bounty: 'Hunt the wanted words', ranked: 'Climb the tiers' };
@@ -7749,7 +7987,7 @@ document.addEventListener('click', e => {
 function seedBtn(r, cls = 'seedbtn') {
   const code = seedCode(r); if (!code) return '';
   const md = MODES[r.variant] ? MODES[r.variant].name : 'Classic';
-  return `<button type="button" class="${cls}" data-seed="${esc(code)}" title="Copy this seed. Paste it into the seed box with ${esc(md)} picked to play the same run again." aria-label="Copy seed ${esc(code)}"><span aria-hidden="true">🌱</span><b>${esc(code)}</b><span class="cp-ic">Copy</span></button>`;
+  return `<button type="button" class="${cls}" data-seed="${esc(code)}" title="Copy this seed. Paste it into the seed box with ${esc(md)} picked to play the same run again." aria-label="Copy seed ${esc(code)}"><svg class="ps-ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 14.5V8.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8 9.2C7.9 6 5.7 4.1 2.2 4.2 2.2 7.5 4.5 9.4 8 9.2Z"/><path d="M8 7.9C8.2 4.7 10.3 2.7 13.8 2.8 13.8 6.1 11.5 8.1 8 7.9Z"/></svg><b>${esc(code)}</b><span class="cp-ic">Copy</span></button>`;
 }
 function runBody(r, opt = {}) {
   const fav = favWord(r.list), pw = r.powers || {}, used = POWERS.filter(k => +pw[k] > 0);
