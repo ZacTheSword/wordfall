@@ -986,8 +986,9 @@ div.hub-t{cursor:default}
 .play-card{position:relative}
 #playCard{padding-bottom:100px} /* room for the rot stack, kept in every mode so the card never changes height */
 .rc{display:none;position:absolute;inset:0;pointer-events:none;border-radius:12px;overflow:hidden;z-index:0}
-.play-card.rotframe .rc{display:block}
+.play-card .rc[data-k]:not([data-k=""]){display:block}
 .play-card>.pc-stack,.play-card>.pc-row,.play-card>.pc-guide,.play-card>.ps-actions{position:relative;z-index:2}
+.t-card.play-card{--rt:22px}
 .t-card.play-card.rotframe{--mc:#9fdcff;--rt:22px;border-color:#a8504a;background:linear-gradient(#141b3d 0%,#16142f 50%,#2a1411cc 100%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E %3C%21-- Rot skin: seamless brown-red mottling with fine grain (tiles at 260px). --%3E %3Cfilter id='dark' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.022' numOctaves='3' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .17 0 0 0 0 .04 0 0 0 0 .03 3.4 0 0 0 -1.6'/%3E%3C/filter%3E %3Cfilter id='lite' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.03' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .66 0 0 0 0 .3 0 0 0 0 .2 0 3.2 0 0 -1.75'/%3E%3C/filter%3E %3Cfilter id='pits' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.09' numOctaves='2' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .02 0 0 0 0 .02 0 0 5 0 -2.85'/%3E%3C/filter%3E %3Cfilter id='grain' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='1' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.4 0 0 0 -.5'/%3E%3C/filter%3E %3Crect width='260' height='260' filter='url(%23lite)' opacity='.7'/%3E %3Crect width='260' height='260' filter='url(%23dark)'/%3E %3Crect width='260' height='260' filter='url(%23pits)' opacity='.8'/%3E %3Crect width='260' height='260' filter='url(%23grain)' opacity='.35'/%3E %3C/svg%3E ") 0 0/260px 260px,#2a1411;box-shadow:0 0 0 1px #2a0806,0 0 32px -4px #a8504acc,0 0 80px -18px #83342f,0 24px 60px -24px #000}
 .rotframe .pd-art,.rotframe .t-switch{background:#0d0b1fd9}
 .rc .c{position:absolute!important;margin:0;width:var(--rt);height:var(--rt);--cell:var(--rt);--pc:#c4ae7f;animation:none!important}
@@ -998,7 +999,31 @@ div.hub-t{cursor:default}
 @keyframes rcfall{to{transform:translate(18px,var(--fall,640px))}}
 .calm .rc .flake{display:none}
 @media (prefers-reduced-motion:reduce){.rc .flake{display:none}}
-@media (max-width:560px){.t-card.play-card.rotframe{--rt:18px}#playCard{padding-bottom:84px}}
+@media (max-width:560px){.t-card.play-card,.t-card.play-card.rotframe{--rt:18px}#playCard{padding-bottom:84px}}
+/* Every mode's play card has a half-played stack along the bottom, like Rot & Thaw's: real board cells in the
+   mode's colours, with a glow and a few things drifting behind the card. cardDeco() builds it. */
+.rc[data-k]:not([data-k="rot"]){background:linear-gradient(transparent 55%,color-mix(in srgb,var(--dc) 16%,transparent))}
+.rc[data-k="classic"]{--dc:#58c4e0}.rc[data-k="daily"]{--dc:#f1cf74}.rc[data-k="amnesia"]{--dc:#b8a7ff}
+.rc[data-k="bounty"]{--dc:#ffc94a}.rc[data-k="puzzle"]{--dc:#6fe3c4}.rc[data-k="chaos"]{--dc:#ff4f9a}
+.rc[data-k]:not([data-k="rot"]) .c.k-D{--pc:#58c4e0}.rc[data-k]:not([data-k="rot"]) .c.k-L{--pc:#b27be6}
+.rc .c.pwr{background:var(--o-clear);box-shadow:inset 0 -4px 0 #2a9fc0,0 0 10px var(--o-clear)}
+.rc .c.star{background:linear-gradient(#ffe9a3,var(--bank));box-shadow:inset 0 -4px 0 var(--bankedge),0 0 12px #ffd34d99}
+.rc .c.star::before{content:'★';color:#8a5a00;font-size:.75em}
+.rc .c.gone{background:linear-gradient(135deg,transparent 44%,#b8a7ff 44% 56%,transparent 56%);box-shadow:none;outline:1.5px dashed #b8a7ffaa;outline-offset:-1.5px}
+.rc .c.tg{background:#ffc94a1f;box-shadow:inset 0 0 0 1.5px #ffc94a,0 0 8px #ffc94a55}
+.rc .c.coin{background:radial-gradient(circle at 50% 45%,#fff3c4 0 18%,#ffc94a 20% 52%,#d99a1a 54%);box-shadow:inset 0 -4px 0 #b07a10,0 0 10px #ffc94a88}
+.rc .c.hz{background:repeating-linear-gradient(135deg,#ff4f9a 0 4px,#3a0d26 4px 8px);box-shadow:inset 0 -4px 0 #0007}
+.rc .c.tile.wild::before{content:'★';font-size:.55em;color:#fff;text-shadow:0 1px 2px #0009}
+.rc .c.bomb{background:#ff5d3a;box-shadow:inset 0 -4px 0 #b3300a,0 0 12px #ff5d3a}
+.rc .c.bomb::before{content:'💣';font-size:.5em}
+.rc .bit{position:absolute;top:-8px;width:6px;height:6px;border-radius:2px;background:var(--bc,#f2e9d6);box-shadow:0 0 6px var(--bc,#f2e9d6);animation:rcfall linear infinite}
+.rc .mote{position:absolute;bottom:20px;font:800 11px/1 var(--f-ui);text-transform:uppercase;color:var(--dc);text-shadow:0 0 8px var(--dc);animation:rcrise ease-in infinite}
+.rc .twk{position:absolute;color:var(--dc);font-size:10px;line-height:1;text-shadow:0 0 8px var(--dc);animation:rctwinkle ease-in-out infinite}
+@keyframes rcrise{0%{transform:translateY(0);opacity:0}15%{opacity:var(--o,.7)}100%{transform:translateY(calc(var(--rise,300px) * -1));opacity:0}}
+@keyframes rctwinkle{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:var(--o,.8);transform:scale(1)}}
+.calm .rc .bit,.calm .rc .mote,.calm .rc .twk{display:none}
+@media (prefers-reduced-motion:reduce){.rc .bit,.rc .mote,.rc .twk{display:none}}
+
 /* Rot & Thaw touches on the card: a plain netherrack tile for the Practice icon, and themed preview blocks. */
 .rotframe [data-p="practice"] .pm-ic{font-size:0;border-radius:10px;background:var(--nether);box-shadow:inset 0 -5px 0 var(--nether-edge),0 0 0 1px #2a0806}
 .rotframe [data-p="practice"] .ha-board i:nth-child(3),.rotframe [data-p="practice"] .ha-board i:nth-child(4){background:linear-gradient(160deg,#fff 0%,#b8ecff 40%,#5cc8f5 100%);color:#063a57;box-shadow:inset 0 -2px 0 #2f9fd6,0 0 0 1.5px #38c6ff,0 0 8px #5fd4ffaa}
@@ -1668,7 +1693,7 @@ div.hub-t{cursor:default}
 .ha .t-icb.t-guide{height:42px}
 /* Play card: one column, the mode's art in the middle, no descriptions (they're in Change mode). */
 .ha .t-card.play-card{min-height:0;padding:18px;gap:12px}
-.title .ha #playCard:not(.rotframe){padding-bottom:18px}
+.title .ha #playCard[data-m="tut"]{padding-bottom:18px}
 .ha .pc-stack{flex:1;grid-template-rows:minmax(0,1fr)}
 .ha .pc-stack>.pc-pane,.ha .pc-stack>.pc-pane[data-p="daily"]{grid-row:1}
 .ha .pc-pane.pd{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch;gap:12px}
@@ -1684,7 +1709,7 @@ div.hub-t{cursor:default}
 .ha .play-card .pm-desc{margin:0;font-size:13.5px;line-height:1.5}
 .ha .pm-name{font-size:min(30px,calc(100cqi / var(--len,8) * 1.5));white-space:nowrap}
 .ha .pm-ic,.ha .pm-head .t-ic{width:48px;height:48px;font-size:24px}
-.ha .pd-wotd{gap:10px;padding:6px 0 4px}
+.ha .pd-wotd{gap:10px;padding:6px 0 4px;place-items:center}
 .ha .pd-wotd .tc-wotd{justify-items:center;text-align:center;gap:10px}
 .ha .pd-wotd .wotd{justify-content:center}
 .ha .pd-wotd .wotd i{width:38px;font-size:19px}
@@ -1843,7 +1868,8 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
   .ha .ps-actions .t-play{padding:14px 12px;font-size:22px}
   .ha .pd-stats>div{padding:6px 10px}.ha .pd-stats b{font-size:17px}
   .ha .t-card.play-card{padding:14px;gap:10px}
-  .title .ha #playCard.rotframe{padding-bottom:78px}
+  .title .ha #playCard:not([data-m="tut"]){padding-bottom:48px}
+  .t-card.play-card,.t-card.play-card.rotframe{--rt:16px;--rows:2}
 }
 /* Change mode sheet: game mode, description and seed under the ways to play */
 .pk-sec{margin:0 0 -4px;font:700 11.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:left;width:100%;max-width:1200px}
@@ -5404,28 +5430,61 @@ $('#tModes').onclick = () => {
 $('#tLb').onclick = () => openPage('lb');
 for (const id of ['#picker']) $(id).addEventListener('click', e => { if (e.target === e.currentTarget || e.target.classList.contains('ov-in')) closeOv(); });
 const VDESC = {
-  classic: 'The standard game: spell across, cash in down. No seasons and no rot, just you against the stack.',
+  classic: 'Spell across to bank points, then spell down through them to cash in for a multiplier. Hazards hit every few blocks, faster the longer you last.',
   puzzle: 'Tiles fall slowly. You have 3 minutes to fit as many words on the board as you can, until no tile left can be placed. Finished words light up and stay put, racking up points toward your score.',
   chaos: 'Another mode-shifting event. Game-changing mechanics take over mid-run to challenge you, so adapt to each new rule or get buried.',
   amnesia: 'Ban specific letters from falling. Every 30 seconds another letter is banned, so the longer the game goes, the fewer letters you have to spell with.',
   bounty: 'Word targets appear as you play. Score as many of them as you can to rack up massive multipliers.',
   rot: 'Seasons turn every 40s. Blizzards slow everything, add ice to every piece and snow over your words. Summer melts it, speeds up and rots words, fastest next to rot tiles. Score a rot tile for 🔥 Ignite, which burns rot away.',
 };
-// Rot & Thaw play card: a half-played stack of real board cells along the bottom (rubble, rotting blocks with
-// netherrack power tiles among them, snow and ice on top) and pixel snow falling behind the card.
+/* The play card's stack: a half-played stack of real board cells along the bottom in the mode's look, and
+   something drifting behind the card. Rot & Thaw: rubble, rotting blocks with netherrack power tiles, snow
+   and ice on top, pixel snow. The others are listed in DECO_CELL. */
+const DECO_LETTERS = 'etaoinsrhdlcumwfgypbvk';
+function DECO_CELL(kind, i, r, n, h) {
+  const top = r === n - 1, a = h(i, r + 3), b = h(i, 5), piece = a < 0.5 ? 'tile k-D' : 'tile k-L';
+  switch (kind) {
+    case 'daily': return r === 0 ? (b < 0.5 ? 'bank' : 'stone') : top ? (b < 0.45 ? 'star' : 'bank') : a < 0.55 ? 'bank' : piece;
+    case 'amnesia': return r === 0 ? 'stone' : top ? (b < 0.4 ? 'gone' : b < 0.7 ? 'tile mem' : piece) : a < 0.3 ? 'tile mem' : a < 0.45 ? 'gone' : piece;
+    case 'bounty': return r === 0 ? (b < 0.4 ? 'bank' : 'stone') : top ? (b < 0.35 ? 'coin' : b < 0.7 ? 'tg' : 'bank') : a < 0.4 ? 'bank' : piece;
+    case 'puzzle': return top && b < 0.3 ? piece : a < 0.15 ? 'tile lit litx' : 'tile lit';
+    case 'chaos': return r === 0 ? (b < 0.5 ? 'hz' : 'stone') : top ? (b < 0.3 ? 'bomb' : b < 0.6 ? 'tile wild' : 'hz') : a < 0.35 ? 'hz' : piece;
+    default: return r === 0 ? 'stone' : top ? (b < 0.3 ? 'bank' : b < 0.42 ? 'tile pwr' : piece) : a < 0.25 ? 'bank' : piece;   // classic
+  }
+}
 function rotDeco() {
-  const card = $('#playCard'), d = card.querySelector('.rc');
-  if (!card.classList.contains('rotframe')) { if (d.dataset.k) { d.textContent = ''; d.dataset.k = ''; } return; }
-  const t = parseFloat(getComputedStyle(card).getPropertyValue('--rt')) || 22, w = d.clientWidth, H = d.clientHeight, gap = 2, m = 8;
-  const key = `${w}x${H}x${t}`;
-  if (!w || d.dataset.k === key) return;
-  d.dataset.k = key;
+  const card = $('#playCard'), d = card.querySelector('.rc'), kind = card.dataset.deco || '';
+  if (!kind) { if (d.dataset.key) { d.textContent = ''; d.dataset.key = ''; } d.dataset.k = ''; return; }
+  d.dataset.k = kind;
+  const cs = getComputedStyle(card), t = parseFloat(cs.getPropertyValue('--rt')) || 22, rows = parseInt(cs.getPropertyValue('--rows')) || 3, w = d.clientWidth, H = d.clientHeight, gap = 2, m = 8;
+  const key = `${kind}:${w}x${H}x${t}x${rows}`;
+  if (!w || d.dataset.key === key) return;
+  d.dataset.key = key;
   const h = (i, s = 1) => { const x = Math.sin(i * 12.9898 * s + 78.233) * 43758.5453; return x - Math.floor(x); };
   const cell = (cls, x, y, st = '') => `<i class="c ${cls}" style="left:${x.toFixed(1)}px;top:${y.toFixed(1)}px;${st}"></i>`;
   const cols = Math.floor((w - 2 * m + gap) / (t + gap)), x0 = (w - cols * (t + gap) + gap) / 2;
   let out = '';
+  if (kind !== 'rot') {
+    // Puzzle Box packs its stack evenly (it's all about fitting); the others are ragged like a real game.
+    for (let i = 0; i < cols; i++) {
+      const n = Math.min(rows, kind === 'puzzle' ? 2 + (h(i, 7) < 0.35 ? 1 : 0) : 1 + Math.floor(h(i, 7) * 3)), x = x0 + i * (t + gap);
+      for (let r = 0; r < n; r++) {
+        const y = H - m - t - r * (t + gap), tilt = kind === 'chaos' && r === n - 1 ? `transform:rotate(${((h(i, 9) - 0.5) * 24).toFixed(0)}deg)` : '';
+        out += cell(DECO_CELL(kind, i, r, n, h), x, y, tilt);
+      }
+    }
+    const P = { classic: 18, daily: 22, amnesia: 14, bounty: 18, puzzle: 12, chaos: 22 }[kind] || 16;
+    for (let k = 0; k < P; k++) {
+      const left = (h(k, 9) * 100).toFixed(1), dur = (6 + h(k, 4) * 6).toFixed(1), del = (h(k, 2) * 12).toFixed(1), o = (0.35 + h(k, 6) * 0.55).toFixed(2);
+      if (kind === 'daily') out += `<i class="twk" style="left:${left}%;top:${(4 + h(k, 3) * (H - 140)).toFixed(0)}px;--o:${o};animation-duration:${(2 + h(k, 4) * 3).toFixed(1)}s;animation-delay:-${(h(k, 2) * 5).toFixed(1)}s">✦</i>`;
+      else if (kind === 'amnesia' || kind === 'puzzle') out += `<i class="mote" style="left:${left}%;--o:${o};--rise:${H - 60}px;animation-duration:${dur}s;animation-delay:-${del}s">${kind === 'amnesia' ? DECO_LETTERS[Math.floor(h(k, 8) * DECO_LETTERS.length)] : '+'}</i>`;
+      else out += `<i class="bit" style="left:${left}%;--fall:${H + 10}px;--bc:${kind === 'chaos' ? (k % 2 ? '#ff4f9a' : '#ffc94a') : kind === 'bounty' ? '#ffc94a' : k % 3 ? '#f2e9d6' : '#58c4e0'};animation-duration:${dur}s;animation-delay:-${del}s;opacity:${o}"></i>`;
+    }
+    d.innerHTML = out;
+    return;
+  }
   for (let i = 0; i < cols; i++) {
-    const n = 1 + Math.floor(h(i, 7) * 3), x = x0 + i * (t + gap), hot = h(i, 11);
+    const n = Math.min(rows, 1 + Math.floor(h(i, 7) * 3)), x = x0 + i * (t + gap), hot = h(i, 11);
     for (let r = 0; r < n; r++) {
       const y = H - m - t - r * (t + gap), top = r === n - 1;
       if (r === 0) out += cell('stone rubble', x, y);
@@ -5531,6 +5590,8 @@ function syncVariant() {
   const ic = pc.querySelector('[data-p="practice"] .pm-ic');
   if (isSoon(pickMode)) { ic.dataset.i = pickMode; ic.textContent = ''; } else if (ic.dataset.i) { delete ic.dataset.i; ic.textContent = '🎯'; }
   pc.classList.toggle('rotframe', shown === 'rot');
+  // The stack along the bottom: the mode's own; a Classic daily gets the gold daily one; none on the tutorial card.
+  pc.dataset.deco = tc ? '' : shown === 'classic' && playTab === 'daily' ? 'daily' : shown;
   renderModeBest();
   requestAnimationFrame(fitArt);
   rotDeco();
