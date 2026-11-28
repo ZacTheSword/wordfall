@@ -1868,7 +1868,10 @@ button.h2-chip{cursor:pointer}button.h2-chip:hover,button.h2-chip:focus-visible{
   .ha .ps-actions .t-play{padding:14px 12px;font-size:22px}
   .ha .pd-stats>div{padding:6px 10px}.ha .pd-stats b{font-size:17px}
   .ha .t-card.play-card{padding:14px;gap:10px}
-  .title .ha #playCard:not([data-m="tut"]){padding-bottom:48px}
+  .title .ha #playCard:not([data-m="tut"]){padding-bottom:62px}
+  /* the daily's stat boxes go to one line of label each, so the word of the day keeps its size */
+  .ha .pd-stats .tc-k{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:9px;letter-spacing:.02em}
+  .ha .pd-stats .tc-dots{display:none}
   .t-card.play-card,.t-card.play-card.rotframe{--rt:16px;--rows:2}
 }
 /* Change mode sheet: game mode, description and seed under the ways to play */
